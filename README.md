@@ -66,13 +66,13 @@ The program will perform a little 33 "city" demonstration using default settings
     $ python pants.py
 
 
-To-Do:
+To-Do
 -----
 
- * Write more docstrings
- * Start using argparse!
- * Let user provide a path to a csv file of coordinates
- * Let user decide whether solver returns local or global best
- * Write unit tests
- * Put test data someplace else
- * Make this a module??
+ [ ] Write more docstrings
+ [ ] Start using argparse!
+ [ ] Let user provide a path to a csv file of coordinates
+ [ ] Let user decide whether solver returns local or global best
+ [ ] Write unit tests
+ [ ] Put test data someplace else
+ [ ] Make this a module??
