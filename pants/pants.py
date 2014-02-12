@@ -79,7 +79,7 @@ class World(object):
 			return sqrt(x*x + y*y)
 
 # class World
-	def __init__(self, coords, p=.6, Q=1, t0=.1):
+	def __init__(self, coords, p=.6, Q=5, t0=.1):
 		"""
 		Create a new world consisting of the given coordinates.
 
@@ -170,7 +170,7 @@ class World(object):
 		for edge in self._edges.values():
 			edge.pheromone = self._t0
 
-	def solve(self, alpha=1, beta=2, iter_count=1000, ant_count=None):
+	def solve(self, alpha=2, beta=3, iter_count=1000, ant_count=None):
 		"""
 		Find the shortest path that visits every coordinate.
 		"""
@@ -442,7 +442,7 @@ class Ant(object):
 
 
 if __name__ == '__main__':
-	world = World(TEST_COORDS_33, p=.6, Q=1)
+	world = World(TEST_COORDS_33)
 	fastest = None
 	niters = 100
 	print "\n{:21}{:12}{:20}".format("Time Elapsed", "Trial", "Distance")
