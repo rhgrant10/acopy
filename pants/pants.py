@@ -7,11 +7,7 @@ import bisect
 import json
 
 
-"""
-   .
-..  
-  .   .
-"""
+# TODO: Clean this up and put it somewhere else!
 TEST_COORDS_5 = [
 	(2,2),
 	(3,1),
@@ -19,7 +15,21 @@ TEST_COORDS_5 = [
 	(4,3),
 	(6,1)
 ]
-TEST_COORDS_33 = [(34.02115,-84.267249),(34.021342,-84.363437),(34.022585,-84.36215),(34.022718,-84.361903),(34.023101,-84.36298),(34.024302,-84.16382),(34.044915,-84.255772),(34.045483,-84.221723),(34.046006,-84.225258),(34.048194,-84.262126),(34.048312,-84.208885),(34.048679,-84.224917),(34.04951,-84.226327),(34.051529,-84.218865),(34.055487,-84.217882),(34.056326,-84.20058),(34.059412,-84.216757),(34.060164,-84.242514),(34.060461,-84.237402),(34.061281,-84.334798),(34.061468,-84.33483),(34.061518,-84.243566),(34.062461,-84.240155),(34.063814,-84.225499),(34.064489,-84.22506),(34.066471,-84.217717),(34.068455,-84.283782),(34.068647,-84.283569),(34.071628,-84.265784),(34.10584,-84.21667),(34.109645,-84.177031),(34.116852,-84.163971),(34.118162,-84.163304)]
+
+# TODO: Clean this up and put it somewhere else!
+TEST_COORDS_33 = [
+	(34.021150,-84.267249),(34.021342,-84.363437),(34.022585,-84.36215),
+	(34.022718,-84.361903),(34.023101,-84.362980),(34.024302,-84.16382),
+	(34.044915,-84.255772),(34.045483,-84.221723),(34.046006,-84.225258),
+	(34.048194,-84.262126),(34.048312,-84.208885),(34.048679,-84.224917),
+	(34.049510,-84.226327),(34.051529,-84.218865),(34.055487,-84.217882),
+	(34.056326,-84.200580),(34.059412,-84.216757),(34.060164,-84.242514),
+	(34.060461,-84.237402),(34.061281,-84.334798),(34.063814,-84.225499),
+	(34.061468,-84.334830),(34.061518,-84.243566),(34.062461,-84.240155),
+	(34.064489,-84.225060),(34.066471,-84.217717),(34.068455,-84.283782),
+	(34.068647,-84.283569),(34.071628,-84.265784),(34.105840,-84.216670),
+	(34.109645,-84.177031),(34.116852,-84.163971),(34.118162,-84.163304)
+]
 
 
 class World(object):
@@ -210,7 +220,7 @@ class World(object):
 class Ant(object):
 	"""
 	A single independent finder of solutions to the world.
-	
+
 	"""
 	uid = 0
 
@@ -410,20 +420,28 @@ if __name__ == '__main__':
 	print "-" * (25 + 12 + 20)
 	start_time = time.time()
 	for i, ant in enumerate(world.solve()):
-		if fastest is None:
-			fastest = ant
-		if ant.distance < fastest.distance:
+		if fastest is None or ant.distance < fastest.distance:
 			fastest = ant
 			fastest_time = time.time() - start_time
 			print "{:>20} {:<12}{:<20}".format(
-				timedelta(seconds=fastest_time), i, fastest.distance)
+				timedelta(seconds=fastest_time),
+				i,
+				fastest.distance
+				)
 	total_time = time.time() - start_time
-	print "\nTotal time for {} iterations: {}".format(niters, timedelta(seconds=total_time))
+	print "\nTotal time for {} iterations: {}".format(
+		niters,
+		timedelta(seconds=total_time)
+		)
 	print "-" * (25 + 12 + 20)
 	print "Best solution:"
 	i = 0
 	for x, y in fastest.path:
-		print "  {:>8} = ({:0.6f}, {:0.6f})".format(world.coords.index((x,y)), x, y)
+		print "  {:>8} = ({:0.6f}, {:0.6f})".format(
+			world.coords.index((x,y)),
+			x,
+			y
+			)
 		i += 1
 	print "Time for best solution: {}".format(timedelta(seconds=fastest_time))
 	
