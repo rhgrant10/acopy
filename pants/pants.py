@@ -337,7 +337,8 @@ class Ant(object):
 		distance traveled by the ant.
 
 		"""
-		self._node = start
+		self._start = start
+		self._node = self._start
 		self._traveled = 0
 		self._path = []
 		self._trip_complete = False
