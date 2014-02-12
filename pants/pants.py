@@ -137,6 +137,7 @@ class World(object):
 		memo[id(self)] = new
 		for k, v in self.__dict__.iteritems():
 			setattr(new, k, deepcopy(v, memo))
+		return new
 
 	def _create_map(self):
 		"""
@@ -269,6 +270,7 @@ class Ant(object):
 		memo[id(self)] = new
 		for k, v in self.__dict__.iteritems():
 			setattr(new, k, deepcopy(v, memo))
+		return new
 
 	def clone(self):
 		"""
