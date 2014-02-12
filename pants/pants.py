@@ -24,20 +24,60 @@ TEST_COORDS_33 = [(34.02115,-84.267249),(34.021342,-84.363437),(34.022585,-84.36
 
 class World(object):
 	class Edge(object):
-		def __init__(self, a, b, dist=None, phermone=0.1):
+		"""
+		The connection between to coordinates.
+
+		Each edge is composed of a distance and an amount of pheromone.
+
+		"""
+		def __init__(self, a, b, dist=None, pheromone=0.1):
+			"""
+			Create a new Edge between a and b.
+
+			Parameters:
+				a - the start of the edge
+				b - the end of the edge
+				dist - the distance between a and b (defaults to Euclidean)
+				pheromone - the initial amount of pheromone (defaults to 0.1)
+
+			"""
 			self.start = a
 			self.end = b
 			self.distance = World.Edge.distance(a, b) if dist is None else dist
-			self.phermone = 0.1 if phermone is None else phermone
+			self.pheromone = 0.1 if pheromone is None else pheromone
 
 		@staticmethod
 		def distance(a, b):
+			"""
+			Return the Euclidean distance between a and b.
+
+			Parameters:
+				a - the first point (x1, y1)
+				b - the second point (x2, y2)
+			Returns:
+				sqrt((x2 - x1)^2 + (y2 - y1)^2)
+
+			"""
 			x = b[0] - a[0]
 			y = b[1] - a[1]
 			return sqrt(x*x + y*y)
 
 # class World
 	def __init__(self, coords, p=.6, Q=1, t0=.1):
+		"""
+		Create a new world consisting of the given coordinates.
+
+		The world is defined by a set of (x, y) coordinates, the assumption
+		that each point can be reached from every other point, and a few 
+		other variables.
+
+		Parameters:
+			coords - list of (x, y) coordinates
+			p - percent of pheromone that evaporates after each iteration (default is 0.6)
+			Q - amount of pheromone that each ant deposits after each iteration (default is 1)
+			t0 - inital amount of pheromone along each edge in the world (default is 0.1)
+
+		"""
 		self._set_rho(p)
 		self._set_Q(Q)
 		self._t0 = t0
@@ -67,40 +107,51 @@ class World(object):
 	    return self._coords
 	
 	def _create_map(self):
+		"""
+		Create a map of the world from the coordinates.
+		"""
 		edges = {}
 		for a in self._coords:
 			for b in self._coords:
-				edges[a, b] = World.Edge(a, b, phermone=self._t0)
+				edges[a, b] = World.Edge(a, b, pheromone=self._t0)
 				edges[b, a] = World.Edge(b, a, 
-					dist=edges[a, b].distance, phermone=self._t0)
+					dist=edges[a, b].distance, pheromone=self._t0)
 		return edges
 
 	def get_distance(self, a, b):
+		"""
+		Return the distance of the edge between a and b.
+		"""
 		return self._edges[a, b].distance
 
 	def get_scent(self, a, b):
-		return self._edges[a, b].phermone
+		"""
+		Return the amount of pheromone on the edge between a and b.
+		"""
+		return self._edges[a, b].pheromone
 
 	def _reset(self):
+		"""
+		Reset the amount of pheromone on every edge to the initial default.
+		"""
 		for edge in self._edges.values():
-			edge.phermone = self._t0
+			edge.pheromone = self._t0
 
-	def solve(self, alpha=1, beta=2, iter_count=None, ant_count=None):
+	def solve(self, alpha=1, beta=2, iter_count=1000, ant_count=None):
+		"""
+		Find the shortest path that visits every coordinate.
+		"""
 		self._reset()
+		
+		# (Re-)Build the ant colony, placing Ants at coordinates in a round-robin
+		# fashion.
 		if ant_count is None or ant_count < 1:
 			ant_count = len(self._coords)
-
-		ants = []
-		i = 0
 		n = len(self._coords)
-		while len(ants) < ant_count:
-			ants.append(Ant(self, alpha, beta, start=self._coords[i % n]))
-			i += 1
-
-		if iter_count is None:
-			iter_count = 1000
-
-		# We iterate iter_count times.
+		ants = [Ant(self, alpha, beta, start=self._coords[i % n]) for i in xrange(ant_count)]
+		
+		# Yield local bests.
+		# TODO: Add option to return global best.
 		elite_ant = None
 		for i in xrange(iter_count):
 			self._find_solutions(ants)
@@ -109,40 +160,43 @@ class World(object):
 			if not elite_ant or best_ant < elite_ant:
 				elite_ant = best_ant.clone()
 			self._trace_elite(elite_ant)
-			yield elite_ant
+			yield best_ant
 			for ant in ants:
 				ant.reset()
 
 	def _trace_elite(self, ant, n=1):
+		"""
+		Deposit pheromone along the path of a particular ant n times.
+		"""
 		for m in ant.moves:
-			self._edges[m].phermone += n * self._q / ant.distance
-
-	def _sort_paths(self, ants):
-		return tuple(sorted(
-			[(ant.distance, tuple(ant.path)) for ant in ants],
-			key=lambda x: x[0]
-			))
+			self._edges[m].pheromone += n * self._q / ant.distance
 
 	def _get_best_ant(self, ants):
-		return sorted(ants, key=lambda ant: ant.distance)[0]
-
-	def _agreement(self, ants):
-		return False	# TODO: Implement path comparison.
+		"""
+		Return the ant with the shortest path.
+		"""
+		return sorted(ants)[0]
 
 	def _find_solutions(self, ants):
+		"""
+		Let each ant find its way.
+		"""
 		ants_done = 0
 		while ants_done < len(ants):
 			ants_done = 0
 			for ant in ants:
-				if ant.can_move():
-					ant.move()
+				if ant.can_move(): 	# TODO: Decide whether this 
+					ant.move()		# 		is even necessary.
 				else:
 					ants_done += 1
 
 	def _update_scent(self, ants):
+		"""
+		Update the amount of pheromone on each edge.
+		"""
 		for xy, edge in self._edges.iteritems():
-			p, Q, t = self._p, self._q, edge.phermone
-			edge.phermone = (1 - p) * t + sum(Q / a.distance for a in ants if xy in a.moves)
+			p, Q, t = self._p, self._q, edge.pheromone
+			edge.pheromone = (1 - p) * t + sum(Q / a.distance for a in ants if xy in a.moves)
 	
 
 class Ant(object):
@@ -300,7 +354,6 @@ if __name__ == '__main__':
 	print "Best solution:"
 	i = 0
 	for x, y in fastest.path:
-		#print "  {:>8} ({:>3}) = ({:0.6f}, {:0.6f})".format(world.coords.index((x,y)), TEST_225_TOUR[i], x, y)
 		print "  {:>8} = ({:0.6f}, {:0.6f})".format(world.coords.index((x,y)), x, y)
 		i += 1
 	print "Time for best solution: {}".format(timedelta(seconds=fastest_time))
