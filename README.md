@@ -73,3 +73,6 @@ To-Do:
  * Start using argparse!
  * Let user provide a path to a csv file of coordinates
  * Let user decide whether solver returns local or global best
+ * Write unit tests
+ * Put test data someplace else
+ * Make this a module??
