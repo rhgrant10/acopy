@@ -1,3 +1,4 @@
+from copy import copy, deepcopy
 from math import sqrt
 from datetime import timedelta
 import time
@@ -124,6 +125,12 @@ class World(object):
 	def coords(self):
 	    return self._coords
 	
+	def __copy__(self):
+		pass
+
+	def __deepcopy__(self, memo):
+		pass
+
 	def _create_map(self):
 		"""
 		Create a map of the world from the coordinates.
@@ -242,6 +249,12 @@ class Ant(object):
 		self.beta = b
 		self._trip_complete = False
 		self.reset(start)
+
+	def __copy__(self):
+		pass
+
+	def __deepcopy__(self, memo):
+		pass
 
 	def clone(self):
 		"""
