@@ -110,7 +110,8 @@ class World(object):
 
     rho = property(
         fget=lambda self: self._get_rho,
-        fset=lambda self, p: self._set_rho(p)
+        fset=lambda self, p: self._set_rho(p),
+        doc="Percent of pheromone that evaporates after each itertion"
     )
 
     def _get_Q(self):
@@ -121,11 +122,15 @@ class World(object):
 
     Q = property(
         fget=lambda self: self._get_rho,
-        fset=lambda self, q: self._set_Q(q)
+        fset=lambda self, q: self._set_Q(q),
+        doc="Amount of pheromone each ant deposits along its path"
     )
 
     @property
     def coords(self):
+        """
+        Return the list of coordinates that comprise the world.
+        """
         return self._coords
 
     def __copy__(self):
@@ -299,18 +304,30 @@ class Ant(object):
 
     @property
     def alpha(self):
+        """
+        The level of attention paid to distance.
+        """
         return self._a
 
     @alpha.setter
     def alpha(self, value):
+        """
+        Set the level of attention paid to the distance.
+        """
         self._a = max(1, value)
 
     @property
     def beta(self):
+        """
+        The level of attention paid to pheromone.
+        """
         return self._b
 
     @beta.setter
     def beta(self, value):
+        """
+        Set the level of attention paid to the pheromone.
+        """
         self._b = max(1, value)
 
     def get_apriori(self, move):
@@ -437,14 +454,23 @@ class Ant(object):
 
     @property
     def path(self):
+        """
+        A list of the world coordinates in the order the ant visited them.
+        """
         return tuple(self._path)
 
     @property
     def distance(self):
+        """
+        The total length of the path of the ant.
+        """
         return self._traveled
 
     @property
     def moves(self):
+        """
+        A list of moves, where each move is a (start, end) coordinate tuple.
+        """
         if len(self._path) == 0:
             return []
         path = self._path[:]
