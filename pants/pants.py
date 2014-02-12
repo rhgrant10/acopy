@@ -23,6 +23,11 @@ TEST_COORDS_33 = [(34.02115,-84.267249),(34.021342,-84.363437),(34.022585,-84.36
 
 
 class World(object):
+	"""
+	A world consisting of one or more coordinates in which ants find the 
+	shortest path that visits them all.
+
+	"""
 	class Edge(object):
 		"""
 		The connection between to coordinates.
@@ -73,9 +78,12 @@ class World(object):
 
 		Parameters:
 			coords - list of (x, y) coordinates
-			p - percent of pheromone that evaporates after each iteration (default is 0.6)
-			Q - amount of pheromone that each ant deposits after each iteration (default is 1)
-			t0 - inital amount of pheromone along each edge in the world (default is 0.1)
+			p - percent of pheromone that evaporates after each iteration 
+			    (default is 0.6)
+			Q - amount of pheromone that each ant deposits after each iteration
+			    (default is 1)
+			t0 - inital amount of pheromone along each edge in the world
+				(default is 0.1)
 
 		"""
 		self._set_rho(p)
@@ -200,6 +208,10 @@ class World(object):
 	
 
 class Ant(object):
+	"""
+	A single independent finder of solutions to the world.
+	
+	"""
 	uid = 0
 
 	def __init__(self, world, a=1, b=2, start=None):
