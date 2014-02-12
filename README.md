@@ -5,7 +5,7 @@ A Python implementation of the Ant Colony Optimization Meta-Heuristic
 
 Overview
 --------
-I'll flesh this readme out more later, but here's the general gist.  The world is built from a list of x and y coordinates.  The Euclidian distance between every combination of coordinates is calculated and a default level of pheromone is deposited along each edge.  
+I'll flesh this readme out more later, but here's the general gist.  The world is built from a list of x and y coordinates.  The Euclidean distance between every combination of coordinates is calculated and a default level of pheromone is deposited along each edge.  
 
 Solutions are found through an iterative process.  In each iteration, several ants are allowed to independently find a solution.  The pheromone levels of all the edges are updated according to their usefulness in finding a shorter solution.  The best one is considered to be the local best solution.  If the local solution beats the best from previous iterations, it then becomes the global best solution.  The elite ants then deposit their pheromone on the best solution to strengthen it further, and the process repeats for a specified number of iterations.
 
