@@ -203,6 +203,16 @@ class Ant(object):
 	uid = 0
 
 	def __init__(self, world, a=1, b=2, start=None):
+		"""
+		Create a new Ant for the given world.
+
+		Parameters:
+			world - the World in which the ant should seek solutions
+			a - how much this ant considers distance
+			b - how much this ant considers scent
+			start - coordinate from which this ant should find solutions
+
+		"""
 		self._uid = Ant.uid
 		Ant.uid += 1
 		self._world = world
@@ -212,6 +222,12 @@ class Ant(object):
 		self.reset(start)
 
 	def clone(self):
+		"""
+		Return a new ant with exactly the same property values as this ant.
+
+		Note that unlike copy, this method preserves even the UID of an Ant.
+
+		"""
 		a = Ant(self._world, self._a, self._b, start=self._start)
 		a._node = self._node
 		a._path = self._path[:]
@@ -237,20 +253,39 @@ class Ant(object):
 	    self._b = max(1, value)
 			
 	def attractiveness(self, move):
+		"""
+		Return a number suggesting how attractive a particular move seems.
+
+		The default implementation uses inverse distance, but any apriori
+		knowledge can be used instead.
+
+		"""
 		if self._node is None:
 			return 1
 		return 1 / float(self._world.get_distance(self._node, move))
 		
 	def trail_level(self, move):
+		"""
+		Return a number suggesting the amount of pheromone on the way to a move.
+		"""
 		if self._node is None:
 			return float(1)
 		return self._world.get_scent(self._node, move)
 
 	def log(self, msg):
+		"""
+		Prints a message with the current timestamp and the ant's UID.
+		"""
 		print "%s [Ant #%s] %s" % (time.time(), self._uid, msg)
 
 	def reset(self, start=None):
-		self._start = start
+		"""
+		Reset the ant so that it is ready to find another solution.
+
+		Note that calling this method destroys the previous path, moves, and 
+		distance traveled by the ant.
+
+		"""
 		self._node = start
 		self._traveled = 0
 		self._path = []
@@ -259,9 +294,15 @@ class Ant(object):
 			self._path.append(start)
 
 	def can_move(self):
+		"""
+		Return true if there is one or more coordinates not visited by the ant.
+		"""
 		return not self._trip_complete
 
 	def move(self):
+		"""
+		Choose a valid move and make it.
+		"""
 		moves = self.get_possible_moves()
 		move = self.choose_move(moves)
 		if move:
@@ -271,12 +312,26 @@ class Ant(object):
 				self._trip_complete = True
 
 	def get_possible_moves(self):
+		"""
+		Return the set of all moves that can currently be made.
+		"""
 		return set(self._world.coords) - set(self._path)
 
 	def choose_move(self, moves):
+		"""
+		Return the one move to make from a list of moves.
+
+		The default implementation uses weighted probability based on edge 
+		distance and pheromone level.
+
+		"""
 		if len(moves) == 0:
 			return None	# No more moves
-		moves, weights = self.weigh(moves)
+		weighted_moves = []
+		for m in moves:
+			w = (m, self.calculate_weight(m))
+			weighted_moves.append(w)
+		moves, weights = zip(*weighted_moves)
 		cumdist = list(self._accumulate(weights))
 		r = random.random() * cumdist[-1]
 		i = bisect.bisect(cumdist, r)
@@ -286,6 +341,9 @@ class Ant(object):
 			return moves[-1]
 
 	def _accumulate(self, iterable, func=operator.add):
+		"""
+		Stand-in replacement for the missing itertools.accumulate.
+		"""
 		it = iter(iterable)
 		total = next(it)
 		yield total
@@ -293,21 +351,19 @@ class Ant(object):
 			total = func(total, element)
 			yield total
 
-	def weigh(self, moves):
-		weighted_moves = []
-		for m in moves:
-			w = (m, self.calculate_weight(m))
-			weighted_moves.append(w)
-		return zip(*weighted_moves)
-
 	def calculate_weight(self, move):
+		"""
+		Return a number representing the weight of a single move.
+		"""
 		n = self.attractiveness(move)
 		t = self.trail_level(move)
 		w = pow(n, self._a) * pow(t, self._b)
-		#self.log("Weight of (%s -> %s) is %s [pre=%s, post=%s]" % (self._node, move, w, n, t))
 		return w
 
 	def make_move(self, move):
+		"""
+		Make the given move and update the distance traveled.
+		"""
 		self._path.append(move)
 		if len(self._path) == 1:
 			self._start = move
@@ -332,6 +388,7 @@ class Ant(object):
 		path.append(path.pop(0))
 		ends = path[::2]
 		return zip(starts, ends)
+
 
 if __name__ == '__main__':
 	world = World(TEST_COORDS_33, p=.6, Q=1)
