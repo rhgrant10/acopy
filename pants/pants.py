@@ -78,7 +78,7 @@ class World(object):
             return sqrt(x*x + y*y)
 
 # class World
-    def __init__(self, coords, rho=.6, Q=5, t0=.1):
+    def __init__(self, coords, rho=.6, Q=1, t0=1):
         """
         Create a new world consisting of the given coordinates.
 
@@ -106,7 +106,7 @@ class World(object):
         return self._rho
 
     def _set_rho(self, value):
-        self._p = value
+        self._rho = value
 
     rho = property(
         fget=lambda self: self._get_rho,
@@ -179,7 +179,7 @@ class World(object):
         for edge in self._edges.values():
             edge.pheromone = self._t0
 
-    def solve(self, alpha=2, beta=3, iter_count=1000, ant_count=None):
+    def solve(self, alpha=.1, beta=1, iter_count=1000, ant_count=None):
         """
         Find the shortest path that visits every coordinate.
         """
@@ -201,7 +201,7 @@ class World(object):
             self._find_solutions(ants)
             self._update_scent(ants)
             best_ant = self._get_best_ant(ants)
-            if not elite_ant or best_ant < elite_ant:
+            if elite_ant is None or best_ant < elite_ant:
                 elite_ant = best_ant.clone()
             self._trace_elite(elite_ant)
             yield best_ant
@@ -252,7 +252,7 @@ class Ant(object):
     """
     uid = 0
 
-    def __init__(self, world, alpha=1, beta=2, start=None):
+    def __init__(self, world, alpha=2, beta=3, start=None):
         """
         Create a new Ant for the given world.
 
@@ -292,7 +292,7 @@ class Ant(object):
         Note that unlike copy, this method preserves even the UID of an Ant.
 
         """
-        a = Ant(self._world, self._a, self._b, start=self._start)
+        a = Ant(self._world, self._alpha, self._beta, self._start)
         a._node = self._node
         a._path = self._path[:]
         a._traveled = self._traveled
@@ -482,22 +482,21 @@ class Ant(object):
 if __name__ == '__main__':
     world = World(TEST_COORDS_33)
     fastest = None
-    niters = 100
-
+    
     print "\n{:21}{:12}{:20}".format("Time Elapsed", "Trial", "Distance")
     print "-" * (25 + 12 + 20)
     start_time = time.time()
-    for i, ant in enumerate(world.solve()):
+    for i, ant in enumerate(world.solve(iter_count=100)):
         if fastest is None or ant.distance < fastest.distance:
-            fastest = ant
+            fastest = ant.clone()
             fastest_time = time.time() - start_time
-            print "{:>20} {:<12}{:<20}".format(
-                timedelta(seconds=fastest_time), i, fastest.distance
-            )
+        print "{:>20} {:<12}{:<20}".format(
+            timedelta(seconds=fastest_time), i, fastest.distance
+        )
 
     total_time = time.time() - start_time
     print "\nTotal time for {} iterations: {}".format(
-        niters,
+        i + 1,
         timedelta(seconds=total_time)
     )
 
