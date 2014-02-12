@@ -9,6 +9,9 @@ I'll flesh this readme out more later, but here's the general gist.  The world i
 
 Solutions are found through an iterative process.  In each iteration, several ants are allowed to independently find a solution.  The pheromone levels of all the edges are updated according to their usefulness in finding a shorter solution.  The best one is considered to be the local best solution.  If the local solution beats the best from previous iterations, it then becomes the global best solution.  The elite ants then deposit their pheromone on the best solution to strengthen it further, and the process repeats for a specified number of iterations.
 
+### Author's Note
+I wrote this on a Saturday in my pajamas, so don't judge me! ;-) Haha.  Anyway, Hope it can be of use to someone.
+
 How to Use
 ----------
 
@@ -66,6 +69,7 @@ The program will perform a little 33 "city" demonstration using default settings
 To-Do:
 -----
 
- * Write doc strings
+ * Write more docstrings
  * Start using argparse!
  * Let user provide a path to a csv file of coordinates
+ * Let user decide whether solver returns local or global best
