@@ -303,7 +303,7 @@ class Ant(object):
 	def beta(self, value):
 	    self._b = max(1, value)
 			
-	def attractiveness(self, move):
+	def get_apriori(self, move):
 		"""
 		Return a number suggesting how attractive a particular move seems.
 
@@ -315,7 +315,7 @@ class Ant(object):
 			return 1
 		return 1 / float(self._world.get_distance(self._node, move))
 		
-	def trail_level(self, move):
+	def get_posteriori(self, move):
 		"""
 		Return a number suggesting the amount of pheromone on the way to a move.
 		"""
@@ -406,8 +406,8 @@ class Ant(object):
 		"""
 		Return a number representing the weight of a single move.
 		"""
-		n = self.attractiveness(move)
-		t = self.trail_level(move)
+		n = self.get_apriori(move)
+		t = self.get_posteriori(move)
 		w = pow(n, self._a) * pow(t, self._b)
 		return w
 
