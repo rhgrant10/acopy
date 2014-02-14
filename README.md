@@ -74,3 +74,6 @@ In the Future
  * CSV file support
  * Unit tests
  * More control over how worlds are constructed
+ * Bigger ant hills
+ * Increased mandible strength
+ * Cannibalistic ants
