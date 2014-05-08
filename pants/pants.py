@@ -31,53 +31,52 @@ TEST_COORDS_33 = [
     (34.109645, -84.177031), (34.116852, -84.163971), (34.118162, -84.163304)
 ]
 
+class Edge(object):
+    """
+    The connection between to coordinates.
 
+    Each edge is composed of a distance and an amount of pheromone.
+
+    """
+    def __init__(self, a, b, dist=None, pheromone=0.1):
+        """
+        Create a new Edge between a and b.
+
+        Parameters:
+            a - the start of the edge
+            b - the end of the edge
+            dist - the distance between a and b (defaults to Euclidean)
+            pheromone - the initial amount of pheromone (defaults to 0.1)
+
+        """
+        self.start = a
+        self.end = b
+        self.distance = Edge.distance(a, b) if dist is None else dist
+        self.pheromone = 0.1 if pheromone is None else pheromone
+
+    @staticmethod
+    def distance(a, b):
+        """
+        Return the Euclidean distance between a and b.
+
+        Parameters:
+            a - the first point (x1, y1)
+            b - the second point (x2, y2)
+        Returns:
+            sqrt((x2 - x1)^2 + (y2 - y1)^2)
+
+        """
+        x = b[0] - a[0]
+        y = b[1] - a[1]
+        return sqrt(x*x + y*y)
+        
+        
 class World(object):
     """
     A world consisting of one or more coordinates in which ants find the
     shortest path that visits them all.
 
     """
-    class Edge(object):
-        """
-        The connection between to coordinates.
-
-        Each edge is composed of a distance and an amount of pheromone.
-
-        """
-        def __init__(self, a, b, dist=None, pheromone=0.1):
-            """
-            Create a new Edge between a and b.
-
-            Parameters:
-                a - the start of the edge
-                b - the end of the edge
-                dist - the distance between a and b (defaults to Euclidean)
-                pheromone - the initial amount of pheromone (defaults to 0.1)
-
-            """
-            self.start = a
-            self.end = b
-            self.distance = World.Edge.distance(a, b) if dist is None else dist
-            self.pheromone = 0.1 if pheromone is None else pheromone
-
-        @staticmethod
-        def distance(a, b):
-            """
-            Return the Euclidean distance between a and b.
-
-            Parameters:
-                a - the first point (x1, y1)
-                b - the second point (x2, y2)
-            Returns:
-                sqrt((x2 - x1)^2 + (y2 - y1)^2)
-
-            """
-            x = b[0] - a[0]
-            y = b[1] - a[1]
-            return sqrt(x*x + y*y)
-
-# class World
     def __init__(self, coords, rho=.6, Q=1, t0=1):
         """
         Create a new world consisting of the given coordinates.
@@ -154,8 +153,8 @@ class World(object):
         edges = {}
         for a in self._coords:
             for b in self._coords:
-                edges[a, b] = World.Edge(a, b, pheromone=self._t0)
-                edges[b, a] = World.Edge(b, a,
+                edges[a, b] = Edge(a, b, pheromone=self._t0)
+                edges[b, a] = Edge(b, a,
                         dist=edges[a, b].distance, pheromone=self._t0
                 )
         return edges
