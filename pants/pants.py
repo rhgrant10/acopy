@@ -31,7 +31,7 @@ TEST_COORDS_33 = [
     (34.109645, -84.177031), (34.116852, -84.163971), (34.118162, -84.163304)
 ]
 
-class Edge(object):
+class Edge:
     """
     The connection between to coordinates.
 
@@ -71,7 +71,7 @@ class Edge(object):
         return sqrt(x*x + y*y)
         
         
-class World(object):
+class World:
     """
     A world consisting of one or more coordinates in which ants find the
     shortest path that visits them all.
@@ -111,7 +111,7 @@ class World(object):
         cls = self.__class__
         new = cls.__new__(cls)
         memo[id(self)] = new
-        for k, v in self.__dict__.iteritems():
+        for k, v in self.__dict__.items():
             setattr(new, k, deepcopy(v, memo))
         return new
 
@@ -159,13 +159,13 @@ class World(object):
             ant_count = len(self.coords)
         n = len(self.coords)
         ants = [Ant(self, alpha, beta, start=self.coords[i % n]) 
-            for i in xrange(ant_count)
+            for i in range(ant_count)
         ]
 
         # Yield local bests.
         # TODO: Add option to return global best.
         elite_ant = None
-        for i in xrange(iter_count):
+        for i in range(iter_count):
             self.find_solutions(ants)
             self.update_scent(ants)
             best_ant = self.get_best_ant(ants)
@@ -206,14 +206,14 @@ class World(object):
         """
         Update the amount of pheromone on each edge.
         """
-        for xy, edge in self.edges.iteritems():
+        for xy, edge in self.edges.items():
             rho, Q, t = self.rho, self.q, edge.pheromone
             edge.pheromone = (1 - rho) * t + sum(
                 Q / a.distance for a in ants if xy in a.moves
             )
 
 
-class Ant(object):
+class Ant:
     """
     A single independent finder of solutions to the world.
 
@@ -288,7 +288,7 @@ class Ant(object):
         cls = self.__class__
         new = cls.__new__(cls)
         memo[id(self)] = new
-        for k, v in self.__dict__.iteritems():
+        for k, v in self.__dict__.items():
             setattr(new, k, deepcopy(v, memo))
         return new
 
@@ -333,7 +333,7 @@ class Ant(object):
         """
         Prints a message with the current timestamp and the ant's UID.
         """
-        print "%s [Ant #%s] %s" % (time.time(), self.uid, msg)
+        print("%s [Ant #%s] %s" % (time.time(), self.uid, msg))
 
     def reset(self, start=None):
         """
@@ -435,30 +435,29 @@ class Ant(object):
 if __name__ == '__main__':
     world = World(TEST_COORDS_33)
     fastest = None
+    divider = "-" * (25 + 12 + 20)
+    header = "\n{:21}{:12}{:20}".format("Time Elapsed", "Trial", "Distance")
     
-    print "\n{:21}{:12}{:20}".format("Time Elapsed", "Trial", "Distance")
-    print "-" * (25 + 12 + 20)
+    print(header)
+    print(divider)
     start_time = time.time()
     for i, ant in enumerate(world.solve(iter_count=100)):
         if fastest is None or ant.distance < fastest.distance:
             fastest = ant.clone()
             fastest_time = time.time() - start_time
-        print "{:>20} {:<12}{:<20}".format(
-            timedelta(seconds=fastest_time), i, fastest.distance
-        )
-
+        print("{:>20} {:<12}{:<20}".format(
+                timedelta(seconds=fastest_time), i, fastest.distance))
     total_time = time.time() - start_time
-    print "\nTotal time for {} iterations: {}".format(
-        i + 1,
-        timedelta(seconds=total_time)
-    )
+    
+    print("\nTotal time for {} iterations: {}".format(
+            i + 1,
+            timedelta(seconds=total_time)))
 
-    print "-" * (25 + 12 + 20)
-    print "Best solution:"
-    i = 0
+    print(divider)
+    print("Best solution:")
     for x, y in fastest.path:
-        print "  {:>8} = ({:0.6f}, {:0.6f})".format(
-            world.coords.index((x, y)), x, y
-        )
-        i += 1
-    print "Time for best solution: {}".format(timedelta(seconds=fastest_time))
+        print("  {:>8} = ({:0.6f}, {:0.6f})".format(
+                world.coords.index((x, y)),
+                x,
+                y))
+    print("Time for best solution: {}".format(timedelta(seconds=fastest_time)))
