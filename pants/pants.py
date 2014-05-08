@@ -231,8 +231,7 @@ class Ant(object):
             start - coordinate from which this ant should find solutions
 
         """
-        self.uid = Ant.uid
-        Ant.uid += 1
+        Ant.uid = self.uid = Ant.uid + 1
         self.world = world
         self.alpha = alpha
         self.beta = beta
