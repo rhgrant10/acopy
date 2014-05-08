@@ -10,12 +10,12 @@ I'll flesh this readme out more later, but here's the general gist.  The world i
 Solutions are found through an iterative process.  In each iteration, several ants are allowed to independently find a solution.  The pheromone levels of all the edges are updated according to their usefulness in finding a shorter solution.  The best one is considered to be the local best solution.  If the local solution beats the best from previous iterations, it then becomes the global best solution.  The elite ants then deposit their pheromone on the best solution to strengthen it further, and the process repeats for a specified number of iterations.
 
 ##### Author's Note
-I wrote this on a Saturday in my pajamas, so don't judge me! ;-) Haha.  Anyway, Hope it can be of use to someone.
+I wrote this on a Saturday in my pajamas, so don't judge me! ;-) Haha.  Anyway, hope it can be of use to someone.
 
 How to Use
 ----------
 
-### From Python
+### From Python3
 
 Pass in a list of `(x,y)` coordinates to create the "world."
 
@@ -24,11 +24,11 @@ Pass in a list of `(x,y)` coordinates to create the "world."
 
 There are additional options that can affect the efficacy of the solver.
 
- * `p` - percent of pheromone that evaporates after each solution
+ * `rho` - percent of pheromone that evaporates after each solution
  * `Q` - total amount of pheromone each ant will deposit along the path it finds
  * `t0` - initial amount of pheromone on each edge
 
-`p` is clamped between `0` and `1` (inclusively), while `Q` is not bounded.  `t0` should be some positive (as in greater than zero) value.  These parameters have been given reasonable defaults, so don't fret too much about them if you're uncomfortable.  
+`rho` is clamped between `0` and `1` (inclusively), while `Q` is not bounded.  `t0` should be some positive (as in greater than zero) value.  These parameters have been given reasonable defaults, so don't fret too much about them if you're uncomfortable.  
 
 Next, make the ants find the shortest solution.
 
@@ -63,7 +63,7 @@ Here, `local_best` and `global_best` are instances of `Ant`.
 
 The program will perform a little 33 "city" demonstration using default settings.
 
-    $ python pants.py
+    $ python3 pants.py
 
 
 In the Future
