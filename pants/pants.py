@@ -31,53 +31,52 @@ TEST_COORDS_33 = [
     (34.109645, -84.177031), (34.116852, -84.163971), (34.118162, -84.163304)
 ]
 
+class Edge(object):
+    """
+    The connection between to coordinates.
 
+    Each edge is composed of a distance and an amount of pheromone.
+
+    """
+    def __init__(self, a, b, dist=None, pheromone=0.1):
+        """
+        Create a new Edge between a and b.
+
+        Parameters:
+            a - the start of the edge
+            b - the end of the edge
+            dist - the distance between a and b (defaults to Euclidean)
+            pheromone - the initial amount of pheromone (defaults to 0.1)
+
+        """
+        self.start = a
+        self.end = b
+        self.distance = Edge.distance(a, b) if dist is None else dist
+        self.pheromone = 0.1 if pheromone is None else pheromone
+
+    @staticmethod
+    def distance(a, b):
+        """
+        Return the Euclidean distance between a and b.
+
+        Parameters:
+            a - the first point (x1, y1)
+            b - the second point (x2, y2)
+        Returns:
+            sqrt((x2 - x1)^2 + (y2 - y1)^2)
+
+        """
+        x = b[0] - a[0]
+        y = b[1] - a[1]
+        return sqrt(x*x + y*y)
+        
+        
 class World(object):
     """
     A world consisting of one or more coordinates in which ants find the
     shortest path that visits them all.
 
     """
-    class Edge(object):
-        """
-        The connection between to coordinates.
-
-        Each edge is composed of a distance and an amount of pheromone.
-
-        """
-        def __init__(self, a, b, dist=None, pheromone=0.1):
-            """
-            Create a new Edge between a and b.
-
-            Parameters:
-                a - the start of the edge
-                b - the end of the edge
-                dist - the distance between a and b (defaults to Euclidean)
-                pheromone - the initial amount of pheromone (defaults to 0.1)
-
-            """
-            self.start = a
-            self.end = b
-            self.distance = World.Edge.distance(a, b) if dist is None else dist
-            self.pheromone = 0.1 if pheromone is None else pheromone
-
-        @staticmethod
-        def distance(a, b):
-            """
-            Return the Euclidean distance between a and b.
-
-            Parameters:
-                a - the first point (x1, y1)
-                b - the second point (x2, y2)
-            Returns:
-                sqrt((x2 - x1)^2 + (y2 - y1)^2)
-
-            """
-            x = b[0] - a[0]
-            y = b[1] - a[1]
-            return sqrt(x*x + y*y)
-
-# class World
     def __init__(self, coords, rho=.6, Q=1, t0=1):
         """
         Create a new world consisting of the given coordinates.
@@ -96,42 +95,11 @@ class World(object):
                 (default is 0.1)
 
         """
-        self._set_rho(rho)
-        self._set_Q(Q)
-        self._t0 = t0
-        self._coords = coords
-        self._edges = self._create_map()
-
-    def _get_rho(self):
-        return self._rho
-
-    def _set_rho(self, value):
-        self._rho = value
-
-    rho = property(
-        fget=lambda self: self._get_rho,
-        fset=lambda self, rho: self._set_rho(rho),
-        doc="Percent of pheromone that evaporates after each itertion"
-    )
-
-    def _get_Q(self):
-        return self._Q
-
-    def _set_Q(self, value):
-        self._q = value
-
-    Q = property(
-        fget=lambda self: self._get_rho,
-        fset=lambda self, q: self._set_Q(q),
-        doc="Amount of pheromone each ant deposits along its path"
-    )
-
-    @property
-    def coords(self):
-        """
-        Return the list of coordinates that comprise the world.
-        """
-        return self._coords
+        self.rho = rho
+        self.q = Q
+        self.t0 = t0
+        self.coords = coords
+        self.edges = self.create_map()
 
     def __copy__(self):
         cls = self.__class__
@@ -147,16 +115,16 @@ class World(object):
             setattr(new, k, deepcopy(v, memo))
         return new
 
-    def _create_map(self):
+    def create_map(self):
         """
         Create a map of the world from the coordinates.
         """
         edges = {}
-        for a in self._coords:
-            for b in self._coords:
-                edges[a, b] = World.Edge(a, b, pheromone=self._t0)
-                edges[b, a] = World.Edge(b, a,
-                        dist=edges[a, b].distance, pheromone=self._t0
+        for a in self.coords:
+            for b in self.coords:
+                edges[a, b] = Edge(a, b, pheromone=self.t0)
+                edges[b, a] = Edge(b, a,
+                        dist=edges[a, b].distance, pheromone=self.t0
                 )
         return edges
 
@@ -164,33 +132,33 @@ class World(object):
         """
         Return the distance of the edge between a and b.
         """
-        return self._edges[a, b].distance
+        return self.edges[a, b].distance
 
     def get_scent(self, a, b):
         """
         Return the amount of pheromone on the edge between a and b.
         """
-        return self._edges[a, b].pheromone
+        return self.edges[a, b].pheromone
 
-    def _reset(self):
+    def reset(self):
         """
         Reset the amount of pheromone on every edge to the initial default.
         """
-        for edge in self._edges.values():
-            edge.pheromone = self._t0
+        for edge in self.edges.values():
+            edge.pheromone = self.t0
 
     def solve(self, alpha=.1, beta=1, iter_count=1000, ant_count=None):
         """
         Find the shortest path that visits every coordinate.
         """
-        self._reset()
+        self.reset()
 
         # (Re-)Build the ant colony, placing Ants at coordinates in a round-
         # robin fashion.
         if ant_count is None or ant_count < 1:
-            ant_count = len(self._coords)
-        n = len(self._coords)
-        ants = [Ant(self, alpha, beta, start=self._coords[i % n]) 
+            ant_count = len(self.coords)
+        n = len(self.coords)
+        ants = [Ant(self, alpha, beta, start=self.coords[i % n]) 
             for i in xrange(ant_count)
         ]
 
@@ -198,30 +166,30 @@ class World(object):
         # TODO: Add option to return global best.
         elite_ant = None
         for i in xrange(iter_count):
-            self._find_solutions(ants)
-            self._update_scent(ants)
-            best_ant = self._get_best_ant(ants)
+            self.find_solutions(ants)
+            self.update_scent(ants)
+            best_ant = self.get_best_ant(ants)
             if elite_ant is None or best_ant < elite_ant:
                 elite_ant = best_ant.clone()
-            self._trace_elite(elite_ant)
+            self.trace_elite(elite_ant)
             yield best_ant
             for ant in ants:
                 ant.reset()
 
-    def _trace_elite(self, ant, n=1):
+    def trace_elite(self, ant, n=1):
         """
         Deposit pheromone along the path of a particular ant n times.
         """
         for m in ant.moves:
-            self._edges[m].pheromone += n * self._q / ant.distance
+            self.edges[m].pheromone += n * self.q / ant.distance
 
-    def _get_best_ant(self, ants):
+    def get_best_ant(self, ants):
         """
         Return the ant with the shortest path.
         """
         return sorted(ants)[0]
 
-    def _find_solutions(self, ants):
+    def find_solutions(self, ants):
         """
         Let each ant find its way.
         """
@@ -234,12 +202,12 @@ class World(object):
                 else:
                     ants_done += 1
 
-    def _update_scent(self, ants):
+    def update_scent(self, ants):
         """
         Update the amount of pheromone on each edge.
         """
-        for xy, edge in self._edges.iteritems():
-            rho, Q, t = self._rho, self._q, edge.pheromone
+        for xy, edge in self.edges.iteritems():
+            rho, Q, t = self.rho, self.q, edge.pheromone
             edge.pheromone = (1 - rho) * t + sum(
                 Q / a.distance for a in ants if xy in a.moves
             )
@@ -263,13 +231,52 @@ class Ant(object):
             start - coordinate from which this ant should find solutions
 
         """
-        self._uid = Ant.uid
-        Ant.uid += 1
-        self._world = world
+        Ant.uid = self.uid = Ant.uid + 1
+        self.world = world
         self.alpha = alpha
         self.beta = beta
-        self._trip_complete = False
+        self.trip_complete = False
+        self.distance = 0
         self.reset(start)
+
+    @property
+    def alpha(self):
+        """
+        The level of attention paid to distance.
+        """
+        return self._alpha
+    @alpha.setter
+    def alpha(self, value):
+        """
+        Set the level of attention paid to the distance.
+        """
+        self._alpha = max(1, value)
+        
+    @property
+    def beta(self):
+        """
+        The level of attention paid to pheromone.
+        """
+        return self._beta
+    @beta.setter
+    def beta(self, value):
+        """
+        Set the level of attention paid to the pheromone.
+        """
+        self._beta = max(1, value)
+
+    @property
+    def moves(self):
+        """
+        A list of moves, where each move is a (start, end) coordinate tuple.
+        """
+        if len(self.path) == 0:
+            return []
+        path = self.path[:]
+        starts = path[::2]
+        path.append(path.pop(0))
+        ends = path[::2]
+        return zip(starts, ends)
 
     def __copy__(self):
         cls = self.__class__
@@ -292,43 +299,15 @@ class Ant(object):
         Note that unlike copy, this method preserves even the UID of an Ant.
 
         """
-        a = Ant(self._world, self._alpha, self._beta, self._start)
-        a._node = self._node
-        a._path = self._path[:]
-        a._traveled = self._traveled
-        a._trip_complete = self._trip_complete
+        a = Ant(self.world, self.alpha, self.beta, self.start)
+        a.node = self.node
+        a.path = self.path[:]
+        a.distance = self.distance
+        a.trip_complete = self.trip_complete
         return a
 
     def __lt__(self, other):
         return self.distance < other.distance
-
-    @property
-    def alpha(self):
-        """
-        The level of attention paid to distance.
-        """
-        return self._alpha
-
-    @alpha.setter
-    def alpha(self, value):
-        """
-        Set the level of attention paid to the distance.
-        """
-        self._alpha = max(1, value)
-
-    @property
-    def beta(self):
-        """
-        The level of attention paid to pheromone.
-        """
-        return self._beta
-
-    @beta.setter
-    def beta(self, value):
-        """
-        Set the level of attention paid to the pheromone.
-        """
-        self._beta = max(1, value)
 
     def get_apriori(self, move):
         """
@@ -338,23 +317,23 @@ class Ant(object):
         knowledge can be used instead.
 
         """
-        if self._node is None:
+        if self.node is None:
             return 1
-        return 1 / float(self._world.get_distance(self._node, move))
+        return 1 / float(self.world.get_distance(self.node, move))
 
     def get_posteriori(self, move):
         """
         Return a number suggesting the amount of pheromone on the way to a move.
         """
-        if self._node is None:
+        if self.node is None:
             return float(1)
-        return self._world.get_scent(self._node, move)
+        return self.world.get_scent(self.node, move)
 
     def log(self, msg):
         """
         Prints a message with the current timestamp and the ant's UID.
         """
-        print "%s [Ant #%s] %s" % (time.time(), self._uid, msg)
+        print "%s [Ant #%s] %s" % (time.time(), self.uid, msg)
 
     def reset(self, start=None):
         """
@@ -362,21 +341,21 @@ class Ant(object):
 
         Note that calling this method destroys the previous path, moves, and
         distance traveled by the ant.
-
+        
         """
-        self._start = start
-        self._node = self._start
-        self._traveled = 0
-        self._path = []
-        self._trip_complete = False
+        self.start = start
+        self.node = self.start
+        self.distance = 0
+        self.path = []
+        self.trip_complete = False
         if start is not None:
-            self._path.append(start)
+            self.path.append(start)
 
     def can_move(self):
         """
         Return true if there is one or more coordinates not visited by the ant.
         """
-        return not self._trip_complete
+        return not self.trip_complete
 
     def move(self):
         """
@@ -386,17 +365,17 @@ class Ant(object):
         move = self.choose_move(moves)
         if move:
             self.make_move(move)
-            if len(self._path) == len(self._world.coords):
-                self._traveled += self._world.get_distance(
-                    self._path[-1], self._path[0]
+            if len(self.path) == len(self.world.coords):
+                self.distance += self.world.get_distance(
+                    self.path[-1], self.path[0]
                 )
-                self._trip_complete = True
+                self.trip_complete = True
 
     def get_possible_moves(self):
         """
         Return the set of all moves that can currently be made.
         """
-        return set(self._world.coords) - set(self._path)
+        return set(self.world.coords) - set(self.path)
 
     def choose_move(self, moves):
         """
@@ -438,47 +417,21 @@ class Ant(object):
         """
         n = self.get_apriori(move)
         t = self.get_posteriori(move)
-        w = pow(n, self._alpha) * pow(t, self._beta)
+        w = pow(n, self.alpha) * pow(t, self.beta)
         return w
 
     def make_move(self, move):
         """
         Make the given move and update the distance traveled.
         """
-        self._path.append(move)
-        if len(self._path) == 1:
-            self._start = move
+        self.path.append(move)
+        if len(self.path) == 1:
+            self.start = move
         else:
-            self._traveled += self._world.get_distance(self._node, move)
-        self._node = move
+            self.distance += self.world.get_distance(self.node, move)
+        self.node = move
 
-    @property
-    def path(self):
-        """
-        A list of the world coordinates in the order the ant visited them.
-        """
-        return tuple(self._path)
-
-    @property
-    def distance(self):
-        """
-        The total length of the path of the ant.
-        """
-        return self._traveled
-
-    @property
-    def moves(self):
-        """
-        A list of moves, where each move is a (start, end) coordinate tuple.
-        """
-        if len(self._path) == 0:
-            return []
-        path = self._path[:]
-        starts = path[::2]
-        path.append(path.pop(0))
-        ends = path[::2]
-        return zip(starts, ends)
-
+    
 if __name__ == '__main__':
     world = World(TEST_COORDS_33)
     fastest = None
