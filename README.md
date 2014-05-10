@@ -41,7 +41,7 @@ Again, there are several optional settings that can affect the solver.
  * `iter_count` - how many iterations the solver should perform
  * `ant_count` - how many ants participate in each iteration
 
-`alpha` should be less than `beta` for best results.  `iter_count` defaults to 1000, although it is said that the algorithm can often requires as many as 2000. `ant_count` defaults to the number of coordinates that comprise the world.  Reducing the number of ants too much results in a lack of "cooperation" among the ants.
+`alpha` should be less than `beta` for best results.  `iter_count` defaults to 1000, although it is said that the algorithm can often require as many as 2000. `ant_count` defaults to the number of coordinates that comprise the world.  Reducing the number of ants too much below this results in a lack of "cooperation" among the ants.  Increasing the number of ants too far beyond this results in repitition of work.
 
 The solver is actually a generator function that returns the `Ant` that took the shortest path on each iteration.  One common use would be to keep the shortest ant of all iterations.
 
