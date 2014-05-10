@@ -77,7 +77,7 @@ class World:
     shortest path that visits them all.
 
     """
-    def __init__(self, coords, rho=.6, Q=1, t0=1):
+    def __init__(self, coords, rho=.8, Q=1, t0=.001):
         """
         Create a new world consisting of the given coordinates.
 
@@ -147,7 +147,7 @@ class World:
         for edge in self.edges.values():
             edge.pheromone = self.t0
 
-    def solve(self, alpha=.1, beta=1, iter_count=1000, ant_count=None):
+    def solve(self, alpha=1, beta=2, iter_count=2000, ant_count=None):
         """
         Find the shortest path that visits every coordinate.
         """
@@ -156,11 +156,9 @@ class World:
         # (Re-)Build the ant colony, placing Ants at coordinates in a round-
         # robin fashion.
         if ant_count is None or ant_count < 1:
-            ant_count = len(self.coords)
-        n = len(self.coords)
-        ants = [Ant(self, alpha, beta, start=self.coords[i % n]) 
-            for i in range(ant_count)
-        ]
+            ants = self.round_robin_ants(len(self.coords), alpha, beta)
+        else:
+            ants = self.random_ants(10, alpha, beta)
 
         # Yield local bests.
         # TODO: Add option to return global best.
@@ -171,10 +169,24 @@ class World:
             best_ant = self.get_best_ant(ants)
             if elite_ant is None or best_ant < elite_ant:
                 elite_ant = best_ant.clone()
-            self.trace_elite(elite_ant)
+            #self.trace_elite(best_ant)
             yield best_ant
             for ant in ants:
                 ant.reset()
+                
+    def round_robin_ants(self, ant_count, alpha, beta):
+        n = len(self.coords)
+        return [Ant(self, alpha, beta, start=self.coords[i % n]) 
+            for i in range(ant_count)
+        ]
+        
+    def random_ants(self, ant_count, alpha, beta):
+        starts = self.coords[:]
+        ants = list()
+        while ant_count > 0 and len(starts) > 0:
+            r = random.randrange(len(starts))
+            ants.append(Ant(self, alpha, beta, start=starts.pop(r)))
+        return ants
 
     def trace_elite(self, ant, n=1):
         """
@@ -206,11 +218,15 @@ class World:
         """
         Update the amount of pheromone on each edge.
         """
+        rho = self.rho
+        Q = self.q
         for xy, edge in self.edges.items():
             rho, Q, t = self.rho, self.q, edge.pheromone
             edge.pheromone = (1 - rho) * t + sum(
                 Q / a.distance for a in ants if xy in a.moves
             )
+            if edge.pheromone < self.t0:
+                edge.pheromone = self.t0
 
 
 class Ant:
@@ -220,14 +236,14 @@ class Ant:
     """
     uid = 0
 
-    def __init__(self, world, alpha=2, beta=3, start=None):
+    def __init__(self, world, alpha=1, beta=3, start=None):
         """
         Create a new Ant for the given world.
 
         Parameters:
             world - the World in which the ant should seek solutions
-            alpha - how much this ant considers distance
-            beta - how much this ant considers scent
+            alpha - how much this ant considers pheromone
+            beta - how much this ant considers distance
             start - coordinate from which this ant should find solutions
 
         """
@@ -387,11 +403,14 @@ class Ant:
         """
         if len(moves) == 0:
             return None     # No more moves
-        weighted_moves = []
-        for m in moves:
-            w = (m, self.calculate_weight(m))
-            weighted_moves.append(w)
-        moves, weights = zip(*weighted_moves)
+        weights = []
+        moves = list(moves)
+        weights = [self.calculate_weight(m) for m in moves]
+        total_weight = sum(weights)
+        if total_weight == 0:
+            total_weight = 1
+        weights = [w / total_weight for w in weights]
+        #moves, weights = zip(*weights)
         cumdist = list(self._accumulate(weights))
         r = random.random() * cumdist[-1]
         i = bisect.bisect(cumdist, r)
@@ -415,9 +434,9 @@ class Ant:
         """
         Return a number representing the weight of a single move.
         """
-        n = self.get_apriori(move)
-        t = self.get_posteriori(move)
-        w = pow(n, self.alpha) * pow(t, self.beta)
+        p = self.get_posteriori(move)   # pheromone
+        d = self.get_apriori(move)  # distance
+        w = pow(p, self.alpha) * pow(d, self.beta)
         return w
 
     def make_move(self, move):
@@ -429,11 +448,17 @@ class Ant:
             self.start = move
         else:
             self.distance += self.world.get_distance(self.node, move)
+            e = self.world.edges[self.node, move]
+            #e.pheromone = (1 - self.world.rho) * e.pheromone + self.world.rho * self.world.t0
+            e.pheromone *= self.world.rho
         self.node = move
 
     
 if __name__ == '__main__':
     world = World(TEST_COORDS_33)
+    
+    print("rho={w.rho}, Q={w.q}".format(w=world))
+    
     fastest = None
     divider = "-" * (25 + 12 + 20)
     header = "\n{:21}{:12}{:20}".format("Time Elapsed", "Trial", "Distance")
@@ -441,12 +466,12 @@ if __name__ == '__main__':
     print(header)
     print(divider)
     start_time = time.time()
-    for i, ant in enumerate(world.solve(iter_count=100)):
+    for i, ant in enumerate(world.solve()):
         if fastest is None or ant.distance < fastest.distance:
             fastest = ant.clone()
             fastest_time = time.time() - start_time
-        print("{:>20} {:<12}{:<20}".format(
-                timedelta(seconds=fastest_time), i, fastest.distance))
+            print("{:>20} {:<12}{:<20}".format(
+                    timedelta(seconds=fastest_time), i, fastest.distance))
     total_time = time.time() - start_time
     
     print("\nTotal time for {} iterations: {}".format(
