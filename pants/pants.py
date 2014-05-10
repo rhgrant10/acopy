@@ -147,23 +147,22 @@ class World:
         for edge in self.edges.values():
             edge.pheromone = self.t0
 
-    def solve(self, alpha=1, beta=2, iter_count=2000, ant_count=None):
+    def solve(self, alpha=1, beta=2.5, iter_count=2000, ant_count=None):
         """
         Find the shortest path that visits every coordinate.
         """
         self.reset()
 
-        # (Re-)Build the ant colony, placing Ants at coordinates in a round-
-        # robin fashion.
-        if ant_count is None or ant_count < 1:
-            ants = self.round_robin_ants(len(self.coords), alpha, beta)
-        else:
-            ants = self.random_ants(10, alpha, beta)
-
         # Yield local bests.
         # TODO: Add option to return global best.
         elite_ant = None
         for i in range(iter_count):
+            # (Re-)Build the ant colony
+            if ant_count is None:
+                ants = self.random_ants(10, alpha, beta)
+            elif ant_count < 1:
+                ants = self.round_robin_ants(len(self.coords), alpha, beta)
+            
             self.find_solutions(ants)
             self.update_scent(ants)
             best_ant = self.get_best_ant(ants)
