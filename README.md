@@ -36,8 +36,8 @@ Next, make the ants find the shortest solution.
 
 Again, there are several optional settings that can affect the solver.
 
- * `alpha` - basically, how much the ants consider distance
- * `beta` - basically, how much the ants pay attention to pheromone
+ * `alpha` - basically, how much the ants consider the pheromone
+ * `beta` - basically, how much the ants consider the distance
  * `iter_count` - how many iterations the solver should perform
  * `ant_count` - how many ants participate in each iteration
 
