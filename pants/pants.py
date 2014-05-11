@@ -77,7 +77,7 @@ class World:
     shortest path that visits them all.
 
     """
-    def __init__(self, coords, rho=.8, Q=1, t0=.001):
+    def __init__(self, coords, **kwargs):
         """
         Create a new world consisting of the given coordinates.
 
@@ -95,12 +95,16 @@ class World:
                 (default is 0.1)
 
         """
-        self.rho = rho
-        self.q = Q
-        self.t0 = t0
         self.coords = coords
-        self.edges = self.create_map()
-
+        self.rho = kwargs.get('rho', 0.9)
+        self.q = kwargs.get('Q', 1)
+        self.t0 = kwargs.get('t0', 0.1)
+        self.alpha = kwargs.get('alpha', 0.5)
+        self.beta = kwargs.get('beta', 5)
+        self.ant_count = kwargs.get('ant_count', 10)
+        self.elite = kwargs.get('elite', .5)
+        self.edges = kwargs.get('edges', self.create_map())
+        
     def __copy__(self):
         cls = self.__class__
         new = cls.__new__(cls)
@@ -147,7 +151,7 @@ class World:
         for edge in self.edges.values():
             edge.pheromone = self.t0
 
-    def solve(self, alpha=1, beta=2.5, iter_count=2000, ant_count=None):
+    def solve(self, iter_count=20000):
         """
         Find the shortest path that visits every coordinate.
         """
@@ -158,41 +162,41 @@ class World:
         elite_ant = None
         for i in range(iter_count):
             # (Re-)Build the ant colony
-            if ant_count is None:
-                ants = self.random_ants(10, alpha, beta)
-            elif ant_count < 1:
-                ants = self.round_robin_ants(len(self.coords), alpha, beta)
+            if self.ant_count < 1:
+                ants = self.round_robin_ants()
+            else:
+                ants = self.random_ants()
             
             self.find_solutions(ants)
             self.update_scent(ants)
             best_ant = self.get_best_ant(ants)
             if elite_ant is None or best_ant < elite_ant:
                 elite_ant = best_ant.clone()
-            #self.trace_elite(best_ant)
+            if self.elite:
+                self.trace_elite(elite_ant)
             yield best_ant
-            for ant in ants:
-                ant.reset()
-                
-    def round_robin_ants(self, ant_count, alpha, beta):
+    
+    def round_robin_ants(self):
         n = len(self.coords)
-        return [Ant(self, alpha, beta, start=self.coords[i % n]) 
-            for i in range(ant_count)
+        return [Ant(self, self.alpha, self.beta, start=self.coords[i % n]) 
+            for i in range(self.ant_count)
         ]
         
-    def random_ants(self, ant_count, alpha, beta):
+    def random_ants(self):
         starts = self.coords[:]
         ants = list()
-        while ant_count > 0 and len(starts) > 0:
+        while self.ant_count > 0 and len(starts) > 0:
             r = random.randrange(len(starts))
-            ants.append(Ant(self, alpha, beta, start=starts.pop(r)))
+            ants.append(Ant(self, self.alpha, self.beta, start=starts.pop(r)))
         return ants
 
-    def trace_elite(self, ant, n=1):
+    def trace_elite(self, ant):
         """
         Deposit pheromone along the path of a particular ant n times.
         """
-        for m in ant.moves:
-            self.edges[m].pheromone += n * self.q / ant.distance
+        if self.elite:
+            for m in ant.moves:
+                self.edges[m].pheromone += self.elite * self.q / ant.distance
 
     def get_best_ant(self, ants):
         """
@@ -265,7 +269,7 @@ class Ant:
         """
         Set the level of attention paid to the distance.
         """
-        self._alpha = max(1, value)
+        self._alpha = max(0.5, value)
         
     @property
     def beta(self):
@@ -448,22 +452,26 @@ class Ant:
         else:
             self.distance += self.world.get_distance(self.node, move)
             e = self.world.edges[self.node, move]
-            #e.pheromone = (1 - self.world.rho) * e.pheromone + self.world.rho * self.world.t0
+            # e.pheromone = (1 - self.world.rho) * e.pheromone \
+            #               + self.world.rho * self.world.t0
             e.pheromone *= self.world.rho
         self.node = move
 
     
 if __name__ == '__main__':
     world = World(TEST_COORDS_33)
+    desc = "\n".join([
+        "rho={w.rho}, Q={w.q}",
+        "alpha={w.alpha}, beta={w.beta}"
+        ,"elite={w.elite}"])
+    print(desc.format(w=world))
     
-    print("rho={w.rho}, Q={w.q}".format(w=world))
-    
-    fastest = None
     divider = "-" * (25 + 12 + 20)
     header = "\n{:21}{:12}{:20}".format("Time Elapsed", "Trial", "Distance")
     
     print(header)
     print(divider)
+    fastest = None
     start_time = time.time()
     for i, ant in enumerate(world.solve()):
         if fastest is None or ant.distance < fastest.distance:
