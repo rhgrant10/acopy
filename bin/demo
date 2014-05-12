@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 from pants.world import World
 from pants.solver import Solver
-import pants.test.data
 from datetime import timedelta
 import time
+import sys
 
 # Real-world latitude longitude coordinates.
 TEST_COORDS_33 = [
@@ -22,31 +22,37 @@ TEST_COORDS_33 = [
 
 
 if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        limit = int(sys.argv[1])
+    else:
+        limit = 100
+    
     world = World(TEST_COORDS_33)
     solver = Solver(world)
-    print("""rho={w.rho}, Q={w.q}
+
+    print("""Solver settings:
+limit={}
+rho={w.rho}, Q={w.q}
 alpha={w.alpha}, beta={w.beta}
-elite={w.elite}""".format(w=solver))
+elite={w.elite}""".format(limit, w=solver))
     
-    divider = "-" * (25 + 12 + 20)
-    header = "\n{:21}{:12}{:20}".format("Time Elapsed", "Trial", "Distance")
+    columns = "{:<25}\t{:<25}"
+    divider = "-" * (25 + 25)
+    header = columns.format("Time Elapsed", "Distance")
+    columns = columns.replace('<', '>', 1)
     
+    print()
     print(header)
     print(divider)
+    
     fastest = None
     start_time = time.time()
-    for i, ant in enumerate(solver.solve()):
-        if fastest is None or ant.distance < fastest.distance:
-            fastest = ant.clone()
-            fastest_time = time.time() - start_time
-            print("{:>20} {:<12}{:<20}".format(
-                    timedelta(seconds=fastest_time), i, fastest.distance))
+    for ant in solver.solutions(limit):
+        fastest = ant
+        fastest_time = time.time() - start_time
+        print(columns.format(timedelta(seconds=fastest_time), ant.distance))
     total_time = time.time() - start_time
     
-    print("\nTotal time for {} iterations: {}".format(
-            i + 1,
-            timedelta(seconds=total_time)))
-
     print(divider)
     print("Best solution:")
     for x, y in fastest.path:
@@ -54,4 +60,5 @@ elite={w.elite}""".format(w=solver))
                 world.coords.index((x, y)),
                 x,
                 y))
-    print("Time for best solution: {}".format(timedelta(seconds=fastest_time)))
+    print("Solution length: {}".format(fastest.distance))
+    print("Found at {} out of {} seconds.".format(timedelta(seconds=fastest_time), timedelta(seconds=total_time)))
