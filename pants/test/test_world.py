@@ -1,0 +1,4 @@
+def somefunction():
+	return None
+
+

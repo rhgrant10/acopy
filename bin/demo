@@ -1,0 +1,41 @@
+#!/usr/bin/python3
+from pants.world import World
+from pants.solver import Solver
+import pants.test.data
+from datetime import timedelta
+import time
+
+if __name__ == '__main__':
+    world = World(pants.test.data.TEST_COORDS_33)
+    solver = Solver(world)
+    print("""rho={w.rho}, Q={w.q}
+alpha={w.alpha}, beta={w.beta}
+elite={w.elite}""".format(w=solver))
+    
+    divider = "-" * (25 + 12 + 20)
+    header = "\n{:21}{:12}{:20}".format("Time Elapsed", "Trial", "Distance")
+    
+    print(header)
+    print(divider)
+    fastest = None
+    start_time = time.time()
+    for i, ant in enumerate(solver.solve()):
+        if fastest is None or ant.distance < fastest.distance:
+            fastest = ant.clone()
+            fastest_time = time.time() - start_time
+            print("{:>20} {:<12}{:<20}".format(
+                    timedelta(seconds=fastest_time), i, fastest.distance))
+    total_time = time.time() - start_time
+    
+    print("\nTotal time for {} iterations: {}".format(
+            i + 1,
+            timedelta(seconds=total_time)))
+
+    print(divider)
+    print("Best solution:")
+    for x, y in fastest.path:
+        print("  {:>8} = ({:0.6f}, {:0.6f})".format(
+                world.coords.index((x, y)),
+                x,
+                y))
+    print("Time for best solution: {}".format(timedelta(seconds=fastest_time)))
