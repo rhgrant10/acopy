@@ -22,7 +22,8 @@ How to Use
 
 ### From Python3
 
-Pass in a list of `(x,y)` coordinates to create the World.
+#### Creating the `World`
+Pass in a list of `(x,y)` coordinates to create the `World`.
 
 ```python
 from pants.world import World
@@ -31,7 +32,7 @@ coords = [(1,1), (2,1), (3,2), (1,2)]
 world = World(coords)
 ```
 
-By default, the list of coordinates is used to create a complete and symmetrical set of edges from every coordinate to every other coordinate using Euclidean distances.  Alternatively, you can also pass in a dictionary of edges.  In that case, no edges are automatically created for you.  For example:
+By default, the list of coordinates is used to create a complete and symmetrical set of edges from every coordinate to every other coordinate using Euclidean distance.  Alternatively, you can also pass in a dictionary of edges.  In that case, no edges are automatically created for you.  For example:
 
 ```python
 from pants.world import World, Edge
@@ -49,7 +50,8 @@ print(world.distance(coords[2], coords[3]))	# -1 since no such edge exists
 
 Note that edges are not symmetrtical by default!
 
-Once the World has been created, we can use the solver to find a solution (the shortest tour) expressed as a list of coordinates.
+#### Solving a `World` with the `Solver`
+Once the `World` has been created, we can use the `Solver` to find a solution (the shortest tour) expressed as a list of coordinates.
 
 ```python
 from pants.solver import Solver
@@ -80,10 +82,11 @@ for s in solver.solutions():
 	best = s.distance
 ```
 
-### Run the Demo
+Run the Demo
+------------
 Included is a 33 "city" demo that can be run from the command line.
 
-```ShellSession
+```bash
 $ cd pants
 $ ./bin/demo
 Solver settings:
