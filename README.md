@@ -1,7 +1,11 @@
 pants
 =====
 
-A Python implementation of the Ant Colony Optimization Meta-Heuristic
+A Python3 implementation of the Ant Colony Optimization Meta-Heuristic
+
+Foreward
+--------
+Please note that this readme document may be quite out of sync with the actual code.  Sometimes I'll update the code before the readme and sometimes I'll do it the other way.  The code is going through some drastic changes at the moment, so please bear with me!
 
 Overview
 --------
@@ -12,68 +16,67 @@ Solutions are found through an iterative process.  In each iteration, several an
 ##### Author's Note
 I wrote this on a Saturday in my pajamas, so don't judge me! ;-) Haha.  Anyway, hope it can be of use to someone.
 
+EDIT: Now there have been several pajama Saturdays.
+
 How to Use
 ----------
 
 ### From Python3
 
-Pass in a list of `(x,y)` coordinates to create the "world."
+Pass in a list of `(x,y)` coordinates to create the World.
 
-	coords = [(1,1), (2,1), (3,2), (1,2)]
-    world = World(coords)
+```python
+from pants.world import World
 
-There are additional options that can affect the efficacy of the solver.
+coords = [(1,1), (2,1), (3,2), (1,2)]
+world = World(coords)
+```
 
- * `rho` - percent of pheromone that evaporates after each solution
- * `Q` - total amount of pheromone each ant will deposit along the path it finds
- * `t0` - initial amount of pheromone on each edge
+By default, the list of coordinates is used to create a complete and symmetrical set of edges from every coordinate to every other coordinate using Euclidean distances.  Alternatively, you can also pass in a dictionary of edges.  In that case, no edges are automatically created for you.  For example:
 
-`rho` is clamped between `0` and `1` (inclusively), while `Q` is not bounded.  `t0` should be some positive (as in greater than zero) value.  These parameters have been given reasonable defaults, so don't fret too much about them if you're uncomfortable.  
+```python
+from pants.world import World, Edge
 
-Next, make the ants find the shortest solution.
+coords = [(1,1), (2,1), (3,2), (1,2)]
+edges = {
+	(coords[0], coords[1]): Edge(coords[0], coords[1], dist=5),
+	(coords[1], coords[0]): Edge(coords[1], coords[0], dist=5),
+	(coords[1], coords[2]): Edge(coords[1], coords[2], dist=2000),
+}
+world = World(coords, edges)
 
-    world.solve()
+print(world.distance(coords[2], coords[3]))	# -1 since no such edge exists
+```
 
-Again, there are several optional settings that can affect the solver.
+Note that edges are not symmetrtical by default!
 
- * `alpha` - basically, how much the ants consider the pheromone
- * `beta` - basically, how much the ants consider the distance
- * `iter_count` - how many iterations the solver should perform
- * `ant_count` - how many ants participate in each iteration
+Once the World has been created, we can use the solver to find a solution (the shortest tour) expressed as a list of coordinates.
 
-`alpha` should be less than `beta` for best results.  `iter_count` defaults to 1000, although it is said that the algorithm can often require as many as 2000. `ant_count` defaults to the number of coordinates that comprise the world.  Reducing the number of ants too much below this results in a lack of "cooperation" among the ants.  Increasing the number of ants too far beyond this results in repitition of work.
+```python
+from pants.solver import Solver
+from pants.world import World
 
-The solver is actually a generator function that returns the `Ant` that took the shortest path on each iteration.  One common use would be to keep the shortest ant of all iterations.
+coords = [(1,1), (2,1), (3,2), (1,2)]
+world = World(coords)
+solver = Solver(world)
+solution = solver.solve()
+```
 
-	global_best = None
-    for local_best in world.solve():
-    	if global_best is None or local_best.distance < global_best.distance:
-    		global_best = local_best
-    	
-Here, `local_best` and `global_best` are instances of `Ant`.
+Note that solutions are returned in the form of an Ant instance.  Each ant is capable of reporting the path it took, the distance it traveled, and generate a list of moves it made in the form of a list of (start, end) tuples.
 
-	print global_best.distance  # 3.234516
-	print global_best.path 		# [(x3, y3), (x1, y1), (x2, y2)]
-	print global_best.moves 	# [((x3, y3), (x1, y1)),
-								#  ((x1, y1), (x2, y2)),
-								#  ((x2, y2), (x3, y3))]
-	
+```python
+print(solution.distance)
+for coord in solution.path:
+	print(coord)
+for move in solution.moves:
+	print("{} --> {}".format(move[0], move[1]))
+```
 
-### As a Shell Script
+Alternatively, you can iterate over incrementally better solutions.
 
-The program will perform a little 33 "city" demonstration using default settings.
-
-    $ python3 pants.py
-
-
-In the Future
--------------
-
- * More documentation
- * More command line features
- * CSV file support
- * Unit tests
- * More control over how worlds are constructed
- * Bigger ant hills
- * Increased mandible strength
- * Cannibalistic ants
+```python
+best = float("inf")
+for s in solver.solutions():
+	assert s.distance < best
+	best = s.distance
+```
