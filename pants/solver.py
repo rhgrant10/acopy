@@ -17,46 +17,53 @@ class Solver:
         self.beta = kwargs.get('beta', 3)
         self.ant_count = kwargs.get('ant_count', 10)
         self.elite = kwargs.get('elite', .5)
-        
-    def solve(self, limit=None):
+
+    def reset_pheromone(self):
         """
-        Find the shortest path that visits every coordinate.
+        Reset the amount of pheromone on every edge to the initial default.
         """
-        # Reset the amount of pheromone on every edge to the initial default.
         for edge in self.world.edges.values():
             edge.pheromone = self.t0
-
-        # Yield local bests.
-        # TODO: Add option to return global best.
-        elite_ant = None
-        if limit is None:
-            while True:
-                # (Re-)Build the ant colony
-                ants = self.round_robin_ants() if self.ant_count < 1 \
-                        else self.random_ants()
-                
-                self.find_solutions(ants)
-                self.update_scent(ants)
-                best_ant = self.get_best_ant(ants)
-                if elite_ant is None or best_ant < elite_ant:
-                    elite_ant = best_ant.clone()
-                if self.elite:
-                    self.trace_elite(elite_ant)
-                yield best_ant
-        else:    
-            for i in range(limit):
-                # (Re-)Build the ant colony
-                ants = self.round_robin_ants() if self.ant_count < 1 \
-                        else self.random_ants()
-                
-                self.find_solutions(ants)
-                self.update_scent(ants)
-                best_ant = self.get_best_ant(ants)
-                if elite_ant is None or best_ant < elite_ant:
-                    elite_ant = best_ant.clone()
-                if self.elite:
-                    self.trace_elite(elite_ant)
-                yield best_ant
+        
+    def solve(self, limit=10):
+        """
+        Return the shortest path found after limit iterations.
+        """
+        self.reset_pheromone()
+        global_best = None
+        for i in range(limit):
+            # (Re-)Build the ant colony
+            ants = self.round_robin_ants() if self.ant_count < 1 \
+                    else self.random_ants()
+            
+            self.find_solutions(ants)
+            self.update_scent(ants)
+            local_best = self.get_best_ant(ants)
+            if global_best is None or local_best < global_best:
+                global_best = local_best.clone()
+            if self.elite:
+                self.trace_elite(global_best)
+        return global_best
+    
+    def solutions(self, limit=10):
+        """
+        Return successively shorter paths until limit iterations have occured.
+        """
+        self.reset_pheromone()
+        global_best = None
+        for i in range(limit):
+            # (Re-)Build the ant colony
+            ants = self.round_robin_ants() if self.ant_count < 1 \
+                    else self.random_ants()
+            
+            self.find_solutions(ants)
+            self.update_scent(ants)
+            local_best = self.get_best_ant(ants)
+            if global_best is None or local_best < global_best:
+                global_best = local_best.clone()
+                yield global_best
+            if self.elite:
+                self.trace_elite(global_best)
     
     def round_robin_ants(self):
         n = len(self.world.coords)
