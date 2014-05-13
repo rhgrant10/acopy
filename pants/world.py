@@ -15,20 +15,17 @@ class World:
 
         """
         self.coords = coords
-        self.edges = edges or World.euclidean_edges(coords)
+        if edges is None:
+            edges = World.euclidean_edges(coords)
+        self.edges = {(e.start, e.end): e for e in edges}
     
     @staticmethod
     def euclidean_edges(coords):
         """
         Create a map of the world from the coordinates.
         """
-        edges = {}
-        for a in coords:
-            for b in coords:
-                edges[a, b] = Edge(a, b)
-                edges[b, a] = Edge(b, a, dist=edges[a, b].distance)
-        return edges
-
+        return [Edge(a, b) for a in coords for b in coords]
+        
     def distance(self, a, b):
         """
         Return the distance of the edge between a and b.
