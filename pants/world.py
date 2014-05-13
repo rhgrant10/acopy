@@ -34,7 +34,7 @@ class World:
         Return the distance of the edge between a and b.
         """
         e = self.edges.get((a, b), None)
-        return e.distance if e is not None else 0
+        return e.distance if e is not None else -1
 
     def scent(self, a, b):
         """

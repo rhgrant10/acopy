@@ -34,14 +34,16 @@ class Ant:
         """
         A list of moves, where each move is a (start, end) coordinate tuple.
         """
-        if len(self.path) == 0:
-            return []
-        path = self.path[:]
-        starts = path[::2]
-        path.append(path.pop(0))
-        ends = path[::2]
-        return zip(starts, ends)
-
+        #if len(self.path) == 0:
+        #    return []
+        #path = self.path[:]
+        #starts = path[::2]
+        #path.append(path.pop(0))
+        #ends = path[::2]
+        #return zip(starts, ends)
+        p, n = self.path, len(self.path)
+        return [(p[i], p[(i + 1) % n]) for i in range(n)]
+        
     def clone(self):
         """
         Return a new ant with exactly the same property values as this ant.
@@ -58,32 +60,6 @@ class Ant:
 
     def __lt__(self, other):
         return self.distance < other.distance
-
-    def get_apriori(self, move):
-        """
-        Return a number suggesting how attractive a particular move seems.
-
-        The default implementation uses inverse distance, but any apriori
-        knowledge can be used instead.
-
-        """
-        if self.node is None:
-            return 1
-        return 1 / float(self.world.distance(self.node, move))
-
-    def get_posteriori(self, move):
-        """
-        Return a number suggesting the amount of pheromone on the way to a move.
-        """
-        if self.node is None:
-            return float(1)
-        return self.world.scent(self.node, move)
-
-    def log(self, msg):
-        """
-        Prints a message with the current timestamp and the ant's UID.
-        """
-        print("%s [Ant #%s] %s" % (time.time(), self.uid, msg))
 
     def reset(self, start=None):
         """
@@ -144,7 +120,14 @@ class Ant:
         
         # Find the individual weight of each move.
         moves = list(moves) # it may be given as a set, but we need order
-        weights = [self.calculate_weight(m) for m in moves]
+        weights = list()
+        if self.node is None:
+            weights = [1 for i in range(len(moves))]
+        else:
+            for m in moves:
+                pre = self.world.distance(self.node, m)
+                post = self.world.scent(self.node, m)
+                weights.append(self.calculate_weight(pre, post))
         
         # Normalize the weights without accedentally dividing by zero!
         total_weight = sum(weights)
@@ -163,13 +146,11 @@ class Ant:
         i = bisect.bisect(cumdist, r)
         return moves[i]
         
-    def calculate_weight(self, move):
+    def calculate_weight(self, pre, post):
         """
-        Return a number representing the weight of a single move.
+        Calculate the weight considering pre and post information.
         """
-        p = self.get_posteriori(move)   # pheromone
-        d = self.get_apriori(move)      # distance
-        return pow(p, self.alpha) * pow(d, self.beta)
+        return pow(post, self.alpha) * pow(pre, self.beta)
 
     def make_move(self, move):
         """
@@ -181,4 +162,3 @@ class Ant:
         else:
             self.distance += self.world.distance(self.node, move)
         self.node = move
-
