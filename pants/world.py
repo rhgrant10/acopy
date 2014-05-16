@@ -31,7 +31,7 @@ class World:
         Return the distance of the edge between a and b.
         """
         e = self.edges.get((a, b), None)
-        return e.distance if e is not None else -1
+        return e.distance if e is not None else 0
 
     def scent(self, a, b):
         """
@@ -80,4 +80,8 @@ class Edge:
         y = b[1] - a[1]
         return math.sqrt(x*x + y*y)
         
+    # def __eq__(self, other):
+    #     if type(self) is type(other):
+    #         return self.__dict__ == other.__dict__
+    #     return False
         
