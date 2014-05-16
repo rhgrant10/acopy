@@ -34,15 +34,18 @@ class Ant:
         """
         A list of moves, where each move is a (start, end) coordinate tuple.
         """
-        #if len(self.path) == 0:
-        #    return []
-        #path = self.path[:]
-        #starts = path[::2]
-        #path.append(path.pop(0))
-        #ends = path[::2]
-        #return zip(starts, ends)
-        p, n = self.path, len(self.path)
-        return [(p[i], p[(i + 1) % n]) for i in range(n)]
+        if len(self.path) == 0:
+            return []
+        path = self.path[:]
+        starts = path[::2]
+        path.append(path.pop(0))
+        ends = path[::2]
+        return zip(starts, ends)
+        #p, n = self.path, len(self.path)
+        #ms = [(p[i], p[(i + 1) % n]) for i in range(n)]
+        #from pprint import pprint
+        #pprint(list(zip(p, ms)))
+        #return ms
         
     def clone(self):
         """
@@ -52,6 +55,7 @@ class Ant:
 
         """
         ant = Ant(self.world, self.alpha, self.beta, self.start)
+        ant.uid = self.uid
         ant.node = self.node
         ant.path = self.path[:]
         ant.distance = self.distance
@@ -81,7 +85,7 @@ class Ant:
         """
         Return true if there is one or more coordinates not visited by the ant.
         """
-        return not self.trip_complete
+        return len(self.path) < len(self.world.coords)
 
     def move(self):
         """
