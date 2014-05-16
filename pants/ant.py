@@ -36,7 +36,6 @@ class Ant:
         """
         p, n = self.path, len(self.path)
         return [(p[i], p[(i + 1) % n]) for i in range(n)]
-
         
     def clone(self):
         """
