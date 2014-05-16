@@ -34,18 +34,9 @@ class Ant:
         """
         A list of moves, where each move is a (start, end) coordinate tuple.
         """
-        if len(self.path) == 0:
-            return []
-        path = self.path[:]
-        starts = path[::2]
-        path.append(path.pop(0))
-        ends = path[::2]
-        return zip(starts, ends)
-        #p, n = self.path, len(self.path)
-        #ms = [(p[i], p[(i + 1) % n]) for i in range(n)]
-        #from pprint import pprint
-        #pprint(list(zip(p, ms)))
-        #return ms
+        p, n = self.path, len(self.path)
+        return [(p[i], p[(i + 1) % n]) for i in range(n)]
+
         
     def clone(self):
         """
@@ -131,6 +122,7 @@ class Ant:
             for m in moves:
                 pre = self.world.distance(self.node, m)
                 post = self.world.scent(self.node, m)
+                pre = 1 if pre == 0 else 1 / pre
                 weights.append(self.calculate_weight(pre, post))
         
         # Normalize the weights without accedentally dividing by zero!
