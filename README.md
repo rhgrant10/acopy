@@ -2,10 +2,6 @@ Pants
 =====
 ###### A Python3 implementation of the Ant Colony Optimization Meta-Heuristic
 
-Foreward
---------
-Please note that this readme document may be quite out of sync with the actual code.  Sometimes I'll update the code before the readme and sometimes I'll do it the other way.  The code is going through some drastic changes at the moment, so please bear with me!
-
 Overview
 --------
 I'll flesh this readme out more later, but here's the general gist.  The world is built from a list of x and y coordinates.  The Euclidean distance between every combination of coordinates is calculated and a default level of pheromone is deposited along each edge.  
@@ -38,14 +34,11 @@ By default, the list of coordinates is used to create a complete and symmetrical
 from pants.world import World, Edge
 
 coords = [(1,1), (2,1), (3,2), (1,2)]
-edges = {
-	(coords[0], coords[1]): Edge(coords[0], coords[1], dist=5),
-	(coords[1], coords[0]): Edge(coords[1], coords[0], dist=5),
-	(coords[1], coords[2]): Edge(coords[1], coords[2], dist=2000),
-}
+edges = [Edge(a, b, dist=random.randrange(1, 11)) for a in coords[:-1] for b in coords]
 world = World(coords, edges)
 
-print(world.distance(coords[2], coords[3]))	# -1 since no such edge exists
+print(world.distance(coords[2], coords[3])) # some number between 1 and 11 (exclusive)
+print(world.distance(coords[3], coords[2]))	# -1 since no such edge exists
 ```
 
 Note that edges are not symmetrtical by default!
