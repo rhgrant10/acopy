@@ -85,3 +85,18 @@ class Edge:
             return self.__dict__ == other.__dict__
         return False
         
+
+class Node:
+    def __init__(self, x, y, **kwargs):
+        self.x = x
+        self.y = y
+        self.data = dict() if kwargs is None else kwargs
+        
+    def get(self, prop):
+        return self.data.get(prop, None)
+        
+    def __eq__(self, other):
+        if type(self) is type(other):
+            return self.__dict__ == other.__dict__
+        return False
+        
