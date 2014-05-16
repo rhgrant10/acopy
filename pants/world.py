@@ -87,10 +87,12 @@ class Edge:
         
 
 class Node:
-    def __init__(self, x, y, **kwargs):
-        self.x = x
-        self.y = y
-        self.data = dict() if kwargs is None else kwargs
+    def __init__(self, **kwargs):
+        if kwargs is None:
+            kwargs = dict(x=0, y=0)
+        self.x = kwargs.pop('x', 0)
+        self.y = kwargs.pop('y', 0)
+        self.data = kwargs
         
     def get(self, prop):
         return self.data.get(prop, None)
