@@ -5,7 +5,7 @@ import unittest
 class AntTest(unittest.TestCase):
     def setUp(self):
         # TODO: Mock the world object
-        self.coords = [(0, 0), (1, 1), (0, 2)]
+        self.coords = [(0, 0), (1, 1), (2, 2)]
         self.world = World(self.coords)
         
     def test_uid_behavior(self):
@@ -25,11 +25,13 @@ class AntTest(unittest.TestCase):
         # TODO: Add case where len(ant.path) == 1
         ant = Ant(self.world)
         ant.path = self.world.coords[:2]
+        ant.move()
         expected_moves = [
             (self.world.coords[0], self.world.coords[1]),
-            (self.world.coords[1], self.world.coords[0])
+            (self.world.coords[1], self.world.coords[2]),
+            (self.world.coords[2], self.world.coords[0]),
         ]
-        self.assertEqual(ant.moves, expected_moves)
+        self.assertEqual(list(ant.moves), expected_moves)
         
     def test_clone_equality(self):
         # TODO: mock world.distance
