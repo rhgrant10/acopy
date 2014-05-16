@@ -80,7 +80,7 @@ Run the Demo
 Included is a 33 "city" demo that can be run from the command line.
 
 ```bash
-$ cd pants
+$ cd Pants
 $ ./bin/demo
 Solver settings:
 limit=100
