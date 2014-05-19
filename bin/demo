@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-from pants.world import World
-from pants.solver import Solver
+from pants import World
+from pants import Solver
 from datetime import timedelta
 import time
 import sys
