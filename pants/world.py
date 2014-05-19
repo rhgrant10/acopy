@@ -87,16 +87,22 @@ class Edge:
         
 
 class Node:
-    def __init__(self, **kwargs):
-        if kwargs is None:
-            kwargs = dict(x=0, y=0)
-        self.x = kwargs.pop('x', 0)
-        self.y = kwargs.pop('y', 0)
-        self.data = kwargs
+    def __init__(self, x=0, y=0, data=None):
+        self.x = x
+        self.y = y
+        self.data = {} if data is None else data
         
-    def get(self, prop):
-        return self.data.get(prop, None)
-        
+    @classmethod
+    def from_data(cls, data, getx=None, gety=None):
+        if getx is None or not callable(getx):
+            getx = lambda d: d['x']
+        if gety is None or not callable(gety):
+            gety = lambda d: d['y']
+        return cls(x=getx(data), y=gety(data), data=data)
+
+    def __getitem__(self, key):
+        return self.data.get(key, None)
+
     def __eq__(self, other):
         if type(self) is type(other):
             return self.__dict__ == other.__dict__

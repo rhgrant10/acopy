@@ -1,4 +1,4 @@
-from ..world import World, Edge
+from ..world import World, Edge, Node
 import unittest
 import math
 
@@ -119,31 +119,31 @@ class NodeConstructorTest(unittest.TestCase):
             n = Node(x, y)
             self.assertEqual(n.x, x)
             self.assertEqual(n.y, y)
+            self.assertEqual(n.data, {})
         
-    def test_tuple_constructor(self):
-        for c in self.coords:
-            n = Node.from_tuple(c)
-            self.assertEqual(n.x, c[0])
-            self.assertEqual(n.y, c[1])
-
-    def test_dict_constructor(self):
+    def test_data_constructor(self):
         for (x, y), name in zip(self.coords, self.names):
             d = dict(x=x, y=y, name=name)
-            n = Node.from_dict(d)
+            n = Node.from_data(d)
             self.assertEqual(n.x, x)
             self.assertEqual(n.y, y)
-            self.assertEqual(n['name'], name)
+            self.assertEqual(n.data['name'], name)
             
-    def test_dict_constructor_with_lambdas(self):
+    def test_data_constructor_with_lambdas(self):
         for (x, y), name in zip(self.coords, self.names):
             d = dict(lat=x, lng=y, name=name)
-            n = Node.from_dict(d, 
+            n = Node.from_data(d, 
                     getx=lambda d: d['lat'],
                     gety=lambda d: d['lng'])
             self.assertEqual(n.x, x)
             self.assertEqual(n.y, y)
-            self.assertEqual(n['name'], name)
+            self.assertEqual(n.data['name'], name)
     
+    def test_dict_access(self):
+        for (x, y), name in zip(self.coords, self.names):
+            d = dict(x=x, y=y, name=name)
+            n = Node.from_data(d)
+            self.assertEqual(n['name'], name)
     
 if __name__ == '__main__':
     unittest.main()
