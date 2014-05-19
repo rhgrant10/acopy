@@ -98,9 +98,6 @@ class EuclideanWorldTest(unittest.TestCase):
     def test_world_euclidean_edges(self):
         edges = World.euclidean_edges(self.coords)
         self.assertEqual(self.edges, edges)
-        #for i, j, d in self.euclidean_answers:
-        #    self.assertEqual(edges[self.coords[i], self.coords[j]].distance, d)
-        #    self.assertEqual(edges[self.coords[j], self.coords[i]].distance, d)
     
     def tearDown(self):
         del self.coords
@@ -135,12 +132,18 @@ class NodeConstructorTest(unittest.TestCase):
             n = Node.from_dict(d)
             self.assertEqual(n.x, x)
             self.assertEqual(n.y, y)
-            self.assertEqual(n.get('name'), name)
+            self.assertEqual(n['name'], name)
             
+    def test_dict_constructor_with_lambdas(self):
         for (x, y), name in zip(self.coords, self.names):
             d = dict(lat=x, lng=y, name=name)
-            n = Node.from_dict(d, x_name='lat', y_name='lng')
-            
-            
+            n = Node.from_dict(d, 
+                    getx=lambda d: d['lat'],
+                    gety=lambda d: d['lng'])
+            self.assertEqual(n.x, x)
+            self.assertEqual(n.y, y)
+            self.assertEqual(n['name'], name)
+    
+    
 if __name__ == '__main__':
     unittest.main()
