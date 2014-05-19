@@ -76,9 +76,7 @@ class Edge:
             sqrt((x2 - x1)^2 + (y2 - y1)^2)
 
         """
-        x = b[0] - a[0]
-        y = b[1] - a[1]
-        return math.sqrt(x*x + y*y)
+        return math.sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2))
         
     def __eq__(self, other):
         if type(self) is type(other):
