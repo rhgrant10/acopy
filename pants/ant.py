@@ -75,7 +75,7 @@ class Ant:
         """
         Return true if there is one or more coordinates not visited by the ant.
         """
-        return len(self.path) < len(self.world.coords)
+        return len(self.path) < len(self.world.nodes)
 
     def move(self):
         """
@@ -86,7 +86,7 @@ class Ant:
         if move:
             move_made = (self.node, move)
             self.make_move(move)
-            if len(self.path) == len(self.world.coords):
+            if len(self.path) == len(self.world.nodes):
                 # Close and complete the path.
                 self.distance += self.world.distance(
                     self.path[-1], self.path[0]
@@ -99,7 +99,7 @@ class Ant:
         """
         Return the set of all moves that can currently be made.
         """
-        return set(self.world.coords) - set(self.path)
+        return set(self.world.nodes) - set(self.path)
 
     def choose_move(self, moves):
         """

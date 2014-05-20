@@ -66,18 +66,18 @@ class Solver:
                 self.trace_elite(global_best)
     
     def round_robin_ants(self):
-        n = len(self.world.coords)
+        n = len(self.world.nodes)
         return [
             Ant(
                 self.world, 
                 self.alpha, 
                 self.beta, 
-                start=self.world.coords[i % n]
+                start=self.world.nodes[i % n]
             ) for i in range(self.ant_count)
         ]
         
     def random_ants(self):
-        starts = self.world.coords[:]
+        starts = self.world.nodes[:]
         ants = list()
         while self.ant_count > 0 and len(starts) > 0:
             r = random.randrange(len(starts))

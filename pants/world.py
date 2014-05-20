@@ -1,7 +1,7 @@
 import math
 
 class World:
-    def __init__(self, coords, edges=None):
+    def __init__(self, nodes=None, edges=None):
         """
         Create a new world consisting of the given coordinates.
 
@@ -10,21 +10,17 @@ class World:
         other variables.
 
         Parameters:
-            coords - list of (x, y) coordinates
-            edges - dict of Edge instances with node-pair tuples as keys
+            nodes - list of Points
+            edges - list of Edges 
 
         """
-        self.coords = coords
-        if edges is None:
-            edges = World.euclidean_edges(coords)
-        self.edges = {(e.start, e.end): e for e in edges}
-    
-    @staticmethod
-    def euclidean_edges(coords):
-        """
-        Create a map of the world from the coordinates.
-        """
-        return [Edge(a, b) for a in coords for b in coords]
+        self.nodes = [] if nodes is None else nodes
+        self.edges = {} if edges is None else edges
+
+    @classmethod
+    def Euclidean(cls, nodes):
+        edges = {(a, b): Edge(a, b) for a in nodes for b in nodes}
+        return cls(nodes, edges)
         
     def distance(self, a, b):
         """
@@ -61,22 +57,22 @@ class Edge:
         """
         self.start = a
         self.end = b
-        self.distance = Edge.distance(a, b) if dist is None else dist
+        self.distance = a.distance(b) if dist is None else dist
         self.pheromone = 0.1 if pheromone is None else pheromone
 
-    @staticmethod
-    def distance(a, b):
-        """
-        Return the Euclidean distance between a and b.
+    # @staticmethod
+    # def distance(a, b):
+    #     """
+    #     Return the Euclidean distance between a and b.
 
-        Parameters:
-            a - the first point (x1, y1)
-            b - the second point (x2, y2)
-        Returns:
-            sqrt((x2 - x1)^2 + (y2 - y1)^2)
+    #     Parameters:
+    #         a - the first Point
+    #         b - the second Point
+    #     Returns:
+    #         distance between Point a and Point b
 
-        """
-        return math.sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2))
+    #     """
+    #     return a.distance(b)
         
     def __eq__(self, other):
         if type(self) is type(other):
@@ -84,25 +80,29 @@ class Edge:
         return False
         
 
-class Node:
-    def __init__(self, x=0, y=0, data=None):
+class Point:
+    """
+    A 2D point.
+    """
+    def __init__(self, x=0, y=0):
+        """
+        Create a new Point.
+        """
         self.x = x
         self.y = y
-        self.data = {} if data is None else data
-        
-    @classmethod
-    def from_data(cls, data, getx=None, gety=None):
-        if getx is None or not callable(getx):
-            getx = lambda d: d['x']
-        if gety is None or not callable(gety):
-            gety = lambda d: d['y']
-        return cls(x=getx(data), y=gety(data), data=data)
-
-    def __getitem__(self, key):
-        return self.data.get(key, None)
 
     def __eq__(self, other):
         if type(self) is type(other):
             return self.__dict__ == other.__dict__
         return False
-        
+
+    def __add__(self, other):
+        return self.__class__(x=self.x + other.x, y=self.y + other.y)
+
+    def __sub__(self, other):
+        return self.__class__(x=self.x - other.x, y=self.y - other.y)
+
+    def distance(self, other=None):
+        if other is None:
+            other = self.__class__()
+        return math.sqrt(pow(other.x - self.x, 2) + pow(other.y - self.y, 2))
