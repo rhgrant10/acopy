@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from pants import World
 from pants import Solver
+from pants import Point
 from datetime import timedelta
 import time
 import sys
@@ -39,7 +40,8 @@ if __name__ == '__main__':
     else:
         limit = 100
     
-    world = World(TEST_COORDS_33)
+    nodes = [Point(*p) for p in TEST_COORDS_33]
+    world = World.Euclidean(nodes)
     solver = Solver(world)
 
     print("""Solver settings:

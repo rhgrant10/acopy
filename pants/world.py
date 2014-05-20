@@ -91,6 +91,9 @@ class Point:
         self.x = x
         self.y = y
 
+    def __hash__(self):
+        return hash(self.x) ^ hash(self.y)
+
     def __eq__(self, other):
         if type(self) is type(other):
             return self.__dict__ == other.__dict__
