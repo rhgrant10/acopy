@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-from pants.world import World
-from pants.solver import Solver
+from pants import World
+from pants import Solver
+from pants import Node
 from datetime import timedelta
 import time
 import sys
@@ -39,7 +40,8 @@ if __name__ == '__main__':
     else:
         limit = 100
     
-    world = World(TEST_COORDS_33)
+    nodes = [Node(x, y) for x, y in TEST_COORDS_33]
+    world = World.Euclidean(nodes)
     solver = Solver(world)
 
     print("""Solver settings:
@@ -48,7 +50,7 @@ rho={w.rho}, Q={w.q}
 alpha={w.alpha}, beta={w.beta}
 elite={w.elite}""".format(limit, w=solver))
     
-    columns = "{:<25}\t{:<25}"
+    columns = "{!s:<25}\t{:<25}"
     divider = "-" * (25 + 25)
     header = columns.format("Time Elapsed", "Distance")
     columns = columns.replace('<', '>', 1)
@@ -62,15 +64,18 @@ elite={w.elite}""".format(limit, w=solver))
     for ant in solver.solutions(limit):
         fastest = ant
         fastest_time = time.time() - start_time
-        print(columns.format(timedelta(seconds=fastest_time), ant.distance))
+        print(columns.format(
+                timedelta(seconds=fastest_time),
+                ant.distance))
     total_time = time.time() - start_time
     
     print(divider)
     print("Best solution:")
-    for x, y in fastest.path:
-        print("  {:>8} = ({:0.6f}, {:0.6f})".format(
-                world.coords.index((x, y)),
-                x,
-                y))
+    for p in fastest.path:
+        print("  {:>8} = {:0.6f}".format(
+                world.nodes.index(p),
+                p))
     print("Solution length: {}".format(fastest.distance))
-    print("Found at {} out of {} seconds.".format(timedelta(seconds=fastest_time), timedelta(seconds=total_time)))
+    print("Found at {} out of {} seconds.".format(
+            timedelta(seconds=fastest_time),
+            timedelta(seconds=total_time)))

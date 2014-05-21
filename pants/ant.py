@@ -36,7 +36,6 @@ class Ant:
         """
         p, n = self.path, len(self.path)
         return [(p[i], p[(i + 1) % n]) for i in range(n)]
-
         
     def clone(self):
         """
@@ -76,7 +75,7 @@ class Ant:
         """
         Return true if there is one or more coordinates not visited by the ant.
         """
-        return len(self.path) < len(self.world.coords)
+        return len(self.path) < len(self.world.nodes)
 
     def move(self):
         """
@@ -87,11 +86,10 @@ class Ant:
         if move:
             move_made = (self.node, move)
             self.make_move(move)
-            if len(self.path) == len(self.world.coords):
+            if len(self.path) == len(self.world.nodes):
                 # Close and complete the path.
-                self.distance += self.world.distance(
-                    self.path[-1], self.path[0]
-                )
+                dist = self.world.edges[self.path[-1], self.path[0]].distance
+                self.distance += dist
                 self.trip_complete = True
             return move_made
         return None
@@ -100,7 +98,7 @@ class Ant:
         """
         Return the set of all moves that can currently be made.
         """
-        return set(self.world.coords) - set(self.path)
+        return set(self.world.nodes) - set(self.path)
 
     def choose_move(self, moves):
         """
@@ -120,8 +118,9 @@ class Ant:
             weights = [1 for i in range(len(moves))]
         else:
             for m in moves:
-                pre = self.world.distance(self.node, m)
-                post = self.world.scent(self.node, m)
+                e = self.world.edges[self.node, m]
+                pre = e.distance
+                post = e.pheromone
                 pre = 1 if pre == 0 else 1 / pre
                 weights.append(self.calculate_weight(pre, post))
         
@@ -156,5 +155,5 @@ class Ant:
         if len(self.path) == 1:
             self.start = move
         else:
-            self.distance += self.world.distance(self.node, move)
+            self.distance += self.world.edges[self.node, move].distance
         self.node = move

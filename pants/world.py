@@ -1,44 +1,40 @@
 import math
 
 class World:
-    def __init__(self, coords, edges=None):
+    def __init__(self, nodes=None, edges=None):
         """
         Create a new world consisting of the given coordinates.
 
         The world is defined by a set of (x, y) coordinates, the assumption
-        that each point can be reached from every other point, and a few
+        that each Node can be reached from every other Node, and a few
         other variables.
 
         Parameters:
-            coords - list of (x, y) coordinates
-            edges - dict of Edge instances with node-pair tuples as keys
+            nodes - list of Nodes
+            edges - list of Edges 
 
         """
-        self.coords = coords
-        if edges is None:
-            edges = World.euclidean_edges(coords)
-        self.edges = {(e.start, e.end): e for e in edges}
-    
-    @staticmethod
-    def euclidean_edges(coords):
-        """
-        Create a map of the world from the coordinates.
-        """
-        return [Edge(a, b) for a in coords for b in coords]
+        self.nodes = [] if nodes is None else nodes
+        self.edges = {} if edges is None else edges
+
+    @classmethod
+    def Euclidean(cls, nodes):
+        edges = {(a, b): Edge(a, b) for a in nodes for b in nodes}
+        return cls(nodes, edges)
         
-    def distance(self, a, b):
-        """
-        Return the distance of the edge between a and b.
-        """
-        e = self.edges.get((a, b), None)
-        return e.distance if e is not None else -1
+    # def distance(self, a, b):
+    #     """
+    #     Return the distance of the edge between a and b.
+    #     """
+    #     e = self.edges.get((a, b), None)
+    #     return e.distance if e is not None else -1
 
-    def scent(self, a, b):
-        """
-        Return the amount of pheromone on the edge between a and b.
-        """
-        e = self.edges.get((a, b), None)
-        return e.pheromone if e is not None else 0
+    # def scent(self, a, b):
+    #     """
+    #     Return the amount of pheromone on the edge between a and b.
+    #     """
+    #     e = self.edges.get((a, b), None)
+    #     return e.pheromone if e is not None else 0
 
 
 class Edge:
@@ -61,27 +57,55 @@ class Edge:
         """
         self.start = a
         self.end = b
-        self.distance = Edge.distance(a, b) if dist is None else dist
+        self.distance = a.distance(b) if dist is None else dist
         self.pheromone = 0.1 if pheromone is None else pheromone
 
-    @staticmethod
-    def distance(a, b):
-        """
-        Return the Euclidean distance between a and b.
-
-        Parameters:
-            a - the first point (x1, y1)
-            b - the second point (x2, y2)
-        Returns:
-            sqrt((x2 - x1)^2 + (y2 - y1)^2)
-
-        """
-        x = b[0] - a[0]
-        y = b[1] - a[1]
-        return math.sqrt(x*x + y*y)
-        
     def __eq__(self, other):
         if type(self) is type(other):
             return self.__dict__ == other.__dict__
         return False
         
+
+class Node:
+    """
+    A 2D Node.
+    """
+    def __init__(self, x=0, y=0):
+        """
+        Create a new Node.
+        """
+        self.x = x
+        self.y = y
+
+    def __hash__(self):
+        return hash(self.x) ^ hash(self.y)
+
+    def __eq__(self, other):
+        if type(self) is type(other):
+            return self.__dict__ == other.__dict__
+        return False
+        
+    def __repr__(self):
+        return "({}, {})".format(self.x, self.y)
+        
+    def __iter__(self):
+        yield self.x
+        yield self.y
+        
+    def __format__(self, spec):
+        return "({1:{0}}, {2:{0}})".format(spec, float(self.x), float(self.y))
+
+    def __add__(self, other):
+        return self.__class__(x=self.x + other.x, y=self.y + other.y)
+
+    def __sub__(self, other):
+        return self.__class__(x=self.x - other.x, y=self.y - other.y)
+
+    def distance(self, other=None):
+        """
+        Return the distance to the other Node (defaults to origin).
+        """
+        if other is None:
+            other = self.__class__()
+        return math.sqrt(pow(other.x - self.x, 2) + pow(other.y - self.y, 2))
+
