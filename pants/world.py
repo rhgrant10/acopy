@@ -6,11 +6,11 @@ class World:
         Create a new world consisting of the given coordinates.
 
         The world is defined by a set of (x, y) coordinates, the assumption
-        that each point can be reached from every other point, and a few
+        that each Node can be reached from every other Node, and a few
         other variables.
 
         Parameters:
-            nodes - list of Points
+            nodes - list of Nodes
             edges - list of Edges 
 
         """
@@ -22,19 +22,19 @@ class World:
         edges = {(a, b): Edge(a, b) for a in nodes for b in nodes}
         return cls(nodes, edges)
         
-    def distance(self, a, b):
-        """
-        Return the distance of the edge between a and b.
-        """
-        e = self.edges.get((a, b), None)
-        return e.distance if e is not None else -1
+    # def distance(self, a, b):
+    #     """
+    #     Return the distance of the edge between a and b.
+    #     """
+    #     e = self.edges.get((a, b), None)
+    #     return e.distance if e is not None else -1
 
-    def scent(self, a, b):
-        """
-        Return the amount of pheromone on the edge between a and b.
-        """
-        e = self.edges.get((a, b), None)
-        return e.pheromone if e is not None else 0
+    # def scent(self, a, b):
+    #     """
+    #     Return the amount of pheromone on the edge between a and b.
+    #     """
+    #     e = self.edges.get((a, b), None)
+    #     return e.pheromone if e is not None else 0
 
 
 class Edge:
@@ -60,33 +60,19 @@ class Edge:
         self.distance = a.distance(b) if dist is None else dist
         self.pheromone = 0.1 if pheromone is None else pheromone
 
-    # @staticmethod
-    # def distance(a, b):
-    #     """
-    #     Return the Euclidean distance between a and b.
-
-    #     Parameters:
-    #         a - the first Point
-    #         b - the second Point
-    #     Returns:
-    #         distance between Point a and Point b
-
-    #     """
-    #     return a.distance(b)
-        
     def __eq__(self, other):
         if type(self) is type(other):
             return self.__dict__ == other.__dict__
         return False
         
 
-class Point:
+class Node:
     """
-    A 2D point.
+    A 2D Node.
     """
     def __init__(self, x=0, y=0):
         """
-        Create a new Point.
+        Create a new Node.
         """
         self.x = x
         self.y = y
@@ -98,6 +84,16 @@ class Point:
         if type(self) is type(other):
             return self.__dict__ == other.__dict__
         return False
+        
+    def __repr__(self):
+        return "({}, {})".format(self.x, self.y)
+        
+    def __iter__(self):
+        yield self.x
+        yield self.y
+        
+    def __format__(self, spec):
+        return "({1:{0}}, {2:{0}})".format(spec, float(self.x), float(self.y))
 
     def __add__(self, other):
         return self.__class__(x=self.x + other.x, y=self.y + other.y)
@@ -106,6 +102,10 @@ class Point:
         return self.__class__(x=self.x - other.x, y=self.y - other.y)
 
     def distance(self, other=None):
+        """
+        Return the distance to the other Node (defaults to origin).
+        """
         if other is None:
             other = self.__class__()
         return math.sqrt(pow(other.x - self.x, 2) + pow(other.y - self.y, 2))
+

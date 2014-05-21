@@ -88,9 +88,8 @@ class Ant:
             self.make_move(move)
             if len(self.path) == len(self.world.nodes):
                 # Close and complete the path.
-                self.distance += self.world.distance(
-                    self.path[-1], self.path[0]
-                )
+                dist = self.world.edges[self.path[-1], self.path[0]].distance
+                self.distance += dist
                 self.trip_complete = True
             return move_made
         return None
@@ -119,8 +118,9 @@ class Ant:
             weights = [1 for i in range(len(moves))]
         else:
             for m in moves:
-                pre = self.world.distance(self.node, m)
-                post = self.world.scent(self.node, m)
+                e = self.world.edges[self.node, m]
+                pre = e.distance
+                post = e.pheromone
                 pre = 1 if pre == 0 else 1 / pre
                 weights.append(self.calculate_weight(pre, post))
         
@@ -155,5 +155,5 @@ class Ant:
         if len(self.path) == 1:
             self.start = move
         else:
-            self.distance += self.world.distance(self.node, move)
+            self.distance += self.world.edges[self.node, move].distance
         self.node = move
