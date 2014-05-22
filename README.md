@@ -19,51 +19,51 @@ How to Use
 ### From Python3
 
 #### Creating the `World`
-Pass in a list of `(x,y)` coordinates to create the `World`.
+Pass in a list of `Node`s to create the `World`.
 
 ```python
-from pants.world import World
+from pants import World, Node
 
 coords = [(1,1), (2,1), (3,2), (1,2)]
-world = World(coords)
+nodes = [Node(x, y) for x, y in coords]
+world = World.Euclidean(nodes)
 ```
 
-By default, the list of coordinates is used to create a complete and symmetrical set of edges from every coordinate to every other coordinate using Euclidean distance.  Alternatively, you can also pass in a dictionary of edges.  In that case, no edges are automatically created for you.  For example:
+If the world needs special edges (with non-euclidean distances, or certain edges missing, etc.), then a list of `Node`s and `Edge`s can be passed directly to the `World` constructor:
 
 ```python
-from pants.world import World, Edge
+from pants import World, Edge, Node
 
 coords = [(1,1), (2,1), (3,2), (1,2)]
+nodes = [Node(x, y) for x, y in coords]
 edges = [Edge(a, b, dist=random.randrange(1, 11)) for a in coords[:-1] for b in coords]
 world = World(coords, edges)
-
-print(world.distance(coords[2], coords[3])) # some number between 1 and 11 (exclusive)
-print(world.distance(coords[3], coords[2]))	# -1 since no such edge exists
 ```
 
-Note that edges are not symmetrtical by default!
-
 #### Solving a `World` with the `Solver`
-Once the `World` has been created, we can use the `Solver` to find a solution (the shortest tour) expressed as a list of coordinates.
+Once the `World` has been created, we can use the `Solver` to find a solution (the shortest tour) expressed as a list of `Node`s.
 
 ```python
-from pants.solver import Solver
-from pants.world import World
+from pants import Solver
+from pants import World, Node
 
 coords = [(1,1), (2,1), (3,2), (1,2)]
-world = World(coords)
+nodes = [Node(x, y) for x, y in coords]
+world = World.Euclidean(nodes)
 solver = Solver(world)
 solution = solver.solve()
 ```
 
-Note that solutions are returned in the form of an Ant instance.  Each ant is capable of reporting the path it took, the distance it traveled, and generate a list of moves it made in the form of a list of (start, end) tuples.
+#### Working with a Solution
+
+Solutions are returned in the form of an `Ant` instance.  Each ant is capable of reporting the path it took, the distance it traveled, and generate a list of moves it made in the form of a list of (start, end) tuples.
 
 ```python
 print(solution.distance)
-for coord in solution.path:
-	print(coord)
-for move in solution.moves:
-	print("{} --> {}".format(move[0], move[1]))
+for node in solution.path:
+	print(node)
+for start, end in solution.moves:
+	print("{} --> {}".format(start, end))
 ```
 
 Alternatively, you can iterate over incrementally better solutions.
