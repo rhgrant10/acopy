@@ -29,19 +29,20 @@ nodes = [Node(x, y) for x, y in coords]
 world = World.Euclidean(nodes)
 ```
 
-If the world needs special edges (with non-euclidean distances, or certain edges missing, etc.), then a list of `Node`s and `Edge`s can be passed directly to the `World` constructor:
+If the world needs special edges (non-euclidean or missing edges, for example), then a list of `Node`s and `Edge`s can be passed directly to the `World` constructor:
 
 ```python
 from pants import World, Edge, Node
 
 coords = [(1,1), (2,1), (3,2), (1,2)]
 nodes = [Node(x, y) for x, y in coords]
+# This creates edges from every coordinate to each coordinate except the last one.
 edges = [Edge(a, b, dist=random.randrange(1, 11)) for a in coords[:-1] for b in coords]
 world = World(coords, edges)
 ```
 
 #### Solving a `World` with the `Solver`
-Once the `World` has been created, we can use the `Solver` to find a solution (the shortest tour) expressed as a list of `Node`s.
+Once the `World` has been created, you can use the `Solver` to find a solution (the shortest tour) expressed as a list of `Node`s.
 
 ```python
 from pants import Solver
@@ -77,13 +78,13 @@ for s in solver.solutions():
 
 Run the Demo
 ------------
-Included is a 33 "city" demo that can be run from the command line.
+Included is a 33 "city" demo that can be run from the command line.  Currently it accepts a single integer command line parameter to override the default iteration limit of 100.
 
 ```bash
 $ cd Pants
-$ ./bin/demo
+$ ./bin/demo 99
 Solver settings:
-limit=100
+limit=99
 rho=0.8, Q=1
 alpha=1, beta=3
 elite=0.5
