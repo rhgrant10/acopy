@@ -38,7 +38,7 @@ coords = [(1,1), (2,1), (3,2), (1,2)]
 nodes = [Node(x, y) for x, y in coords]
 # This creates edges from every coordinate to each coordinate except the last one.
 edges = [Edge(a, b, dist=random.randrange(1, 11)) for a in coords[:-1] for b in coords]
-world = World(coords, edges)
+world = World(nodes, edges)
 ```
 
 #### Solving a `World` with the `Solver`
