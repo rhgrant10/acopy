@@ -31,20 +31,6 @@ class World:
     def Euclidean(cls, nodes):
         edges = {(a, b): Edge(a, b) for a in nodes for b in nodes}
         return cls(nodes, edges)
-        
-    # def distance(self, a, b):
-    #     """
-    #     Return the distance of the edge between a and b.
-    #     """
-    #     e = self.edges.get((a, b), None)
-    #     return e.distance if e is not None else -1
-
-    # def scent(self, a, b):
-    #     """
-    #     Return the amount of pheromone on the edge between a and b.
-    #     """
-    #     e = self.edges.get((a, b), None)
-    #     return e.pheromone if e is not None else 0
 
 
 class Edge:
