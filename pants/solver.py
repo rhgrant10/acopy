@@ -1,3 +1,13 @@
+"""
+.. module:: solver
+    :platform: Linux, Unix, Windows
+    :synopsis: Provides functionality for finding a complete solution to a 
+               world.
+
+.. moduleauthor:: Robert Grant <rhgrant10@gmail.com>
+
+"""
+
 from .world import World
 from .ant import Ant
 import random

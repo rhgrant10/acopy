@@ -1,3 +1,13 @@
+"""
+.. module:: world
+    :platform: Linux, Unix, Windows
+    :synopsis: Provides classes for representing a world including its nodes
+               and edges.
+
+.. moduleauthor:: Robert Grant <rhgrant10@gmail.com>
+
+"""
+
 import math
 
 class World:
