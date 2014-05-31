@@ -1,3 +1,13 @@
+"""
+.. module:: ant
+    :platform: Linux, Unix, Windows
+    :synopsis: Provides functionality for finding each solution step as well
+               as representing a complete solution.
+
+.. moduleauthor:: Robert Grant <rhgrant10@gmail.com>
+
+"""
+
 from .world import World
 import itertools
 import random

@@ -1,17 +1,31 @@
+"""
+.. module:: world
+    :platform: Linux, Unix, Windows
+    :synopsis: Provides classes for representing a world including its nodes
+               and edges.
+
+.. moduleauthor:: Robert Grant <rhgrant10@gmail.com>
+
+"""
+
 import math
 
 class World:
     def __init__(self, nodes=None, edges=None):
-        """
-        Create a new world consisting of the given coordinates.
+        """Create a new world consisting of *nodes* and *edges*
 
-        The world is defined by a set of (x, y) coordinates, the assumption
-        that each Node can be reached from every other Node, and a few
-        other variables.
+        This is the most direct way of creating a :class:`World`. Currently,
+        you must create the :class:`Edge` mapping yourself:
+        
+        .. code::python
 
-        Parameters:
-            nodes - list of Nodes
-            edges - list of Edges 
+            edges = {(a, b): Edge(a, b) for a in nodes for b in nodes}
+
+        TODO: let the user pass in a simple list of :class:`Edge`s and 
+              construct the mapping automatically.
+
+        :param list nodes: the :class:`Node`s of the :class:`World`
+        :param dict edges: mapping of :class:`Node` pairs to :class:`Edge`s
 
         """
         self.nodes = [] if nodes is None else nodes
@@ -19,26 +33,37 @@ class World:
 
     @classmethod
     def Euclidean(cls, nodes):
+        """Create a :class:`World` in which there is an :class:`Edge` between
+        each possible pair of :class:`Node`s with distances goverened by the
+        Euclidean distance formula.
+
+        :param list nodes: the :class:`Node`s of the :class:`World`
+
+        :returns: a Euclidean :class:`World`
+        :rtype: :class:`World`
+
+        """
         edges = {(a, b): Edge(a, b) for a in nodes for b in nodes}
         return cls(nodes, edges)
 
 
 class Edge:
-    """
-    The connection between to coordinates.
+    """This class represents the link connecting two :class:`Node`s.
 
-    Each edge is composed of a distance and an amount of pheromone.
+    Each :class:`Edge` is composed of start and end :class:`Node`s, as well as
+    a length and an amount of pheromone.
+
+    TODO: refactor *distance* to *length* (makes more sense).
 
     """
     def __init__(self, a, b, dist=None, pheromone=0.1):
-        """
-        Create a new Edge between a and b.
+        """Create a new :class:`Edge` between *a* and *b*.
 
-        Parameters:
-            a - the start of the edge
-            b - the end of the edge
-            dist - the distance between a and b (defaults to Euclidean)
-            pheromone - the initial amount of pheromone (defaults to 0.1)
+        :param Node a: the starting :class:`Node`
+        :param Node b: the ening :class:`Node`
+        :param float dist: the length of the :class:`Edge` (defaults to 
+                           Euclidean)
+        :param float pheromone: the amount of pheromone (default=0.1)
 
         """
         self.start = a
@@ -47,18 +72,29 @@ class Edge:
         self.pheromone = 0.1 if pheromone is None else pheromone
 
     def __eq__(self, other):
+        """Return ``True`` iff *other* has identical properties.
+
+        Two :class:`Edge`s are **not** equal if their distances or pheromone
+        level differs.
+
+        :rtype: bool
+
+        """
         if type(self) is type(other):
             return self.__dict__ == other.__dict__
         return False
         
 
 class Node:
-    """
-    A 2D Node.
+    """This class represents a two dimensional node.
+    
     """
     def __init__(self, x=0, y=0):
-        """
-        Create a new Node.
+        """Create a new :class:`Node` with *x* and *y* coordinates.
+
+        :param float x: the horizontal component
+        :param float y: the vertical component
+
         """
         self.x = x
         self.y = y
@@ -75,6 +111,17 @@ class Node:
         return "({}, {})".format(self.x, self.y)
         
     def __iter__(self):
+        """Iterate over the x and y components.
+
+        This allows for unpacking the compnents:
+
+        .. code::pythoon
+            for x, y in node:
+                ...
+
+        :returns: both x annd y components
+
+        """
         yield self.x
         yield self.y
         
@@ -87,11 +134,18 @@ class Node:
     def __sub__(self, other):
         return self.__class__(x=self.x - other.x, y=self.y - other.y)
 
-    def distance(self, other=None):
+    def distance(self, fro=None):
+        """Return the distance from another :class:`Node` (defaults to origin).
+
+        :param Node fro: the node from which to calculate the distance (default
+                         is from the origin)
+
+        :returns: Euclidean distance from *fro* or the origin if *fro* is not
+                  given
+        :rtype: float
+
         """
-        Return the distance to the other Node (defaults to origin).
-        """
-        if other is None:
-            other = self.__class__()
-        return math.sqrt(pow(other.x - self.x, 2) + pow(other.y - self.y, 2))
+        if fro is None:
+            fro = self.__class__()
+        return math.sqrt(pow(fro.x - self.x, 2) + pow(fro.y - self.y, 2))
 
