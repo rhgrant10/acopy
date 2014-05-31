@@ -86,12 +86,15 @@ class Edge:
         
 
 class Node:
-    """
-    A 2D Node.
+    """This class represents a two dimensional node.
+    
     """
     def __init__(self, x=0, y=0):
-        """
-        Create a new Node.
+        """Create a new :class:`Node` with *x* and *y* coordinates.
+
+        :param float x: the horizontal component
+        :param float y: the vertical component
+
         """
         self.x = x
         self.y = y
@@ -108,6 +111,17 @@ class Node:
         return "({}, {})".format(self.x, self.y)
         
     def __iter__(self):
+        """Iterate over the x and y components.
+
+        This allows for unpacking the compnents:
+
+        .. code::pythoon
+            for x, y in node:
+                ...
+
+        :returns: both x annd y components
+
+        """
         yield self.x
         yield self.y
         
@@ -120,11 +134,18 @@ class Node:
     def __sub__(self, other):
         return self.__class__(x=self.x - other.x, y=self.y - other.y)
 
-    def distance(self, other=None):
+    def distance(self, fro=None):
+        """Return the distance from another :class:`Node` (defaults to origin).
+
+        :param Node fro: the node from which to calculate the distance (default
+                         is from the origin)
+
+        :returns: Euclidean distance from *fro* or the origin if *fro* is not
+                  given
+        :rtype: float
+
         """
-        Return the distance to the other Node (defaults to origin).
-        """
-        if other is None:
-            other = self.__class__()
-        return math.sqrt(pow(other.x - self.x, 2) + pow(other.y - self.y, 2))
+        if fro is None:
+            fro = self.__class__()
+        return math.sqrt(pow(fro.x - self.x, 2) + pow(fro.y - self.y, 2))
 
