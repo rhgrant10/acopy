@@ -12,39 +12,34 @@ import math
 
 class World:
     def __init__(self, nodes=None, edges=None):
-        """Create a new world consisting of *nodes* and *edges*
-
-        This is the most direct way of creating a :class:`World`. Currently,
-        you must create the :class:`Edge` mapping yourself:
+        """Create a new world consisting of *nodes* and *edges*.
         
-        .. code::python
-
-            edges = {(a, b): Edge(a, b) for a in nodes for b in nodes}
-
-        TODO: let the user pass in a simple list of :class:`Edge`s and 
-              construct the mapping automatically.
+        If *edges* is ``None`` then Euclidean edges are created automatically.
 
         :param list nodes: the :class:`Node`s of the :class:`World`
         :param dict edges: mapping of :class:`Node` pairs to :class:`Edge`s
 
         """
-        self.nodes = [] if nodes is None else nodes
-        self.edges = {} if edges is None else edges
+        if nodes is None:
+            self.nodes = []
+        else:
+            self.nodes = nodes
+        
+        if edges is None:
+            self.edges = self.__class__.default_edges(nodes)
+        else:
+            self.edges = edges
 
     @classmethod
-    def Euclidean(cls, nodes):
-        """Create a :class:`World` in which there is an :class:`Edge` between
-        each possible pair of :class:`Node`s with distances goverened by the
-        Euclidean distance formula.
+    def default_edges(cls, nodes):
+        """Return all possible Euclidean :class:`Edge`s among *nodes*.
 
-        :param list nodes: the :class:`Node`s of the :class:`World`
-
-        :returns: a Euclidean :class:`World`
-        :rtype: :class:`World`
+        :param list nodes: the :class:`Node`s between which :class:`Edge`s will
+                           be created
+        :rtype: list 
 
         """
-        edges = {(a, b): Edge(a, b) for a in nodes for b in nodes}
-        return cls(nodes, edges)
+        return {(a, b): Edge(a, b) for a in nodes for b in nodes}
 
 
 class Edge:
