@@ -41,7 +41,7 @@ if __name__ == '__main__':
         limit = 100
     
     nodes = [Node(x, y) for x, y in TEST_COORDS_33]
-    world = World.Euclidean(nodes)
+    world = World(nodes)
     solver = Solver(world)
 
     print("""Solver settings:
