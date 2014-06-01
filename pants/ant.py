@@ -98,7 +98,7 @@ class Ant:
             self.make_move(move)
             if len(self.path) == len(self.world.nodes):
                 # Close and complete the path.
-                dist = self.world.edges[self.path[-1], self.path[0]].distance
+                dist = self.world.edges[self.path[-1], self.path[0]].length
                 self.distance += dist
                 self.trip_complete = True
             return move_made
@@ -115,7 +115,7 @@ class Ant:
         Return the one move to make from a list of moves.
 
         The default implementation uses weighted probability based on edge
-        distance and pheromone level.
+        length and pheromone level.
 
         """
         if len(moves) == 0:
@@ -129,7 +129,7 @@ class Ant:
         else:
             for m in moves:
                 e = self.world.edges[self.node, m]
-                pre = e.distance
+                pre = e.length
                 post = e.pheromone
                 pre = 1 if pre == 0 else 1 / pre
                 weights.append(self.calculate_weight(pre, post))
@@ -165,5 +165,5 @@ class Ant:
         if len(self.path) == 1:
             self.start = move
         else:
-            self.distance += self.world.edges[self.node, move].distance
+            self.distance += self.world.edges[self.node, move].length
         self.node = move

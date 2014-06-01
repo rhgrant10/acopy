@@ -63,13 +63,13 @@ class Edge:
         """
         self.start = a
         self.end = b
-        self.distance = a.distance(b) if dist is None else dist
+        self.length = a.distance(b) if dist is None else dist
         self.pheromone = 0.1 if pheromone is None else pheromone
 
     def __eq__(self, other):
         """Return ``True`` iff *other* has identical properties.
 
-        Two :class:`Edge`s are **not** equal if their distances or pheromone
+        Two :class:`Edge`s are **not** equal if their lengths or pheromone
         level differs.
 
         :rtype: bool
