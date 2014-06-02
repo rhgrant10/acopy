@@ -26,7 +26,7 @@ from pants import World, Node
 
 coords = [(1,1), (2,1), (3,2), (1,2)]
 nodes = [Node(x, y) for x, y in coords]
-world = World.Euclidean(nodes)
+world = World(nodes)
 ```
 
 If the world needs special edges (non-euclidean or missing edges, for example), then a list of `Node`s and `Edge`s can be passed directly to the `World` constructor:
