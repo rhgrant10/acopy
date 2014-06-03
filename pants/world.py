@@ -40,29 +40,32 @@ class World:
         
 
 class Edge:
-    """This class represents the link connecting two :class:`Node`s.
+    """This class represents the link connecting two nodes.
 
-    Each :class:`Edge` is composed of start and end :class:`Node`s, as well as
-    a length and an amount of pheromone.
-
-    TODO: refactor *distance* to *length* (makes more sense).
+    In addition to start and end nodes, every :class:`Edge` has a legnth and a
+    pheromone level.  The length represents static, apriori information, while
+    the pheromone level represents dynamic, posteriori information.
 
     """
-    def __init__(self, a, b, dist=None, pheromone=0.1):
+    def __init__(self, a, b, length=None, pheromone=None):
         """Create a new :class:`Edge` between *a* and *b*.
 
-        :param Node a: the starting :class:`Node`
-        :param Node b: the ening :class:`Node`
-        :param float dist: the length of the :class:`Edge` (defaults to 
-                           Euclidean)
-        :param float pheromone: the amount of pheromone (default=0.1)
+        :param dict a: the node at the start of the :class:`Edge`
+        :param dict b: the node at the end of the :class:`Edge`
+        :param float length: the length of the :class:`Edge` (default=1)
+        :param float pheromone: the amount of pheromone on the :class:`Edge` 
+                                (default=0.1)
 
         """
         self.start = a
         self.end = b
-        self.length = a.distance(b) if dist is None else dist
+        self.length = 1 if length is None else length
         self.pheromone = 0.1 if pheromone is None else pheromone
-
+        
+    def __repr__(self):
+        return "Edge from {} to {} that is {} long.".format(
+                self.start, self.end, self.length)
+        
     def __eq__(self, other):
         """Return ``True`` iff *other* has identical properties.
 
