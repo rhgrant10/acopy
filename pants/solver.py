@@ -12,6 +12,7 @@ from .world import World
 from .ant import Ant
 import random
 
+
 class Solver:
     """This class contains the functionality for solving a :class:`World`.  A
     :class:`World` can be solved using the :meth:`solve` or :meth:`solutions`.
