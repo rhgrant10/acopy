@@ -1,14 +1,14 @@
 """
 .. module:: world
     :platform: Linux, Unix, Windows
-    :synopsis: Provides classes for representing a world including its nodes
-               and edges.
+    :synopsis: Provides classes for representing a world and its edges.
 
 .. moduleauthor:: Robert Grant <rhgrant10@gmail.com>
 
 """
-
-import math
+        
+import json
+        
 
 class World:
     def __init__(self, edges=None):
@@ -81,66 +81,30 @@ class Edge:
         
         
 class Node:
-    """This class represents a two dimensional node.
-    
-    """
-    def __init__(self, x=0, y=0):
-        """Create a new :class:`Node` with *x* and *y* coordinates.
-
-        :param float x: the horizontal component
-        :param float y: the vertical component
-
-        """
-        self.x = x
-        self.y = y
-
+    def __init__(self, **kwargs):
+        for k, v in kwargs.items():
+            setattr(self, k, v)
+        self._hash = None
+        
     def __hash__(self):
-        return hash(self.x) ^ hash(self.y)
-
-    def __eq__(self, other):
-        if type(self) is type(other):
-            return self.__dict__ == other.__dict__
-        return False
-        
+        if self._hash is None:
+            self._hash = hash(frozenset(self.__dict__.items()))
+        return self._hash
+            
+    def __bool__(self):
+        return True
+      
+    # 
     def __repr__(self):
-        return "({}, {})".format(self.x, self.y)
+        return json.dumps(
+            {k:v for k,v in self.__dict__.items() if not k.startswith("_")},
+            default=str)
         
-    def __iter__(self):
-        """Iterate over the x and y components.
-
-        This allows for unpacking the compnents:
-
-        .. code::pythoon
-            for x, y in node:
-                ...
-
-        :returns: both x annd y components
-
-        """
-        yield self.x
-        yield self.y
-        
-    def __format__(self, spec):
-        return "({1:{0}}, {2:{0}})".format(spec, float(self.x), float(self.y))
-
-    def __add__(self, other):
-        return self.__class__(x=self.x + other.x, y=self.y + other.y)
-
-    def __sub__(self, other):
-        return self.__class__(x=self.x - other.x, y=self.y - other.y)
-
-    def distance(self, fro=None):
-        """Return the distance from another :class:`Node` (defaults to origin).
-
-        :param Node fro: the node from which to calculate the distance (default
-                         is from the origin)
-
-        :returns: Euclidean distance from *fro* or the origin if *fro* is not
-                  given
-        :rtype: float
-
-        """
-        if fro is None:
-            fro = self.__class__()
-        return math.sqrt(pow(fro.x - self.x, 2) + pow(fro.y - self.y, 2))
-
+    # Returns true iff other is the same type and has identical "public"
+    # properties.
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            sd = {k:v for k, v in self.__dict__.items() if not k.startswith("_")}
+            od = {k:v for k, v in other.__dict__.items() if not k.startswith("_")}
+            return sd == od
+        return False
