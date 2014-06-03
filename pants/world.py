@@ -11,36 +11,33 @@
 import math
 
 class World:
-    def __init__(self, nodes=None, edges=None):
-        """Create a new world consisting of *nodes* and *edges*.
+    def __init__(self, edges=None):
+        """Create a new world consisting of the given *edges*.
         
-        If *edges* is ``None`` then Euclidean edges are created automatically.
-
-        :param list nodes: the :class:`Node`s of the :class:`World`
-        :param dict edges: mapping of :class:`Node` pairs to :class:`Edge`s
+        :param list edges: a list of :class:`Edge`s
 
         """
-        if nodes is None:
-            self.nodes = []
-        else:
-            self.nodes = nodes
-        
+        self._nodes = set()
         if edges is None:
-            self.edges = self.__class__.default_edges(nodes)
+            self.edges = {}
         else:
-            self.edges = edges
-
-    @classmethod
-    def default_edges(cls, nodes):
-        """Return all possible Euclidean :class:`Edge`s among *nodes*.
-
-        :param list nodes: the :class:`Node`s between which :class:`Edge`s will
-                           be created
-        :rtype: list 
-
+            for e in edges:
+                self.add_edge(e)
+                
+    @property
+    def nodes(self):
+        return list(self._nodes)
+    
+    def add_edge(self, edge):
+        """Add *edge* to the :class:`World`.
+        
+        :param :class:`Edge` edge: the :class:`Edge` to add
+        
         """
-        return {(a, b): Edge(a, b) for a in nodes for b in nodes}
-
+        self._nodes.add(edge.start)
+        self._nodes.add(edge.end)
+        self.edges[edge.start, edge.end] = edge    
+        
 
 class Edge:
     """This class represents the link connecting two :class:`Node`s.
