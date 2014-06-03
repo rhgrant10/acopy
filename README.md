@@ -22,7 +22,7 @@ How to Use
 Pass in a list of `Node`s to create the `World`.
 
 ```python
-from pants import World, Node
+from pants import World, Node, Edge
 
 coords = [(1,1), (2,1), (3,2), (1,2)]
 nodes = [Node(x=x, y=y) for x, y in coords]
@@ -35,7 +35,7 @@ Once the `World` has been created, you can use the `Solver` to find a solution (
 
 ```python
 from pants import Solver
-from pants import World, Node
+from pants import World, Node, Edge
 
 coords = [(1,1), (2,1), (3,2), (1,2)]
 nodes = [Node(x=x, y=y) for x, y in coords]
