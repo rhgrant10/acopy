@@ -25,63 +25,63 @@ Using `pants` is simple.  The example here uses Euclidean distance between 2D no
 
  1) Import `pants` (along with any other packages you'll need).
 
-    ```python
-    from pants import World, Edge, Node, Solver
-    import math
-    ```
+```python
+from pants import World, Edge, Node, Solver
+import math
+```
 
  2) Create `Node`s from your data points.
 
-    ```python
-    nodes = [Node(**d) for d in data_points]
-    ```
+```python
+nodes = [Node(**d) for d in data_points]
+```
 
  3) Create `Edge`s and set their `length` property to represent the work required to traverse it.  Here the work required is the Euclidean distance between the two nodes (which have all been given `x` and `y` component properties to represent their position).
 
-    ```python
-    edges = [Edge(a, b, length=math.sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2))]
-    ```
+```python
+edges = [Edge(a, b, length=math.sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2))]
+```
 
  4) Create a `World` from the edges.
 
-    ```python
-    world = World(edges)
-    ```
+```python
+world = World(edges)
+```
 
  5) Create a `Solver` for the `World`.
 
-    ```python
-    solver = Solver(world)
-    ```
+```python
+solver = Solver(world)
+```
 
  6) Solve the `World` with the `Solver`.
 
-    ```python
-    solution = solver.solve()
-    ```
+```python
+solution = solver.solve()
+```
 
     or
 
-    ```python
-    solutions = solver.solutions()
-    ```
+```python
+solutions = solver.solutions()
+```
 
   7) Inspect the solution(s).
 
-    ```python
-    print(solution.distance)
-    print(solution.path)
-    print(solution.moves)
-    ```
+```python
+print(solution.distance)
+print(solution.path)
+print(solution.moves)
+```
 
     or
 
-    ```python
-    best = float("inf")
-    for solution in solutions:
-      assert solution.distance < best
-      best = solution.distance
-    ```
+```python
+best = float("inf")
+for solution in solutions:
+  assert solution.distance < best
+  best = solution.distance
+```
 
 
 Run the Demo
