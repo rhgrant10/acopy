@@ -75,11 +75,11 @@ class Edge:
         :rtype: bool
 
         """
-        if type(self) is type(other):
+        if isinstance(other, self.__class__):
             return self.__dict__ == other.__dict__
         return False
         
-
+        
 class Node:
     """This class represents a two dimensional node.
     
