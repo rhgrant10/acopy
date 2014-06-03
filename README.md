@@ -58,11 +58,7 @@ solver = Solver(world)
 
 ```python
 solution = solver.solve()
-```
-
-    or
-
-```python
+# or
 solutions = solver.solutions()
 ```
 
@@ -72,11 +68,7 @@ solutions = solver.solutions()
 print(solution.distance)
 print(solution.path)
 print(solution.moves)
-```
-
-    or
-
-```python
+# or
 best = float("inf")
 for solution in solutions:
   assert solution.distance < best
