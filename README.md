@@ -4,9 +4,9 @@ Pants
 
 Overview
 --------
-I'll flesh this readme out more later, but here's the general gist.  The world is built from a list of edges.  The Euclidean distance between every combination of coordinates is calculated and a default level of pheromone is deposited along each edge.  
+I'll flesh this readme out more later, but here's the general gist. The world is built from a list of edges. Edges are created from two nodes and are each given a length to represent the amount of work in moving from the first node to the second node. Note that length need not represent the actual length of anything.  It could, for example, be the number of dishes one must wash before moving to the next round of a dish-washing competition.
 
-Solutions are found through an iterative process.  In each iteration, several ants are allowed to independently find a solution.  The pheromone levels of all the edges are updated according to their usefulness in finding a shorter solution.  The best one is considered to be the local best solution.  If the local solution beats the best from previous iterations, it then becomes the global best solution.  The elite ants then deposit their pheromone on the best solution to strengthen it further, and the process repeats for a specified number of iterations.
+Solutions are found through an iterative process. In each iteration, several ants are allowed to find a solution that "visits" every node of the world. The amount of pheromone on each edge is updated according to its usefulness in finding shorter solutions. The ant that traveled the least distance is considered to be the local best solution. If the local solution has a shorter distance than the best from any previous iteration, it then becomes the global best solution. The elite ant(s) then deposit their pheromone along the path of the global best solution to strengthen it further, and the process repeats.
 
 
 Installation
@@ -15,7 +15,6 @@ Currently there is no installation script (i.e., `setup.py`).  Simply copy the `
 
 ```bash
 $ sudo cp -r pants/ /usr/lib/python3/dist-packages
-$ 
 ```
 
 
