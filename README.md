@@ -4,7 +4,7 @@ Pants
 
 Overview
 --------
-I'll flesh this readme out more later, but here's the general gist.  The world is built from a list of x and y coordinates.  The Euclidean distance between every combination of coordinates is calculated and a default level of pheromone is deposited along each edge.  
+I'll flesh this readme out more later, but here's the general gist.  The world is built from a list of edges.  The Euclidean distance between every combination of coordinates is calculated and a default level of pheromone is deposited along each edge.  
 
 Solutions are found through an iterative process.  In each iteration, several ants are allowed to independently find a solution.  The pheromone levels of all the edges are updated according to their usefulness in finding a shorter solution.  The best one is considered to be the local best solution.  If the local solution beats the best from previous iterations, it then becomes the global best solution.  The elite ants then deposit their pheromone on the best solution to strengthen it further, and the process repeats for a specified number of iterations.
 
@@ -25,20 +25,9 @@ Pass in a list of `Node`s to create the `World`.
 from pants import World, Node
 
 coords = [(1,1), (2,1), (3,2), (1,2)]
-nodes = [Node(x, y) for x, y in coords]
-world = World(nodes)
-```
-
-If the world needs special edges (non-euclidean or missing edges, for example), then a list of `Node`s and `Edge`s can be passed directly to the `World` constructor:
-
-```python
-from pants import World, Edge, Node
-
-coords = [(1,1), (2,1), (3,2), (1,2)]
-nodes = [Node(x, y) for x, y in coords]
-# This creates edges from every coordinate to each coordinate except the last one.
-edges = [Edge(a, b, dist=random.randrange(1, 11)) for a in coords[:-1] for b in coords]
-world = World(nodes, edges)
+nodes = [Node(x=x, y=y) for x, y in coords]
+edges = [Edge(a, b, math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2)) for a in nodes for b in nodes]
+world = World(edges)
 ```
 
 #### Solving a `World` with the `Solver`
@@ -49,8 +38,9 @@ from pants import Solver
 from pants import World, Node
 
 coords = [(1,1), (2,1), (3,2), (1,2)]
-nodes = [Node(x, y) for x, y in coords]
-world = World.Euclidean(nodes)
+nodes = [Node(x=x, y=y) for x, y in coords]
+edges = [Edge(a, b, math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2)) for a in nodes for b in nodes]
+world = World(edges)
 solver = Solver(world)
 solution = solver.solve()
 ```

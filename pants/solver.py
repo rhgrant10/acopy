@@ -12,6 +12,7 @@ from .world import World
 from .ant import Ant
 import random
 
+
 class Solver:
     """This class contains the functionality for solving a :class:`World`.  A
     :class:`World` can be solved using the :meth:`solve` or :meth:`solutions`.
@@ -95,7 +96,6 @@ class Solver:
             # (Re-)Build the ant colony
             ants = self.round_robin_ants() if self.ant_count < 1 \
                     else self.random_ants()
-            
             self.find_solutions(ants)
             self.update_scent(ants)
             local_best = self.get_best_ant(ants)
@@ -183,11 +183,13 @@ class Solver:
 
         """
         ants = sorted(ants)[:len(ants) // 2]
-        for move, edge in self.world.edges.items():
-            edge.pheromone = (1 - self.rho) * edge.pheromone + \
-                    sum(self.q / a.distance for a in ants if move in a.moves)
-            if edge.pheromone < self.t0:
-                edge.pheromone = self.t0
+        for a in ants:
+            p = self.q / a.distance
+            for move in a.moves:
+                edge = self.world.edges[move]
+                edge.pheromone = max(
+                    self.t0,
+                    (1 - self.rho) * edge.pheromone + p)
 
     def get_best_ant(self, ants):
         """Return the :class:`Ant` with the shortest path.

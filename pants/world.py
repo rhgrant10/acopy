@@ -1,71 +1,71 @@
 """
 .. module:: world
     :platform: Linux, Unix, Windows
-    :synopsis: Provides classes for representing a world including its nodes
-               and edges.
+    :synopsis: Provides classes for representing a world and its edges.
 
 .. moduleauthor:: Robert Grant <rhgrant10@gmail.com>
 
 """
-
-import math
+        
+import json
+        
 
 class World:
-    def __init__(self, nodes=None, edges=None):
-        """Create a new world consisting of *nodes* and *edges*.
+    def __init__(self, edges=None):
+        """Create a new world consisting of the given *edges*.
         
-        If *edges* is ``None`` then Euclidean edges are created automatically.
-
-        :param list nodes: the :class:`Node`s of the :class:`World`
-        :param dict edges: mapping of :class:`Node` pairs to :class:`Edge`s
+        :param list edges: a list of :class:`Edge`s
 
         """
-        if nodes is None:
-            self.nodes = []
-        else:
-            self.nodes = nodes
-        
+        self._nodes = set()
         if edges is None:
-            self.edges = self.__class__.default_edges(nodes)
+            self.edges = {}
         else:
-            self.edges = edges
-
-    @classmethod
-    def default_edges(cls, nodes):
-        """Return all possible Euclidean :class:`Edge`s among *nodes*.
-
-        :param list nodes: the :class:`Node`s between which :class:`Edge`s will
-                           be created
-        :rtype: list 
-
+            for e in edges:
+                self.add_edge(e)
+                
+    @property
+    def nodes(self):
+        return list(self._nodes)
+    
+    def add_edge(self, edge):
+        """Add *edge* to the :class:`World`.
+        
+        :param :class:`Edge` edge: the :class:`Edge` to add
+        
         """
-        return {(a, b): Edge(a, b) for a in nodes for b in nodes}
-
+        self._nodes.add(edge.start)
+        self._nodes.add(edge.end)
+        self.edges[edge.start, edge.end] = edge    
+        
 
 class Edge:
-    """This class represents the link connecting two :class:`Node`s.
+    """This class represents the link connecting two nodes.
 
-    Each :class:`Edge` is composed of start and end :class:`Node`s, as well as
-    a length and an amount of pheromone.
-
-    TODO: refactor *distance* to *length* (makes more sense).
+    In addition to start and end nodes, every :class:`Edge` has a legnth and a
+    pheromone level.  The length represents static, apriori information, while
+    the pheromone level represents dynamic, posteriori information.
 
     """
-    def __init__(self, a, b, dist=None, pheromone=0.1):
+    def __init__(self, a, b, length=None, pheromone=None):
         """Create a new :class:`Edge` between *a* and *b*.
 
-        :param Node a: the starting :class:`Node`
-        :param Node b: the ening :class:`Node`
-        :param float dist: the length of the :class:`Edge` (defaults to 
-                           Euclidean)
-        :param float pheromone: the amount of pheromone (default=0.1)
+        :param dict a: the node at the start of the :class:`Edge`
+        :param dict b: the node at the end of the :class:`Edge`
+        :param float length: the length of the :class:`Edge` (default=1)
+        :param float pheromone: the amount of pheromone on the :class:`Edge` 
+                                (default=0.1)
 
         """
         self.start = a
         self.end = b
-        self.length = a.distance(b) if dist is None else dist
+        self.length = 1 if length is None else length
         self.pheromone = 0.1 if pheromone is None else pheromone
-
+        
+    def __repr__(self):
+        return "Edge from {} to {} that is {} long.".format(
+                self.start, self.end, self.length)
+        
     def __eq__(self, other):
         """Return ``True`` iff *other* has identical properties.
 
@@ -75,72 +75,36 @@ class Edge:
         :rtype: bool
 
         """
-        if type(self) is type(other):
+        if isinstance(other, self.__class__):
             return self.__dict__ == other.__dict__
         return False
         
-
+        
 class Node:
-    """This class represents a two dimensional node.
-    
-    """
-    def __init__(self, x=0, y=0):
-        """Create a new :class:`Node` with *x* and *y* coordinates.
-
-        :param float x: the horizontal component
-        :param float y: the vertical component
-
-        """
-        self.x = x
-        self.y = y
-
+    def __init__(self, **kwargs):
+        for k, v in kwargs.items():
+            setattr(self, k, v)
+        self._hash = None
+        
     def __hash__(self):
-        return hash(self.x) ^ hash(self.y)
-
-    def __eq__(self, other):
-        if type(self) is type(other):
-            return self.__dict__ == other.__dict__
-        return False
-        
+        if self._hash is None:
+            self._hash = hash(frozenset(self.__dict__.items()))
+        return self._hash
+            
+    def __bool__(self):
+        return True
+      
+    # 
     def __repr__(self):
-        return "({}, {})".format(self.x, self.y)
+        return json.dumps(
+            {k:v for k,v in self.__dict__.items() if not k.startswith("_")},
+            default=str)
         
-    def __iter__(self):
-        """Iterate over the x and y components.
-
-        This allows for unpacking the compnents:
-
-        .. code::pythoon
-            for x, y in node:
-                ...
-
-        :returns: both x annd y components
-
-        """
-        yield self.x
-        yield self.y
-        
-    def __format__(self, spec):
-        return "({1:{0}}, {2:{0}})".format(spec, float(self.x), float(self.y))
-
-    def __add__(self, other):
-        return self.__class__(x=self.x + other.x, y=self.y + other.y)
-
-    def __sub__(self, other):
-        return self.__class__(x=self.x - other.x, y=self.y - other.y)
-
-    def distance(self, fro=None):
-        """Return the distance from another :class:`Node` (defaults to origin).
-
-        :param Node fro: the node from which to calculate the distance (default
-                         is from the origin)
-
-        :returns: Euclidean distance from *fro* or the origin if *fro* is not
-                  given
-        :rtype: float
-
-        """
-        if fro is None:
-            fro = self.__class__()
-        return math.sqrt(pow(fro.x - self.x, 2) + pow(fro.y - self.y, 2))
-
+    # Returns true iff other is the same type and has identical "public"
+    # properties.
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            sd = {k:v for k, v in self.__dict__.items() if not k.startswith("_")}
+            od = {k:v for k, v in other.__dict__.items() if not k.startswith("_")}
+            return sd == od
+        return False

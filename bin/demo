@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-from pants import World
+from pants import World, Edge, Node
 from pants import Solver
-from pants import Node
 from datetime import timedelta
 import time
+import math
 import sys
 
 # Real-world latitude longitude coordinates.
@@ -40,8 +40,15 @@ if __name__ == '__main__':
     else:
         limit = 100
     
-    nodes = [Node(x, y) for x, y in TEST_COORDS_33]
-    world = World(nodes)
+    world = World()
+    nodes = [Node(x=x, y=y) for x, y in TEST_COORDS_33]
+    for start in nodes:
+        for end in nodes:
+            dx = end.x - start.x
+            dy = end.y - start.y
+            edge = Edge(start, end, math.sqrt(dx ** 2 + dy ** 2))
+            world.add_edge(edge)
+    print("world edge count: {}\nworld node count: {}".format(len(world.edges), len(world.nodes)))
     solver = Solver(world)
 
     print("""Solver settings:
@@ -72,9 +79,8 @@ elite={w.elite}""".format(limit, w=solver))
     print(divider)
     print("Best solution:")
     for p in fastest.path:
-        print("  {:>8} = {:0.6f}".format(
-                world.nodes.index(p),
-                p))
+        print("  {:>8} = {}".format(world.nodes.index(p), p))
+    
     print("Solution length: {}".format(fastest.distance))
     print("Found at {} out of {} seconds.".format(
             timedelta(seconds=fastest_time),
