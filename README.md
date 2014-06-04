@@ -4,7 +4,7 @@ Pants
 
 Overview
 --------
-`pants` provides you with the ability to quickly determine how to visit a collection of interconnected nodes such that the work done is minimized. Nodes can be any arbitrary collection of data while the edges represent the amount of "work" required to travel between two nodes. Thus, `pants` is a tool for solving traveling salesman problem.
+`pants` provides you with the ability to quickly determine how to visit a collection of interconnected nodes such that the work done is minimized. Nodes can be any arbitrary collection of data while the edges represent the amount of "work" required to travel between two nodes. Thus, `pants` is a tool for solving traveling salesman problems.
 
 The world is built from a list of edges. Edges are created from two nodes and are each given a length to represent the amount of work in moving from the first node to the second node. Note that length need not represent the actual length of anything.  It could, for example, be the number of dishes one must wash before moving to the next round of a dish-washing competition.
 
