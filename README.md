@@ -6,7 +6,7 @@ Overview
 --------
 `pants` provides you with the ability to quickly determine how to visit a collection of interconnected nodes such that the work done is minimized. Nodes can be any arbitrary collection of data while the edges represent the amount of "work" required to travel between two nodes. Thus, `pants` is a tool for solving traveling salesman problems.
 
-The world is built from a list of edges. Edges are created from two nodes and are each given a length to represent the amount of work in moving from the first node to the second node. Note that length need not represent the actual length of anything.  It could, for example, be the number of dishes one must wash before moving to the next round of a dish-washing competition.
+The world is built from a list of edges. Edges are created from two nodes, and have a length that represents the amount of "work" in moving from the first node to the second node. Note that edge length need not represent the actual length of anything.  It could, for a silly, random example, be the number of dishes one must wash before moving to the next round of a dish-washing competition.
 
 Solutions are found through an iterative process. In each iteration, several ants are allowed to find a solution that "visits" every node of the world. The amount of pheromone on each edge is updated according to its usefulness in finding shorter solutions. The ant that traveled the least distance is considered to be the local best solution. If the local solution has a shorter distance than the best from any previous iteration, it then becomes the global best solution. The elite ant(s) then deposit their pheromone along the path of the global best solution to strengthen it further, and the process repeats.
 
