@@ -163,6 +163,10 @@ class Solver:
         :param list ants: the ants to use for solving
 
         """
+        # This loop occurs exactly as many times as there are ants times nodes,
+        # but that is only because every ant must visit every node. It may be
+        # more efficient to convert it to a counting loop... but what 
+        # flexibility would we loose in terms of extending the solver class?
         ants_done = 0
         while ants_done < len(ants):
             ants_done = 0
