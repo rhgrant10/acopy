@@ -120,13 +120,14 @@ class Solver:
         :rtype: list
 
         """
-        n = len(self.world.nodes)
+        starts = self.world.nodes
+        n = len(starts)
         return [
             Ant(
                 self.world, 
                 self.alpha, 
                 self.beta, 
-                start=self.world.nodes[i % n]
+                start=starts[i % n]
             ) for i in range(self.ant_count)
         ]
         
@@ -139,20 +140,48 @@ class Solver:
         are :class:`Node`s. This method is used to create the :class:`Ant`s 
         before solving if *ant_count* is **not** ``0``.
 
-        TODO: Fix case where ant_count > len(world.nodes)
-
         :returns: the :class:`Ant`s initialized to :class:`Node`s in the 
                   :class:`World`
         :rtype: list
 
         """
-        starts = self.world.nodes[:]
-        ants = list()
-        while self.ant_count > 0 and len(starts) > 0:
-            r = random.randrange(len(starts))
-            ants.append(
-                Ant(self.world, self.alpha, self.beta, start=starts.pop(r))
-            )
+        ants = []
+        starts = self.world.nodes
+        n = len(starts)
+        if even:
+            # Since the caller wants an even distribution, use a round-robin 
+            # method until the number of ants left to create is less than the
+            # number of nodes.
+            if self.ant_count > n:
+                for i in range(self.ant_count // n):
+                    ants.extend([
+                        Ant(
+                            self.world,
+                            self.alpha,
+                            self.beta,
+                            start=starts[i]
+                        ) for i in range(self.ant_count)
+                    ])
+            # Now (without choosing the same node twice) choose the reamining
+            # starts randomly.
+            ants.extend([
+                Ant(
+                    self.world,
+                    self.alpha,
+                    self.beta,
+                    start=starts.pop(random.randrange(n - i))
+                ) for i in range(self.ant_count % n)
+            ])
+        else:
+            # Just pick random nodes.
+            ants.extend([
+                Ant(
+                    self.world,
+                    self.alpha,
+                    self.beta,
+                    start=starts[random.randrange(n)]
+                ) for i in range(self.ant_count)
+            ])
         return ants
 
     def find_solutions(self, ants):
