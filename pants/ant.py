@@ -118,26 +118,24 @@ class Ant:
         length and pheromone level.
 
         """
-        if len(moves) == 0:
+        N = len(moves)
+        if N == 0:
             return None     # No more moves
         
         # Find the individual weight of each move.
         moves = list(moves) # it may be given as a set, but we need order
-        weights = list()
+        weights = []
         if self.node is None:
-            weights = [1 for i in range(len(moves))]
+            weights = [1 for i in range(N)]
         else:
             for m in moves:
                 e = self.world.edges[self.node, m]
-                pre = e.length
+                pre = 1 / (e.length or 1)
                 post = e.pheromone
-                pre = 1 if pre == 0 else 1 / pre
                 weights.append(self.calculate_weight(pre, post))
         
         # Normalize the weights without accedentally dividing by zero!
-        total_weight = sum(weights)
-        if total_weight == 0:
-            total_weight = 1
+        total_weight = sum(weights) or 1
         weights = [w / total_weight for w in weights]
         
         # Ensure the last element is 1 so that bisecting always returns a valid
