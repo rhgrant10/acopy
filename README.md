@@ -145,7 +145,8 @@ $
 Known Bugs
 ----------
  
- * [fixed in dev branch] The number of ants is limited by the number of nodes in the world.
+None that I'm aware of currently.  Please let me know if you find otherwise!
+
 
 Troubleshooting
 ---------------
