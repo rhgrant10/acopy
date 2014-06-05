@@ -20,9 +20,9 @@ $ sudo cp -r pants/ /usr/lib/python3/dist-packages
 
 Useage
 ------
-Using `pants` is simple.  The example here uses Euclidean distance between 2D nodes with `(x, y)` coordinates, but there are no real requirements for node data of any sort.
+Using **Pants** is simple.  The example here uses Euclidean distance between 2D nodes with `(x, y)` coordinates, but there are no real requirements for node data of any sort.
 
- 1) Import `pants` (along with any other packages you'll need).
+ 1) Import **Pants** (along with any other packages you'll need).
 
 ```python
 from pants import World, Edge, Node, Solver
