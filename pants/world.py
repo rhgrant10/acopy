@@ -58,8 +58,8 @@ class Edge:
     def __init__(self, a, b, length=None, pheromone=None):
         """Create a new :class:`Edge` between *a* and *b*.
 
-        :param dict a: the node at the start of the :class:`Edge`
-        :param dict b: the node at the end of the :class:`Edge`
+        :param Node a: the node at the start of the :class:`Edge`
+        :param Node b: the node at the end of the :class:`Edge`
         :param float length: the length of the :class:`Edge` (default=1)
         :param float pheromone: the amount of pheromone on the :class:`Edge` 
                                 (default=0.1)
