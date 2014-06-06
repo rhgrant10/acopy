@@ -125,7 +125,7 @@ class Solver:
             ) for i in range(self.ant_count)
         ]
         
-    def random_ants(self):
+    def random_ants(self, even=False):
         """Returns a list of :class:`Ant`s distributed to the nodes of the 
         world in a random fashion.
 
