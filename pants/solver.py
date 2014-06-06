@@ -43,12 +43,6 @@ class Solver:
         self.ant_count = kwargs.get('ant_count', 10)
         self.elite = kwargs.get('elite', .5)
 
-    def reset_pheromone(self):
-        """Reset the amount of pheromone on every edge to the initial default.
-        """
-        for edge in self.world.edges.values():
-            edge.pheromone = self.t0
-        
     def solve(self, limit=10):
         """Return the shortest path found after *limit* iterations.
 
@@ -58,7 +52,7 @@ class Solver:
         :rtype: :class:`Ant`
 
         """
-        self.reset_pheromone()
+        self.world.reset_pheromone(self.t0)
         global_best = None
         for i in range(limit):
             # (Re-)Build the ant colony
@@ -90,7 +84,7 @@ class Solver:
         :rtype: list
 
         """
-        self.reset_pheromone()
+        self.world.reset_pheromone(self.t0)
         global_best = None
         for i in range(limit):
             # (Re-)Build the ant colony

@@ -28,6 +28,13 @@ class World:
     def nodes(self):
         return list(self._nodes)
     
+    def reset_pheromone(self, level=None):
+        """Reset the amount of pheromone on every edge to *level*.
+        """
+        level = level or 0.01
+        for edge in self.edges.values():
+            edge.pheromone = level
+        
     def add_edge(self, edge):
         """Add *edge* to the :class:`World`.
         
@@ -38,6 +45,7 @@ class World:
         self._nodes.add(edge.end)
         self.edges[edge.start, edge.end] = edge    
         
+    
 
 class Edge:
     """This class represents the link connecting two nodes.
