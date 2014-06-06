@@ -87,8 +87,6 @@ Included is a 33 "city" demo that can be run from the command line.  Currently i
 ```bash
 $ cd Pants
 $ ./bin/demo 99
-world edge count: 1089
-world node count: 33
 Solver settings:
 limit=99
 rho=0.8, Q=1
