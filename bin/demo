@@ -48,7 +48,6 @@ if __name__ == '__main__':
             dy = end.y - start.y
             edge = Edge(start, end, math.sqrt(dx ** 2 + dy ** 2))
             world.add_edge(edge)
-    print("world edge count: {}\nworld node count: {}".format(len(world.edges), len(world.nodes)))
     solver = Solver(world)
 
     print("""Solver settings:
