@@ -61,7 +61,7 @@ class Solver:
             
             self.find_solutions(ants)
             self.update_scent(ants)
-            local_best = self.get_best_ant(ants)
+            local_best = sorted(ants)[0]
             if global_best is None or local_best < global_best:
                 global_best = local_best.clone()
             if self.elite:
@@ -92,7 +92,7 @@ class Solver:
                     else self.random_ants()
             self.find_solutions(ants)
             self.update_scent(ants)
-            local_best = self.get_best_ant(ants)
+            local_best = sorted(ants)[0]
             if global_best is None or local_best < global_best:
                 global_best = local_best.clone()
                 yield global_best
@@ -217,16 +217,6 @@ class Solver:
                 edge.pheromone = max(
                     self.t0,
                     (1 - self.rho) * edge.pheromone + p)
-
-    def get_best_ant(self, ants):
-        """Return the :class:`Ant` with the shortest path.
-
-        :param list ants: the :class:`Ant`s from which to choose
-        :returns: the :class:`Ant` with the shortest path
-        :rtype: :class:`Ant`
-
-        """
-        return sorted(ants)[0]
 
     def trace_elite(self, ant):
         """Deposit pheromone along the path of a particular ant.
