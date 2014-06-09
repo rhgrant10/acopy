@@ -59,7 +59,6 @@ class Ant:
         ant.node = self.node
         ant.path = self.path[:]
         ant.distance = self.distance
-        ant.trip_complete = self.trip_complete
         return ant
 
     def __lt__(self, other):
@@ -77,7 +76,6 @@ class Ant:
         self.node = self.start
         self.distance = 0
         self.path = []
-        self.trip_complete = False
         if start is not None:
             self.path.append(start)
 
@@ -96,11 +94,6 @@ class Ant:
         if move:
             move_made = (self.node, move)
             self.make_move(move)
-            if len(self.path) == len(self.world.nodes):
-                # Close and complete the path.
-                dist = self.world.edges[self.path[-1], self.path[0]].length
-                self.distance += dist
-                self.trip_complete = True
             return move_made
         return None
 
@@ -160,8 +153,18 @@ class Ant:
         Make the given move and update the distance traveled.
         """
         self.path.append(move)
-        if len(self.path) == 1:
-            self.start = move
+        n = len(self.path)
+        
+        # If moving to the starting node, no distance was actually traveled.
+        if n == 1:
+            self.start = move        
         else:
             self.distance += self.world.edges[self.node, move].length
+        
+        # If moving to the last node, add the distance from the last node back
+        # to the first node to "complete" the path.
+        if n == len(self.world.nodes):
+            final = self.world.edges[self.path[-1], self.path[0]].length
+            self.distance += final
+
         self.node = move
