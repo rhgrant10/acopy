@@ -18,9 +18,8 @@ class World:
 
         """
         self._nodes = set()
-        if edges is None:
-            self.edges = {}
-        else:
+        self.edges = {}
+        if edges is not None:
             for e in edges:
                 self.add_edge(e)
                 
@@ -41,6 +40,8 @@ class World:
         :param :class:`Edge` edge: the :class:`Edge` to add
         
         """
+        if not isinstance(edge, Edge):
+            raise TypeError("edge must be <type Edge>")
         self._nodes.add(edge.start)
         self._nodes.add(edge.end)
         self.edges[edge.start, edge.end] = edge    
