@@ -31,13 +31,13 @@ class WorldCreation(WorldTest):
 
     def test_creation_failure_from_list_of_nonedges(self):
         not_edges = {"Not", "an", "edge", "list"}
-        self.assertRaises(AttributeError, World(not_edges))
+        self.assertRaises(TypeError, World, (not_edges,))
     
     def test_creation_failure_from_extra_kwargs(self):
-        self.assertRaises(TypeError, World(unknown="keyword"))
+        self.assertRaises(TypeError, World, unknown="keyword")
         
     def test_creation_failure_from_extra_args(self):
-        self.assertRaises(TypeError, World(1,2,3))
+        self.assertRaises(TypeError, World, (1,2,3))
     
     
 class EdgeAddition(WorldTest):
@@ -67,14 +67,14 @@ class PheromoneReset(WorldTest):
         w = World(edges)
         p = 1234
         w.reset_pheromone(p)
-        self.assertTrue(all(e.pheromone == p for e in w.edges))
+        self.assertTrue(all(e.pheromone == p for e in w.edges.values()))
         
     def test_pheromone_can_never_be_zero(self):
         edges = [self.edgeAB, self.edgeBA]
         w = World(edges)
         p = 0
         w.reset_pheromone(p)
-        self.assertTrue(all(e.pheromone > 0 for e in w.edges))
+        self.assertTrue(all(e.pheromone > 0 for e in w.edges.values()))
         
 
 class EdgeTest(unittest.TestCase):
@@ -86,10 +86,10 @@ class EdgeTest(unittest.TestCase):
 
 class EdgeCreation(EdgeTest):        
     def test_creation_with_no_args(self):
-        self.assertRaises(TypeError, Edge())
+        self.assertRaises(TypeError, Edge)
         
     def test_creation_with_mutable_nodes(self):
-        self.assertRaises(TypeError, Edge({}, {}))
+        self.assertRaises(TypeError, Edge, ({}, {}))
         
     def test_creation_with_immutable_nodes(self):
         e = Edge(self.nodeA, self.nodeB)
@@ -139,21 +139,21 @@ class NodeTest(unittest.TestCase):
 class NodeCreation(NodeTest):
     def test_creation_with_no_args(self):
         n = Node()
-        self.assertEqual(n.__dict__.keys(), ['_hash'])
+        self.assertEqual(list(n.__dict__.keys()), ['_hash'])
         
     def test_creation_with_keyword_args(self):
         for d in (self.dataA, self.dataB, self.dataC):
             n = Node(**d)
-            self.assertTrue(all(n.__dict__[k] = d[k] for k in d))
+            self.assertTrue(all(n.__dict__[k] == d[k] for k in d))
             
     def test_creation_with_positional_args(self):
-        self.assertRaises(TypeError, Node(1))
+        self.assertRaises(TypeError, Node, (1,))
         
 
 class NodeHashes(NodeTest):
     def test_hash_consistency(self):
         h = hash(Node())
-        self.assertEqual(all(hash(Node()) == h for _ in range(10)))
+        self.assertTrue(all(hash(Node()) == h for _ in range(10)))
         
     def test_hash_uniqueness(self):
         nodes = [Node(**d) for d in (self.dataA, self.dataB, self.dataC)]
@@ -202,3 +202,5 @@ class NodeEquality(NodeTest):
             self.assertEqual(node_list.index(node_list[i]), i)
             
             
+if __name__ == '__main__':
+    unittest.main()
