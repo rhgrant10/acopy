@@ -24,11 +24,10 @@ class Ant:
         """
         Create a new Ant for the given world.
 
-        Parameters:
-            world - the World in which the ant should seek solutions
-            alpha - how much this ant considers pheromone
-            beta - how much this ant considers distance
-            start - coordinate from which this ant should find solutions
+        :param World world: the world in which to travel
+        :param float alpha: the relative importance of pheromone (default=1)
+        :param float beta: the relative importance of distance (default=3)
+        :param Node start: the starting node (default=None)
 
         """
         Ant.uid = self.uid = Ant.uid + 1
@@ -42,16 +41,24 @@ class Ant:
     @property
     def moves(self):
         """
-        A list of moves, where each move is a (start, end) coordinate tuple.
+        Return a list of the moves made so far
+        
+        :returns: A list of (start, end) tuples
+        :rtype: list
+        
         """
+        # TODO: Decide whether to simply return edges.
         p, n = self.path, len(self.path)
         return [(p[i], p[(i + 1) % n]) for i in range(n)]
         
     def clone(self):
         """
-        Return a new ant with exactly the same property values as this ant.
+        Return a new :class:`Ant` with exactly the same property values.
 
         Note that unlike copy, this method preserves even the UID of an Ant.
+
+        :returns: a clone
+        :rtype: :class:`Ant`
 
         """
         ant = Ant(self.world, self.alpha, self.beta, self.start)
@@ -66,10 +73,14 @@ class Ant:
 
     def reset(self, start=None):
         """
-        Reset the ant so that it is ready to find another solution.
+        Reset everything so that a new solution can be found.
 
         Note that calling this method destroys the previous path, moves, and
         distance traveled by the ant.
+        
+        :param Node start: which :class:`Node` to start the next solution from
+                           (by default, the previous starting :class:`Node` is
+                            used again)
         
         """
         self.start = start
@@ -81,13 +92,15 @@ class Ant:
 
     def can_move(self):
         """
-        Return true if there is one or more coordinates not visited by the ant.
+        Return true if there are more than zero possible moves to make.
+
         """
         return len(self.path) < len(self.world.nodes)
 
     def move(self):
         """
         Choose a valid move and make it.
+
         """
         moves = self.get_possible_moves()
         move = self.choose_move(moves)
@@ -100,16 +113,22 @@ class Ant:
     def get_possible_moves(self):
         """
         Return the set of all moves that can currently be made.
+
+        :returns: all currently possible moves
+        :rtype: set
+        
         """
         return set(self.world.nodes) - set(self.path)
 
     def choose_move(self, moves):
         """
-        Return the one move to make from a list of moves.
-
-        The default implementation uses weighted probability based on edge
-        length and pheromone level.
-
+        Return which move to make by choosing from *moves*.
+        
+        :param list moves: a list of all possible moves
+        
+        :returns: the move to make
+        :rtype: :class:`Node`
+        
         """
         N = len(moves)
         if N == 0:
@@ -125,13 +144,8 @@ class Ant:
                 e = self.world.edges[self.node, m]
                 weights.append(self.calculate_weight(e))
         
-        # Normalize the weights without accedentally dividing by zero!
+        # Ensure the index of the last element is never exceeded.
         total_weight = sum(weights) or 1
-        #weights = [w / total_weight for w in weights]
-        
-        # Ensure the last element is 1 so that bisecting always returns a valid
-        # index (instead of occasionally returning its length and producing an
-        # error)
         cumdist = list(itertools.accumulate(weights)) + [total_weight]
         
         # Choose a random place within the distrution of weights and return the
@@ -142,13 +156,22 @@ class Ant:
         
     def calculate_weight(self, e):
         """
-        Calculate the weight considering pre and post information.
+        Calculate the weight of the given :class:`Edge` *e*.
+        
+        :param Edge e: the edge of which the weight shall be calculated
+
+        :returns: the weight (projected usefullness) of *e*
+        :rtype: float
+        
         """
         return e.pheromone ** self.alpha * (1 / (e.length or 1)) ** self.beta
 
     def make_move(self, move):
         """
-        Make the given move and update the distance traveled.
+        Perform the given *move*.
+        
+        :param Node move: the :class:`Node` to move to
+        
         """
         self.path.append(move)
         n = len(self.path)
