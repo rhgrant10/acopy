@@ -123,30 +123,28 @@ class Ant:
         else:
             for m in moves:
                 e = self.world.edges[self.node, m]
-                pre = 1 / (e.length or 1)
-                post = e.pheromone
-                weights.append(self.calculate_weight(pre, post))
+                weights.append(self.calculate_weight(e))
         
         # Normalize the weights without accedentally dividing by zero!
         total_weight = sum(weights) or 1
-        weights = [w / total_weight for w in weights]
+        #weights = [w / total_weight for w in weights]
         
         # Ensure the last element is 1 so that bisecting always returns a valid
         # index (instead of occasionally returning its length and producing an
         # error)
-        cumdist = list(itertools.accumulate(weights)) + [1]
+        cumdist = list(itertools.accumulate(weights)) + [total_weight]
         
         # Choose a random place within the distrution of weights and return the
         # move at the index of would-be insertion.
-        r = random.random()
+        r = random.random() * total_weight
         i = bisect.bisect(cumdist, r)
         return moves[i]
         
-    def calculate_weight(self, pre, post):
+    def calculate_weight(self, e):
         """
         Calculate the weight considering pre and post information.
         """
-        return pow(post, self.alpha) * pow(pre, self.beta)
+        return e.pheromone ** self.alpha * (1 / (e.length or 1)) ** self.beta
 
     def make_move(self, move):
         """
