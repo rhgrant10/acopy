@@ -14,6 +14,9 @@ class AntTest(unittest.TestCase):
         self.edgeAA = Edge(self.nodeA, self.nodeA, length=self.aa)
         self.edgeAB = Edge(self.nodeA, self.nodeB, length=self.ab)
         self.edgeBA = Edge(self.nodeB, self.nodeA, length=self.ba)
+        self.edgeNoLength = Edge(self.nodeA, self.nodeB, length=0)
+        self.edgeNoPheromone = Edge(self.nodeA, self.nodeB, length=1, pheromone=0)
+        self.edge1and1 = Edge(self.nodeA, self.nodeB, 1, 1)
 
     @unittest.mock.patch('__main__.World')
     def test_ant_uid_increases_by_one(self, MockWorld):
@@ -73,6 +76,20 @@ class AntTest(unittest.TestCase):
 
         self.assertEqual(move, None)
 
+    def test_ant_calculate_weight_when_edge_length_is_zero(self):
+        ant = Ant(self.world, alpha=1, beta=1)
+        
+        weight = ant.calculate_weight(self.edgeNoLength)
+        
+        self.assertEqual(self.edgeNoLength.pheromone, weight)
+        
+    def test_ant_calculate_weight_when_edge_pheromone_is_zero(self):
+        ant = Ant(self.world, alpha=1, beta=1)
+        
+        weight = ant.calculate_weight(self.edgeNoPheromone)
+        
+        self.assertEqual(weight, 0)
+        
 
 if __name__ == '__main__':
     unittest.main()
