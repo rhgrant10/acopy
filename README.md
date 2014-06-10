@@ -4,7 +4,7 @@ Pants
 
 Overview
 --------
-`pants` provides you with the ability to quickly determine how to visit a collection of interconnected nodes such that the work done is minimized. Nodes can be any arbitrary collection of data while the edges represent the amount of "work" required to travel between two nodes. Thus, `pants` is a tool for solving traveling salesman problems.
+**Pants** provides you with the ability to quickly determine how to visit a collection of interconnected nodes such that the work done is minimized. Nodes can be any arbitrary collection of data while the edges represent the amount of "work" required to travel between two nodes. Thus, **Pants** is a tool for solving traveling salesman problems.
 
 The world is built from a list of edges. Edges are created from two nodes, and have a length that represents the amount of "work" in moving from the first node to the second node. Note that edge length need not represent the actual length of anything.  It could, for a silly, random example, be the number of dishes one must wash before moving to the next round of a dish-washing competition.
 
@@ -24,9 +24,9 @@ $ sudo cp -r pants/ /usr/lib/python3/dist-packages
 
 Useage
 ------
-Using `pants` is simple.  The example here uses Euclidean distance between 2D nodes with `(x, y)` coordinates, but there are no real requirements for node data of any sort.
+Using **Pants** is simple.  The example here uses Euclidean distance between 2D nodes with `(x, y)` coordinates, but there are no real requirements for node data of any sort.
 
- 1) Import `pants` (along with any other packages you'll need).
+ 1) Import **Pants** (along with any other packages you'll need).
 
 ```python
 from pants import World, Edge, Node, Solver
@@ -87,8 +87,6 @@ Included is a 33 "city" demo that can be run from the command line.  Currently i
 ```bash
 $ cd Pants
 $ ./bin/demo 99
-world edge count: 1089
-world node count: 33
 Solver settings:
 limit=99
 rho=0.8, Q=1

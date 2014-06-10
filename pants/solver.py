@@ -43,12 +43,6 @@ class Solver:
         self.ant_count = kwargs.get('ant_count', 10)
         self.elite = kwargs.get('elite', .5)
 
-    def reset_pheromone(self):
-        """Reset the amount of pheromone on every edge to the initial default.
-        """
-        for edge in self.world.edges.values():
-            edge.pheromone = self.t0
-        
     def solve(self, limit=10):
         """Return the shortest path found after *limit* iterations.
 
@@ -58,7 +52,7 @@ class Solver:
         :rtype: :class:`Ant`
 
         """
-        self.reset_pheromone()
+        self.world.reset_pheromone(self.t0)
         global_best = None
         for i in range(limit):
             # (Re-)Build the ant colony
@@ -67,7 +61,7 @@ class Solver:
             
             self.find_solutions(ants)
             self.update_scent(ants)
-            local_best = self.get_best_ant(ants)
+            local_best = sorted(ants)[0]
             if global_best is None or local_best < global_best:
                 global_best = local_best.clone()
             if self.elite:
@@ -90,7 +84,7 @@ class Solver:
         :rtype: list
 
         """
-        self.reset_pheromone()
+        self.world.reset_pheromone(self.t0)
         global_best = None
         for i in range(limit):
             # (Re-)Build the ant colony
@@ -98,7 +92,7 @@ class Solver:
                     else self.random_ants()
             self.find_solutions(ants)
             self.update_scent(ants)
-            local_best = self.get_best_ant(ants)
+            local_best = sorted(ants)[0]
             if global_best is None or local_best < global_best:
                 global_best = local_best.clone()
                 yield global_best
@@ -131,7 +125,7 @@ class Solver:
             ) for i in range(self.ant_count)
         ]
         
-    def random_ants(self):
+    def random_ants(self, even=False):
         """Returns a list of :class:`Ant`s distributed to the nodes of the 
         world in a random fashion.
 
@@ -223,16 +217,6 @@ class Solver:
                 edge.pheromone = max(
                     self.t0,
                     (1 - self.rho) * edge.pheromone + p)
-
-    def get_best_ant(self, ants):
-        """Return the :class:`Ant` with the shortest path.
-
-        :param list ants: the :class:`Ant`s from which to choose
-        :returns: the :class:`Ant` with the shortest path
-        :rtype: :class:`Ant`
-
-        """
-        return sorted(ants)[0]
 
     def trace_elite(self, ant):
         """Deposit pheromone along the path of a particular ant.

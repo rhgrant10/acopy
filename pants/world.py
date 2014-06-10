@@ -18,9 +18,8 @@ class World:
 
         """
         self._nodes = set()
-        if edges is None:
-            self.edges = {}
-        else:
+        self.edges = {}
+        if edges is not None:
             for e in edges:
                 self.add_edge(e)
                 
@@ -28,16 +27,26 @@ class World:
     def nodes(self):
         return list(self._nodes)
     
+    def reset_pheromone(self, level=None):
+        """Reset the amount of pheromone on every edge to *level*.
+        """
+        level = level or 0.01
+        for edge in self.edges.values():
+            edge.pheromone = level
+        
     def add_edge(self, edge):
         """Add *edge* to the :class:`World`.
         
         :param :class:`Edge` edge: the :class:`Edge` to add
         
         """
+        if not isinstance(edge, Edge):
+            raise TypeError("edge must be <type Edge>")
         self._nodes.add(edge.start)
         self._nodes.add(edge.end)
         self.edges[edge.start, edge.end] = edge    
         
+    
 
 class Edge:
     """This class represents the link connecting two nodes.
@@ -50,8 +59,8 @@ class Edge:
     def __init__(self, a, b, length=None, pheromone=None):
         """Create a new :class:`Edge` between *a* and *b*.
 
-        :param dict a: the node at the start of the :class:`Edge`
-        :param dict b: the node at the end of the :class:`Edge`
+        :param Node a: the node at the start of the :class:`Edge`
+        :param Node b: the node at the end of the :class:`Edge`
         :param float length: the length of the :class:`Edge` (default=1)
         :param float pheromone: the amount of pheromone on the :class:`Edge` 
                                 (default=0.1)
