@@ -29,14 +29,20 @@ Using **Pants** is simple.  The example here uses Euclidean distance between 2D 
  1) Import **Pants** (along with any other packages you'll need).
 
 ```python
-from pants import World, Edge, Node, Solver
+import pants
 import math
 ```
 
- 2) Create `Node`s from your data points.
+ 2) Create `Node`s from your data points. Although the `Node` class is available for use, any *hashable* data type (such as `tuple` or `namedtuple`) will work.  `Node`s accept any keyword arguments and turns them into attributes. Here, `data_points` is a list of `dict`s.
 
 ```python
-nodes = [Node(**d) for d in data_points]
+data_points = [
+    {'x': 0, 'y': 0, 'name': 'origin'},
+    {'x': 1, 'y': 1, 'name': 'node one'},
+    {'x': 0, 'y': 5, 'name': 'node two'},
+    {'x': 3, 'y': 4, 'name': 'node three'}
+]
+nodes = [pants.Node(**d) for d in data_points]
 ```
 
  3) Create `Edge`s and set their `length` property to represent the work required to traverse it.  Here the work required is the Euclidean distance between the two nodes (which have all been given `x` and `y` component properties to represent their position).
@@ -45,10 +51,11 @@ nodes = [Node(**d) for d in data_points]
 edges = [Edge(a, b, length=math.sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2))]
 ```
 
- 4) Create a `World` from the edges.
+ 4) Create a `World` from the edges. Note that edges can also be added individually after the world has been instantiated by using the `add_edge` method.
 
 ```python
-world = World(edges)
+world = World(edges[:-1])
+world.add_edge(edges[-1])
 ```
 
  5) Create a `Solver` for the `World`.
@@ -57,7 +64,7 @@ world = World(edges)
 solver = Solver(world)
 ```
 
- 6) Solve the `World` with the `Solver`.
+ 6) Solve the `World` with the `Solver`. Two methods are provided for finding solutions: `solve()` and `solutions()`. The former returns the best solution found, whereas the latter returns each solution found if it is the best thus far.
 
 ```python
 solution = solver.solve()
