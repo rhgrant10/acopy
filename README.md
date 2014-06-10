@@ -54,14 +54,14 @@ edges = [Edge(a, b, length=math.sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2))]
  4) Create a `World` from the edges. Note that edges can also be added individually after the world has been instantiated by using the `add_edge` method.
 
 ```python
-world = World(edges[:-1])
+world = pants.World(edges[:-1])
 world.add_edge(edges[-1])
 ```
 
  5) Create a `Solver` for the `World`.
 
 ```python
-solver = Solver(world)
+solver = pants.Solver(world)
 ```
 
  6) Solve the `World` with the `Solver`. Two methods are provided for finding solutions: `solve()` and `solutions()`. The former returns the best solution found, whereas the latter returns each solution found if it is the best thus far.
