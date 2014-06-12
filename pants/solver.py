@@ -153,8 +153,8 @@ class Solver:
                             self.world,
                             self.alpha,
                             self.beta,
-                            start=starts[i]
-                        ) for i in range(self.ant_count)
+                            start=starts[j]
+                        ) for j in range(n)
                     ])
             # Now (without choosing the same node twice) choose the reamining
             # starts randomly.

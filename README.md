@@ -29,14 +29,20 @@ Using **Pants** is simple.  The example here uses Euclidean distance between 2D 
  1) Import **Pants** (along with any other packages you'll need).
 
 ```python
-from pants import World, Edge, Node, Solver
+import pants
 import math
 ```
 
- 2) Create `Node`s from your data points.
+ 2) Create `Node`s from your data points. Although the `Node` class is available for use, any *hashable* data type (such as `tuple` or `namedtuple`) will work.  `Node`s accept any keyword arguments and turns them into attributes. Here, `data_points` is a list of `dict`s.
 
 ```python
-nodes = [Node(**d) for d in data_points]
+data_points = [
+    {'x': 0, 'y': 0, 'name': 'origin'},
+    {'x': 1, 'y': 1, 'name': 'node one'},
+    {'x': 0, 'y': 5, 'name': 'node two'},
+    {'x': 3, 'y': 4, 'name': 'node three'}
+]
+nodes = [pants.Node(**d) for d in data_points]
 ```
 
  3) Create `Edge`s and set their `length` property to represent the work required to traverse it.  Here the work required is the Euclidean distance between the two nodes (which have all been given `x` and `y` component properties to represent their position).
@@ -45,19 +51,20 @@ nodes = [Node(**d) for d in data_points]
 edges = [Edge(a, b, length=math.sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2))]
 ```
 
- 4) Create a `World` from the edges.
+ 4) Create a `World` from the edges. Note that edges can also be added individually after the world has been instantiated by using the `add_edge` method.
 
 ```python
-world = World(edges)
+world = pants.World(edges[:-1])
+world.add_edge(edges[-1])
 ```
 
  5) Create a `Solver` for the `World`.
 
 ```python
-solver = Solver(world)
+solver = pants.Solver(world)
 ```
 
- 6) Solve the `World` with the `Solver`.
+ 6) Solve the `World` with the `Solver`. Two methods are provided for finding solutions: `solve()` and `solutions()`. The former returns the best solution found, whereas the latter returns each solution found if it is the best thus far.
 
 ```python
 solution = solver.solve()
@@ -86,57 +93,59 @@ Included is a 33 "city" demo that can be run from the command line.  Currently i
 
 ```bash
 $ cd Pants
-$ ./bin/demo 99
+$ ./bin/demo 100
 Solver settings:
-limit=99
+limit=100
 rho=0.8, Q=1
 alpha=1, beta=3
 elite=0.5
 
-Time Elapsed              Distance                 
+Time Elapsed                Distance                 
 --------------------------------------------------
-           0:00:00.121161 0.7456617142242          
-           0:00:00.241535 0.6712008988126722       
-           0:00:00.591824 0.6458602513913229       
-           0:00:00.824825 0.636470460214415        
-           0:00:01.403655 0.6228641130880773       
+           0:00:00.030429   0.7862956094256206       
+           0:00:00.061907   0.7245780183747788       
+           0:00:00.094099   0.6704966523088779       
+           0:00:00.155262   0.649532279131667        
+           0:00:00.425243   0.6478240330008148       
+           0:00:00.486180   0.6460959831256239       
+           0:00:00.998951   0.6386581061221168       
 --------------------------------------------------
 Best solution:
-         2 = {"x": 34.02115, "y": -84.267249}
-        15 = {"x": 34.048194, "y": -84.262126}
-        12 = {"x": 34.044915, "y": -84.255772}
-        22 = {"x": 34.060164, "y": -84.242514}
-         3 = {"x": 34.061518, "y": -84.243566}
-        28 = {"x": 34.062461, "y": -84.240155}
-        24 = {"x": 34.060461, "y": -84.237402}
-        26 = {"x": 34.063814, "y": -84.225499}
-         4 = {"x": 34.064489, "y": -84.22506}
-         9 = {"x": 34.066471, "y": -84.217717}
-        23 = {"x": 34.059412, "y": -84.216757}
-        20 = {"x": 34.055487, "y": -84.217882}
-        19 = {"x": 34.051529, "y": -84.218865}
-        17 = {"x": 34.048679, "y": -84.224917}
-        18 = {"x": 34.04951, "y": -84.226327}
-        14 = {"x": 34.046006, "y": -84.225258}
-        13 = {"x": 34.045483, "y": -84.221723}
-        16 = {"x": 34.048312, "y": -84.208885}
-        21 = {"x": 34.056326, "y": -84.20058}
-         1 = {"x": 34.024302, "y": -84.16382}
-        31 = {"x": 34.109645, "y": -84.177031}
-        27 = {"x": 34.116852, "y": -84.163971}
-         6 = {"x": 34.118162, "y": -84.163304}
-         5 = {"x": 34.10584, "y": -84.21667}
-        10 = {"x": 34.071628, "y": -84.265784}
-        30 = {"x": 34.068647, "y": -84.283569}
-        29 = {"x": 34.068455, "y": -84.283782}
-         7 = {"x": 34.061468, "y": -84.33483}
-        25 = {"x": 34.061281, "y": -84.334798}
-        11 = {"x": 34.023101, "y": -84.36298}
-         0 = {"x": 34.022718, "y": -84.361903}
-        32 = {"x": 34.022585, "y": -84.36215}
-         8 = {"x": 34.021342, "y": -84.363437}
-Solution length: 0.6228641130880773
-Found at 0:00:01.403655 out of 0:00:11.397432 seconds.
+         0 = {"y": -84.221723, "x": 34.045483}
+         1 = {"y": -84.225258, "x": 34.046006}
+         4 = {"y": -84.224917, "x": 34.048679}
+         8 = {"y": -84.226327, "x": 34.04951}
+         9 = {"y": -84.218865, "x": 34.051529}
+        14 = {"y": -84.217882, "x": 34.055487}
+         5 = {"y": -84.216757, "x": 34.059412}
+        12 = {"y": -84.217717, "x": 34.066471}
+        20 = {"y": -84.225499, "x": 34.063814}
+        30 = {"y": -84.22506, "x": 34.064489}
+        19 = {"y": -84.242514, "x": 34.060164}
+        29 = {"y": -84.243566, "x": 34.061518}
+        10 = {"y": -84.240155, "x": 34.062461}
+         6 = {"y": -84.237402, "x": 34.060461}
+        28 = {"y": -84.255772, "x": 34.044915}
+         2 = {"y": -84.262126, "x": 34.048194}
+        27 = {"y": -84.267249, "x": 34.02115}
+        22 = {"y": -84.363437, "x": 34.021342}
+        25 = {"y": -84.36298, "x": 34.023101}
+        23 = {"y": -84.36215, "x": 34.022585}
+        24 = {"y": -84.361903, "x": 34.022718}
+        21 = {"y": -84.33483, "x": 34.061468}
+         7 = {"y": -84.334798, "x": 34.061281}
+        16 = {"y": -84.283569, "x": 34.068647}
+        15 = {"y": -84.283782, "x": 34.068455}
+        13 = {"y": -84.265784, "x": 34.071628}
+        11 = {"y": -84.21667, "x": 34.10584}
+        17 = {"y": -84.177031, "x": 34.109645}
+        31 = {"y": -84.163971, "x": 34.116852}
+        18 = {"y": -84.163304, "x": 34.118162}
+        26 = {"y": -84.16382, "x": 34.024302}
+         3 = {"y": -84.208885, "x": 34.048312}
+        32 = {"y": -84.20058, "x": 34.056326}
+Solution length: 0.6386581061221168
+Found at 0:00:00.998951 out of 0:00:02.994951 seconds.
 $
 ```
 
