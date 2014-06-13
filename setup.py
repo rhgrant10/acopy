@@ -7,11 +7,11 @@ if sys.version_info.major < 3:
 
 setup(
     name="ACO-Pants",
-    version="0.3.4",
+    version="0.3.5",
     author="Robert Grant",
     author_email="rhgrant10@gmail.com",
     packages=["pants", "pants.test"],
-    scripts=["bin/demo"],
+    scripts=["bin/pants-demo"],
     url="http://pypi.python.org/pypi/ACO-Pants",
     license="LICENSE.txt",
     description="A Python3 implementation of the ACO Meta-Heuristic",

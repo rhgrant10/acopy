@@ -127,8 +127,7 @@ the default iteration limit of 100.
 
 ::
 
-    $ cd Pants
-    $ ./bin/demo 100
+    $ pants-demo 100
     Solver settings:
     limit=100
     rho=0.8, Q=1
