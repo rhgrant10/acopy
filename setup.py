@@ -1,4 +1,9 @@
 from distutils.core import setup
+import sys
+
+if sys.version_info.major < 3:
+    print("Pants requires Python version >= 3, please upgrade")
+    sys.exit(1)
 
 setup(
     name="ACO-Pants",
