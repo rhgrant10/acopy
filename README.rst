@@ -36,13 +36,9 @@ Wikipedia <http://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms>`_.
 Installation
 ------------
 
-Currently there is no installation script (i.e., ``setup.py``). Simply
-copy the ``pants/`` directory to your ``python`` interpreter's
-``dist-packages/`` directory:
+Installation via ``pip``::
 
-::
-
-    $ sudo cp -r pants/ /usr/lib/python3/dist-packages
+    $ pip3 install ACO-Pants
 
 Useage
 ------
