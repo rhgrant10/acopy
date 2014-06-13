@@ -3,7 +3,7 @@ Pants
 =====
 
 A Python3 implementation of the Ant Colony Optimization Meta-Heuristic
-                                                                      
+
 --------
 Overview
 --------
@@ -82,7 +82,7 @@ requirements for node data of any sort.
 
 .. code-block:: python
 
-        edges = [Edge(a, b, length=math.sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2))]
+        edges = [Edge(a, b, length=math.sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2)) for a in nodes for b in nodes]
 
 4) Create a ``World`` from the edges. Note that edges can also be added
    individually after the world has been instantiated by using the
