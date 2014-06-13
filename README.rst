@@ -40,7 +40,7 @@ Installation
 
 Installation via ``pip``
 
-.. code::
+.. code-block::
 
     $ pip3 install ACO-Pants
 
@@ -54,7 +54,7 @@ requirements for node data of any sort.
 
 1) Import **Pants** (along with any other packages you'll need).
 
-.. code::python
+.. code-block::python
 
         import pants
         import math
@@ -65,7 +65,7 @@ requirements for node data of any sort.
    turns them into attributes. Here, ``data_points`` is a list of
    ``dict``\s.
 
-.. code::python
+.. code-block::python
 
       data_points = [
           {'x': 0, 'y': 0, 'name': 'origin'},
@@ -80,7 +80,7 @@ requirements for node data of any sort.
    distance between the two nodes (which have all been given ``x`` and
    ``y`` component properties to represent their position).
 
-.. code::python
+.. code-block::python
 
         edges = [Edge(a, b, length=math.sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2))]
 
@@ -88,14 +88,14 @@ requirements for node data of any sort.
    individually after the world has been instantiated by using the
    ``add_edge`` method.
 
-.. code::python
+.. code-block::python
 
         world = pants.World(edges[:-1])
         world.add_edge(edges[-1])
 
 5) Create a ``Solver`` for the ``World``.
 
-.. code::python
+.. code-block::python
 
         solver = pants.Solver(world)
 
@@ -104,7 +104,7 @@ requirements for node data of any sort.
    returns the best solution found, whereas the latter returns each
    solution found if it is the best thus far.
 
-.. code::python
+.. code-block::python
 
         solution = solver.solve()
         # or
@@ -112,7 +112,7 @@ requirements for node data of any sort.
 
 7) Inspect the solution(s).
 
-.. code::python
+.. code-block::python
 
         print(solution.distance)
         print(solution.path)
@@ -130,7 +130,7 @@ Included is a 33 "city" demo that can be run from the command line.
 Currently it accepts a single integer command line parameter to override
 the default iteration limit of 100.
 
-.. code::console
+.. code-block::console
 
     $ pants-demo 100
     Solver settings:
