@@ -1,9 +1,10 @@
+=====
 Pants
 =====
 
 A Python3 implementation of the Ant Colony Optimization Meta-Heuristic
                                                                       
-
+--------
 Overview
 --------
 
@@ -33,6 +34,7 @@ to strengthen it further, and the process repeats.
 You can read more about `Ant Colony Optimization on
 Wikipedia <http://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms>`_.
 
+------------
 Installation
 ------------
 
@@ -40,6 +42,7 @@ Installation via ``pip``::
 
     $ pip3 install ACO-Pants
 
+------
 Useage
 ------
 
@@ -49,74 +52,74 @@ requirements for node data of any sort.
 
 1) Import **Pants** (along with any other packages you'll need).
 
-::
+    ::
 
-    import pants
-    import math
+        import pants
+        import math
 
-2) Create ``Node``s from your data points. Although the ``Node`` class
+2) Create ``Node``\s from your data points. Although the ``Node`` class
    is available for use, any *hashable* data type (such as ``tuple`` or
-   ``namedtuple``) will work. ``Node``s accept any keyword arguments and
+   ``namedtuple``) will work. ``Node``\s accept any keyword arguments and
    turns them into attributes. Here, ``data_points`` is a list of
-   ``dict``s.
+   ``dict``\s.
 
-::
+    ::
 
-    data_points = [
-        {'x': 0, 'y': 0, 'name': 'origin'},
-        {'x': 1, 'y': 1, 'name': 'node one'},
-        {'x': 0, 'y': 5, 'name': 'node two'},
-        {'x': 3, 'y': 4, 'name': 'node three'}
-    ]
-    nodes = [pants.Node(**d) for d in data_points]
+      data_points = [
+          {'x': 0, 'y': 0, 'name': 'origin'},
+          {'x': 1, 'y': 1, 'name': 'node one'},
+          {'x': 0, 'y': 5, 'name': 'node two'},
+          {'x': 3, 'y': 4, 'name': 'node three'}
+      ]
+      nodes = [pants.Node(**d) for d in data_points]
 
-3) Create ``Edge``s and set their ``length`` property to represent the
+3) Create ``Edge``\s and set their ``length`` property to represent the
    work required to traverse it. Here the work required is the Euclidean
    distance between the two nodes (which have all been given ``x`` and
    ``y`` component properties to represent their position).
 
-::
+    ::
 
-    edges = [Edge(a, b, length=math.sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2))]
+        edges = [Edge(a, b, length=math.sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2))]
 
 4) Create a ``World`` from the edges. Note that edges can also be added
    individually after the world has been instantiated by using the
    ``add_edge`` method.
 
-::
+    ::
 
-    world = pants.World(edges[:-1])
-    world.add_edge(edges[-1])
+        world = pants.World(edges[:-1])
+        world.add_edge(edges[-1])
 
 5) Create a ``Solver`` for the ``World``.
 
-::
+    ::
 
-    solver = pants.Solver(world)
+        solver = pants.Solver(world)
 
 6) Solve the ``World`` with the ``Solver``. Two methods are provided for
    finding solutions: ``solve()`` and ``solutions()``. The former
    returns the best solution found, whereas the latter returns each
    solution found if it is the best thus far.
 
-::
+    ::
 
-    solution = solver.solve()
-    # or
-    solutions = solver.solutions()
+        solution = solver.solve()
+        # or
+        solutions = solver.solutions()
 
 7) Inspect the solution(s).
 
-::
+    ::
 
-    print(solution.distance)
-    print(solution.path)
-    print(solution.moves)
-    # or
-    best = float("inf")
-    for solution in solutions:
-      assert solution.distance < best
-      best = solution.distance
+        print(solution.distance)
+        print(solution.path)
+        print(solution.moves)
+        # or
+        best = float("inf")
+        for solution in solutions:
+          assert solution.distance < best
+          best = solution.distance
 
 Run the Demo
 ------------
