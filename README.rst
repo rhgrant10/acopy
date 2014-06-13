@@ -40,7 +40,7 @@ Installation
 
 Installation via ``pip``
 
-.. code-block::
+.. code-block:: console
 
     $ pip3 install ACO-Pants
 
