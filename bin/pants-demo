@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from pants import World, Edge, Node
+from pants import World, Edge
 from pants import Solver
 from datetime import timedelta
 import time
@@ -41,11 +41,10 @@ if __name__ == '__main__':
         limit = 100
     
     world = World()
-    nodes = [Node(x=x, y=y) for x, y in TEST_COORDS_33]
-    for start in nodes:
-        for end in nodes:
-            dx = end.x - start.x
-            dy = end.y - start.y
+    for start in TEST_COORDS_33:
+        for end in TEST_COORDS_33:
+            dx = end[0] - start[0]
+            dy = end[1] - start[1]
             edge = Edge(start, end, math.sqrt(dx ** 2 + dy ** 2))
             world.add_edge(edge)
     solver = Solver(world)
@@ -78,7 +77,7 @@ elite={w.elite}""".format(limit, w=solver))
     print(divider)
     print("Best solution:")
     for p in fastest.path:
-        print("  {:>8} = {}".format(world.nodes.index(p), p))
+        print("  {:>8} = {}".format(p, world.node_data(p)))
     
     print("Solution length: {}".format(fastest.distance))
     print("Found at {} out of {} seconds.".format(

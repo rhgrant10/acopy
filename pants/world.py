@@ -17,7 +17,7 @@ class World:
         :param list edges: a list of :class:`Edge`s
 
         """
-        self._nodes = set()
+        self._nodes = []
         self.edges = {}
         if edges is not None:
             for e in edges:
@@ -25,7 +25,10 @@ class World:
                 
     @property
     def nodes(self):
-        return list(self._nodes)
+        """Return the IDs of all the nodes.
+
+        """
+        return list(range(len(self._nodes)))
     
     def reset_pheromone(self, level=None):
         """Reset the amount of pheromone on every edge to *level*.
@@ -42,10 +45,28 @@ class World:
         """
         if not isinstance(edge, Edge):
             raise TypeError("edge must be <type Edge>")
-        self._nodes.add(edge.start)
-        self._nodes.add(edge.end)
-        self.edges[edge.start, edge.end] = edge    
         
+        if edge.start not in self._nodes:
+            a = len(self._nodes)
+            self._nodes.append(edge.start)
+        else:
+            a = self._nodes.index(edge.start)
+        
+        if edge.end not in self._nodes:
+            b = len(self._nodes)
+            self._nodes.append(edge.end)
+        else:
+            b = self._nodes.index(edge.end)
+        
+        self.edges[a, b] = edge    
+        
+    def node_data(self, id):
+        """Return the actual data associated with a particular node ID.
+
+        :param int id: the id of the 
+
+        """
+        return self._nodes[id] if 0 <= id < len(self._nodes) else None
     
 
 class Edge:
@@ -88,32 +109,3 @@ class Edge:
             return self.__dict__ == other.__dict__
         return False
         
-        
-class Node:
-    def __init__(self, **kwargs):
-        for k, v in kwargs.items():
-            setattr(self, k, v)
-        self._hash = None
-        
-    def __hash__(self):
-        if self._hash is None:
-            self._hash = hash(frozenset(self.__dict__.items()))
-        return self._hash
-            
-    def __bool__(self):
-        return True
-      
-    # 
-    def __repr__(self):
-        return json.dumps(
-            {k:v for k,v in self.__dict__.items() if not k.startswith("_")},
-            default=str)
-        
-    # Returns true iff other is the same type and has identical "public"
-    # properties.
-    def __eq__(self, other):
-        if isinstance(other, self.__class__):
-            sd = {k:v for k, v in self.__dict__.items() if not k.startswith("_")}
-            od = {k:v for k, v in other.__dict__.items() if not k.startswith("_")}
-            return sd == od
-        return False

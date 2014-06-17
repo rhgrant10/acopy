@@ -67,13 +67,12 @@ requirements for node data of any sort.
 
 .. code-block:: python
 
-      data_points = [
+      nodes = [
           {'x': 0, 'y': 0, 'name': 'origin'},
           {'x': 1, 'y': 1, 'name': 'node one'},
           {'x': 0, 'y': 5, 'name': 'node two'},
           {'x': 3, 'y': 4, 'name': 'node three'}
       ]
-      nodes = [pants.Node(**d) for d in data_points]
 
 3) Create ``Edge``\s and set their ``length`` property to represent the
    work required to traverse it. Here the work required is the Euclidean
@@ -82,7 +81,13 @@ requirements for node data of any sort.
 
 .. code-block:: python
 
-        edges = [Edge(a, b, length=math.sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2)) for a in nodes for b in nodes]
+      edges = []
+      for a in nodes:
+        for b in nodes:
+          dx = a["x"] - b["x"]
+          dy = a["y"] - b["y"]
+          d = math.sqrt(pow(dx, 2) + pow(dy, 2))
+          edges.append(Edge(a, b, length=d))
 
 4) Create a ``World`` from the edges. Note that edges can also be added
    individually after the world has been instantiated by using the
@@ -115,7 +120,7 @@ requirements for node data of any sort.
 .. code-block:: python
 
         print(solution.distance)
-        print(solution.path)
+        print(solver.world.node_data(p) for p in solution.path)
         print(solution.moves)
         # or
         best = float("inf")
@@ -190,8 +195,7 @@ the default iteration limit of 100.
 Known Bugs
 ----------
 
-None that I'm aware of currently. Please let me know if you find
-otherwise!
+- unhashable values in the data used to create an instance of the :class:`Node` class causes errors
 
 Troubleshooting
 ---------------

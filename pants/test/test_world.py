@@ -1,12 +1,12 @@
-from ..world import World, Edge, Node
+from ..world import World, Edge
 import unittest
 import math
 
 class WorldTest(unittest.TestCase):
     def setUp(self):
-        self.nodeA = Node(name="A")
-        self.nodeB = Node(name="B")
-        self.nodeC = Node(name="C")
+        self.nodeA = dict(name="A")
+        self.nodeB = dict(name="B")
+        self.nodeC = dict(name="C")
         self.edgeAB = Edge(self.nodeA, self.nodeB)
         self.edgeBA = Edge(self.nodeB, self.nodeA)
         self.edgeAC = Edge(self.nodeA, self.nodeC)
@@ -26,8 +26,6 @@ class WorldCreation(WorldTest):
         edges = [self.edgeAB, self.edgeBA]
         w = World(edges)
         self.assertEqual(len(w.nodes), 2)
-        self.assertTrue(self.nodeA in w.nodes)
-        self.assertTrue(self.nodeB in w.nodes)
 
     def test_world_creation_failure_from_list_of_nonedges(self):
         not_edges = {"Not", "an", "edge", "list"}
@@ -58,7 +56,7 @@ class EdgeAddition(WorldTest):
         w.add_edge(self.edgeAB)
         w.add_edge(self.edgeAB2)
         self.assertEqual(len(w.edges), 1)
-        self.assertEqual(w.edges[self.nodeA, self.nodeB], self.edgeAB2)
+        self.assertEqual(w.edges[0, 1], self.edgeAB2)
         
 
 class PheromoneReset(WorldTest):
@@ -79,9 +77,9 @@ class PheromoneReset(WorldTest):
 
 class EdgeTest(unittest.TestCase):
     def setUp(self):
-        self.nodeA = Node(name="A")
-        self.nodeB = Node(name="B")
-        self.nodeC = Node(name="C")
+        self.nodeA = dict(name="A")
+        self.nodeB = dict(name="B")
+        self.nodeC = dict(name="C")
 
 
 class EdgeCreation(EdgeTest):        
@@ -127,79 +125,6 @@ class EdgeEquality(EdgeTest):
         e1 = Edge(self.nodeA, self.nodeB)
         e2 = Edge(self.nodeB, self.nodeA)
         self.assertNotEqual(e1, e2)
-        
-
-class NodeTest(unittest.TestCase):
-    def setUp(self):
-        self.dataA = {'name': "A"}
-        self.dataB = {'name': "B", 'height': None}
-        self.dataC = {'name': "C", 'age': 27}
-        
-
-class NodeCreation(NodeTest):
-    def test_node_creation_with_no_args(self):
-        n = Node()
-        self.assertEqual(list(n.__dict__.keys()), ['_hash'])
-        
-    def test_node_creation_with_keyword_args(self):
-        for d in (self.dataA, self.dataB, self.dataC):
-            n = Node(**d)
-            self.assertTrue(all(n.__dict__[k] == d[k] for k in d))
-            
-    def test_node_creation_with_positional_args(self):
-        self.assertRaises(TypeError, Node, (1,))
-        
-
-class NodeHashes(NodeTest):
-    def test_node_hash_consistency(self):
-        h = hash(Node())
-        self.assertTrue(all(hash(Node()) == h for _ in range(10)))
-        
-    def test_node_hash_uniqueness(self):
-        nodes = [Node(**d) for d in (self.dataA, self.dataB, self.dataC)]
-        hashes = list(map(hash, nodes))
-        for i in range(len(hashes)):
-            for j in range(len(hashes)):
-                if i != j:
-                    self.assertNotEqual(hashes[i], hashes[j])
-    
-    def test_node_use_as_dict_key(self):
-        nodeA = Node(**self.dataA)
-        nodeB = Node(**self.dataB)
-        node_dict = {}
-        node_dict[nodeA] = 'a'
-        node_dict[nodeB] = 'b'
-        self.assertTrue(nodeA in node_dict)
-        self.assertTrue(nodeB in node_dict)
-        self.assertEqual(node_dict[nodeA], 'a')
-        self.assertEqual(node_dict[nodeB], 'b')
-        
-
-class NodeEquality(NodeTest):
-    def test_node_equality(self):
-        a = Node(**self.dataA)
-        b = Node(**self.dataA)
-        self.assertEqual(a, b)
-        
-    def test_node_inequality(self):
-        a = Node(**self.dataA)
-        b = Node(**self.dataB)
-        self.assertNotEqual(a, b)
-        
-    def test_node_inequality_with_same_attrs(self):
-        a = Node(x=3)
-        b = Node(x=4)
-        self.assertNotEqual(a, b)
-        
-    def test_node_inequality_with_same_values(self):
-        a = Node(x=3)
-        b = Node(y=3)
-        self.assertNotEqual(a, b)
-        
-    def test_node_indexability(self):
-        node_list = [Node(**d) for d in (self.dataA, self.dataB, self.dataC)]
-        for i in range(len(node_list)):
-            self.assertEqual(node_list.index(node_list[i]), i)
             
             
 if __name__ == '__main__':

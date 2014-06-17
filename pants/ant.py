@@ -104,7 +104,7 @@ class Ant:
         """
         moves = self.get_possible_moves()
         move = self.choose_move(moves)
-        if move:
+        if move is not None:
             move_made = (self.node, move)
             self.make_move(move)
             return move_made

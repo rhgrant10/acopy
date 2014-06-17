@@ -1,13 +1,13 @@
 from ..ant import Ant
-from ..world import World, Edge, Node
+from ..world import World, Edge
 import unittest
 import unittest.mock
 
 class AntTest(unittest.TestCase):
     @unittest.mock.patch('__main__.World')
     def setUp(self, MockWorld):
-        self.nodeA = Node(name='a')
-        self.nodeB = Node(name='b')
+        self.nodeA = dict(name='a')
+        self.nodeB = dict(name='b')
         self.world = World()
         self.aa = 1
         self.ab = 3
@@ -28,46 +28,46 @@ class AntTest(unittest.TestCase):
     def test_ant_make_move_adds_no_distance_when_moving_to_start_node(self):
         self.world.add_edge(self.edgeAB)
         ant = Ant(self.world)
-        ant.make_move(self.nodeA)
+        ant.make_move(0)
         self.assertEqual(ant.distance, 0)
 
     def test_ant_make_move_accounts_for_distance_to_start_node(self):
         def get_edge(pair):
             d = {
-                (self.nodeA, self.nodeB): self.edgeAB,
-                (self.nodeB, self.nodeA): self.edgeBA
+                (0, 1): self.edgeAB,
+                (1, 0): self.edgeBA
             }
             return d.get(pair, None)
         self.world.edges.__getitem__.side_effect = get_edge
-        self.world.nodes = {self.nodeA, self.nodeB}
-        ant = Ant(self.world, start=self.nodeA)
-        ant.make_move(self.nodeB)
+        self.world.nodes = [0, 1]
+        ant = Ant(self.world, start=0)
+        ant.make_move(1)
         self.assertEqual(ant.distance, self.ab + self.ba)
                 
     def test_ant_possible_moves_is_b_when_b_is_only_move_left(self):
-        self.world.nodes = {self.nodeA, self.nodeB}
+        self.world.nodes = [0, 1]
         self.world.edges.__getitem__.side_effect = lambda x: self.edgeAB
-        ant = Ant(self.world, start=self.nodeA)
+        ant = Ant(self.world, start=0)
         moves = list(ant.get_possible_moves())
         self.assertEqual(len(moves), 1)
-        self.assertEqual(moves[0], self.nodeB)
+        self.assertEqual(moves[0], 1)
         
     def test_ant_possible_moves_is_empty_when_no_moves_left(self):
-        self.world.nodes = {self.nodeA}
+        self.world.nodes = [0]
         self.world.edges.__getitem__.side_effect = lambda x: self.edgeAA
-        ant = Ant(self.world, start=self.nodeA)
+        ant = Ant(self.world, start=0)
         moves = list(ant.get_possible_moves())
         self.assertEqual(len(moves), 0)
     
     def test_ant_choose_move_returns_b_when_b_is_only_move(self):
         self.world.edges.__getitem__.return_value = self.edgeAB
-        ant = Ant(self.world, start=self.nodeA)
-        move = ant.choose_move([self.nodeB])
-        self.assertEqual(move, self.nodeB)
+        ant = Ant(self.world, start=0)
+        move = ant.choose_move([1])
+        self.assertEqual(move, 1)
     
     def test_ant_choose_move_returns_None_when_no_moves(self):
         self.world.add_edge(self.edgeAB)
-        ant = Ant(self.world, start=self.nodeA)
+        ant = Ant(self.world, start=0)
         move = ant.choose_move([])
         self.assertEqual(move, None)
 
