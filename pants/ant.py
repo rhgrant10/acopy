@@ -105,9 +105,9 @@ class Ant:
 
     def move(self):
         """Choose a move and make it."""
-        moves = self.remaining_moves()
-        move = self.choose_move(moves)
-        return self.make_move(move) # returns edge
+        remaining = self.remaining_moves()
+        choice = self.choose_move(remaining)
+        return self.make_move(choice) # returns edge
 
     def remaining_moves(self):
         """Return the moves that remain to be made."""
@@ -127,26 +127,26 @@ class Ant:
         cumdist = list(itertools.accumulate(weights)) + [total]
         return choices[bisect.bisect(cumdist, random.random() * total)]
 
+    def make_move(self, dest):
+        """Move to the *dest* node."""
+        ori = self.node
+        if dest is None:
+            if self.can_move() is False:
+                return None
+            dest = self.start   # last move is back to the start
+        else:
+            self.visited.append(dest)
+            self.unvisited.remove(dest)
+        
+        edge = self.world.edges[ori, dest]
+        self.traveled.append(edge)
+        self.distance += edge.length
+        return edge
+
     def weigh(self, edge):
         """Calculate the weight of a given *edge*."""
         pre = 1 / (edge.length or 1)
         post = edge.pheromone
         return post ** self.alpha * pre ** self.beta
 
-    def make_move(self, move):
-        """Move down the given *edge* to it's end node."""
-        if move is None:
-            if not self.can_move():
-                # Last edge already traveled, so do nothing.
-                return None
-            # Last move is back to the start.
-            move = self.start
-            edge = self.world.edges[self.node, move]
-        else:
-            edge = self.world.edges[self.node, move]
-            self.visited.append(move)
-            self.unvisited.remove(move)
-        
-        self.traveled.append(edge)
-        self.distance += edge.length
-        return edge
+    

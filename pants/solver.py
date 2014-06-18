@@ -211,9 +211,6 @@ class Solver:
         """
         ants = sorted(ants)[:len(ants) // 2]
         for a in ants:
-            if a.distance == 0:
-                print(a.visited)
-                print(a.unvisited)
             p = self.q / a.distance
             for edge in a.path:
                 edge.pheromone = max(
