@@ -43,6 +43,8 @@ if __name__ == '__main__':
     world = World()
     for start in TEST_COORDS_33:
         for end in TEST_COORDS_33:
+            if start == end:
+                continue
             dx = end[0] - start[0]
             dy = end[1] - start[1]
             edge = Edge(start, end, math.sqrt(dx ** 2 + dy ** 2))
