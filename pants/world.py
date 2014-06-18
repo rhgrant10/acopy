@@ -60,13 +60,16 @@ class World:
         
         self.edges[a, b] = edge    
         
-    def node_data(self, id):
+    def node_data(self, idx):
         """Return the actual data associated with a particular node ID.
 
         :param int id: the id of the 
 
         """
-        return self._nodes[id] if 0 <= id < len(self._nodes) else None
+        try:
+            return self._nodes[idx]
+        except IndexError:
+            return None
     
 
 class Edge:
@@ -91,11 +94,11 @@ class Edge:
         self.end = b
         self.length = 1 if length is None else length
         self.pheromone = 0.1 if pheromone is None else pheromone
-        
+
     def __repr__(self):
         return "Edge from {} to {} that is {} long.".format(
                 self.start, self.end, self.length)
-        
+
     def __eq__(self, other):
         """Return ``True`` iff *other* has identical properties.
 
