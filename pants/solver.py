@@ -122,7 +122,7 @@ class Solver:
                 self.alpha, 
                 self.beta, 
                 start=starts[i % n]
-            ) for i in range(self.ant_count)
+            ).initialize() for i in range(self.ant_count)
         ]
         
     def random_ants(self, even=False):
@@ -154,7 +154,7 @@ class Solver:
                             self.alpha,
                             self.beta,
                             start=starts[j]
-                        ) for j in range(n)
+                        ).initialize() for j in range(n)
                     ])
             # Now (without choosing the same node twice) choose the reamining
             # starts randomly.
@@ -164,7 +164,7 @@ class Solver:
                     self.alpha,
                     self.beta,
                     start=starts.pop(random.randrange(n - i))
-                ) for i in range(self.ant_count % n)
+                ).initialize() for i in range(self.ant_count % n)
             ])
         else:
             # Just pick random nodes.
@@ -174,7 +174,7 @@ class Solver:
                     self.alpha,
                     self.beta,
                     start=starts[random.randrange(n)]
-                ) for i in range(self.ant_count)
+                ).initialize() for i in range(self.ant_count)
             ])
         return ants
 
@@ -195,8 +195,8 @@ class Solver:
             ants_done = 0
             for ant in ants:
                 if ant.can_move():
-                    m = ant.move()
-                    self.world.edges[m].pheromone *= self.rho
+                    edge = ant.move()
+                    edge.pheromone *= self.rho
                 else:
                     ants_done += 1
 
@@ -211,9 +211,11 @@ class Solver:
         """
         ants = sorted(ants)[:len(ants) // 2]
         for a in ants:
+            if a.distance == 0:
+                print(a.visited)
+                print(a.unvisited)
             p = self.q / a.distance
-            for move in a.moves:
-                edge = self.world.edges[move]
+            for edge in a.path:
                 edge.pheromone = max(
                     self.t0,
                     (1 - self.rho) * edge.pheromone + p)
@@ -228,7 +230,7 @@ class Solver:
 
         """
         if self.elite:
-            for m in ant.moves:
-                self.world.edges[m].pheromone += \
-                        self.elite * self.q / ant.distance
+            p = self.elite * self.q / ant.distance
+            for edge in ant.path:
+                edge.pheromone += p
     
