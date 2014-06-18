@@ -68,7 +68,7 @@ elite={w.elite}""".format(limit, w=solver))
     
     fastest = None
     start_time = time.time()
-    for ant in solver.solutions(limit):
+    for i, ant in enumerate(solver.solutions(limit)):
         fastest = ant
         fastest_time = time.time() - start_time
         print(columns.format(
@@ -78,10 +78,11 @@ elite={w.elite}""".format(limit, w=solver))
     
     print(divider)
     print("Best solution:")
-    for p in fastest.path:
-        print("  {:>8} = {}".format(p, world.node_data(p)))
+    for i, n in zip(fastest.visited, fastest.tour):
+        print("  {:>8} = {}".format(i, n))
     
     print("Solution length: {}".format(fastest.distance))
     print("Found at {} out of {} seconds.".format(
             timedelta(seconds=fastest_time),
             timedelta(seconds=total_time)))
+    
