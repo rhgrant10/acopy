@@ -43,6 +43,9 @@ def dist(a, b):
 
 
 if __name__ == '__main__':
+    # TODO: Make this if-body into a real script with functions and 
+    # the like.
+    # TODO: Use argparse and provide the users with many options.
     limit = int(sys.argv[1]) if len(sys.argv) > 1 else 100
     
     world = World(TEST_COORDS_33, dist)
