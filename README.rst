@@ -62,7 +62,8 @@ requirements for node data of any sort.
         import random
 
 2) Create your data points; these become the nodes. Here we create some
-   random 2D points.
+   random 2D points. The only requirement for a node is that it is
+   distinguishable from all of the other nodes.
 
 .. code-block:: python
 
@@ -72,8 +73,6 @@ requirements for node data of any sort.
         y = random.uniform(-10, 10)
         nodes.append((x, y))
 
-The only requirement for a node is that it is distinguishable from all
-of the other nodes.
 
 3) Define your length function. This function must accept two nodes and
    return the amonut of "work" between them. In this case, Euclidean 
