@@ -5,5 +5,5 @@
 """
 
 from .ant import Ant 
-from .world import World, Edge, Node
+from .world import World, Edge
 from .solver import Solver

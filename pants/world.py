@@ -11,21 +11,26 @@ import json
         
 
 class World:
-    def __init__(self, edges=None):
-        """Create a new world consisting of the given *edges*.
+    def __init__(self, nodes, lfunc=None):
+        """Create a new world consisting of the given *nodes*.
         
-        :param list edges: a list of :class:`Edge`s
+        :param list nodes: a list of nodes
 
         """
-        self._nodes = set()
+        self._nodes = nodes
         self.edges = {}
-        if edges is not None:
-            for e in edges:
-                self.add_edge(e)
-                
+        for m, a in enumerate(nodes):
+            for n, b in enumerate(nodes):
+                if a != b:
+                    edge = Edge(a, b, length=lfunc(a, b))
+                    self.edges[m, n] = edge
+
     @property
     def nodes(self):
-        return list(self._nodes)
+        """Return the IDs of all the nodes.
+
+        """
+        return list(range(len(self._nodes)))
     
     def reset_pheromone(self, level=None):
         """Reset the amount of pheromone on every edge to *level*.
@@ -34,19 +39,22 @@ class World:
         for edge in self.edges.values():
             edge.pheromone = level
         
-    def add_edge(self, edge):
-        """Add *edge* to the :class:`World`.
-        
-        :param :class:`Edge` edge: the :class:`Edge` to add
-        
+    def data(self, idx, idy=None):
+        """Return the node data of a single id or the edge data of two ids.
+
+        :param int idx: the id of the first node
+        :param int idy: the id of the second node
+
         """
-        if not isinstance(edge, Edge):
-            raise TypeError("edge must be <type Edge>")
-        self._nodes.add(edge.start)
-        self._nodes.add(edge.end)
-        self.edges[edge.start, edge.end] = edge    
         
-    
+        try:
+            if idy is None:
+                return self._nodes[idx]
+            else:
+                return self.edges[idx, idy]
+        except IndexError:
+            return None
+
 
 class Edge:
     """This class represents the link connecting two nodes.
@@ -70,11 +78,11 @@ class Edge:
         self.end = b
         self.length = 1 if length is None else length
         self.pheromone = 0.1 if pheromone is None else pheromone
-        
+
     def __repr__(self):
         return "Edge from {} to {} that is {} long.".format(
                 self.start, self.end, self.length)
-        
+
     def __eq__(self, other):
         """Return ``True`` iff *other* has identical properties.
 
@@ -88,32 +96,3 @@ class Edge:
             return self.__dict__ == other.__dict__
         return False
         
-        
-class Node:
-    def __init__(self, **kwargs):
-        for k, v in kwargs.items():
-            setattr(self, k, v)
-        self._hash = None
-        
-    def __hash__(self):
-        if self._hash is None:
-            self._hash = hash(frozenset(self.__dict__.items()))
-        return self._hash
-            
-    def __bool__(self):
-        return True
-      
-    # 
-    def __repr__(self):
-        return json.dumps(
-            {k:v for k,v in self.__dict__.items() if not k.startswith("_")},
-            default=str)
-        
-    # Returns true iff other is the same type and has identical "public"
-    # properties.
-    def __eq__(self, other):
-        if isinstance(other, self.__class__):
-            sd = {k:v for k, v in self.__dict__.items() if not k.startswith("_")}
-            od = {k:v for k, v in other.__dict__.items() if not k.startswith("_")}
-            return sd == od
-        return False

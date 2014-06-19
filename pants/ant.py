@@ -12,6 +12,7 @@ from .world import World
 import itertools
 import random
 import bisect
+import sys
 
 class Ant:
     """
@@ -21,8 +22,7 @@ class Ant:
     uid = 0
 
     def __init__(self, world, alpha=1, beta=3, start=None):
-        """
-        Create a new Ant for the given world.
+        """Create a new Ant for the given world.
 
         :param World world: the world in which to travel
         :param float alpha: the relative importance of pheromone (default=1)
@@ -30,30 +30,37 @@ class Ant:
         :param Node start: the starting node (default=None)
 
         """
-        Ant.uid = self.uid = Ant.uid + 1
+        self.uid = Ant.uid
+        Ant.uid += 1
         self.world = world
         self.alpha = alpha
         self.beta = beta
-        self.trip_complete = False
+        self.start = start
         self.distance = 0
-        self.reset(start)
+        self.visited = []
+        self.unvisited = []
+        self.traveled = []
 
-    @property
-    def moves(self):
-        """
-        Return a list of the moves made so far
-        
-        :returns: A list of (start, end) tuples
-        :rtype: list
+    def initialize(self, start=None):
+        """Reset everything so that a new solution can be found.
+
+        :param start: which :class:`Node` to start the next solution from
+            (by default, the previous starting node is reused)
         
         """
-        # TODO: Decide whether to simply return edges.
-        p, n = self.path, len(self.path)
-        return [(p[i], p[(i + 1) % n]) for i in range(n)]
-        
+        if start is None:
+            if self.start is None:
+                self.start = random.randrange(len(self.world.nodes))
+        else:
+            self.start = start
+        self.distance = 0
+        self.visited = [self.start]
+        self.unvisited = [n for n in self.world.nodes if n != self.start]
+        self.traveled = []
+        return self
+
     def clone(self):
-        """
-        Return a new :class:`Ant` with exactly the same property values.
+        """Return an identical but new :class:`Ant`.
 
         Note that unlike copy, this method preserves even the UID of an Ant.
 
@@ -63,129 +70,83 @@ class Ant:
         """
         ant = Ant(self.world, self.alpha, self.beta, self.start)
         ant.uid = self.uid
-        ant.node = self.node
-        ant.path = self.path[:]
+        ant.visited = self.visited[:]
+        ant.unvisited = self.unvisited[:]
+        ant.traveled = self.traveled[:]
         ant.distance = self.distance
         return ant
 
+
+    @property
+    def node(self):
+        """Node at which the :class:`Ant` currently sits."""
+        try:
+            return self.visited[-1]
+        except IndexError:
+            return None
+
+    @property
+    def tour(self):
+        """Nodes visited by the :class:`Ant` in order."""
+        return [self.world.data(i) for i in self.visited]
+
+    @property
+    def path(self):
+        """Edges traveled by the :class:`Ant` in order."""
+        return self.traveled
+
     def __lt__(self, other):
+        """Return True if the distance is less than the other distance."""
         return self.distance < other.distance
 
-    def reset(self, start=None):
-        """
-        Reset everything so that a new solution can be found.
-
-        Note that calling this method destroys the previous path, moves, and
-        distance traveled by the ant.
-        
-        :param Node start: which :class:`Node` to start the next solution from
-                           (by default, the previous starting :class:`Node` is
-                            used again)
-        
-        """
-        self.start = start
-        self.node = self.start
-        self.distance = 0
-        self.path = []
-        if start is not None:
-            self.path.append(start)
-
     def can_move(self):
-        """
-        Return true if there are more than zero possible moves to make.
-
-        """
-        return len(self.path) < len(self.world.nodes)
+        """Return True if there are still unvisited nodes."""
+        return len(self.traveled) != len(self.visited)
 
     def move(self):
-        """
-        Choose a valid move and make it.
+        """Choose a move and make it."""
+        remaining = self.remaining_moves()
+        choice = self.choose_move(remaining)
+        return self.make_move(choice) # returns edge
 
-        """
-        moves = self.get_possible_moves()
-        move = self.choose_move(moves)
-        if move:
-            move_made = (self.node, move)
-            self.make_move(move)
-            return move_made
-        return None
+    def remaining_moves(self):
+        """Return the moves that remain to be made."""
+        return self.unvisited
 
-    def get_possible_moves(self):
-        """
-        Return the set of all moves that can currently be made.
-
-        :returns: all currently possible moves
-        :rtype: set
-        
-        """
-        return set(self.world.nodes) - set(self.path)
-
-    def choose_move(self, moves):
-        """
-        Return which move to make by choosing from *moves*.
-        
-        :param list moves: a list of all possible moves
-        
-        :returns: the move to make
-        :rtype: :class:`Node`
-        
-        """
-        N = len(moves)
-        if N == 0:
-            return None     # No more moves
-        
-        # Find the individual weight of each move.
-        moves = list(moves) # it may be given as a set, but we need order
+    def choose_move(self, choices):
+        """Choose a move from all possible moves."""
+        if len(choices) == 0:
+            return None
+        if len(choices) == 1:
+            return choices[0]
         weights = []
-        if self.node is None:
-            weights = [1 for i in range(N)]
+        for move in choices:
+            edge = self.world.edges[self.node, move]
+            weights.append(self.weigh(edge))
+        total = sum(weights)
+        cumdist = list(itertools.accumulate(weights)) + [total]
+        return choices[bisect.bisect(cumdist, random.random() * total)]
+
+    def make_move(self, dest):
+        """Move to the *dest* node."""
+        ori = self.node
+        if dest is None:
+            if self.can_move() is False:
+                return None
+            dest = self.start   # last move is back to the start
         else:
-            for m in moves:
-                e = self.world.edges[self.node, m]
-                weights.append(self.calculate_weight(e))
+            self.visited.append(dest)
+            self.unvisited.remove(dest)
         
-        # Ensure the index of the last element is never exceeded.
-        total_weight = sum(weights) or 1
-        cumdist = list(itertools.accumulate(weights)) + [total_weight]
-        
-        # Choose a random place within the distrution of weights and return the
-        # move at the index of would-be insertion.
-        r = random.random() * total_weight
-        i = bisect.bisect(cumdist, r)
-        return moves[i]
-        
-    def calculate_weight(self, e):
-        """
-        Calculate the weight of the given :class:`Edge` *e*.
-        
-        :param Edge e: the edge of which the weight shall be calculated
+        edge = self.world.edges[ori, dest]
+        self.traveled.append(edge)
+        self.distance += edge.length
+        return edge
 
-        :returns: the weight (projected usefullness) of *e*
-        :rtype: float
-        
-        """
-        return e.pheromone ** self.alpha * (1 / (e.length or 1)) ** self.beta
+    def weigh(self, edge):
+        """Calculate the weight of a given *edge*."""
+        pre = 1 / (edge.length or 1)
+        post = edge.pheromone
+        return post ** self.alpha * pre ** self.beta
 
-    def make_move(self, move):
-        """
-        Perform the given *move*.
-        
-        :param Node move: the :class:`Node` to move to
-        
-        """
-        self.path.append(move)
-        n = len(self.path)
-        
-        # If moving to the starting node, no distance was actually traveled.
-        if n == 1:
-            self.start = move        
-        else:
-            self.distance += self.world.edges[self.node, move].length
-        
-        # If moving to the last node, add the distance from the last node back
-        # to the first node to "complete" the path.
-        if n == len(self.world.nodes):
-            final = self.world.edges[self.path[-1], self.path[0]].length
-            self.distance += final
-
-        self.node = move
+    
