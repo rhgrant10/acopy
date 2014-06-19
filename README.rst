@@ -14,12 +14,13 @@ minimized. Nodes can be any arbitrary collection of data while the edges
 represent the amount of "work" required to travel between two nodes.
 Thus, **Pants** is a tool for solving traveling salesman problems.
 
-The world is built from a list of edges. Edges are created from two
-nodes, and have a length that represents the amount of "work" in moving
-from the first node to the second node. Note that edge length need not
-represent the actual length of anything. It could, for a silly, random
-example, be the number of dishes one must wash before moving to the next
-round of a dish-washing competition.
+The world is built from a list of nodes and a function responsible for
+returning the length of the edge between any two given nodes. The length
+function need not return actual length. Instead, "length" refers to that 
+the amount of "work" involved in moving from the first node to the second
+node - whatever that "work" may be. For a silly, random example, it could
+even be the number of dishes one must wash before moving to the next 
+station at a least dish-washing dish washer competition.
 
 Solutions are found through an iterative process. In each iteration,
 several ants are allowed to find a solution that "visits" every node of
@@ -58,45 +59,36 @@ requirements for node data of any sort.
 
         import pants
         import math
+        import random
 
-2) Create ``Node``\s from your data points. Although the ``Node`` class
-   is available for use, any *hashable* data type (such as ``tuple`` or
-   ``namedtuple``) will work. ``Node``\s accept any keyword arguments and
-   turns them into attributes. Here, ``data_points`` is a list of
-   ``dict``\s.
+2) Create your data points; these become the nodes. Here we create some
+   random 2D points.
 
 .. code-block:: python
 
-      nodes = [
-          {'x': 0, 'y': 0, 'name': 'origin'},
-          {'x': 1, 'y': 1, 'name': 'node one'},
-          {'x': 0, 'y': 5, 'name': 'node two'},
-          {'x': 3, 'y': 4, 'name': 'node three'}
-      ]
+      nodes = []
+      for _ in range(20):
+        x = random.uniform(-10, 10)
+        y = random.uniform(-10, 10)
+        nodes.append((x, y))
 
-3) Create ``Edge``\s and set their ``length`` property to represent the
-   work required to traverse it. Here the work required is the Euclidean
-   distance between the two nodes (which have all been given ``x`` and
-   ``y`` component properties to represent their position).
+   The only requirement for a node is that it is distinguishable from all
+   of the other nodes.
 
-.. code-block:: python
-
-      edges = []
-      for a in nodes:
-        for b in nodes:
-          dx = a["x"] - b["x"]
-          dy = a["y"] - b["y"]
-          d = math.sqrt(pow(dx, 2) + pow(dy, 2))
-          edges.append(Edge(a, b, length=d))
-
-4) Create a ``World`` from the edges. Note that edges can also be added
-   individually after the world has been instantiated by using the
-   ``add_edge`` method.
+3) Define your length function. This function must accept two nodes and
+   return the amonut of "work" between them. In this case, Euclidean 
+   distance works well.
 
 .. code-block:: python
 
-        world = pants.World(edges[:-1])
-        world.add_edge(edges[-1])
+      def euclidean(a, b):
+          d = math.sqrt(pow(a[1] - b[1], 2) + pow(a[0] - b[0], 2))
+
+4) Create the ``World`` from the nodes and the length function. 
+
+.. code-block:: python
+
+        world = pants.World(nodes, euclidean)
 
 5) Create a ``Solver`` for the ``World``.
 
@@ -120,8 +112,8 @@ requirements for node data of any sort.
 .. code-block:: python
 
         print(solution.distance)
-        print(solver.world.node_data(p) for p in solution.path)
-        print(solution.moves)
+        print(solution.tour)    # Nodes visited in order
+        print(solution.path)    # Edges taken in order
         # or
         best = float("inf")
         for solution in solutions:
@@ -137,65 +129,66 @@ the default iteration limit of 100.
 
 .. code-block:: console
 
-    $ pants-demo 100
     Solver settings:
     limit=100
     rho=0.8, Q=1
     alpha=1, beta=3
     elite=0.5
 
-    Time Elapsed                Distance                 
+    Time Elapsed              Distance                 
     --------------------------------------------------
-               0:00:00.030429   0.7862956094256206       
-               0:00:00.061907   0.7245780183747788       
-               0:00:00.094099   0.6704966523088779       
-               0:00:00.155262   0.649532279131667        
-               0:00:00.425243   0.6478240330008148       
-               0:00:00.486180   0.6460959831256239       
-               0:00:00.998951   0.6386581061221168       
+               0:00:00.017490 0.7981182992833705       
+               0:00:00.034784 0.738147755518648        
+               0:00:00.069041 0.694362159048816        
+               0:00:00.276027 0.6818083968312925       
+               0:00:00.379039 0.6669398280432167       
+               0:00:00.465924 0.6463548571712562       
+               0:00:00.585685 0.6416519698864324       
+               0:00:01.563389 0.6349308484274142       
     --------------------------------------------------
     Best solution:
-             0 = {"y": -84.221723, "x": 34.045483}
-             1 = {"y": -84.225258, "x": 34.046006}
-             4 = {"y": -84.224917, "x": 34.048679}
-             8 = {"y": -84.226327, "x": 34.04951}
-             9 = {"y": -84.218865, "x": 34.051529}
-            14 = {"y": -84.217882, "x": 34.055487}
-             5 = {"y": -84.216757, "x": 34.059412}
-            12 = {"y": -84.217717, "x": 34.066471}
-            20 = {"y": -84.225499, "x": 34.063814}
-            30 = {"y": -84.22506, "x": 34.064489}
-            19 = {"y": -84.242514, "x": 34.060164}
-            29 = {"y": -84.243566, "x": 34.061518}
-            10 = {"y": -84.240155, "x": 34.062461}
-             6 = {"y": -84.237402, "x": 34.060461}
-            28 = {"y": -84.255772, "x": 34.044915}
-             2 = {"y": -84.262126, "x": 34.048194}
-            27 = {"y": -84.267249, "x": 34.02115}
-            22 = {"y": -84.363437, "x": 34.021342}
-            25 = {"y": -84.36298, "x": 34.023101}
-            23 = {"y": -84.36215, "x": 34.022585}
-            24 = {"y": -84.361903, "x": 34.022718}
-            21 = {"y": -84.33483, "x": 34.061468}
-             7 = {"y": -84.334798, "x": 34.061281}
-            16 = {"y": -84.283569, "x": 34.068647}
-            15 = {"y": -84.283782, "x": 34.068455}
-            13 = {"y": -84.265784, "x": 34.071628}
-            11 = {"y": -84.21667, "x": 34.10584}
-            17 = {"y": -84.177031, "x": 34.109645}
-            31 = {"y": -84.163971, "x": 34.116852}
-            18 = {"y": -84.163304, "x": 34.118162}
-            26 = {"y": -84.16382, "x": 34.024302}
-             3 = {"y": -84.208885, "x": 34.048312}
-            32 = {"y": -84.20058, "x": 34.056326}
-    Solution length: 0.6386581061221168
-    Found at 0:00:00.998951 out of 0:00:02.994951 seconds.
+             0 = (34.02115, -84.267249)
+             9 = (34.048194, -84.262126)
+             6 = (34.044915, -84.255772)
+            22 = (34.061518, -84.243566)
+            23 = (34.062461, -84.240155)
+            18 = (34.060461, -84.237402)
+            17 = (34.060164, -84.242514)
+            12 = (34.04951, -84.226327)
+            11 = (34.048679, -84.224917)
+             8 = (34.046006, -84.225258)
+             7 = (34.045483, -84.221723)
+            13 = (34.051529, -84.218865)
+            14 = (34.055487, -84.217882)
+            16 = (34.059412, -84.216757)
+            25 = (34.066471, -84.217717)
+            24 = (34.064489, -84.22506)
+            20 = (34.063814, -84.225499)
+            10 = (34.048312, -84.208885)
+            15 = (34.056326, -84.20058)
+             5 = (34.024302, -84.16382)
+            32 = (34.118162, -84.163304)
+            31 = (34.116852, -84.163971)
+            30 = (34.109645, -84.177031)
+            29 = (34.10584, -84.21667)
+            28 = (34.071628, -84.265784)
+            27 = (34.068647, -84.283569)
+            26 = (34.068455, -84.283782)
+            19 = (34.061281, -84.334798)
+            21 = (34.061468, -84.33483)
+             2 = (34.022585, -84.36215)
+             3 = (34.022718, -84.361903)
+             4 = (34.023101, -84.36298)
+             1 = (34.021342, -84.363437)
+    Solution length: 0.6349308484274142
+    Found at 0:00:01.563389 out of 0:00:01.698616 seconds.
     $
 
 Known Bugs
 ----------
 
-- unhashable values in the data used to create an instance of the :class:`Node` class causes errors
+None of which I am currently aware. Please let me know if you find 
+otherwise.
 
 Troubleshooting
 ---------------
