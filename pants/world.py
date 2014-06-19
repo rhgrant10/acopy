@@ -11,18 +11,20 @@ import json
         
 
 class World:
-    def __init__(self, edges=None):
-        """Create a new world consisting of the given *edges*.
+    def __init__(self, nodes, lfunc=None):
+        """Create a new world consisting of the given *nodes*.
         
-        :param list edges: a list of :class:`Edge`s
+        :param list nodes: a list of nodes
 
         """
-        self._nodes = []
+        self._nodes = nodes
         self.edges = {}
-        if edges is not None:
-            for e in edges:
-                self.add_edge(e)
-                
+        for m, a in enumerate(nodes):
+            for n, b in enumerate(nodes):
+                if a != b:
+                    edge = Edge(a, b, length=lfunc(a, b))
+                    self.edges[m, n] = edge
+
     @property
     def nodes(self):
         """Return the IDs of all the nodes.
