@@ -81,7 +81,7 @@ requirements for node data of any sort.
 .. code-block:: python
 
       def euclidean(a, b):
-          d = math.sqrt(pow(a[1] - b[1], 2) + pow(a[0] - b[0], 2))
+          return math.sqrt(pow(a[1] - b[1], 2) + pow(a[0] - b[0], 2))
 
 4) Create the ``World`` from the nodes and the length function. 
 
