@@ -55,7 +55,7 @@ requirements for node data of any sort.
 
 1) Import **Pants** (along with any other packages you'll need).
 
-.. code-block:: python
+   .. code-block:: python
 
         import pants
         import math
@@ -65,7 +65,7 @@ requirements for node data of any sort.
    random 2D points. The only requirement for a node is that it is
    distinguishable from all of the other nodes.
 
-.. code-block:: python
+    .. code-block:: python
 
       nodes = []
       for _ in range(20):
