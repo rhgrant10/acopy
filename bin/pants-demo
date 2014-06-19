@@ -4,6 +4,7 @@ from pants import Solver
 from datetime import timedelta
 import time
 import math
+import argparse
 import sys
 
 # Real-world latitude longitude coordinates.
@@ -41,25 +42,19 @@ def dist(a, b):
     """Return the distance between two points represeted as a 2-tuple."""
     return math.sqrt((a[1] - b[1]) ** 2 + (a[0] - b[0]) ** 2)
 
-
-if __name__ == '__main__':
-    # TODO: Make this if-body into a real script with functions and 
-    # the like.
-    # TODO: Use argparse and provide the users with many options.
-    limit = int(sys.argv[1]) if len(sys.argv) > 1 else 100
-    
-    world = World(TEST_COORDS_33, dist)
-    solver = Solver(world)
+def run_demo(nodes, *args, **kwargs):
+    world = World(nodes, dist)
+    solver = Solver(world, **kwargs)
 
     solver_setting_report_format = "\n".join([
         "Solver settings:",
-        "limit={}",
+        "limit={w.limit}",
         "rho={w.rho}, Q={w.q}",
         "alpha={w.alpha}, beta={w.beta}",
         "elite={w.elite}"
         ])
 
-    print(solver_setting_report_format.format(limit, w=solver))
+    print(solver_setting_report_format.format(w=solver))
     
     columns = "{!s:<25}\t{:<25}"
     divider = "-" * (25 + 25)
@@ -72,7 +67,7 @@ if __name__ == '__main__':
     
     fastest = None
     start_time = time.time()
-    for i, ant in enumerate(solver.solutions(limit)):
+    for i, ant in enumerate(solver.solutions()):
         fastest = ant
         fastest_time = timedelta(seconds=(time.time() - start_time))
         print(columns.format(fastest_time, ant.distance))
@@ -86,3 +81,20 @@ if __name__ == '__main__':
     print("Solution length: {}".format(fastest.distance))
     print("Found at {} out of {} seconds.".format(fastest_time, total_time))
     
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-l', '--limit', type=int, default=100)
+    parser.add_argument('-a', '--alpha', type=float, default=1)
+    parser.add_argument('-b', '--beta', type=float, default=3)
+    parser.add_argument('-p', '--rho', type=float, default=0.8)
+    parser.add_argument('-e', '--elite', type=float, default=0.5)
+    parser.add_argument('-q', '--Q', type=float, default=1)
+    parser.add_argument('-t', '--t0', type=float, default=0.01)
+    parser.add_argument('-c', '--count', type=int, default=10, dest='ant_count')
+    parser.add_argument('-d', '--dataset', type=int, choices=[3, 4, 5, 33], default=33)
+    
+    args = parser.parse_args().__dict__
+
+    print(args)
+    run_demo(TEST_COORDS_33, **args)
