@@ -65,7 +65,7 @@ requirements for node data of any sort.
    random 2D points. The only requirement for a node is that it is
    distinguishable from all of the other nodes.
 
-    .. code-block:: python
+   .. code-block:: python
 
       nodes = []
       for _ in range(20):
@@ -78,20 +78,20 @@ requirements for node data of any sort.
    return the amonut of "work" between them. In this case, Euclidean 
    distance works well.
 
-.. code-block:: python
+   .. code-block:: python
 
       def euclidean(a, b):
           return math.sqrt(pow(a[1] - b[1], 2) + pow(a[0] - b[0], 2))
 
 4) Create the ``World`` from the nodes and the length function. 
 
-.. code-block:: python
+   .. code-block:: python
 
         world = pants.World(nodes, euclidean)
 
 5) Create a ``Solver`` for the ``World``.
 
-.. code-block:: python
+   .. code-block:: python
 
         solver = pants.Solver(world)
 
@@ -100,7 +100,7 @@ requirements for node data of any sort.
    returns the best solution found, whereas the latter returns each
    solution found if it is the best thus far.
 
-.. code-block:: python
+   .. code-block:: python
 
         solution = solver.solve()
         # or
@@ -108,7 +108,7 @@ requirements for node data of any sort.
 
 7) Inspect the solution(s).
 
-.. code-block:: python
+   .. code-block:: python
 
         print(solution.distance)
         print(solution.tour)    # Nodes visited in order
