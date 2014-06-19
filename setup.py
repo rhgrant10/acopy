@@ -7,7 +7,7 @@ if sys.version_info.major < 3:
 
 setup(
     name="ACO-Pants",
-    version="0.4.0",
+    version="0.4.1",
     author="Robert Grant",
     author_email="rhgrant10@gmail.com",
     packages=["pants", "pants.test"],

@@ -128,6 +128,7 @@ the default iteration limit of 100.
 
 .. code-block:: console
 
+    user@host:~$ pants-demo
     Solver settings:
     limit=100
     rho=0.8, Q=1
@@ -181,7 +182,7 @@ the default iteration limit of 100.
              1 = (34.021342, -84.363437)
     Solution length: 0.6349308484274142
     Found at 0:00:01.563389 out of 0:00:01.698616 seconds.
-    $
+    user@host:~$
 
 Known Bugs
 ----------
