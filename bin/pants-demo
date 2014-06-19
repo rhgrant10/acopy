@@ -21,21 +21,24 @@ TEST_COORDS_33 = [
     (34.109645, -84.177031), (34.116852, -84.163971), (34.118162, -84.163304)
 ]
 
+# 45-45-90 triangle with unit length legs.
 TEST_COORDS_3 = [
     (0, 0), (1, 0), (0, 1)
 ]
 
-
+# Unit square with diagonals.
 TEST_COORDS_4 = [
     (0, 0), (1, 0), (0, 1), (1, 1)
 ]
 
+# Same as above except with additional node in center of left edge.
 TEST_COORDS_5 = [
     (0, 0), (1, 0), (0, 1), (1, 1), (0, 0.5)
 ]
 
 
 def dist(a, b):
+    """Return the distance between two points represeted as a 2-tuple."""
     return math.sqrt((a[1] - b[1]) ** 2 + (a[0] - b[0]) ** 2)
 
 
@@ -45,11 +48,15 @@ if __name__ == '__main__':
     world = World(TEST_COORDS_33, dist)
     solver = Solver(world)
 
-    print("""Solver settings:
-limit={}
-rho={w.rho}, Q={w.q}
-alpha={w.alpha}, beta={w.beta}
-elite={w.elite}""".format(limit, w=solver))
+    solver_setting_report_format = "\n".join([
+        "Solver settings:",
+        "limit={}",
+        "rho={w.rho}, Q={w.q}",
+        "alpha={w.alpha}, beta={w.beta}",
+        "elite={w.elite}"
+        ])
+
+    print(solver_setting_report_format.format(limit, w=solver))
     
     columns = "{!s:<25}\t{:<25}"
     divider = "-" * (25 + 25)
@@ -64,11 +71,9 @@ elite={w.elite}""".format(limit, w=solver))
     start_time = time.time()
     for i, ant in enumerate(solver.solutions(limit)):
         fastest = ant
-        fastest_time = time.time() - start_time
-        print(columns.format(
-                timedelta(seconds=fastest_time),
-                ant.distance))
-    total_time = time.time() - start_time
+        fastest_time = timedelta(seconds=(time.time() - start_time))
+        print(columns.format(fastest_time, ant.distance))
+    total_time = timedelta(seconds=(time.time() - start_time))
     
     print(divider)
     print("Best solution:")
@@ -76,7 +81,5 @@ elite={w.elite}""".format(limit, w=solver))
         print("  {:>8} = {}".format(i, n))
     
     print("Solution length: {}".format(fastest.distance))
-    print("Found at {} out of {} seconds.".format(
-            timedelta(seconds=fastest_time),
-            timedelta(seconds=total_time)))
+    print("Found at {} out of {} seconds.".format(fastest_time, total_time))
     
