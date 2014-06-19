@@ -53,7 +53,7 @@ Using **Pants** is simple. The example here uses Euclidean distance
 between 2D nodes with ``(x, y)`` coordinates, but there are no real
 requirements for node data of any sort.
 
-1) Import **Pants** (along with any other packages you'll need).
+1) *Import **Pants** *(along with any other packages you'll need).
 
    .. code-block:: python
 
@@ -61,7 +61,7 @@ requirements for node data of any sort.
         import math
         import random
 
-2) Create your data points; these become the nodes. Here we create some
+2) *Create your data points*; these become the nodes. Here we create some
    random 2D points. The only requirement for a node is that it is
    distinguishable from all of the other nodes.
 
@@ -74,7 +74,7 @@ requirements for node data of any sort.
         nodes.append((x, y))
 
 
-3) Define your length function. This function must accept two nodes and
+3) *Define your length function*. This function must accept two nodes and
    return the amonut of "work" between them. In this case, Euclidean 
    distance works well.
 
@@ -83,19 +83,19 @@ requirements for node data of any sort.
       def euclidean(a, b):
           return math.sqrt(pow(a[1] - b[1], 2) + pow(a[0] - b[0], 2))
 
-4) Create the ``World`` from the nodes and the length function. 
+4) *Create the ``World``* from the nodes and the length function. 
 
    .. code-block:: python
 
         world = pants.World(nodes, euclidean)
 
-5) Create a ``Solver`` for the ``World``.
+5) *Create a ``Solver``* for the ``World``.
 
    .. code-block:: python
 
         solver = pants.Solver(world)
 
-6) Solve the ``World`` with the ``Solver``. Two methods are provided for
+6) *Solve the ``World``* with the ``Solver``. Two methods are provided for
    finding solutions: ``solve()`` and ``solutions()``. The former
    returns the best solution found, whereas the latter returns each
    solution found if it is the best thus far.
@@ -106,7 +106,7 @@ requirements for node data of any sort.
         # or
         solutions = solver.solutions()
 
-7) Inspect the solution(s).
+7) *Use the solution(s)*.
 
    .. code-block:: python
 
@@ -128,8 +128,9 @@ the default iteration limit of 100.
 
 .. code-block:: console
 
+    user@host:~$ pants-demo 99
     Solver settings:
-    limit=100
+    limit=99
     rho=0.8, Q=1
     alpha=1, beta=3
     elite=0.5
@@ -181,7 +182,8 @@ the default iteration limit of 100.
              1 = (34.021342, -84.363437)
     Solution length: 0.6349308484274142
     Found at 0:00:01.563389 out of 0:00:01.698616 seconds.
-    $
+    user@host:~$
+
 
 Known Bugs
 ----------
