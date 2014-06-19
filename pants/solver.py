@@ -96,8 +96,7 @@ class Solver:
             if global_best is None or local_best < global_best:
                 global_best = local_best.clone()
                 yield global_best
-            if self.elite:
-                self.trace_elite(global_best)
+            self.trace_elite(global_best)
     
     def round_robin_ants(self):
         """Returns a list of :class:`Ant`s distributed to the nodes of the 
