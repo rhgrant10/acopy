@@ -37,40 +37,22 @@ class World:
         for edge in self.edges.values():
             edge.pheromone = level
         
-    def add_edge(self, edge):
-        """Add *edge* to the :class:`World`.
-        
-        :param :class:`Edge` edge: the :class:`Edge` to add
-        
-        """
-        if not isinstance(edge, Edge):
-            raise TypeError("edge must be <type Edge>")
-        
-        if edge.start not in self._nodes:
-            a = len(self._nodes)
-            self._nodes.append(edge.start)
-        else:
-            a = self._nodes.index(edge.start)
-        
-        if edge.end not in self._nodes:
-            b = len(self._nodes)
-            self._nodes.append(edge.end)
-        else:
-            b = self._nodes.index(edge.end)
-        
-        self.edges[a, b] = edge    
-        
-    def node_data(self, idx):
-        """Return the actual data associated with a particular node ID.
+    def data(self, idx, idy=None):
+        """Return the node data of a single id or the edge data of two ids.
 
-        :param int id: the id of the 
+        :param int idx: the id of the first node
+        :param int idy: the id of the second node
 
         """
+        
         try:
-            return self._nodes[idx]
+            if idy is None:
+                return self._nodes[idx]
+            else:
+                return self.edges[idx, idy]
         except IndexError:
             return None
-    
+
 
 class Edge:
     """This class represents the link connecting two nodes.

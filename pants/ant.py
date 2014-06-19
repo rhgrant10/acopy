@@ -88,7 +88,7 @@ class Ant:
     @property
     def tour(self):
         """Nodes visited by the :class:`Ant` in order."""
-        return [self.world.node_data(i) for i in self.visited]
+        return [self.world.data(i) for i in self.visited]
 
     @property
     def path(self):
