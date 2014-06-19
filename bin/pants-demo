@@ -34,21 +34,15 @@ TEST_COORDS_5 = [
     (0, 0), (1, 0), (0, 1), (1, 1), (0, 0.5)
 ]
 
+
+def dist(a, b):
+    return math.sqrt((a[1] - b[1]) ** 2 + (a[0] - b[0]) ** 2)
+
+
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        limit = int(sys.argv[1])
-    else:
-        limit = 100
+    limit = int(sys.argv[1]) if len(sys.argv) > 1 else 100
     
-    world = World()
-    for start in TEST_COORDS_33:
-        for end in TEST_COORDS_33:
-            if start == end:
-                continue
-            dx = end[0] - start[0]
-            dy = end[1] - start[1]
-            edge = Edge(start, end, math.sqrt(dx ** 2 + dy ** 2))
-            world.add_edge(edge)
+    world = World(TEST_COORDS_33, dist)
     solver = Solver(world)
 
     print("""Solver settings:
