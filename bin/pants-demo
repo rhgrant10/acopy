@@ -94,7 +94,13 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--count', type=int, default=10, dest='ant_count')
     parser.add_argument('-d', '--dataset', type=int, choices=[3, 4, 5, 33], default=33)
     
-    args = parser.parse_args().__dict__
+    args = parser.parse_args()
 
-    print(args)
-    run_demo(TEST_COORDS_33, **args)
+    nodes = {
+        3: TEST_COORDS_3,
+        4: TEST_COORDS_4,
+        5: TEST_COORDS_5,
+        33: TEST_COORDS_33
+    }[args.dataset]
+
+    run_demo(nodes, **args.__dict__)
