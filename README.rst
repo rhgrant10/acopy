@@ -122,13 +122,14 @@ requirements for node data of any sort.
 Run the Demo
 ------------
 
-Included is a 33 "city" demo that can be run from the command line.
-Currently it accepts a single integer command line parameter to override
-the default iteration limit of 100.
+Included is a 33 "city" demo script that can be run from the command line.
 
 .. code-block:: console
+    user@host:~$ pants-demo -h
+    
 
     user@host:~$ pants-demo
+
     Solver settings:
     limit=100
     rho=0.8, Q=1
