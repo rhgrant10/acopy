@@ -125,9 +125,7 @@ Run the Demo
 Included is a 33 "city" demo script that can be run from the command line.
 
 .. code-block:: console
-    user@host:~$ pants-demo -h
     
-
     user@host:~$ pants-demo
 
     Solver settings:
