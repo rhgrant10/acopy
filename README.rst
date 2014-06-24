@@ -126,6 +126,34 @@ Included is a 33 "city" demo script that can be run from the command line.
 
 .. code-block:: console
     
+    user@host:~$ pants-demo -h
+    usage: pants-demo [-h] [-V] [-a A] [-b B] [-l L] [-p P] [-e E] [-q Q] [-t T]
+                      [-c N] [-d D]
+
+    Script th;at demos the ACO-Pants package.
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      -V, --version      show program's version number and exit
+      -a A, --alpha A    relative importance placed on pheromones; default=1
+      -b B, --beta B     relative importance placed on distances; default=3
+      -l L, --limit L    number of iterations to perform; default=100
+      -p P, --rho P      ratio of evaporated pheromone (0 <= P <= 1); default=0.8
+      -e E, --elite E    ratio of elite ant's pheromone; default=0.5
+      -q Q, --Q Q        total pheromone capacity of each ant (Q > 0); default=1
+      -t T, --t0 T       initial amount of pheromone on every edge (T > 0);
+                         default=0.01
+      -c N, --count N    number of ants used in each iteration (N > 0); default=10
+      -d D, --dataset D  specify a particular set of demo data; default=33
+
+    For best results:
+      * 0.5 <= A <= 1
+      * 1.0 <= B <= 5
+      * A < B
+      * L >= 2000
+      * N > 1
+
+    For more information, please visit https://github.com/rhgrant10/Pants.
     user@host:~$ pants-demo
 
     Solver settings:
