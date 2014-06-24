@@ -42,8 +42,9 @@ class Solver:
         self.beta = kwargs.get('beta', 3)
         self.ant_count = kwargs.get('ant_count', 10)
         self.elite = kwargs.get('elite', .5)
+        self.limit = kwargs.get('limit', 100)
 
-    def solve(self, limit=10):
+    def solve(self):
         """Return the shortest path found after *limit* iterations.
 
         :param int limit: the number of iterations to perform (default=10)
@@ -54,7 +55,7 @@ class Solver:
         """
         self.world.reset_pheromone(self.t0)
         global_best = None
-        for i in range(limit):
+        for i in range(self.limit):
             # (Re-)Build the ant colony
             ants = self.round_robin_ants() if self.ant_count < 1 \
                     else self.random_ants()
@@ -68,7 +69,7 @@ class Solver:
                 self.trace_elite(global_best)
         return global_best
     
-    def solutions(self, limit=10):
+    def solutions(self):
         """Return successively shorter paths until *limit* iterations have
         occured.
 
@@ -86,7 +87,7 @@ class Solver:
         """
         self.world.reset_pheromone(self.t0)
         global_best = None
-        for i in range(limit):
+        for i in range(self.limit):
             # (Re-)Build the ant colony
             ants = self.round_robin_ants() if self.ant_count < 1 \
                     else self.random_ants()

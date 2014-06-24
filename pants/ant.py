@@ -128,8 +128,17 @@ class Ant:
         return choices[bisect.bisect(cumdist, random.random() * total)]
 
     def make_move(self, dest):
-        """Move to the *dest* node."""
+        """Move to the *dest* node and return the edge traveled."""
+        # Since self.node simply refers to self.visited[-1], which will be
+        # changed before we return to calling code, store a reference now.
         ori = self.node
+
+            
+        # When dest is None, all nodes have been visited but we may not
+        # have returned to the node on which we started. If we have, then
+        # just do nothing and return None. Otherwise, set the dest to the
+        # node on which we started and don't try to move it from unvisited
+        # to visited because it was the first one to be moved.
         if dest is None:
             if self.can_move() is False:
                 return None

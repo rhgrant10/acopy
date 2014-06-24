@@ -4,6 +4,7 @@ from pants import Solver
 from datetime import timedelta
 import time
 import math
+import argparse
 import sys
 
 # Real-world latitude longitude coordinates.
@@ -21,35 +22,40 @@ TEST_COORDS_33 = [
     (34.109645, -84.177031), (34.116852, -84.163971), (34.118162, -84.163304)
 ]
 
+# 45-45-90 triangle with unit length legs.
 TEST_COORDS_3 = [
     (0, 0), (1, 0), (0, 1)
 ]
 
-
+# Unit square with diagonals.
 TEST_COORDS_4 = [
     (0, 0), (1, 0), (0, 1), (1, 1)
 ]
 
+# Same as above except with additional node in center of left edge.
 TEST_COORDS_5 = [
     (0, 0), (1, 0), (0, 1), (1, 1), (0, 0.5)
 ]
 
 
 def dist(a, b):
+    """Return the distance between two points represeted as a 2-tuple."""
     return math.sqrt((a[1] - b[1]) ** 2 + (a[0] - b[0]) ** 2)
 
+def run_demo(nodes, *args, **kwargs):
+    print(dist)
+    world = World(nodes, dist)
+    solver = Solver(world, **kwargs)
 
-if __name__ == '__main__':
-    limit = int(sys.argv[1]) if len(sys.argv) > 1 else 100
-    
-    world = World(TEST_COORDS_33, dist)
-    solver = Solver(world)
+    solver_setting_report_format = "\n".join([
+        "Solver settings:",
+        "limit={w.limit}",
+        "rho={w.rho}, Q={w.q}",
+        "alpha={w.alpha}, beta={w.beta}",
+        "elite={w.elite}"
+        ])
 
-    print("""Solver settings:
-limit={}
-rho={w.rho}, Q={w.q}
-alpha={w.alpha}, beta={w.beta}
-elite={w.elite}""".format(limit, w=solver))
+    print(solver_setting_report_format.format(w=solver))
     
     columns = "{!s:<25}\t{:<25}"
     divider = "-" * (25 + 25)
@@ -62,13 +68,11 @@ elite={w.elite}""".format(limit, w=solver))
     
     fastest = None
     start_time = time.time()
-    for i, ant in enumerate(solver.solutions(limit)):
+    for i, ant in enumerate(solver.solutions()):
         fastest = ant
-        fastest_time = time.time() - start_time
-        print(columns.format(
-                timedelta(seconds=fastest_time),
-                ant.distance))
-    total_time = time.time() - start_time
+        fastest_time = timedelta(seconds=(time.time() - start_time))
+        print(columns.format(fastest_time, ant.distance))
+    total_time = timedelta(seconds=(time.time() - start_time))
     
     print(divider)
     print("Best solution:")
@@ -76,7 +80,99 @@ elite={w.elite}""".format(limit, w=solver))
         print("  {:>8} = {}".format(i, n))
     
     print("Solution length: {}".format(fastest.distance))
-    print("Found at {} out of {} seconds.".format(
-            timedelta(seconds=fastest_time),
-            timedelta(seconds=total_time)))
+    print("Found at {} out of {} seconds.".format(fastest_time, total_time))
     
+
+if __name__ == '__main__':
+    epilog = "\n".join([
+        'For best results:',
+        '  * 0.5 <= A <= 1',
+        '  * 1.0 <= B <= 5',
+        '  * A < B',
+        '  * L >= 2000',
+        '  * N > 1',
+        '',
+        ('For more information, please visit '
+            'https://github.com/rhgrant10/Pants.')
+        ])
+    
+    parser = argparse.ArgumentParser(
+        description='Script th;at demos the ACO-Pants package.',
+        epilog=epilog,
+        formatter_class=argparse.RawDescriptionHelpFormatter
+        )
+    
+    parser.add_argument(
+        '-V', '--version', 
+        action='version',
+        version='%(prog)s 0.4.1',
+        )
+    parser.add_argument(
+        '-a', '--alpha', 
+        type=float, default=1,
+        help='relative importance placed on pheromones; default=%(default)s',
+        metavar='A'
+        )
+    parser.add_argument(
+        '-b', '--beta', 
+        type=float, default=3,
+        help='relative importance placed on distances; default=%(default)s',
+        metavar='B'
+        )
+    parser.add_argument(
+        '-l', '--limit', 
+        type=int, default=100,
+        help='number of iterations to perform; default=%(default)s',
+        metavar='L'
+        )
+    parser.add_argument(
+        '-p', '--rho', 
+        type=float, default=0.8,
+        help=('ratio of evaporated pheromone (0 <= P <= 1); '
+            'default=%(default)s'),
+        metavar='P'
+        )
+    parser.add_argument(
+        '-e', '--elite', 
+        type=float, default=0.5,
+        help='ratio of elite ant\'s pheromone; default=%(default)s',
+        metavar='E'
+        )
+    parser.add_argument(
+        '-q', '--Q', 
+        type=float, default=1,
+        help=('total pheromone capacity of each ant (Q > 0); '
+            'default=%(default)s'),
+        metavar='Q'
+        )
+    parser.add_argument(
+        '-t', '--t0', 
+        type=float, default=0.01,
+        help=('initial amount of pheromone on every edge (T > 0); '
+            'default=%(default)s'),
+        metavar='T'
+        )
+    parser.add_argument(
+        '-c', '--count', dest='ant_count',
+        type=int, default=10, 
+        help=('number of ants used in each iteration (N > 0); '
+            'default=%(default)s'),
+        metavar='N'
+        )
+    parser.add_argument(
+        '-d', '--dataset', 
+        type=int, default=33, choices=[3, 4, 5, 33],
+        help='specify a particular set of demo data; default=%(default)s',
+        metavar='D'
+        )
+        
+    args = parser.parse_args()
+    
+    nodes = {
+        3: TEST_COORDS_3,
+        4: TEST_COORDS_4,
+        5: TEST_COORDS_5,
+        33: TEST_COORDS_33
+    }[args.dataset]
+
+    run_demo(nodes, **args.__dict__)
