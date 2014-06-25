@@ -20,7 +20,6 @@ class Solver:
     def __init__(self, **kwargs):
         """Create a new :class:`Solver` with the given parameters.
 
-        :param World world: the :class:`World` to solve
         :param float rho: percent evaporation of pheromone (0..1, default=0.8)
         :param float q: total pheromone deposited by each :class:`Ant` after
                         each interation is complete (>0, default=1)
@@ -45,10 +44,10 @@ class Solver:
         self.limit = kwargs.get('limit', 100)
 
     def solve(self, world):
-        """Return the shortest path found after *limit* iterations.
+        """Return the single shortest path found through the given *world*.
 
-        :param int limit: the number of iterations to perform (default=10)
-
+        :param World world: the :class:`World` to solve
+        
         :returns: the single best solution found
         :rtype: :class:`Ant`
 
@@ -61,7 +60,7 @@ class Solver:
                     else self.random_ants(world)
             
             self.find_solutions(ants)
-            self.update_scent(ants)
+            self.global_update(ants)
             local_best = sorted(ants)[0]
             if global_best is None or local_best < global_best:
                 global_best = local_best.clone()
@@ -70,17 +69,13 @@ class Solver:
         return global_best
     
     def solutions(self, world):
-        """Return successively shorter paths until *limit* iterations have
-        occured.
+        """Return successively shorter paths through the given *world*.
 
         Unlike :meth:`solve`, this method returns one solution for each 
-        improvement of the best solution found thus far. Therefore it may 
-        return a single solution (if the first one found was never improved) or
-        it may return up to *limit* solutions (if every iteration improved the
-        best solution found).
+        improvement of the best solution found thus far. 
 
-        :param int limit: the number of iterations to perform
-
+        :param World world: the :class:`World` to solve
+        
         :returns: successively shorter solutions as :class:`Ant`s
         :rtype: list
 
@@ -92,7 +87,7 @@ class Solver:
             ants = self.round_robin_ants(world) if self.ant_count < 1 \
                     else self.random_ants(world)
             self.find_solutions(ants)
-            self.update_scent(ants)
+            self.global_update(ants)
             local_best = sorted(ants)[0]
             if global_best is None or local_best < global_best:
                 global_best = local_best.clone()
@@ -104,13 +99,14 @@ class Solver:
         world in a round-robin fashion.
 
         Note that this does not ensure at least one :class:`Ant` begins at each
-        :class:`Node` unless there are exactly as many :class:`Ant`s as their 
-        are :class:`Node`s. However, if *ant_count* is ``0`` then *ant_count*
-        is set to the number of :class:`Node`s in the :class:`World` and this
-        method is used to create the :class:`Ant`s before solving.
+        node unless there are exactly as many :class:`Ant`s as there are nodes.
+        However, if *ant_count* is ``0`` then *ant_count* is set to the number
+        of nodes in the :class:`World` and this method is used to create the
+        :class:`Ant`s before solving.
 
-        :returns: the :class:`Ant`s initialized to :class:`Node`s in the 
-                  :class:`World`
+        :param World world: the :class:`World` in which to create the ants.
+        
+        :returns: the :class:`Ant`s initialized to nodes in the :class:`World`
         :rtype: list
 
         """
@@ -130,9 +126,13 @@ class Solver:
         world in a random fashion.
 
         Note that this does not ensure at least one :class:`Ant` begins at each
-        :class:`Node` unless there are exactly as many :class:`Ant`s as their 
-        are :class:`Node`s. This method is used to create the :class:`Ant`s 
-        before solving if *ant_count* is **not** ``0``.
+        node unless there are exactly as many :class:`Ant`s as there are nodes.
+        This method is used to create the :class:`Ant`s before solving if 
+        *ant_count* is **not** ``0``.
+
+        :param World world: the :class:`World` in which to create the ants.
+        :param bool even: ``True`` if random should avoid choosing the same
+                          starting node multiple times. 
 
         :returns: the :class:`Ant`s initialized to :class:`Node`s in the 
                   :class:`World`
@@ -179,7 +179,9 @@ class Solver:
         return ants
 
     def find_solutions(self, ants):
-        """Lets each ant find its own solution.
+        """Let each ant find its own solution.
+
+        Makes each ant move until every ant can no longer move.
 
         TODO: Make the local pheromone update optional and configurable.
 
@@ -196,15 +198,26 @@ class Solver:
             for ant in ants:
                 if ant.can_move():
                     edge = ant.move()
-                    edge.pheromone *= self.rho
+                    self.local_update(edge)
                 else:
                     ants_done += 1
 
-    def update_scent(self, ants):
-        """Update the amount of pheromone on each edge.
+    def local_update(self, edge):
+        """Evaporate some of the pheromone on the given *edge*.
 
-        This method represents the "global update" performed at the end of each
-        iteration.
+        This method will never let the pheromone on an edge decrease to less
+        than its inital level.
+
+        """
+        edge.pheromone = max(self.t0, edge.pheromone * self.rho)
+
+    def global_update(self, ants):
+        """Update the amount of pheromone on each edge according to the fitness
+        of solutions that use it.
+
+        This accomplishes the global update performed at the end of each
+        solving iteration. This method will never let the pheromone on an edge
+        decrease to less than its inital level.
 
         :param list ants: the ants to use for solving
 
@@ -221,7 +234,9 @@ class Solver:
         """Deposit pheromone along the path of a particular ant.
 
         This method is used to deposit the pheromone of the elite :class:`Ant`
-        at the end of each iteration.
+        at the end of each iteration. Because this method only increases the 
+        pheromone on edges, this method will never let the pheromone on an edge
+        decrease to less than its inital level.
 
         :param Ant ant: the elite :class:`Ant`
 

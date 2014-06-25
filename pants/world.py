@@ -11,10 +11,22 @@ import json
         
 
 class World:
-    def __init__(self, nodes, lfunc=None):
+    """This class contains the nodes and edges that comprise a world.
+
+    In addition to a name and description, each world is assigned a UID.
+
+    """
+    uid = 0
+
+    def __init__(self, nodes, lfunc=None, **kwargs):
         """Create a new world consisting of the given *nodes*.
         
         :param list nodes: a list of nodes
+        :param callable lfunc: a function that calculates the distance between
+                               two nodes
+        :param str name: the name of the world (default is "world#", where
+                         "#" is the ``uid`` of the world)
+        :param str description: a description of the world (default is None)
 
         """
         self._nodes = nodes
@@ -24,16 +36,22 @@ class World:
                 if a != b:
                     edge = Edge(a, b, length=lfunc(a, b))
                     self.edges[m, n] = edge
+        self.uid = self.__class__.uid
+        self.__class__.uid += 1
+        self.name = kwargs.get('name', 'world{}'.format(self.uid))
+        self.description = kwargs.get('description', None)
 
     @property
     def nodes(self):
         """Return the IDs of all the nodes.
-
         """
         return list(range(len(self._nodes)))
     
     def reset_pheromone(self, level=None):
         """Reset the amount of pheromone on every edge to *level*.
+        
+        :param float level: amount of pheromone to set on each edge.
+
         """
         level = level or 0.01
         for edge in self.edges.values():
@@ -43,7 +61,7 @@ class World:
         """Return the node data of a single id or the edge data of two ids.
 
         :param int idx: the id of the first node
-        :param int idy: the id of the second node
+        :param int idy: the id of the second node (default is None)
 
         """
         
@@ -78,10 +96,6 @@ class Edge:
         self.end = b
         self.length = 1 if length is None else length
         self.pheromone = 0.1 if pheromone is None else pheromone
-
-    def __repr__(self):
-        return "Edge from {} to {} that is {} long.".format(
-                self.start, self.end, self.length)
 
     def __eq__(self, other):
         """Return ``True`` iff *other* has identical properties.
