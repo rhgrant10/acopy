@@ -29,7 +29,7 @@ class Solver:
         :param float t0: inital pheromone level along each :class:`Edge` of the
                          :class:`World` (>0, default=0.01)
         :param int limit: number of iterations to perform (default=100)
-        :param float ant_count: how many :class:`Ants` will be used 
+        :param float ant_count: how many :class:`Ant`\s will be used 
                                 (default=10)
         :param float elite: multiplier of the pheromone deposited by the elite
                             :class:`Ant` (default=0.5)
@@ -74,7 +74,7 @@ class Solver:
 
         :param World world: the :class:`World` to solve
         
-        :returns: successively shorter solutions as :class:`Ant`s
+        :returns: successively shorter solutions as :class:`Ant`\s
         :rtype: list
         """
         world.reset_pheromone(self.t0)
@@ -92,18 +92,18 @@ class Solver:
             self.trace_elite(global_best)
     
     def round_robin_ants(self, world):
-        """Returns a list of :class:`Ant`s distributed to the nodes of the 
+        """Returns a list of :class:`Ant`\s distributed to the nodes of the 
         world in a round-robin fashion.
 
         Note that this does not ensure at least one :class:`Ant` begins at each
-        node unless there are exactly as many :class:`Ant`s as there are nodes.
-        However, if *ant_count* is ``0`` then *ant_count* is set to the number
-        of nodes in the :class:`World` and this method is used to create the
-        :class:`Ant`s before solving.
+        node unless there are exactly as many :class:`Ant`\s as there are
+        nodes. However, if *ant_count* is ``0`` then *ant_count* is set to the
+        number of nodes in the :class:`World` and this method is used to create
+        the :class:`Ant`\s before solving.
 
         :param World world: the :class:`World` in which to create the ants.
         
-        :returns: the :class:`Ant`s initialized to nodes in the :class:`World`
+        :returns: the :class:`Ant`\s initialized to nodes in the :class:`World`
         :rtype: list
         """
         starts = world.nodes
@@ -115,19 +115,19 @@ class Solver:
         ]
         
     def random_ants(self, world, even=False):
-        """Returns a list of :class:`Ant`s distributed to the nodes of the 
+        """Returns a list of :class:`Ant`\s distributed to the nodes of the 
         world in a random fashion.
 
         Note that this does not ensure at least one :class:`Ant` begins at each
-        node unless there are exactly as many :class:`Ant`s as there are nodes.
-        This method is used to create the :class:`Ant`s before solving if 
-        *ant_count* is **not** ``0``.
+        node unless there are exactly as many :class:`Ant`\s as there are
+        nodes. This method is used to create the :class:`Ant`\s before solving
+        if *ant_count* is **not** ``0``.
 
         :param World world: the :class:`World` in which to create the ants.
         :param bool even: ``True`` if random should avoid choosing the same
                           starting node multiple times. 
 
-        :returns: the :class:`Ant`s initialized to :class:`Node`s in the 
+        :returns: the :class:`Ant`\s initialized to :class:`Node`s in the 
                   :class:`World`
         :rtype: list
         """

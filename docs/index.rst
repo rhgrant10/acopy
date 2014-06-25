@@ -18,13 +18,13 @@ World module
    :members:
 
 Ant module
-------------
+----------
 
 .. automodule:: pants.ant
    :members:
 
 Solver module
-------------
+-------------
 
 .. automodule:: pants.solver
    :members:
