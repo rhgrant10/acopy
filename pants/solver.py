@@ -41,24 +41,33 @@ class Solver:
         self.ant_count = kwargs.get('ant_count', 10)
         self.elite = kwargs.get('elite', .5)
         
+    def create_colony(self, world):
+        if self.ant_count < 1:
+            return self.round_robin_ants(world)
+        return self.random_ants(world)
+        
+    def reset_colony(self, colony):
+        for ant in colony:
+            ant.initialize(ant.world)
+        
+    def aco(self, colony):
+        self.find_solutions(colony)
+        self.global_update(colony)
+        return sorted(colony)[0]
+        
     def solve(self, world):
         """Return the single shortest path found through the given *world*.
 
         :param World world: the :class:`World` to solve
-        
         :returns: the single best solution found
         :rtype: :class:`Ant`
         """
         world.reset_pheromone(self.t0)
         global_best = None
+        colony = self.create_colony(world)
         for i in range(self.limit):
-            # (Re-)Build the ant colony
-            ants = self.round_robin_ants(world) if self.ant_count < 1 \
-                    else self.random_ants(world)
-            
-            self.find_solutions(ants)
-            self.global_update(ants)
-            local_best = sorted(ants)[0]
+            self.reset_colony(colony)
+            local_best = self.aco(colony)
             if global_best is None or local_best < global_best:
                 global_best = copy(local_best)
             self.trace_elite(global_best)
@@ -71,19 +80,15 @@ class Solver:
         improvement of the best solution found thus far. 
 
         :param World world: the :class:`World` to solve
-        
         :returns: successively shorter solutions as :class:`Ant`\s
         :rtype: list
         """
         world.reset_pheromone(self.t0)
         global_best = None
+        colony = self.create_colony(world)
         for i in range(self.limit):
-            # (Re-)Build the ant colony
-            ants = self.round_robin_ants(world) if self.ant_count < 1 \
-                    else self.random_ants(world)
-            self.find_solutions(ants)
-            self.global_update(ants)
-            local_best = sorted(ants)[0]
+            self.reset_colony(colony)
+            local_best = self.aco(colony)
             if global_best is None or local_best < global_best:
                 global_best = copy(local_best)
                 yield global_best
