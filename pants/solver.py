@@ -17,23 +17,21 @@ from .ant import Ant
 class Solver:
     """This class contains the functionality for finding one or more solutions
     for a given :class:`World`.
+    
+    :param float alpha: relative importance of pheromone (default=1)
+    :param float beta: relative importance of distance (default=3)
+    :param float rho: percent evaporation of pheromone (0..1, default=0.8)
+    :param float q: total pheromone deposited by each :class:`Ant` after
+                    each interation is complete (>0, default=1)
+    :param float t0: inital pheromone level along each :class:`Edge` of the
+                     :class:`World` (>0, default=0.01)
+    :param int limit: number of iterations to perform (default=100)
+    :param float ant_count: how many :class:`Ant`\s will be used 
+                            (default=10)
+    :param float elite: multiplier of the pheromone deposited by the elite
+                        :class:`Ant` (default=0.5)
     """
     def __init__(self, **kwargs):
-        """Create a new :class:`Solver` with the given parameters.
-
-        :param float alpha: relative importance of pheromone (default=1)
-        :param float beta: relative importance of distance (default=3)
-        :param float rho: percent evaporation of pheromone (0..1, default=0.8)
-        :param float q: total pheromone deposited by each :class:`Ant` after
-                        each interation is complete (>0, default=1)
-        :param float t0: inital pheromone level along each :class:`Edge` of the
-                         :class:`World` (>0, default=0.01)
-        :param int limit: number of iterations to perform (default=100)
-        :param float ant_count: how many :class:`Ant`\s will be used 
-                                (default=10)
-        :param float elite: multiplier of the pheromone deposited by the elite
-                            :class:`Ant` (default=0.5)
-        """
         self.alpha = kwargs.get('alpha', 1)
         self.beta = kwargs.get('beta', 3)
         self.rho = kwargs.get('rho', 0.8)
