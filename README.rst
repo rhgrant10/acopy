@@ -89,11 +89,11 @@ requirements for node data of any sort.
 
         world = pants.World(nodes, euclidean)
 
-5) Create a ``Solver`` for the ``World``.
+5) Create the ``Solver``.
 
    .. code-block:: python
 
-        solver = pants.Solver(world)
+        solver = pants.Solver()
 
 6) Solve the ``World`` with the ``Solver``. Two methods are provided for
    finding solutions: ``solve()`` and ``solutions()``. The former
@@ -102,9 +102,9 @@ requirements for node data of any sort.
 
    .. code-block:: python
 
-        solution = solver.solve()
+        solution = solver.solve(world)
         # or
-        solutions = solver.solutions()
+        solutions = solver.solutions(world)
 
 7) Inspect the solution(s).
 
@@ -155,7 +155,6 @@ Included is a 33 "city" demo script that can be run from the command line.
 
     For more information, please visit https://github.com/rhgrant10/Pants.
     user@host:~$ pants-demo
-
     Solver settings:
     limit=100
     rho=0.8, Q=1
