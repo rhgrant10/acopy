@@ -31,11 +31,26 @@ class Ant:
 
     Each :class:`Ant` *must be initialized* to a particular :class:`World`, and
     optionally may be given an initial node from which to start finding a
-    solution. If a starting node is not given, one is chosen at random.
+    solution. If a starting node is not given, one is chosen at random. Thus a
+    few examples of instantiation and initialization might look like:
 
-    :class:`Ant`\s may be cloned, which *in the future*, will not preserve the
-    *uid* property while returning a shallow copy. If this behavior is not
-    desired, simply use the ``copy`` or ``deepcopy`` modules as necessary.
+    .. code-block:: python
+
+        ant = Ant()
+        ant.initialize(world)
+
+    .. code-block:: python
+
+        ant = Ant(alpha=0.5, beta=2.25)
+        ant.initialize(world, start=world.nodes[0])
+
+    .. note::
+
+        The examples above assume the world has already been created!
+
+    :class:`Ant`\s may be cloned, which will not preserve the *uid* property
+    while returning a shallow copy. If this behavior is not desired, simply
+    use the ``copy`` or ``deepcopy`` modules as necessary.
     
     Once an :class:`Ant` has found a solution (or at any time), the solution
     may be obtained and inspected by accessing its ``tour`` property, which
@@ -83,16 +98,13 @@ class Ant:
         return self
 
     def clone(self):
-        """Return an identical but new :class:`Ant`.
-
-        Note that unlike copy, this method preserves even the UID of an Ant.
+        """Return a shallow copy with a new UID.
 
         :returns: a clone
         :rtype: :class:`Ant`
 
         """
         ant = Ant(self.alpha, self.beta)
-        ant.uid = self.uid
         ant.world = self.world
         ant.start = self.start
         ant.visited = self.visited[:]

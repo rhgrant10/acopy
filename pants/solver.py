@@ -10,7 +10,9 @@
 
 from .world import World
 from .ant import Ant
+from copy import copy
 import random
+
 
 
 class Solver:
@@ -63,7 +65,7 @@ class Solver:
             self.global_update(ants)
             local_best = sorted(ants)[0]
             if global_best is None or local_best < global_best:
-                global_best = local_best.clone()
+                global_best = copy(local_best)
             if self.elite:
                 self.trace_elite(global_best)
         return global_best
