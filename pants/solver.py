@@ -113,12 +113,9 @@ class Solver:
         starts = world.nodes
         n = len(starts)
         return [
-            Ant(
-                world, 
-                self.alpha, 
-                self.beta, 
-                start=starts[i % n]
-            ).initialize() for i in range(self.ant_count)
+            Ant(self.alpha, self.beta).initialize(
+                world, start=starts[i % n])
+            for i in range(self.ant_count)
         ]
         
     def random_ants(self, world, even=False):
@@ -149,32 +146,23 @@ class Solver:
             if self.ant_count > n:
                 for i in range(self.ant_count // n):
                     ants.extend([
-                        Ant(
-                            world,
-                            self.alpha,
-                            self.beta,
-                            start=starts[j]
-                        ).initialize() for j in range(n)
+                        Ant(self.alpha,self.beta).initialize(
+                            world, start=starts[j])
+                        for j in range(n)
                     ])
             # Now (without choosing the same node twice) choose the reamining
             # starts randomly.
             ants.extend([
-                Ant(
-                    world,
-                    self.alpha,
-                    self.beta,
-                    start=starts.pop(random.randrange(n - i))
-                ).initialize() for i in range(self.ant_count % n)
+                Ant(self.alpha, self.beta).initialize(
+                    world, start=starts.pop(random.randrange(n - i)))
+                for i in range(self.ant_count % n)
             ])
         else:
             # Just pick random nodes.
             ants.extend([
-                Ant(
-                    world,
-                    self.alpha,
-                    self.beta,
-                    start=starts[random.randrange(n)]
-                ).initialize() for i in range(self.ant_count)
+                Ant(self.alpha, self.beta).initialize(
+                    world, start=starts[random.randrange(n)]) 
+                for i in range(self.ant_count)
             ])
         return ants
 

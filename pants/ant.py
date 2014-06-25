@@ -16,41 +16,64 @@ import sys
 
 class Ant:
     """
-    A single independent finder of solutions to the world.
+    A single independent finder of solutions to a :class:`World`.
+
+    Each :class:`Ant` finds a solution to a world one move at a time.  They
+    also represent the solution they find, and are capable of reporting which
+    nodes and edges they visited, in what order they were visited, and the
+    total length of the solution.
+
+    Two properties govern the decisions each :class:`Ant` makes while finding
+    a solution: *alpha* and *beta*. *alpha* controls the importance placed on
+    pheromone while *beta* controls the importance placed on distance. In 
+    general, *beta* should be greater than *alpha* for best results. Ants also
+    have a uid property that can be used to identify a particular instance.
+
+    Each :class:`Ant` *must be initialized* to a particular :class:`World`, and
+    optionally may be given an initial node from which to start finding a
+    solution. If a starting node is not given, one is chosen at random.
+
+    :class:`Ant`\s may be cloned, which *in the future*, will not preserve the
+    *uid* property while returning a shallow copy. If this behavior is not
+    desired, simply use the ``copy`` or ``deepcopy`` modules as necessary.
+    
+    Once an :class:`Ant` has found a solution (or at any time), the solution
+    may be obtained and inspected by accessing its ``tour`` property, which
+    returns the nodes visited in order, or it's ``path`` property, which 
+    returns the edges visited in order. Also, the total distance of the 
+    solution can be accessed through its ``distance`` property.
 
     """
     uid = 0
 
-    def __init__(self, world, alpha=1, beta=3, start=None):
+    def __init__(self, alpha=1, beta=3):
         """Create a new Ant for the given world.
 
-        :param World world: the world in which to travel
         :param float alpha: the relative importance of pheromone (default=1)
         :param float beta: the relative importance of distance (default=3)
-        :param Node start: the starting node (default=None)
-
+        
         """
         self.uid = Ant.uid
         Ant.uid += 1
-        self.world = world
+        self.world = None
         self.alpha = alpha
         self.beta = beta
-        self.start = start
+        self.start = None
         self.distance = 0
         self.visited = []
         self.unvisited = []
         self.traveled = []
 
-    def initialize(self, start=None):
+    def initialize(self, world, start=None):
         """Reset everything so that a new solution can be found.
 
-        :param start: which :class:`Node` to start the next solution from
-            (by default, the previous starting node is reused)
-        
+        :param World world: the world to solve
+        :param Node start: the starting node (default is choosen randomly)
+
         """
+        self.world = world
         if start is None:
-            if self.start is None:
-                self.start = random.randrange(len(self.world.nodes))
+            self.start = random.randrange(len(self.world.nodes))
         else:
             self.start = start
         self.distance = 0
@@ -68,8 +91,10 @@ class Ant:
         :rtype: :class:`Ant`
 
         """
-        ant = Ant(self.world, self.alpha, self.beta, self.start)
+        ant = Ant(self.alpha, self.beta)
         ant.uid = self.uid
+        ant.world = self.world
+        ant.start = self.start
         ant.visited = self.visited[:]
         ant.unvisited = self.unvisited[:]
         ant.traveled = self.traveled[:]
