@@ -14,10 +14,10 @@ import random
 
 
 class Solver:
-    """This class contains the functionality for solving a :class:`World`.  A
-    :class:`World` can be solved using the :meth:`solve` or :meth:`solutions`.
+    """This class contains the functionality for finding one or more solutions
+    for a given :class:`World`.
     """
-    def __init__(self, world, **kwargs):
+    def __init__(self, **kwargs):
         """Create a new :class:`Solver` with the given parameters.
 
         :param World world: the :class:`World` to solve
@@ -32,9 +32,9 @@ class Solver:
                                 (default=10)
         :param float elite: multiplier of the pheromone deposited by the elite
                             :class:`Ant` (default=0.5)
+        :param int limit: number of iterations to perform (default=100)
 
         """
-        self.world = world
         self.rho = kwargs.get('rho', 0.8)
         self.q = kwargs.get('Q', 1)
         self.t0 = kwargs.get('t0', .01)
@@ -44,7 +44,7 @@ class Solver:
         self.elite = kwargs.get('elite', .5)
         self.limit = kwargs.get('limit', 100)
 
-    def solve(self):
+    def solve(self, world):
         """Return the shortest path found after *limit* iterations.
 
         :param int limit: the number of iterations to perform (default=10)
@@ -53,12 +53,12 @@ class Solver:
         :rtype: :class:`Ant`
 
         """
-        self.world.reset_pheromone(self.t0)
+        world.reset_pheromone(self.t0)
         global_best = None
         for i in range(self.limit):
             # (Re-)Build the ant colony
-            ants = self.round_robin_ants() if self.ant_count < 1 \
-                    else self.random_ants()
+            ants = self.round_robin_ants(world) if self.ant_count < 1 \
+                    else self.random_ants(world)
             
             self.find_solutions(ants)
             self.update_scent(ants)
@@ -69,7 +69,7 @@ class Solver:
                 self.trace_elite(global_best)
         return global_best
     
-    def solutions(self):
+    def solutions(self, world):
         """Return successively shorter paths until *limit* iterations have
         occured.
 
@@ -85,12 +85,12 @@ class Solver:
         :rtype: list
 
         """
-        self.world.reset_pheromone(self.t0)
+        world.reset_pheromone(self.t0)
         global_best = None
         for i in range(self.limit):
             # (Re-)Build the ant colony
-            ants = self.round_robin_ants() if self.ant_count < 1 \
-                    else self.random_ants()
+            ants = self.round_robin_ants(world) if self.ant_count < 1 \
+                    else self.random_ants(world)
             self.find_solutions(ants)
             self.update_scent(ants)
             local_best = sorted(ants)[0]
@@ -99,7 +99,7 @@ class Solver:
                 yield global_best
             self.trace_elite(global_best)
     
-    def round_robin_ants(self):
+    def round_robin_ants(self, world):
         """Returns a list of :class:`Ant`s distributed to the nodes of the 
         world in a round-robin fashion.
 
@@ -114,18 +114,18 @@ class Solver:
         :rtype: list
 
         """
-        starts = self.world.nodes
+        starts = world.nodes
         n = len(starts)
         return [
             Ant(
-                self.world, 
+                world, 
                 self.alpha, 
                 self.beta, 
                 start=starts[i % n]
             ).initialize() for i in range(self.ant_count)
         ]
         
-    def random_ants(self, even=False):
+    def random_ants(self, world, even=False):
         """Returns a list of :class:`Ant`s distributed to the nodes of the 
         world in a random fashion.
 
@@ -140,7 +140,7 @@ class Solver:
 
         """
         ants = []
-        starts = self.world.nodes
+        starts = world.nodes
         n = len(starts)
         if even:
             # Since the caller wants an even distribution, use a round-robin 
@@ -150,7 +150,7 @@ class Solver:
                 for i in range(self.ant_count // n):
                     ants.extend([
                         Ant(
-                            self.world,
+                            world,
                             self.alpha,
                             self.beta,
                             start=starts[j]
@@ -160,7 +160,7 @@ class Solver:
             # starts randomly.
             ants.extend([
                 Ant(
-                    self.world,
+                    world,
                     self.alpha,
                     self.beta,
                     start=starts.pop(random.randrange(n - i))
@@ -170,7 +170,7 @@ class Solver:
             # Just pick random nodes.
             ants.extend([
                 Ant(
-                    self.world,
+                    world,
                     self.alpha,
                     self.beta,
                     start=starts[random.randrange(n)]
