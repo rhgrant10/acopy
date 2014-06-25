@@ -105,7 +105,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '-V', '--version', 
         action='version',
-        version='%(prog)s 0.4.1',
+        version='%(prog)s 0.5.0',
         )
     parser.add_argument(
         '-a', '--alpha', 
