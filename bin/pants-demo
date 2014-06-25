@@ -1,11 +1,12 @@
 #!/usr/bin/python3
-from pants import World, Edge
-from pants import Solver
-from datetime import timedelta
 import time
 import math
 import argparse
 import sys
+from datetime import timedelta
+
+from pants import World, Edge
+from pants import Solver
 
 # Real-world latitude longitude coordinates.
 TEST_COORDS_33 = [
@@ -43,9 +44,8 @@ def dist(a, b):
     return math.sqrt((a[1] - b[1]) ** 2 + (a[0] - b[0]) ** 2)
 
 def run_demo(nodes, *args, **kwargs):
-    print(dist)
     world = World(nodes, dist)
-    solver = Solver(world, **kwargs)
+    solver = Solver(**kwargs)
 
     solver_setting_report_format = "\n".join([
         "Solver settings:",
@@ -68,7 +68,7 @@ def run_demo(nodes, *args, **kwargs):
     
     fastest = None
     start_time = time.time()
-    for i, ant in enumerate(solver.solutions()):
+    for i, ant in enumerate(solver.solutions(world)):
         fastest = ant
         fastest_time = timedelta(seconds=(time.time() - start_time))
         print(columns.format(fastest_time, ant.distance))
@@ -97,7 +97,7 @@ if __name__ == '__main__':
         ])
     
     parser = argparse.ArgumentParser(
-        description='Script th;at demos the ACO-Pants package.',
+        description='Script that demos the ACO-Pants package.',
         epilog=epilog,
         formatter_class=argparse.RawDescriptionHelpFormatter
         )
@@ -105,7 +105,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '-V', '--version', 
         action='version',
-        version='%(prog)s 0.4.1',
+        version='%(prog)s 0.5.0',
         )
     parser.add_argument(
         '-a', '--alpha', 
