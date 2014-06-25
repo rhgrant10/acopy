@@ -1,11 +1,12 @@
 #!/usr/bin/python3
-from pants import World, Edge
-from pants import Solver
-from datetime import timedelta
 import time
 import math
 import argparse
 import sys
+from datetime import timedelta
+
+from pants import World, Edge
+from pants import Solver
 
 # Real-world latitude longitude coordinates.
 TEST_COORDS_33 = [

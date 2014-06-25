@@ -8,12 +8,11 @@
 
 """
 
+import random
+from copy import copy
+
 from .world import World
 from .ant import Ant
-from copy import copy
-import random
-
-
 
 class Solver:
     """This class contains the functionality for finding one or more solutions
@@ -22,29 +21,28 @@ class Solver:
     def __init__(self, **kwargs):
         """Create a new :class:`Solver` with the given parameters.
 
+        :param float alpha: relative importance of pheromone (default=1)
+        :param float beta: relative importance of distance (default=3)
         :param float rho: percent evaporation of pheromone (0..1, default=0.8)
         :param float q: total pheromone deposited by each :class:`Ant` after
                         each interation is complete (>0, default=1)
         :param float t0: inital pheromone level along each :class:`Edge` of the
                          :class:`World` (>0, default=0.01)
-        :param float alpha: relative importance of pheromone (default=1)
-        :param float beta: relative importance of distance (default=3)
+        :param int limit: number of iterations to perform (default=100)
         :param float ant_count: how many :class:`Ants` will be used 
                                 (default=10)
         :param float elite: multiplier of the pheromone deposited by the elite
                             :class:`Ant` (default=0.5)
-        :param int limit: number of iterations to perform (default=100)
-
         """
+        self.alpha = kwargs.get('alpha', 1)
+        self.beta = kwargs.get('beta', 3)
         self.rho = kwargs.get('rho', 0.8)
         self.q = kwargs.get('Q', 1)
         self.t0 = kwargs.get('t0', .01)
-        self.alpha = kwargs.get('alpha', 1)
-        self.beta = kwargs.get('beta', 3)
+        self.limit = kwargs.get('limit', 100)
         self.ant_count = kwargs.get('ant_count', 10)
         self.elite = kwargs.get('elite', .5)
-        self.limit = kwargs.get('limit', 100)
-
+        
     def solve(self, world):
         """Return the single shortest path found through the given *world*.
 
@@ -52,7 +50,6 @@ class Solver:
         
         :returns: the single best solution found
         :rtype: :class:`Ant`
-
         """
         world.reset_pheromone(self.t0)
         global_best = None
@@ -66,8 +63,7 @@ class Solver:
             local_best = sorted(ants)[0]
             if global_best is None or local_best < global_best:
                 global_best = copy(local_best)
-            if self.elite:
-                self.trace_elite(global_best)
+            self.trace_elite(global_best)
         return global_best
     
     def solutions(self, world):
@@ -80,7 +76,6 @@ class Solver:
         
         :returns: successively shorter solutions as :class:`Ant`s
         :rtype: list
-
         """
         world.reset_pheromone(self.t0)
         global_best = None
@@ -92,7 +87,7 @@ class Solver:
             self.global_update(ants)
             local_best = sorted(ants)[0]
             if global_best is None or local_best < global_best:
-                global_best = local_best.clone()
+                global_best = copy(local_best)
                 yield global_best
             self.trace_elite(global_best)
     
@@ -110,7 +105,6 @@ class Solver:
         
         :returns: the :class:`Ant`s initialized to nodes in the :class:`World`
         :rtype: list
-
         """
         starts = world.nodes
         n = len(starts)
@@ -136,7 +130,6 @@ class Solver:
         :returns: the :class:`Ant`s initialized to :class:`Node`s in the 
                   :class:`World`
         :rtype: list
-
         """
         ants = []
         starts = world.nodes
@@ -176,7 +169,6 @@ class Solver:
         TODO: Make the local pheromone update optional and configurable.
 
         :param list ants: the ants to use for solving
-
         """
         # This loop occurs exactly as many times as there are ants times nodes,
         # but that is only because every ant must visit every node. It may be
@@ -197,7 +189,6 @@ class Solver:
 
         This method will never let the pheromone on an edge decrease to less
         than its inital level.
-
         """
         edge.pheromone = max(self.t0, edge.pheromone * self.rho)
 
@@ -210,7 +201,6 @@ class Solver:
         decrease to less than its inital level.
 
         :param list ants: the ants to use for solving
-
         """
         ants = sorted(ants)[:len(ants) // 2]
         for a in ants:
@@ -229,7 +219,6 @@ class Solver:
         decrease to less than its inital level.
 
         :param Ant ant: the elite :class:`Ant`
-
         """
         if self.elite:
             p = self.elite * self.q / ant.distance

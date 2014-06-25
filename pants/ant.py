@@ -8,12 +8,15 @@
 
 """
 
-from .world import World
-import itertools
+import sys
 import random
 import bisect
-import sys
+import itertools
+import functools
 
+from .world import World
+
+@functools.total_ordering
 class Ant:
     """
     A single independent finder of solutions to a :class:`World`.
@@ -80,7 +83,6 @@ class Ant:
     The :func:`move` method governs the move-making process by gathering the
     remaining moves, chooses one of them, makes the chosen move, and returns
     the move that was made.
-
     """
     uid = 0
 
@@ -89,10 +91,9 @@ class Ant:
 
         :param float alpha: the relative importance of pheromone (default=1)
         :param float beta: the relative importance of distance (default=3)
-        
         """
-        self.uid = Ant.uid
-        Ant.uid += 1
+        self.uid = self.__class__.uid
+        self.__class__.uid += 1
         self.world = None
         self.alpha = alpha
         self.beta = beta
@@ -109,7 +110,6 @@ class Ant:
         :param Node start: the starting node (default is choosen randomly)
         :returns: `self`
         :rtype: :class:`Ant`
-
         """
         self.world = world
         if start is None:
@@ -130,7 +130,6 @@ class Ant:
 
         :returns: a clone
         :rtype: :class:`Ant`
-
         """
         ant = Ant(self.alpha, self.beta)
         ant.world = self.world
@@ -143,9 +142,7 @@ class Ant:
 
     @property
     def node(self):
-        """Most recently visited node.
-        
-        """
+        """Most recently visited node."""
         try:
             return self.visited[-1]
         except IndexError:
@@ -153,26 +150,27 @@ class Ant:
 
     @property
     def tour(self):
-        """Nodes visited by the :class:`Ant` in order.
-        
-        """
+        """Nodes visited by the :class:`Ant` in order."""
         return [self.world.data(i) for i in self.visited]
 
     @property
     def path(self):
-        """Edges traveled by the :class:`Ant` in order.
+        """Edges traveled by the :class:`Ant` in order."""
+        return [edge for edge in self.traveled]
         
+    def __eq__(self, other):
+        """Return ``True`` if the distance is equal to the other distance.
+        
+        :param Ant other: right-hand argument
+        :rtype: bool
         """
-        # Return a copy of the list just in case they want the original back
-        # later.
-        return self.traveled[:]
+        return self.distance == other.distance
 
     def __lt__(self, other):
         """Return ``True`` if the distance is less than the other distance.
         
         :param Ant other: right-hand argument
         :rtype: bool
-        
         """
         return self.distance < other.distance
 
@@ -180,7 +178,6 @@ class Ant:
         """Return ``True`` if there are moves that have not yet been made.
     
         :rtype: bool
-        
         """
         # This is only true after we have made the move back to the starting
         # node.
@@ -191,7 +188,6 @@ class Ant:
         
         :returns: the :class:`Edge` taken to make the move chosen
         :rtype: :class:`Edge`
-        
         """
         remaining = self.remaining_moves()
         choice = self.choose_move(remaining)
@@ -201,7 +197,6 @@ class Ant:
         """Return the moves that remain to be made.
         
         :rtype: list
-        
         """
         return self.unvisited
 
@@ -211,7 +206,6 @@ class Ant:
         :param list choices: a list of all possible moves
         :returns: the chosen element from *choices*
         :rtype: node
-        
         """
         if len(choices) == 0:
             return None
@@ -239,7 +233,6 @@ class Ant:
         :param node dest: the destination node for the move
         :returns: the edge taken to get to *dest*
         :rtype: :class:`Edge`
-        
         """
         # Since self.node simply refers to self.visited[-1], which will be
         # changed before we return to calling code, store a reference now.
@@ -273,7 +266,6 @@ class Ant:
         :param Edge edge: the edge to weigh
         :returns: the weight of *edge*
         :rtype: float
-        
         """
         pre = 1 / (edge.length or 1)
         post = edge.pheromone
