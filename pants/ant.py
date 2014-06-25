@@ -81,8 +81,8 @@ class Ant:
     returns a single move from a list of moves, :func:`make_move` actually
     performs the move, and :func:`weigh` returns the weight of a given move.
     The :func:`move` method governs the move-making process by gathering the
-    remaining moves, chooses one of them, makes the chosen move, and returns
-    the move that was made.
+    remaining moves, choosing one of them, making the chosen move, and 
+    returning the move that was made.
     """
     uid = 0
 
