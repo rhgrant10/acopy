@@ -25,7 +25,7 @@ station at a least dish-washing dish washer competition.
 Solutions are found through an iterative process. In each iteration,
 several ants are allowed to find a solution that "visits" every node of
 the world. The amount of pheromone on each edge is updated according to
-its usefulness in finding shorter solutions. The ant that traveled the
+its the length of solutions in which it was used. The ant that traveled the
 least distance is considered to be the local best solution. If the local
 solution has a shorter distance than the best from any previous
 iteration, it then becomes the global best solution. The elite ant(s)
