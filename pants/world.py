@@ -15,8 +15,38 @@ class World:
     Each :class:`World` is created from a list of nodes, a length function, and
     optionally, a name and a description. Additionally, each :class:`World` has
     a UID. The length function must accept nodes as its first two parameters,
-    and is responsible for returning the distance between them.
+    and is responsible for returning the distance between them. It is the 
+    responsibility of the :func:`create_edges` to generate the required
+    :class:`Edge`\s and initialize them with the correct *length* as returned
+    by the length function.
     
+    Once created, :class:`World` objects convert the actual nodes into node
+    IDs, since solving does not rely on the actual data in the nodes. These are
+    accessible via the :attr:`nodes` property. To access the actual nodes,
+    simply pass an ID obtained from :attr:`nodes` to the :func:`data` method,
+    which will return the node associated with the specified ID.
+    
+    :class:`Edge`\s are accessible in much the same way, except two node IDs
+    must be passed to the :func:`data` method to indicate which nodes start and
+    end the :class:`Edge`. For example:
+    
+    .. code-block:: python
+    
+        ids = world.nodes
+        assert len(ids) > 1
+        node0 = world.data(ids[0])
+        node1 = world.data(ids[1])
+        edge01 = world.data(ids[0], ids[1])
+        assert edge01.start == node0
+        assert edge01.end == node1
+    
+    The :func:`reset_pheromone` method provides an easy way to reset the
+    pheromone levels of every :class:`Edge` contained in a :class:`World` to a
+    given *level*. It should be invoked before attempting to solve a 
+    :class:`World` unless a "blank slate" is not desired. Also note that it
+    should *not* be called between iterations of the :class:`Solver` because it
+    effectively erases the memory of the :class:`Ant` colony solving it.
+        
     :param list nodes: a list of nodes
     :param callable lfunc: a function that calculates the distance between
                            two nodes
@@ -37,7 +67,7 @@ class World:
         
     @property
     def nodes(self):
-        """Return the IDs of all the nodes."""
+        """Nodes IDs."""
         return list(range(len(self._nodes)))
     
     def create_edges(self):
@@ -48,7 +78,7 @@ class World:
         indices. Note that all of the :class:`Edge`\s are created within this
         method.
         
-        :returns: a mapping of node ID pairs to :class:`Edge` instances.
+        :return: a mapping of node ID pairs to :class:`Edge` instances.
         :rtype: :class:`dict`
         """
         edges = {}
@@ -82,7 +112,7 @@ class World:
 
         :param int idx: the id of the first node
         :param int idy: the id of the second node (default is None)
-        :returns: the node with ID *idx* or the :class:`Edge` between nodes
+        :return: the node with ID *idx* or the :class:`Edge` between nodes
                   with IDs *idx* and *idy*.
         :rtype: node or :class:`Edge`
         """
