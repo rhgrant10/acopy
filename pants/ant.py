@@ -29,8 +29,9 @@ class Ant:
     Two properties govern the decisions each :class:`Ant` makes while finding
     a solution: *alpha* and *beta*. *alpha* controls the importance placed on
     pheromone while *beta* controls the importance placed on distance. In 
-    general, *beta* should be greater than *alpha* for best results. Ants also
-    have a uid property that can be used to identify a particular instance.
+    general, *beta* should be greater than *alpha* for best results.
+    :class:`Ant`\s also have a *uid* property that can be used to identify a
+    particular instance.
 
     Using the :func:`initialize` method, each :class:`Ant` *must be 
     initialized* to a particular :class:`World`, and optionally may be given an
@@ -107,8 +108,8 @@ class Ant:
         """Reset everything so that a new solution can be found.
 
         :param World world: the world to solve
-        :param Node start: the starting node (default is choosen randomly)
-        :returns: `self`
+        :param Node start: the starting node (default is chosen randomly)
+        :return: `self`
         :rtype: :class:`Ant`
         """
         self.world = world
@@ -128,7 +129,7 @@ class Ant:
         If an exact copy (including the uid) is desired, use the 
         :func:`copy.copy` method.
 
-        :returns: a clone
+        :return: a clone
         :rtype: :class:`Ant`
         """
         ant = Ant(self.alpha, self.beta)
@@ -186,7 +187,7 @@ class Ant:
     def move(self):
         """Choose, make, and return a move from the remaining moves.
         
-        :returns: the :class:`Edge` taken to make the move chosen
+        :return: the :class:`Edge` taken to make the move chosen
         :rtype: :class:`Edge`
         """
         remaining = self.remaining_moves()
@@ -204,7 +205,7 @@ class Ant:
         """Choose a move from all possible moves.
         
         :param list choices: a list of all possible moves
-        :returns: the chosen element from *choices*
+        :return: the chosen element from *choices*
         :rtype: node
         """
         if len(choices) == 0:
@@ -231,7 +232,7 @@ class Ant:
         previously been done), then ``None`` is returned.
         
         :param node dest: the destination node for the move
-        :returns: the edge taken to get to *dest*
+        :return: the edge taken to get to *dest*
         :rtype: :class:`Edge`
         """
         # Since self.node simply refers to self.visited[-1], which will be
@@ -259,12 +260,12 @@ class Ant:
     def weigh(self, edge):
         """Calculate the weight of the given *edge*.
         
-        The weight of an edge is simply a representation of its percieved value
+        The weight of an edge is simply a representation of its perceived value
         in finding a shorter solution. Larger weights increase the odds of the
         edge being taken, whereas smaller weights decrease those odds.
         
         :param Edge edge: the edge to weigh
-        :returns: the weight of *edge*
+        :return: the weight of *edge*
         :rtype: float
         """
         pre = 1 / (edge.length or 1)

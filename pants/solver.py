@@ -22,8 +22,8 @@ class Solver:
     :param float beta: relative importance of distance (default=3)
     :param float rho: percent evaporation of pheromone (0..1, default=0.8)
     :param float q: total pheromone deposited by each :class:`Ant` after
-                    each interation is complete (>0, default=1)
-    :param float t0: inital pheromone level along each :class:`Edge` of the
+                    each iteration is complete (>0, default=1)
+    :param float t0: initial pheromone level along each :class:`Edge` of the
                      :class:`World` (>0, default=0.01)
     :param int limit: number of iterations to perform (default=100)
     :param float ant_count: how many :class:`Ant`\s will be used 
@@ -42,15 +42,49 @@ class Solver:
         self.elite = kwargs.get('elite', .5)
         
     def create_colony(self, world):
+        """Create a set of :class:`Ant`\s and initialize them to the given 
+        *world*.
+        
+        If the *ant_count* is less than `1`, :func:`round_robin_ants` are
+        created. Otherwise, :func:`random_ants` are created instead.
+        
+        :param World world: the world from which the :class:`Ant`\s will be
+                            given starting nodes.
+        :return: list of :class:`Ant`\s
+        :rtype: list
+        """
         if self.ant_count < 1:
             return self.round_robin_ants(world)
         return self.random_ants(world)
         
     def reset_colony(self, colony):
+        """Reset the *colony* of :class:`Ant`\s such that each :class:`Ant` is
+        ready to find a new solution.
+        
+        Essentially, this method re-initializes all :class:`Ant`\s in the
+        colony to the :class:`World` that they were initialized to last.
+        Internally, this method is called after each iteration of the
+        :class:`Solver`.
+        
+        :param list colony: the :class:`Ant`\s to reset
+        """
         for ant in colony:
             ant.initialize(ant.world)
         
     def aco(self, colony):
+        """Return the best solution by performing the ACO meta-heuristic.
+        
+        This method lets every :class:`Ant` in the colony find a solution,
+        updates the pheromone levels according to the solutions found, and
+        returns the `Ant` with the best solution.
+        
+        This method is not meant to be called directly. Instead, call either
+        :func:`solve` or :func:`solutions`.
+        
+        :param list colony: the `Ant`\s to use in finding a solution
+        :return: the best solution found
+        :rtype: :class:`Ant`
+        """
         self.find_solutions(colony)
         self.global_update(colony)
         return sorted(colony)[0]
@@ -59,7 +93,7 @@ class Solver:
         """Return the single shortest path found through the given *world*.
 
         :param World world: the :class:`World` to solve
-        :returns: the single best solution found
+        :return: the single best solution found
         :rtype: :class:`Ant`
         """
         world.reset_pheromone(self.t0)
@@ -76,11 +110,11 @@ class Solver:
     def solutions(self, world):
         """Return successively shorter paths through the given *world*.
 
-        Unlike :meth:`solve`, this method returns one solution for each 
+        Unlike :func:`solve`, this method returns one solution for each 
         improvement of the best solution found thus far. 
 
         :param World world: the :class:`World` to solve
-        :returns: successively shorter solutions as :class:`Ant`\s
+        :return: successively shorter solutions as :class:`Ant`\s
         :rtype: list
         """
         world.reset_pheromone(self.t0)
@@ -106,7 +140,7 @@ class Solver:
 
         :param World world: the :class:`World` in which to create the ants.
         
-        :returns: the :class:`Ant`\s initialized to nodes in the :class:`World`
+        :return: the :class:`Ant`\s initialized to nodes in the :class:`World`
         :rtype: list
         """
         starts = world.nodes
@@ -127,11 +161,9 @@ class Solver:
         if *ant_count* is **not** ``0``.
 
         :param World world: the :class:`World` in which to create the ants.
-        :param bool even: ``True`` if random should avoid choosing the same
-                          starting node multiple times. 
-
-        :returns: the :class:`Ant`\s initialized to :class:`Node`s in the 
-                  :class:`World`
+        :param bool even: ``True`` if :func:`random.random` should avoid 
+                          choosing the same starting node multiple times.
+        :return: the :class:`Ant`\s initialized to nodes in the :class:`World`
         :rtype: list
         """
         ants = []
@@ -201,7 +233,7 @@ class Solver:
 
         This accomplishes the global update performed at the end of each
         solving iteration. This method will never let the pheromone on an edge
-        decrease to less than its inital level.
+        decrease to less than its initial level.
 
         :param list ants: the ants to use for solving
         """
@@ -219,7 +251,7 @@ class Solver:
         This method is used to deposit the pheromone of the elite :class:`Ant`
         at the end of each iteration. Because this method only increases the 
         pheromone on edges, this method will never let the pheromone on an edge
-        decrease to less than its inital level.
+        decrease to less than its initial level.
 
         :param Ant ant: the elite :class:`Ant`
         """
