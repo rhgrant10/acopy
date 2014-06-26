@@ -202,11 +202,13 @@ class Solver:
         return ants
 
     def find_solutions(self, ants):
-        """Let each ant find its own solution.
+        """Let each :class:`Ant` find a solution.
 
-        Makes each ant move until every ant can no longer move.
+        Makes each :class:`Ant` move until each can no longer move.
 
-        TODO: Make the local pheromone update optional and configurable.
+        .. todo:: 
+        
+            Make the local pheromone update optional and configurable.
 
         :param list ants: the ants to use for solving
         """
@@ -226,9 +228,13 @@ class Solver:
 
     def local_update(self, edge):
         """Evaporate some of the pheromone on the given *edge*.
+        
+        .. note:: 
+        
+            This method should never let the pheromone on an edge decrease to 
+            less than its initial level.
 
-        This method will never let the pheromone on an edge decrease to less
-        than its inital level.
+        :param Edge edge: the :class:`Edge` to be updated
         """
         edge.pheromone = max(self.t0, edge.pheromone * self.rho)
 
@@ -237,8 +243,12 @@ class Solver:
         of solutions that use it.
 
         This accomplishes the global update performed at the end of each
-        solving iteration. This method will never let the pheromone on an edge
-        decrease to less than its initial level.
+        solving iteration. 
+        
+        .. note:: 
+        
+            This method should never let the pheromone on an edge decrease to 
+            less than its initial level.
 
         :param list ants: the ants to use for solving
         """
@@ -254,9 +264,12 @@ class Solver:
         """Deposit pheromone along the path of a particular ant.
 
         This method is used to deposit the pheromone of the elite :class:`Ant`
-        at the end of each iteration. Because this method only increases the 
-        pheromone on edges, this method will never let the pheromone on an edge
-        decrease to less than its initial level.
+        at the end of each iteration.
+        
+        .. note:: 
+        
+            This method should never let the pheromone on an edge decrease to 
+            less than its initial level.
 
         :param Ant ant: the elite :class:`Ant`
         """
