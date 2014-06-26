@@ -129,9 +129,9 @@ class Edge:
     """This class represents the link between starting and ending nodes.
 
     In addition to *start* and *end* nodes, every :class:`Edge` has *length*
-    and *pheromone* properties. *length* represents the static, apriori
-    information, whereas *pheromone* level represents the dynamic, posteriori
-    information.
+    and *pheromone* properties. *length* represents the static, *a priori*
+    information, whereas *pheromone* level represents the dynamic, *a
+    posteriori* information.
     
     :param Node a: the node at the start of the :class:`Edge`
     :param Node b: the node at the end of the :class:`Edge`
