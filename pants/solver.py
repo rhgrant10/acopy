@@ -46,7 +46,9 @@ class Solver:
         *world*.
         
         If the *ant_count* is less than `1`, :func:`round_robin_ants` are
-        created. Otherwise, :func:`random_ants` are created instead.
+        used and the number of :class:`Ant`\s will be equal to the number of
+        nodes. Otherwise, :func:`random_ants` are created instead, and the 
+        number of :class:`Ant`\s will be equal to the *ant_count*.
         
         :param World world: the world from which the :class:`Ant`\s will be
                             given starting nodes.
@@ -54,8 +56,8 @@ class Solver:
         :rtype: list
         """
         if self.ant_count < 1:
-            return self.round_robin_ants(world)
-        return self.random_ants(world)
+            return self.round_robin_ants(world, len(world.nodes))
+        return self.random_ants(world, self.ant_count)
         
     def reset_colony(self, colony):
         """Reset the *colony* of :class:`Ant`\s such that each :class:`Ant` is
@@ -128,7 +130,7 @@ class Solver:
                 yield global_best
             self.trace_elite(global_best)
     
-    def round_robin_ants(self, world):
+    def round_robin_ants(self, world, count):
         """Returns a list of :class:`Ant`\s distributed to the nodes of the 
         world in a round-robin fashion.
 
@@ -138,8 +140,9 @@ class Solver:
         number of nodes in the :class:`World` and this method is used to create
         the :class:`Ant`\s before solving.
 
-        :param World world: the :class:`World` in which to create the ants.
-        
+        :param World world: the :class:`World` in which to create the
+                            :class:`Ant`\s
+        :param int count: the number of :class:`Ant`\s to create
         :return: the :class:`Ant`\s initialized to nodes in the :class:`World`
         :rtype: list
         """
@@ -148,10 +151,10 @@ class Solver:
         return [
             Ant(self.alpha, self.beta).initialize(
                 world, start=starts[i % n])
-            for i in range(self.ant_count)
+            for i in range(count)
         ]
         
-    def random_ants(self, world, even=False):
+    def random_ants(self, world, count, even=False):
         """Returns a list of :class:`Ant`\s distributed to the nodes of the 
         world in a random fashion.
 
@@ -161,8 +164,10 @@ class Solver:
         if *ant_count* is **not** ``0``.
 
         :param World world: the :class:`World` in which to create the ants.
+        :param int count: the number of :class:`Ant`\s to create
         :param bool even: ``True`` if :func:`random.random` should avoid 
-                          choosing the same starting node multiple times.
+                          choosing the same starting node multiple times
+                          (default is ``False``)
         :return: the :class:`Ant`\s initialized to nodes in the :class:`World`
         :rtype: list
         """
@@ -173,7 +178,7 @@ class Solver:
             # Since the caller wants an even distribution, use a round-robin 
             # method until the number of ants left to create is less than the
             # number of nodes.
-            if self.ant_count > n:
+            if count > n:
                 for i in range(self.ant_count // n):
                     ants.extend([
                         Ant(self.alpha,self.beta).initialize(
@@ -185,14 +190,14 @@ class Solver:
             ants.extend([
                 Ant(self.alpha, self.beta).initialize(
                     world, start=starts.pop(random.randrange(n - i)))
-                for i in range(self.ant_count % n)
+                for i in range(count % n)
             ])
         else:
             # Just pick random nodes.
             ants.extend([
                 Ant(self.alpha, self.beta).initialize(
                     world, start=starts[random.randrange(n)]) 
-                for i in range(self.ant_count)
+                for i in range(count)
             ])
         return ants
 
