@@ -134,7 +134,7 @@ class Edge:
     posteriori* information.
     
     :param node start: the node at the start of the :class:`Edge`
-    :param node start: the node at the end of the :class:`Edge`
+    :param node end: the node at the end of the :class:`Edge`
     :param float length: the length of the :class:`Edge` (default=1)
     :param float pheromone: the amount of pheromone on the :class:`Edge` 
                             (default=0.1)
