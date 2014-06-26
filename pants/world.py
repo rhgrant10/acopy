@@ -67,7 +67,7 @@ class World:
         
     @property
     def nodes(self):
-        """Nodes IDs."""
+        """Node IDs."""
         return list(range(len(self._nodes)))
     
     def create_edges(self):
