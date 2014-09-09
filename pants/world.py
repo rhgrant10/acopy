@@ -67,7 +67,7 @@ class World:
         
     @property
     def nodes(self):
-        """Nodes IDs."""
+        """Node IDs."""
         return list(range(len(self._nodes)))
     
     def create_edges(self):
@@ -133,15 +133,15 @@ class Edge:
     information, whereas *pheromone* level represents the dynamic, *a
     posteriori* information.
     
-    :param Node a: the node at the start of the :class:`Edge`
-    :param Node b: the node at the end of the :class:`Edge`
+    :param node start: the node at the start of the :class:`Edge`
+    :param node end: the node at the end of the :class:`Edge`
     :param float length: the length of the :class:`Edge` (default=1)
     :param float pheromone: the amount of pheromone on the :class:`Edge` 
                             (default=0.1)
     """
-    def __init__(self, a, b, length=None, pheromone=None):
-        self.start = a
-        self.end = b
+    def __init__(self, start, end, length=None, pheromone=None):
+        self.start = start
+        self.end = end
         self.length = 1 if length is None else length
         self.pheromone = 0.1 if pheromone is None else pheromone
 

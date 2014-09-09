@@ -25,7 +25,7 @@ station at a least dish-washing dish washer competition.
 Solutions are found through an iterative process. In each iteration,
 several ants are allowed to find a solution that "visits" every node of
 the world. The amount of pheromone on each edge is updated according to
-its the length of solutions in which it was used. The ant that traveled the
+the length of the solutions in which it was used. The ant that traveled the
 least distance is considered to be the local best solution. If the local
 solution has a shorter distance than the best from any previous
 iteration, it then becomes the global best solution. The elite ant(s)
@@ -45,9 +45,9 @@ Installation via ``pip``
 
     $ pip3 install ACO-Pants
 
-------
-Useage
-------
+-----
+Usage
+-----
 
 Using **Pants** is simple. The example here uses Euclidean distance
 between 2D nodes with ``(x, y)`` coordinates, but there are no real
@@ -75,7 +75,7 @@ requirements for node data of any sort.
 
 
 3) Define your length function. This function must accept two nodes and
-   return the amonut of "work" between them. In this case, Euclidean 
+   return the amount of "work" between them. In this case, Euclidean 
    distance works well.
 
    .. code-block:: python
