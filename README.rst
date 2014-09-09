@@ -45,9 +45,9 @@ Installation via ``pip``
 
     $ pip3 install ACO-Pants
 
-------
-Useage
-------
+-----
+Usage
+-----
 
 Using **Pants** is simple. The example here uses Euclidean distance
 between 2D nodes with ``(x, y)`` coordinates, but there are no real
