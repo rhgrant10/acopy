@@ -75,7 +75,7 @@ requirements for node data of any sort.
 
 
 3) Define your length function. This function must accept two nodes and
-   return the amonut of "work" between them. In this case, Euclidean 
+   return the amount of "work" between them. In this case, Euclidean 
    distance works well.
 
    .. code-block:: python

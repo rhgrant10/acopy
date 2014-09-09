@@ -59,7 +59,7 @@ class Ant:
 
     Once an :class:`Ant` has found a solution (or at any time), the solution
     may be obtained and inspected by accessing its ``tour`` property, which
-    returns the nodes visited in order, or it's ``path`` property, which 
+    returns the nodes visited in order, or its ``path`` property, which 
     returns the edges visited in order. Also, the total distance of the 
     solution can be accessed through its ``distance`` property. :class:`Ant`\s
     are even sortable by their distance:
