@@ -8,10 +8,10 @@ Thus, **Pants** is a tool for solving traveling salesman problems.
 
 The world is built from a list of nodes and a function responsible for
 returning the length of the edge between any two given nodes. The length
-function need not return actual length. Instead, "length" refers to that 
+function need not return actual length. Instead, "length" refers to that
 the amount of "work" involved in moving from the first node to the second
 node - whatever that "work" may be. For a silly, random example, it could
-even be the number of dishes one must wash before moving to the next 
+even be the number of dishes one must wash before moving to the next
 station at a least dish-washing dish washer competition.
 
 Solutions are found through an iterative process. In each iteration,
@@ -31,6 +31,7 @@ Wikipedia <http://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms>`_.
 
 """
 
-from .ant import Ant 
+from .ant import Ant, AntFarm, Colony
 from .world import World, Edge
 from .solver import Solver
+from . import plugins

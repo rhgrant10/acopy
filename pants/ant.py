@@ -1,275 +1,257 @@
-"""
-.. module:: ant
-    :platform: Linux, Unix, Windows
-    :synopsis: Provides functionality for finding each solution step as well
-               as representing a complete solution.
-
-.. moduleauthor:: Robert Grant <rhgrant10@gmail.com>
-
-"""
-
-import sys
-import random
-import bisect
-import itertools
 import functools
+import itertools
+import bisect
+import random
 
-from .world import World
+from . import exceptions
+
 
 @functools.total_ordering
 class Ant:
-    """
-    A single independent finder of solutions to a :class:`World`.
 
-    Each :class:`Ant` finds a solution to a world one move at a time.  They
-    also represent the solution they find, and are capable of reporting which
-    nodes and edges they visited, in what order they were visited, and the
-    total length of the solution.
+    _uid = 0
 
-    Two properties govern the decisions each :class:`Ant` makes while finding
-    a solution: *alpha* and *beta*. *alpha* controls the importance placed on
-    pheromone while *beta* controls the importance placed on distance. In 
-    general, *beta* should be greater than *alpha* for best results.
-    :class:`Ant`\s also have a *uid* property that can be used to identify a
-    particular instance.
-
-    Using the :func:`initialize` method, each :class:`Ant` *must be 
-    initialized* to a particular :class:`World`, and optionally may be given an
-    initial node from which to start finding a solution. If a starting node is
-    not given, one is chosen at random. Thus a few examples of instantiation
-    and initialization might look like:
-
-    .. code-block:: python
-
-        ant = Ant()
-        ant.initialize(world)
-        
-    .. code-block:: python
-
-        ant = Ant().initialize(world)
-
-    .. code-block:: python
-
-        ant = Ant(alpha=0.5, beta=2.25)
-        ant.initialize(world, start=world.nodes[0])
-
-    .. note::
-
-        The examples above assume the world has already been created!
-
-    Once an :class:`Ant` has found a solution (or at any time), the solution
-    may be obtained and inspected by accessing its ``tour`` property, which
-    returns the nodes visited in order, or its ``path`` property, which 
-    returns the edges visited in order. Also, the total distance of the 
-    solution can be accessed through its ``distance`` property. :class:`Ant`\s
-    are even sortable by their distance:
-    
-    .. code-block:: python
-    
-        ants = [Ant() for ...]
-        # ... have each ant in the list solve a world
-        ants = sorted(ants)
-        for i in range(1, len(ants)):
-            assert ants[i - 1].distance < ants[i].distance
-            
-    :class:`Ant`\s may be cloned, which will return a shallow copy while not 
-    preserving the *uid* property. If this behavior is not desired, simply use
-    the :func:`copy.copy` or :func:`copy.deepcopy` methods as necessary.
-    
-    The remaining methods mainly govern the mechanics of making each move.
-    :func:`can_move` determines whether all possible moves have been made, 
-    :func:`remaining_moves` returns the moves not yet made, :func:`choose_move`
-    returns a single move from a list of moves, :func:`make_move` actually
-    performs the move, and :func:`weigh` returns the weight of a given move.
-    The :func:`move` method governs the move-making process by gathering the
-    remaining moves, choosing one of them, making the chosen move, and 
-    returning the move that was made.
-    """
-    uid = 0
-
-    def __init__(self, alpha=1, beta=3):
-        """Create a new Ant for the given world.
-
-        :param float alpha: the relative importance of pheromone (default=1)
-        :param float beta: the relative importance of distance (default=3)
-        """
-        self.uid = self.__class__.uid
-        self.__class__.uid += 1
-        self.world = None
+    def __init__(self, world=None, alpha=1, beta=3, q=1):
         self.alpha = alpha
         self.beta = beta
-        self.start = None
-        self.distance = 0
-        self.visited = []
-        self.unvisited = []
-        self.traveled = []
+        self._q = q
 
-    def initialize(self, world, start=None):
-        """Reset everything so that a new solution can be found.
+        self._id = self.__class__._uid
+        self.__class__._uid += 1
 
-        :param World world: the world to solve
-        :param Node start: the starting node (default is chosen randomly)
-        :return: `self`
-        :rtype: :class:`Ant`
-        """
+        self._is_finalized = False
+        self._visited_nodes = set()
+        self.current_node = None
+        self.path = []
+        self._distance = 0
         self.world = world
-        if start is None:
-            self.start = random.randrange(len(self.world.nodes))
-        else:
-            self.start = start
-        self.distance = 0
-        self.visited = [self.start]
-        self.unvisited = [n for n in self.world.nodes if n != self.start]
-        self.traveled = []
-        return self
 
-    def clone(self):
-        """Return a shallow copy with a new UID.
-        
-        If an exact copy (including the uid) is desired, use the 
-        :func:`copy.copy` method.
-
-        :return: a clone
-        :rtype: :class:`Ant`
-        """
-        ant = Ant(self.alpha, self.beta)
-        ant.world = self.world
-        ant.start = self.start
-        ant.visited = self.visited[:]
-        ant.unvisited = self.unvisited[:]
-        ant.traveled = self.traveled[:]
-        ant.distance = self.distance
-        return ant
-
-    @property
-    def node(self):
-        """Most recently visited node."""
-        try:
-            return self.visited[-1]
-        except IndexError:
-            return None
-
-    @property
-    def tour(self):
-        """Nodes visited by the :class:`Ant` in order."""
-        return [self.world.data(i) for i in self.visited]
-
-    @property
-    def path(self):
-        """Edges traveled by the :class:`Ant` in order."""
-        return [edge for edge in self.traveled]
-        
     def __eq__(self, other):
-        """Return ``True`` if the distance is equal to the other distance.
-        
-        :param Ant other: right-hand argument
-        :rtype: bool
-        """
+        if self.world != other.world:
+            return NotImplemented
         return self.distance == other.distance
 
     def __lt__(self, other):
-        """Return ``True`` if the distance is less than the other distance.
-        
-        :param Ant other: right-hand argument
-        :rtype: bool
-        """
+        if self.world != other.world:
+            return NotImplemented
         return self.distance < other.distance
 
-    def can_move(self):
-        """Return ``True`` if there are moves that have not yet been made.
-    
-        :rtype: bool
-        """
-        # This is only true after we have made the move back to the starting
-        # node.
-        return len(self.traveled) != len(self.visited)
+    @property
+    def q(self):
+        factor = self.world.total_weight if self.is_bound else 1
+        return factor * self._q
+
+    @q.setter
+    def q(self, q):
+        self._q = q
+
+    @property
+    def pheromone(self):
+        return self.q / (self.distance or 1)
+
+    @property
+    def is_bound(self):
+        return self.world is not None
+
+    @property
+    def distance(self):
+        return self._distance
+
+    @property
+    def world(self):
+        return self._world
+
+    @world.setter
+    def world(self, world):
+        self._world = world
+        self.reset()
+
+    @property
+    def solution_id(self):
+        if not self._is_finalized:
+            return None
+        if not self._solution_id:
+            nodes = list(edge.start for edge in self.path)
+            first = min(nodes)
+            index = nodes.index(first)
+            self._solution_id = tuple(nodes[index:] + nodes[:index])
+        return self._solution_id
+
+    def reset(self):
+        self._is_finalized = False
+        self._solution_id = None
+        self._distance = 0
+        self.current_node = None
+        self._visited_nodes = set()
+        self.path = []
+        if self.is_bound:
+            self.current_node = self.get_start_node()
+            self._visited_nodes.add(self.current_node)
+
+    def _get_final_move(self):
+        start = self.path[-1].end
+        end = self.path[0].start
+        return self.world.get_edge(start, end)
 
     def move(self):
-        """Choose, make, and return a move from the remaining moves.
-        
-        :return: the :class:`Edge` taken to make the move chosen
-        :rtype: :class:`Edge`
-        """
-        remaining = self.remaining_moves()
-        choice = self.choose_move(remaining)
-        return self.make_move(choice)
+        moves = self.get_moves()
+        if not moves:
+            if self._is_finalized:
+                raise exceptions.ZeroMovesError(self)
+            else:
+                chosen_move = self._get_final_move()
+                self._is_finalized = True
+        elif len(moves) == 1:
+            chosen_move = moves[0]
+        else:
+            chosen_move = self.choose_move(moves)
+        self.make_move(chosen_move)
+        return chosen_move
 
-    def remaining_moves(self):
-        """Return the moves that remain to be made.
-        
-        :rtype: list
-        """
-        return self.unvisited
+    def try_move(self):
+        try:
+            self.move()
+        except exceptions.ZeroMovesError:
+            return False
+        else:
+            return True
+
+    def can_move(self):
+        return bool(self.get_moves()) and self._is_finalized
+
+    def get_moves(self):
+        return self.world.get_edges_from(self.current_node,
+                                         not_to=self._visited_nodes)
 
     def choose_move(self, choices):
-        """Choose a move from all possible moves.
-        
-        :param list choices: a list of all possible moves
-        :return: the chosen element from *choices*
-        :rtype: node
-        """
-        if len(choices) == 0:
-            return None
-        if len(choices) == 1:
-            return choices[0]
-        
-        # Find the weight of the edges that take us to each of the choices.
+        # if no choices, ensure we make the final move
+        weights = self.weigh_moves(choices)
+        return self.choose_weighted_move(choices, weights)
+
+    def weigh_moves(self, choices):
         weights = []
-        for move in choices:
-            edge = self.world.edges[self.node, move]
-            weights.append(self.weigh(edge))
-        
-        # Choose one of them using a weighted probability.
+        for edge in choices:
+            weights.append(self.weigh_move(edge))
+        return weights
+
+    def choose_weighted_move(self, choices, weights):
+        # use a weighted probability
         total = sum(weights)
         cumdist = list(itertools.accumulate(weights)) + [total]
-        return choices[bisect.bisect(cumdist, random.random() * total)]
+        index = bisect.bisect(cumdist, random.random() * total)
+        return choices[index]
 
-    def make_move(self, dest):
-        """Move to the *dest* node and return the edge traveled.
-        
-        When *dest* is ``None``, an attempt to take the final move back to the
-        starting node is made. If that is not possible (because it has 
-        previously been done), then ``None`` is returned.
-        
-        :param node dest: the destination node for the move
-        :return: the edge taken to get to *dest*
-        :rtype: :class:`Edge`
-        """
-        # Since self.node simply refers to self.visited[-1], which will be
-        # changed before we return to calling code, store a reference now.
-        ori = self.node
+    def weigh_move(self, edge):
+        pre = 1 / (edge.weight or 1)
+        post = edge.pheromone.amount
+        weight = post ** self.alpha * pre ** self.beta
+        return weight
 
-        # When dest is None, all nodes have been visited but we may not
-        # have returned to the node on which we started. If we have, then
-        # just do nothing and return None. Otherwise, set the dest to the
-        # node on which we started and don't try to move it from unvisited
-        # to visited because it was the first one to be moved.
-        if dest is None:
-            if self.can_move() is False:
-                return None
-            dest = self.start   # last move is back to the start
-        else:
-            self.visited.append(dest)
-            self.unvisited.remove(dest)
-        
-        edge = self.world.edges[ori, dest]
-        self.traveled.append(edge)
-        self.distance += edge.length
-        return edge
+    def make_move(self, edge):
+        self._distance += edge.weight
+        self._visited_nodes.add(edge.end)
+        self.path.append(edge)
+        self.current_node = edge.end
 
-    def weigh(self, edge):
-        """Calculate the weight of the given *edge*.
-        
-        The weight of an edge is simply a representation of its perceived value
-        in finding a shorter solution. Larger weights increase the odds of the
-        edge being taken, whereas smaller weights decrease those odds.
-        
-        :param Edge edge: the edge to weigh
-        :return: the weight of *edge*
-        :rtype: float
-        """
-        pre = 1 / (edge.length or 1)
-        post = edge.pheromone
-        return post ** self.alpha * pre ** self.beta
+    def get_start_node(self):
+        return random.choice(self.world.nodes)
 
-    
+
+class AntFarm:
+    def __init__(self, cls=Ant):
+        self.cls = cls
+
+    def breed(self, count=10):
+        ants = []
+        for index in range(count):
+            ant = self.create_ant(_index=index, _count=count)
+            ants.append(ant)
+        return ants
+
+    def get_ant_kwargs(self, index=None, count=None):
+        return {}
+
+    def create_ant(self, _index=None, _count=None, **overrides):
+        kwargs = self.get_ant_kwargs(index=_index, count=_count)
+        kwargs.update(overrides)
+        return self.cls(**kwargs)
+
+
+class SpecificAntFarm(AntFarm):
+    def __init__(self, alpha=1, beta=3, **kwargs):
+        super().__init__(**kwargs)
+        self.alpha = alpha
+        self.beta = beta
+
+    def get_ant_kwargs(self, **kwargs):
+        return {
+            'alpha': self.alpha,
+            'beta': self.beta,
+        }
+
+
+class RandomAntFarm(AntFarm):
+    def __init__(self, min_alpha=.5, max_alpha=1, min_beta=1, max_beta=3,
+                 **kwargs):
+        super().__init__(**kwargs)
+        self.min_alpha = min_alpha
+        self.max_alpha = max_alpha
+        self.min_beta = min_beta
+        self.max_beta = max_beta
+
+    def get_value(self, param):
+        low = getattr(self, 'min_{}'.format(param))
+        high = getattr(self, 'max_{}'.format(param))
+        return (high - low) * random.random() + low
+
+    def get_ant_kwargs(self, **kwargs):
+        return {
+            'alpha': self.get_value('alpha'),
+            'beta': self.get_value('beta'),
+        }
+
+
+class Colony:
+    def __init__(self, world, ants):
+        self.ants = ants
+        self.world = world
+
+    @property
+    def world(self):
+        return self._world
+
+    @world.setter
+    def world(self, world):
+        self._world = world
+        for ant in self.ants:
+            ant.world = world
+
+    def get_best_ant(self):
+        return sorted(self.ants)[0]
+
+    def reset_ants(self):
+        for ant in self.ants:
+            ant.reset()
+
+    def aco(self):
+        self.reset_ants()
+        self.find_solutions()
+        self.do_global_update()
+        return self.get_best_ant()
+
+    def find_solutions(self):
+        ants_working = True
+        while ants_working:
+            ants_working = 0
+            for ant in self.ants:
+                if ant.try_move():
+                    ants_working += 1
+
+    def do_global_update(self):
+        # ants = sorted(self.ants)[:len(self.ants) // 2]
+        for ant in sorted(self.ants):
+            p = ant.pheromone
+            for edge in ant.path:
+                old_amount = edge.pheromone.amount
+                amount = (1 - edge.pheromone.rho) * old_amount + p
+                edge.pheromone.amount = amount

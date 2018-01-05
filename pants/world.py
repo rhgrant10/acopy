@@ -1,152 +1,227 @@
-"""
-.. module:: world
-    :platform: Linux, Unix, Windows
-    :synopsis: Provides classes for representing a world and its edges.
+import random
+import itertools
+import collections
 
-.. moduleauthor:: Robert Grant <rhgrant10@gmail.com>
 
-"""
-        
-import json
+class Pheromone:
+    def __init__(self, amount=.1, t0=None, rho=.8):
+        self.t0 = t0 or amount
+        self.rho = rho
+        self.initial = amount
+        self.amount = amount
 
-class World:
-    """The nodes and edges of a particular problem.
+    def __repr__(self):
+        return repr(self.amount)
 
-    Each :class:`World` is created from a list of nodes, a length function, and
-    optionally, a name and a description. Additionally, each :class:`World` has
-    a UID. The length function must accept nodes as its first two parameters,
-    and is responsible for returning the distance between them. It is the 
-    responsibility of the :func:`create_edges` to generate the required
-    :class:`Edge`\s and initialize them with the correct *length* as returned
-    by the length function.
-    
-    Once created, :class:`World` objects convert the actual nodes into node
-    IDs, since solving does not rely on the actual data in the nodes. These are
-    accessible via the :attr:`nodes` property. To access the actual nodes,
-    simply pass an ID obtained from :attr:`nodes` to the :func:`data` method,
-    which will return the node associated with the specified ID.
-    
-    :class:`Edge`\s are accessible in much the same way, except two node IDs
-    must be passed to the :func:`data` method to indicate which nodes start and
-    end the :class:`Edge`. For example:
-    
-    .. code-block:: python
-    
-        ids = world.nodes
-        assert len(ids) > 1
-        node0 = world.data(ids[0])
-        node1 = world.data(ids[1])
-        edge01 = world.data(ids[0], ids[1])
-        assert edge01.start == node0
-        assert edge01.end == node1
-    
-    The :func:`reset_pheromone` method provides an easy way to reset the
-    pheromone levels of every :class:`Edge` contained in a :class:`World` to a
-    given *level*. It should be invoked before attempting to solve a 
-    :class:`World` unless a "blank slate" is not desired. Also note that it
-    should *not* be called between iterations of the :class:`Solver` because it
-    effectively erases the memory of the :class:`Ant` colony solving it.
-        
-    :param list nodes: a list of nodes
-    :param callable lfunc: a function that calculates the distance between
-                           two nodes
-    :param str name: the name of the world (default is "world#", where
-                     "#" is the ``uid`` of the world)
-    :param str description: a description of the world (default is None)
-    """
-    uid = 0
-
-    def __init__(self, nodes, lfunc, **kwargs):
-        self.uid = self.__class__.uid
-        self.__class__.uid += 1
-        self.name = kwargs.get('name', 'world{}'.format(self.uid))
-        self.description = kwargs.get('description', None)
-        self._nodes = nodes
-        self.lfunc = lfunc
-        self.edges = self.create_edges()
-        
     @property
-    def nodes(self):
-        """Node IDs."""
-        return list(range(len(self._nodes)))
-    
-    def create_edges(self):
-        """Create edges from the nodes.
-        
-        The job of this method is to map node ID pairs to :class:`Edge`
-        instances that describe the edge between the nodes at the given
-        indices. Note that all of the :class:`Edge`\s are created within this
-        method.
-        
-        :return: a mapping of node ID pairs to :class:`Edge` instances.
-        :rtype: :class:`dict`
-        """
-        edges = {}
-        for m in self.nodes:
-            for n in self.nodes:
-                a, b = self.data(m), self.data(n)
-                if a != b:
-                    edge = Edge(a, b, length=self.lfunc(a, b))
-                    edges[m, n] = edge
-        return edges
-        
-    def reset_pheromone(self, level=0.01):
-        """Reset the amount of pheromone on every edge to some base *level*.
-        
-        Each time a new set of solutions is to be found, the amount of
-        pheromone on every edge should be equalized to ensure un-biased initial
-        conditions. 
-        
-        :param float level: amount of pheromone to set on each edge 
-                            (default=0.01)
-        """
-        for edge in self.edges.values():
-            edge.pheromone = level
-        
-    def data(self, idx, idy=None):
-        """Return the node data of a single id or the edge data of two ids.
+    def amount(self):
+        return self._amount
 
-        If only *idx* is specified, return the node with the ID *idx*. If *idy*
-        is also specified, return the :class:`Edge` between nodes with indices
-        *idx* and *idy*.
+    @amount.setter
+    def amount(self, amount):
+        self._amount = max(self.t0, amount)
 
-        :param int idx: the id of the first node
-        :param int idy: the id of the second node (default is None)
-        :return: the node with ID *idx* or the :class:`Edge` between nodes
-                  with IDs *idx* and *idy*.
-        :rtype: node or :class:`Edge`
-        """
-        try:
-            if idy is None:
-                return self._nodes[idx]
-            else:
-                return self.edges[idx, idy]
-        except IndexError:
-            return None
+    def reset(self, amount=None, t0=None, rho=None):
+        if t0 is not None:
+            self.t0 = t0
+        if rho is not None:
+            self.rho = rho
+        if amount is not None:
+            self.amount = amount
+        else:
+            self.amount = self.amount
+        self.initial = self.amount
 
 
 class Edge:
-    """This class represents the link between starting and ending nodes.
 
-    In addition to *start* and *end* nodes, every :class:`Edge` has *length*
-    and *pheromone* properties. *length* represents the static, *a priori*
-    information, whereas *pheromone* level represents the dynamic, *a
-    posteriori* information.
-    
-    :param node start: the node at the start of the :class:`Edge`
-    :param node end: the node at the end of the :class:`Edge`
-    :param float length: the length of the :class:`Edge` (default=1)
-    :param float pheromone: the amount of pheromone on the :class:`Edge` 
-                            (default=0.1)
-    """
-    def __init__(self, start, end, length=None, pheromone=None):
+    default_pool = {}
+
+    def __init__(self, start, end, weight=1, pheromone=1, rho=.5, t0=.01,
+                 symmetrical=False, pool=None):
         self.start = start
         self.end = end
-        self.length = 1 if length is None else length
-        self.pheromone = 0.1 if pheromone is None else pheromone
+        self.weight = weight
+        self.symmetrical = symmetrical
+        self._vials = self.__class__.default_pool if pool is None else pool
+        self.pheromone.reset(amount=pheromone, t0=t0, rho=rho)
 
-    def __eq__(self, other):
-        if isinstance(other, self.__class__):
-            return self.__dict__ == other.__dict__
-        return False
-        
+    def __repr__(self):
+        joiner = '--' if self.symmetrical else '->'
+        symbol = '{0.start!r}{1}{0.end!r}'.format(self, joiner)
+        template = '<Edge({0}, weight={1.weight}, pheromone={1.pheromone})>'
+        return template.format(symbol, self)
+
+    @property
+    def vial_id(self):
+        keys = [self.start, self.end]
+        if self.symmetrical:
+            keys.sort()
+        keys.append(self.symmetrical)
+        return tuple(keys)
+
+    @property
+    def pheromone(self):
+        try:
+            return self._vials[self.vial_id]
+        except KeyError:
+            vial = Pheromone()
+            self._vials[self.vial_id] = vial
+            return vial
+
+
+class World:
+    def __init__(self, edges):
+        self._nodes = None
+        self._edges = None
+        self.edge_map = self._create_edge_map(edges)
+
+    @property
+    def total_weight(self):
+        return sum(e.weight for e in self.edges)
+
+    @property
+    def edges(self):
+        if self._edges is None:
+            edge_lists = [d.values() for d in self.edge_map.values()]
+            self._edges = list(itertools.chain(*edge_lists))
+        return self._edges
+
+    @property
+    def unique_edges(self):
+        seen = {}
+        for edge in self.edges:
+            if edge.vial_id not in seen:
+                seen[edge.vial_id] = True
+                yield edge
+
+    @property
+    def nodes(self):
+        if self._nodes is None:
+            nodes = set()
+            for start, ends in self.edge_map.items():
+                nodes.add(start)
+                nodes.update(ends.keys())
+            self._nodes = list(sorted(nodes))
+        return self._nodes
+
+    def _create_edge_map(self, edges):
+        edge_map = collections.defaultdict(dict)
+        for edge in edges:
+            edge_map[edge.start][edge.end] = edge
+        return edge_map
+
+    def get_edge(self, start, end):
+        edges = self.edge_map[start]
+        return edges[end]
+
+    def get_edges_from(self, start, not_to=None):
+        edges = self.edge_map[start].values()
+        if not_to is None:
+            return edges
+        return [edge for edge in edges if edge.end not in not_to]
+
+    def get_neighbors(self, start):
+        return list(self.edge_map[start].keys())
+
+    def reset_pheromone(self):
+        for edge in self.edges:
+            edge.pheromone.reset()
+
+
+class EdgeFactory:
+    def __init__(self, cls=Edge, symmetrical=False):
+        self.cls = cls
+        self.pool = {}
+        self.symmetrical = symmetrical
+
+    def create_edge(self, start, end, weight, **overrides):
+        kwargs = self.get_edge_kwargs(start, end, weight)
+        options = self.get_default_edge_kwargs()
+        options.update(kwargs)
+        options.update(overrides)
+        return self.cls(start, end, weight, **options)
+
+    def get_default_edge_kwargs(self):
+        return {'pool': self.pool, 'symmetrical': self.symmetrical}
+
+    def get_edge_kwargs(self, start, end, weight):
+        return {}
+
+    def create_edges(self, *edge_list):
+        edges = []
+        for edge in edge_list:
+            edges.append(self.create_edge(*edge))
+        return edges
+
+
+class SpecificEdgeFactory(EdgeFactory):
+    def __init__(self, pheromone=1, rho=.1, t0=0.1, **kwargs):
+        super().__init__(**kwargs)
+        self.pheromone = pheromone
+        self.rho = rho
+        self.t0 = t0
+
+    def get_edge_kwargs(self, start, end, weight):
+        return {
+            'pheromone': self.pheromone,
+            'rho': self.rho,
+            't0': self.t0,
+        }
+
+
+class RandomEdgeFactory(EdgeFactory):
+    def __init__(self, min_pheromone=1, max_pheromone=4, min_rho=.2,
+                 max_rho=.8, min_t0=.01, max_t0=.01):
+        self.min_pheromone = min_pheromone
+        self.max_pheromone = max_pheromone
+        self.min_rho = min_rho
+        self.max_rho = max_rho
+        self.min_t0 = min_t0
+        self.max_t0 = max_t0
+
+    def get_value(self, param):
+        low = getattr(self, 'min_{}'.format(param))
+        high = getattr(self, 'max_{}'.format(param))
+        return (high - low) * random.random() + low
+
+    def get_edge_kwargs(self):
+        return {
+            'pheromone': self.get_value('pheromone'),
+            'rho': self.get_value('rho'),
+            't0': self.get_value('t0'),
+        }
+
+
+class WorldBuilder:
+    def __init__(self, cls=World, factory_cls=EdgeFactory):
+        self.cls = cls
+        self.factory_cls = factory_cls
+
+    def get_edge_factory(self, **kwargs):
+        return self.factory_cls(**kwargs)
+
+    def from_edge_list(self, edge_list, symmetrical=False):
+        factory = self.get_edge_factory(symmetrical=symmetrical)
+        edges = factory.create_edges(*edge_list)
+        return self.cls(edges)
+
+    def from_incidence_matrix(self, matrix, symmetrical=False):
+        factory = self.get_edge_factory(symmetrical=symmetrical)
+        edges = []
+        for start, row in enumerate(matrix):
+            for end, weight in enumerate(row):
+                edge = factory.create_edge(start, end, weight)
+                edges.append(edge)
+        return self.cls(edges)
+
+    def from_lookup_table(self, table, symmetrical=False):
+        factory = self.get_edge_factory(symmetrical=symmetrical)
+        edges = []
+        for (start, end), weight in table.items():
+            edge = factory.create_edge(start, end, weight)
+            edges.append(edge)
+            if symmetrical:
+                edge = factory.create_edge(end, start, weight)
+                edges.append(edge)
+        return self.cls(edges)
