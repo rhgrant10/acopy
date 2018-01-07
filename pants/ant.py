@@ -96,11 +96,11 @@ class Ant:
     def move(self):
         moves = self.get_moves()
         if not moves:
-            if self._is_finalized:
-                raise exceptions.ZeroMovesError(self)
-            else:
+            if not self._is_finalized:
                 chosen_move = self._get_final_move()
                 self._is_finalized = True
+            else:
+                raise exceptions.ZeroMovesError(self)
         elif len(moves) == 1:
             chosen_move = moves[0]
         else:
@@ -124,7 +124,6 @@ class Ant:
                                          not_to=self._visited_nodes)
 
     def choose_move(self, choices):
-        # if no choices, ensure we make the final move
         weights = self.weigh_moves(choices)
         return self.choose_weighted_move(choices, weights)
 
@@ -178,15 +177,17 @@ class AntFarm:
 
 
 class SpecificAntFarm(AntFarm):
-    def __init__(self, alpha=1, beta=3, **kwargs):
+    def __init__(self, alpha=1, beta=3, q=1, **kwargs):
         super().__init__(**kwargs)
         self.alpha = alpha
         self.beta = beta
+        self.q = q
 
     def get_ant_kwargs(self, **kwargs):
         return {
             'alpha': self.alpha,
             'beta': self.beta,
+            'q': self.q,
         }
 
 
@@ -248,8 +249,8 @@ class Colony:
                     ants_working += 1
 
     def do_global_update(self):
-        # ants = sorted(self.ants)[:len(self.ants) // 2]
-        for ant in sorted(self.ants):
+        ants = sorted(self.ants)[:2]
+        for ant in ants:
             p = ant.pheromone
             for edge in ant.path:
                 old_amount = edge.pheromone.amount

@@ -7,7 +7,7 @@ from .ant import Colony
 class Solution:
     def __init__(self, ant):
         self.edges = ant.path
-        self.nodes = [edge.start for edge in ant.path]
+        self.nodes = ant.solution_id
         self.alpha = ant.alpha
         self.beta = ant.beta
         self.q = ant.q
@@ -48,15 +48,15 @@ class Solver:
         # get_solutions a cinch (thumbsup)
         return Colony(world, ants)
 
-    def solve(self, world):
+    def solve(self, world, size=None):
         best = None
-        for solution in self.get_solutions(world):
+        for solution in self.get_solutions(world, size=size):
             best = solution
         return best
 
-    def get_solutions(self, world):
+    def get_solutions(self, world, size=None):
         global_best = None
-        colony = self.get_colony(world)
+        colony = self.get_colony(world, size=size)
         self._call_plugins('start', colony)
         for i in range(self.limit):
             best_ant = Solution(colony.aco())
@@ -68,8 +68,12 @@ class Solver:
         self._call_plugins('finish', colony, global_best)
 
     def add_plugin(self, plugin):
-        plugin.initialize(self)
-        self.plugins.append(plugin)
+        self.add_plugins(plugin)
+
+    def add_plugins(self, *plugins):
+        for plugin in plugins:
+            plugin.initialize(self)
+        self.plugins.extend(plugins)
 
     def _call_plugins(self, hook, *args, **kwargs):
         for plugin in self.plugins:

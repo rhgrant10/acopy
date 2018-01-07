@@ -1,3 +1,4 @@
+import sys
 import random
 import itertools
 import collections
@@ -5,7 +6,7 @@ import collections
 
 class Pheromone:
     def __init__(self, amount=.1, t0=None, rho=.8):
-        self.t0 = t0 or amount
+        self.t0 = t0 or sys.float_info.min
         self.rho = rho
         self.initial = amount
         self.amount = amount
@@ -21,6 +22,7 @@ class Pheromone:
     def amount(self, amount):
         self._amount = max(self.t0, amount)
 
+    # TODO: test
     def reset(self, amount=None, t0=None, rho=None):
         if t0 is not None:
             self.t0 = t0
@@ -29,7 +31,7 @@ class Pheromone:
         if amount is not None:
             self.amount = amount
         else:
-            self.amount = self.amount
+            self.amount = self.initial
         self.initial = self.amount
 
 
@@ -37,13 +39,13 @@ class Edge:
 
     default_pool = {}
 
-    def __init__(self, start, end, weight=1, pheromone=1, rho=.5, t0=.01,
+    def __init__(self, start, end, weight=1, pheromone=1, rho=.5, t0=None,
                  symmetrical=False, pool=None):
         self.start = start
         self.end = end
         self.weight = weight
         self.symmetrical = symmetrical
-        self._vials = self.__class__.default_pool if pool is None else pool
+        self._pool = self.__class__.default_pool if pool is None else pool
         self.pheromone.reset(amount=pheromone, t0=t0, rho=rho)
 
     def __repr__(self):
@@ -52,6 +54,7 @@ class Edge:
         template = '<Edge({0}, weight={1.weight}, pheromone={1.pheromone})>'
         return template.format(symbol, self)
 
+    # TODO: test
     @property
     def vial_id(self):
         keys = [self.start, self.end]
@@ -60,13 +63,14 @@ class Edge:
         keys.append(self.symmetrical)
         return tuple(keys)
 
+    # TODO: test
     @property
     def pheromone(self):
         try:
-            return self._vials[self.vial_id]
+            return self._pool[self.vial_id]
         except KeyError:
             vial = Pheromone()
-            self._vials[self.vial_id] = vial
+            self._pool[self.vial_id] = vial
             return vial
 
 
@@ -156,7 +160,7 @@ class EdgeFactory:
 
 
 class SpecificEdgeFactory(EdgeFactory):
-    def __init__(self, pheromone=1, rho=.1, t0=0.1, **kwargs):
+    def __init__(self, pheromone=1, rho=.1, t0=None, **kwargs):
         super().__init__(**kwargs)
         self.pheromone = pheromone
         self.rho = rho
@@ -172,13 +176,11 @@ class SpecificEdgeFactory(EdgeFactory):
 
 class RandomEdgeFactory(EdgeFactory):
     def __init__(self, min_pheromone=1, max_pheromone=4, min_rho=.2,
-                 max_rho=.8, min_t0=.01, max_t0=.01):
+                 max_rho=.8):
         self.min_pheromone = min_pheromone
         self.max_pheromone = max_pheromone
         self.min_rho = min_rho
         self.max_rho = max_rho
-        self.min_t0 = min_t0
-        self.max_t0 = max_t0
 
     def get_value(self, param):
         low = getattr(self, 'min_{}'.format(param))
@@ -189,39 +191,32 @@ class RandomEdgeFactory(EdgeFactory):
         return {
             'pheromone': self.get_value('pheromone'),
             'rho': self.get_value('rho'),
-            't0': self.get_value('t0'),
         }
 
 
 class WorldBuilder:
-    def __init__(self, cls=World, factory_cls=EdgeFactory):
+    def __init__(self, cls=World, factory=None):
         self.cls = cls
-        self.factory_cls = factory_cls
+        self.factory = factory or EdgeFactory()
 
-    def get_edge_factory(self, **kwargs):
-        return self.factory_cls(**kwargs)
-
-    def from_edge_list(self, edge_list, symmetrical=False):
-        factory = self.get_edge_factory(symmetrical=symmetrical)
-        edges = factory.create_edges(*edge_list)
+    def from_edge_list(self, edge_list):
+        edges = self.factory.create_edges(*edge_list)
         return self.cls(edges)
 
-    def from_incidence_matrix(self, matrix, symmetrical=False):
-        factory = self.get_edge_factory(symmetrical=symmetrical)
+    def from_incidence_matrix(self, matrix):
         edges = []
         for start, row in enumerate(matrix):
             for end, weight in enumerate(row):
-                edge = factory.create_edge(start, end, weight)
+                edge = self.factory.create_edge(start, end, weight)
                 edges.append(edge)
         return self.cls(edges)
 
-    def from_lookup_table(self, table, symmetrical=False):
-        factory = self.get_edge_factory(symmetrical=symmetrical)
+    def from_lookup_table(self, table):
         edges = []
         for (start, end), weight in table.items():
-            edge = factory.create_edge(start, end, weight)
+            edge = self.factory.create_edge(start, end, weight)
             edges.append(edge)
-            if symmetrical:
-                edge = factory.create_edge(end, start, weight)
+            if self.factory.symmetrical:
+                edge = self.factory.create_edge(end, start, weight)
                 edges.append(edge)
         return self.cls(edges)

@@ -26,6 +26,7 @@ class PeriodicReset(SolverPlugin):
 
     def on_start(self, colony):
         self.world = colony.world
+        self.world.reset_pheromone()
 
     def on_iteration(self, *args, **kwargs):
         self.index = (self.index + 1) % self.period
@@ -40,8 +41,6 @@ class StatRecorder(SolverPlugin):
 
     def on_start(self, colony):
         levels = [e.pheromone.amount for e in colony.world.unique_edges]
-        distances = [None for ant in colony.ants]
-
         num_edges = len(levels)
         total_pheromone = sum(levels)
 
@@ -53,7 +52,6 @@ class StatRecorder(SolverPlugin):
                 'max': max(levels),
                 'avg': total_pheromone / num_edges,
             },
-            'ant_distances': distances,
             'solutions': {
                 'best': None,
                 'worst': None,
@@ -91,7 +89,6 @@ class StatRecorder(SolverPlugin):
                 'max': max(levels),
                 'avg': total_pheromone / num_edges,
             },
-            'ant_distances': distances,
             'solutions': {
                 'best': min(distances),
                 'worst': max(distances),
@@ -112,16 +109,16 @@ class StatRecorder(SolverPlugin):
 
     def plot(self):
         plt.figure()
-        plt.title('Ant Distances')
-        self.plot_ant_distances()
-
-        plt.figure()
         plt.title('Solution Stats')
         self.plot_solutions()
 
         plt.figure()
         plt.title('Pheromone')
+        plt.subplot('211')
         self.plot_pheromone_levels()
+        # self.plot_total_pheromone()
+        plt.subplot('212')
+        self.plot_pheromone_levels(stacked=True)
 
         plt.figure()
         plt.title('Pheromone meta')
