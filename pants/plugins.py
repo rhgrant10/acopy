@@ -11,27 +11,24 @@ class EliteTracer(SolverPlugin):
     def __init__(self, factor=1):
         self.factor = factor
 
-    def on_iteration(self, colony, global_best, is_new_best):
-        global_best.retrace(factor=self.factor)
+    def on_iteration(self, graph, solutions, best, is_new_best):
+        best.trace(self.solver.q * self.factor)
 
 
 class PeriodicReset(SolverPlugin):
     def __init__(self, period=50):
         self.period = period
         self.index = None
-        self.world = None
 
     def initialize(self, solver):
+        super().initialize(solver)
         self.index = 0
 
-    def on_start(self, colony):
-        self.world = colony.world
-        self.world.reset_pheromone()
-
-    def on_iteration(self, *args, **kwargs):
+    def on_iteration(self, graph, **kwargs):
         self.index = (self.index + 1) % self.period
         if not self.index:
-            self.world.reset_pheromone()
+            for edge in graph.edges:
+                graph.edges[edge]['pheromone'] = 1
 
 
 class StatRecorder(SolverPlugin):
@@ -39,8 +36,8 @@ class StatRecorder(SolverPlugin):
         self.stats = collections.defaultdict(list)
         self.data = {'solutions': set()}
 
-    def on_start(self, colony):
-        levels = [e.pheromone.amount for e in colony.world.unique_edges]
+    def on_start(self, graph, ants, **kwargs):
+        levels = [edge['pheromone'] for edge in graph.edges.values()]
         num_edges = len(levels)
         total_pheromone = sum(levels)
 
@@ -66,11 +63,11 @@ class StatRecorder(SolverPlugin):
         }
         self.pump(stats)
 
-    def on_iteration(self, colony, global_best, is_new_best):
-        levels = [e.pheromone.amount for e in colony.world.unique_edges]
-        distances = [ant.distance for ant in colony.ants]
+    def on_iteration(self, graph, solutions, best, is_new_best):
+        levels = [edge['pheromone'] for edge in graph.edges.values()]
+        distances = [solution.weight for solution in solutions]
 
-        solutions = set(ant.solution_id for ant in colony.ants)
+        solutions = set(solutions)
         solutions_seen = self.data['solutions']
 
         old_count = len(solutions_seen)
@@ -78,7 +75,7 @@ class StatRecorder(SolverPlugin):
         num_new_solutions = len(solutions_seen) - old_count
 
         num_edges = len(levels)
-        num_ants = len(colony.ants)
+        num_ants = len(solutions)
         total_pheromone = sum(levels)
 
         stats = {
@@ -93,7 +90,7 @@ class StatRecorder(SolverPlugin):
                 'best': min(distances),
                 'worst': max(distances),
                 'avg': sum(distances) / num_ants,
-                'global_best': global_best.weight,
+                'global_best': best.weight,
             },
             'unique_solutions': {
                 'total': len(self.data['solutions']),
@@ -116,7 +113,7 @@ class StatRecorder(SolverPlugin):
         plt.title('Pheromone')
         plt.subplot('211')
         self.plot_pheromone_levels()
-        # self.plot_total_pheromone()
+
         plt.subplot('212')
         self.plot_pheromone_levels(stacked=True)
 

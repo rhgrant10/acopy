@@ -30,8 +30,6 @@ Wikipedia <http://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms>`_.
 .. moduleauthor:: Robert Grant <rhgrant10@gmail.com>
 
 """
-
-from .ant import Ant, AntFarm, Colony
-from .world import World, Edge
-from .solver import Solver
+from .ant import Colony, Ant
+from .solver import Solver, Solution, SolverPlugin
 from . import plugins

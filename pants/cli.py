@@ -9,6 +9,7 @@ import random
 import collections
 
 import click
+import networkx
 import pants
 
 
@@ -27,83 +28,57 @@ TEST_COORDS_33 = [
 ]
 
 
-def get_random_graph(size=10, min_dist=1, max_dist=5):
-    delta_dist = max_dist - min_dist
-    mode = delta_dist * .75 + min_dist
-
-    def dist():
-        return random.triangular(low=min_dist, high=max_dist, mode=mode)
-
-    graph = {}
-    for i in range(size):
-        start = string.printable[i]
-        for j in range(i + 1, size):
-            end = string.printable[j]
-            graph[start, end] = dist()
-
-    return graph
-
-
-def get_simple_world(builder):
-    graph = {}
-    graph['A', 'B'] = 2
-    graph['B', 'C'] = 4
-    graph['C', 'D'] = 6
-    graph['A', 'D'] = 8
-    graph['A', 'C'] = 10
-    graph['B', 'D'] = 12
-    return builder.from_lookup_table(graph)
-
-
 def dist(a, b):
     (x1, y1), (x2, y2) = a, b
     return math.sqrt((y2 - y1) ** 2 + (x2 - x1) ** 2)
 
 
-def get_test_world_33(builder):
-    graph = {}
+def get_test_world_33():
+    graph = collections.defaultdict(dict)
     for i, start in enumerate(TEST_COORDS_33):
         a = string.printable[i]
         for j, end in enumerate(TEST_COORDS_33[i + 1:], i + 1):
             b = string.printable[j]
-            graph[a, b] = dist(start, end)
-    return builder.from_lookup_table(graph)
+            graph[a][b] = {'weight': dist(start, end)}
+    return networkx.Graph(graph)
 
 
-class Printout(pants.solver.SolverPlugin):
+class PrintoutPlugin(pants.SolverPlugin):
     def initialize(self, solver):
-        self.solver = solver
+        super().initialize(solver)
         self.iteration = 0
         self.best_count = 0
-        self.width = math.ceil(math.log10(self.solver.limit)) + 2
+        self.width = None
 
-    def on_iteration(self, colony, global_best, is_new_best):
+    def on_start(self, graph, ants, gen_size, limit):
+        self.width = math.ceil(math.log10(limit)) + 2
+
+    def on_iteration(self, graph, solutions, best, is_new_best):
         report = f'{self.iteration: {self.width}d}'
         self.iteration += 1
         if is_new_best:
             self.best_count += 1
             end = '\n'
-            solution = ''.join(global_best.nodes)
-            report += (f' {self.best_count: {self.width}d} '
-                       f'{solution} {global_best.weight}')
+            report += (f' {self.best_count: {self.width}d} \t{best}')
         else:
             end = '\r'
         print(report, end=end)
 
-    def on_finish(self, colony, global_best):
+    def on_finish(self, **kwargs):
         print('Done' + ' ' * self.width)
 
 
-class Timer(pants.solver.SolverPlugin):
-    def initialize(self, *args):
+class TimerPlugin(pants.SolverPlugin):
+    def initialize(self, solver):
+        super().initialize(solver)
         self.start_time = None
         self.finsih_time = None
         self.duration = None
 
-    def on_start(self, *args):
+    def on_start(self, **kwargs):
         self.start_time = time.time()
 
-    def on_finish(self, *args):
+    def on_finish(self, **kwargs):
         self.finsih_time = time.time()
         self.duration = self.finsih_time - self.start_time
         print(f'Total time: {self.duration} seconds')
@@ -111,20 +86,24 @@ class Timer(pants.solver.SolverPlugin):
 
 def write_graph(filepath, graph):
     data = collections.defaultdict(dict)
-    for (a, b), d in graph.items():
-        data[a][b] = d
+    for (a, b), w in graph.items():
+        data[a][b] = {'weight': w}
     with open(filepath, 'w') as f:
         json.dump(data, f)
 
 
-def read_graph(filepath):
+def generate_random_graph(size=10, min_weight=1, max_weight=50):
+    graph = networkx.complete_graph(string.printable[:size])
+    for e in graph.edges:
+        w = random.randint(min_weight, max_weight)
+        graph.edges[e]['weight'] = {'weight': w}
+    return graph
+
+
+def read_graph_from_file(filepath):
     with open(filepath) as f:
         data = json.load(f)
-
-    graph = {}
-    for a, edges in data.items():
-        for b, d in edges.items():
-            graph[a, b] = d
+    graph = networkx.Graph(data)
     return graph
 
 
@@ -135,54 +114,39 @@ def main():
 
 @main.command()
 @click.option('--file', type=click.Path(dir_okay=False, readable=True))
-@click.option('--size', type=int, default=None)
+@click.option('--size', type=int, default=60)
 @click.option('--elite', default=0.0)
-@click.option('--limit', default=100)
+@click.option('--limit', default=2000)
 @click.option('--q', default=1.0)
-@click.option('--rho', default=0.5)
+@click.option('--rho', default=0.03)
 @click.option('--beta', default=3.0)
 @click.option('--alpha', default=1.0)
 def demo(alpha, beta, rho, q, limit, elite, size, file):
-    print(alpha, beta, rho, q, limit, size)
-    farm = pants.ant.SpecificAntFarm(alpha=alpha, beta=beta, q=q)
-    solver = pants.solver.Solver(farm, limit=limit)
+    args = 'alpha={alpha} beta={beta} rho={rho} limit={limit} gen-size={size}'
+    print(args.format(**locals()))
+
+    colony = pants.Colony(alpha=alpha, beta=beta)
+    solver = pants.Solver(rho=rho, q=q)
+    graph = read_graph_from_file(file) if file else get_test_world_33()
 
     recorder = pants.plugins.StatRecorder()
-    # reset = pants.plugins.PeriodicReset()
-    printout = Printout()
-    timer = Timer()
-    solver.add_plugins(
-        recorder,
-        printout,
-        timer,
-        # reset,  # not ready... something wrong
-    )
+    solver.add_plugins(recorder, PrintoutPlugin(), TimerPlugin())
 
     if elite:
         solver.add_plugin(pants.plugins.EliteTracer())
 
-    factory = pants.world.SpecificEdgeFactory(rho=rho, symmetrical=True)
-    builder = pants.world.WorldBuilder(factory=factory)
-
-    if file:
-        graph = read_graph(file)
-        print(f'Using {file}')
-        world = builder.from_lookup_table(graph)
-    else:
-        print('Creating random graph')
-        world = get_test_world_33(builder)
-
-    solver.solve(world, size=size)
+    solver.solve(graph, colony, gen_size=size, limit=limit)
     recorder.plot()
 
 
 @main.command()
-@click.option('--max-dist', default=50.0)
-@click.option('--min-dist', default=1.0)
+@click.option('--max-weight', default=50.0)
+@click.option('--min-weight', default=1.0)
 @click.option('--size', default=10)
 @click.argument('filepath', type=click.Path(dir_okay=False, writable=True))
-def create(filepath, size, min_dist, max_dist):
-    graph = get_random_graph(size=size, min_dist=min_dist, max_dist=max_dist)
+def create(filepath, size, min_weight, max_weight):
+    graph = generate_random_graph(size=size, min_weight=min_weight,
+                                  max_weight=max_weight)
     write_graph(filepath, graph)
 
 
