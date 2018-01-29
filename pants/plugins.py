@@ -11,8 +11,8 @@ class EliteTracer(SolverPlugin):
     def __init__(self, factor=1):
         self.factor = factor
 
-    def on_iteration(self, graph, solutions, best, is_new_best):
-        best.trace(self.solver.q * self.factor)
+    def on_iteration(self, state, **kwargs):
+        state.best.trace(self.solver.q * self.factor)
 
 
 class PeriodicReset(SolverPlugin):
@@ -24,11 +24,11 @@ class PeriodicReset(SolverPlugin):
         super().initialize(solver)
         self.index = 0
 
-    def on_iteration(self, graph, **kwargs):
+    def on_iteration(self, state, **kwargs):
         self.index = (self.index + 1) % self.period
         if not self.index:
-            for edge in graph.edges:
-                graph.edges[edge]['pheromone'] = 1
+            for edge in state.graph.edges:
+                state.graph.edges[edge]['pheromone'] = 1
 
 
 class StatRecorder(SolverPlugin):
@@ -36,8 +36,8 @@ class StatRecorder(SolverPlugin):
         self.stats = collections.defaultdict(list)
         self.data = {'solutions': set()}
 
-    def on_start(self, graph, ants, **kwargs):
-        levels = [edge['pheromone'] for edge in graph.edges.values()]
+    def on_start(self, state):
+        levels = [edge['pheromone'] for edge in state.graph.edges.values()]
         num_edges = len(levels)
         total_pheromone = sum(levels)
 
@@ -63,11 +63,11 @@ class StatRecorder(SolverPlugin):
         }
         self.pump(stats)
 
-    def on_iteration(self, graph, solutions, best, is_new_best):
-        levels = [edge['pheromone'] for edge in graph.edges.values()]
-        distances = [solution.weight for solution in solutions]
+    def on_iteration(self, state, is_new_best):
+        levels = [edge['pheromone'] for edge in state.graph.edges.values()]
+        distances = [solution.weight for solution in state.solutions]
 
-        solutions = set(solutions)
+        solutions = set(state.solutions)
         solutions_seen = self.data['solutions']
 
         old_count = len(solutions_seen)
@@ -90,7 +90,7 @@ class StatRecorder(SolverPlugin):
                 'best': min(distances),
                 'worst': max(distances),
                 'avg': sum(distances) / num_ants,
-                'global_best': best.weight,
+                'global_best': state.best.weight,
             },
             'unique_solutions': {
                 'total': len(self.data['solutions']),
@@ -99,6 +99,9 @@ class StatRecorder(SolverPlugin):
             }
         }
         self.pump(stats)
+
+    def on_finish(self, **kwargs):
+        self.plot()
 
     def pump(self, stats):
         for stat, data in stats.items():
@@ -111,11 +114,7 @@ class StatRecorder(SolverPlugin):
 
         plt.figure()
         plt.title('Pheromone')
-        plt.subplot('211')
         self.plot_pheromone_levels()
-
-        plt.subplot('212')
-        self.plot_pheromone_levels(stacked=True)
 
         plt.figure()
         plt.title('Pheromone meta')

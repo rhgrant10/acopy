@@ -50,16 +50,16 @@ class PrintoutPlugin(pants.SolverPlugin):
         self.best_count = 0
         self.width = None
 
-    def on_start(self, graph, ants, gen_size, limit):
-        self.width = math.ceil(math.log10(limit)) + 2
+    def on_start(self, state):
+        self.width = math.ceil(math.log10(state.limit)) + 2
 
-    def on_iteration(self, graph, solutions, best, is_new_best):
+    def on_iteration(self, state, is_new_best):
         report = f'{self.iteration: {self.width}d}'
         self.iteration += 1
         if is_new_best:
             self.best_count += 1
             end = '\n'
-            report += (f' {self.best_count: {self.width}d} \t{best}')
+            report += (f' {self.best_count: {self.width}d} \t{state.best}')
         else:
             end = '\r'
         print(report, end=end)
@@ -84,12 +84,28 @@ class TimerPlugin(pants.SolverPlugin):
         print(f'Total time: {self.duration} seconds')
 
 
-def write_graph(filepath, graph):
+class DarwinPlugin(pants.SolverPlugin):
+    def __init__(self, sigma=.1):
+        self.sigma = sigma
+
+    def on_start(self, state):
+        size = len(state.ants)
+        self.alpha = sum(ant.alpha for ant in state.ants) / size
+        self.beta = sum(ant.beta for ant in state.ants) / size
+
+    def on_iteration(self, state, **kwargs):
+        alpha = (self.alpha + state.best.alpha) / 2
+        beta = (self.beta + state.best.beta) / 2
+        for ant in state.ants:
+            ant.alpha = random.gauss(alpha, self.sigma)
+            ant.beta = random.gauss(beta, self.sigma)
+
+
+def graph_as_dict(graph):
     data = collections.defaultdict(dict)
-    for (a, b), w in graph.items():
-        data[a][b] = {'weight': w}
-    with open(filepath, 'w') as f:
-        json.dump(data, f)
+    for u, v in graph.edges:
+        data[u][v] = graph.edges[u, v]
+    return dict(data)
 
 
 def generate_random_graph(size=10, min_weight=1, max_weight=50):
@@ -114,6 +130,9 @@ def main():
 
 @main.command()
 @click.option('--file', type=click.Path(dir_okay=False, readable=True))
+@click.option('--reset', type=int, default=False)
+@click.option('--darwin', default=0.0)
+@click.option('--plot/--no-plot', default=False)
 @click.option('--size', type=int, default=60)
 @click.option('--elite', default=0.0)
 @click.option('--limit', default=2000)
@@ -121,33 +140,43 @@ def main():
 @click.option('--rho', default=0.03)
 @click.option('--beta', default=3.0)
 @click.option('--alpha', default=1.0)
-def demo(alpha, beta, rho, q, limit, elite, size, file):
-    args = 'alpha={alpha} beta={beta} rho={rho} limit={limit} gen-size={size}'
+def demo(alpha, beta, rho, q, limit, elite, size, plot, darwin, reset, file):
+    args = ('alpha={alpha} beta={beta} rho={rho} limit={limit} '
+            'gen-size={size} elite={elite} reset={reset}')
     print(args.format(**locals()))
+
+    graph = read_graph_from_file(file) if file else get_test_world_33()
 
     colony = pants.Colony(alpha=alpha, beta=beta)
     solver = pants.Solver(rho=rho, q=q)
-    graph = read_graph_from_file(file) if file else get_test_world_33()
+    solver.add_plugins(PrintoutPlugin(), TimerPlugin())
 
-    recorder = pants.plugins.StatRecorder()
-    solver.add_plugins(recorder, PrintoutPlugin(), TimerPlugin())
-
+    if plot:
+        solver.add_plugin(pants.plugins.StatRecorder())
     if elite:
-        solver.add_plugin(pants.plugins.EliteTracer())
+        solver.add_plugin(pants.plugins.EliteTracer(factor=elite))
+    if reset:
+        solver.add_plugin(pants.plugins.PeriodicReset(period=reset))
+    if darwin:
+        solver.add_plugin(DarwinPlugin(darwin))
 
     solver.solve(graph, colony, gen_size=size, limit=limit)
-    recorder.plot()
 
 
 @main.command()
 @click.option('--max-weight', default=50.0)
 @click.option('--min-weight', default=1.0)
 @click.option('--size', default=10)
-@click.argument('filepath', type=click.Path(dir_okay=False, writable=True))
-def create(filepath, size, min_weight, max_weight):
+@click.option('--file', type=click.Path(dir_okay=False, writable=True))
+def create(file, size, min_weight, max_weight):
     graph = generate_random_graph(size=size, min_weight=min_weight,
                                   max_weight=max_weight)
-    write_graph(filepath, graph)
+    data = graph_as_dict(graph)
+    if file:
+        with open(file, 'w') as f:
+            json.dump(data, f)
+    else:
+        print(json.dumps(data, indent=2))
 
 
 if __name__ == "__main__":

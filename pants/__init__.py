@@ -30,6 +30,6 @@ Wikipedia <http://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms>`_.
 .. moduleauthor:: Robert Grant <rhgrant10@gmail.com>
 
 """
-from .ant import Colony, Ant
+from .ant import Ant, Colony, DarwinAnt, MixedColony
 from .solver import Solver, Solution, SolverPlugin
 from . import plugins

@@ -4,11 +4,14 @@ import functools
 
 @functools.total_ordering
 class Solution:
-    def __init__(self, graph, start):
+    def __init__(self, graph, start, alpha, beta):
         self.graph = graph
-        self.path = []
-        self.current = self.start = start
+        self.start = start
+        self.alpha = alpha
+        self.beta = beta
+        self.current = start
         self.weight = 0
+        self.path = []
         self.nodes = [start]
         self.visited = set(self.nodes)
         self._size = max(len(str(n)) for n in self.graph.nodes)
@@ -29,7 +32,8 @@ class Solution:
         def space(n):
             return '{: >{size}s}'.format(n, size=self._size)
         easy_id = ''.join(space(n) for n in self.get_id())
-        return '{} ({})'.format(easy_id, self.weight)
+        return '{} ({}, a={}, b={})'.format(easy_id, self.weight, self.alpha,
+                                            self.beta)
 
     def __hash__(self):
         return hash(self.get_id())
@@ -63,6 +67,16 @@ class Solution:
                 self.graph.edges[edge]['pheromone'] = sys.float_info.min
 
 
+class State:
+    def __init__(self, graph, ants, limit, gen_size):
+        self.graph = graph
+        self.ants = ants
+        self.limit = limit
+        self.gen_size = gen_size
+        self.solutions = None
+        self.best = None
+
+
 class Solver:
     def __init__(self, rho=.03, q=1, top=2, plugins=None):
         self.rho = rho
@@ -85,36 +99,44 @@ class Solver:
         for u, v in graph.edges:
             graph.edges[u, v].setdefault('pheromone', 1)
 
-        # call start hook for all plugins
-        self._call_plugins('start', graph=graph, ants=ants, gen_size=gen_size,
-                           limit=limit)
+        state = State(graph=graph, ants=ants, limit=limit, gen_size=gen_size)
 
-        best = None
+        # call start hook for all plugins
+        self._call_plugins('start', state=state)
+
         for __ in range(limit):
             # find solutions and update the graph pheromone accordingly
-            solutions = self.find_solutions(graph, ants)
-            self.global_update(graph, solutions)
+            state.solutions = self.find_solutions(state.graph, state.ants)
+            state.solutions.sort()
+            self.global_update(state)
 
             # yield increasingly better solutions
-            is_new_best = best is None or solutions[0] < best
+            is_new_best = state.best is None or state.solutions[0] < state.best
             if is_new_best:
-                best = solutions[0]
-                yield best
+                state.best = state.solutions[0]
+                yield state.best
 
             # call iteration hook for all plugins
-            self._call_plugins('iteration', graph=graph, solutions=solutions,
-                               best=best, is_new_best=is_new_best)
+            self._call_plugins('iteration', state=state,
+                               is_new_best=is_new_best)
 
         # call finish hook for all plugins
-        self._call_plugins('finish', graph=graph, solutions=solutions,
-                           best=best)
+        self._call_plugins('finish', state=state)
 
     def find_solutions(self, graph, ants):
         return [ant.tour(graph) for ant in ants]
 
-    def global_update(self, graph, solutions):
-        for solution in sorted(solutions)[:self.top]:
-            solution.trace(self.q, rho=self.rho)
+    def global_update(self, state):
+        # for solution in state.solutions[:self.top]:
+        #     solution.trace(self.q, rho=self.rho)
+
+        for edge in state.graph.edges:
+            amount = 0
+            for solution in state.solutions[:self.top]:
+                if edge in solution.path:
+                    amount += self.q / solution.weight
+            p = state.graph.edges[edge]['pheromone']
+            state.graph.edges[edge]['pheromone'] = (1 - self.rho) * p + amount
 
     def add_plugin(self, plugin):
         self.add_plugins(plugin)
@@ -136,11 +158,11 @@ class SolverPlugin:
     def initialize(self, solver):
         self.solver = solver
 
-    def on_start(self, graph, ants, gen_size, limit):
+    def on_start(self, state):
         pass
 
-    def on_iteration(self, graph, solutions, best, is_new_best):
+    def on_iteration(self, state, is_new_best):
         pass
 
-    def on_finish(self, graph, solutions, best):
+    def on_finish(self, state):
         pass

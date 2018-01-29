@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-"""The setup script."""
-
 from setuptools import setup, find_packages
+
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -11,17 +9,16 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = [
-    'Click>=6.0',
-    # TODO: put package requirements here
-]
+with open('requirements.txt') as requirements_file:
+    requirements = requirements_file.read().splitlines()
+
 
 setup_requirements = [
-    # TODO(rhgrant10): put setup requirements (distutils extensions, etc.) here
+    'pytest-runner'
 ]
 
 test_requirements = [
-    # TODO: put package test requirements here
+    'pytest', 'pytest-cov'
 ]
 
 setup(
