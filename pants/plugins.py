@@ -1,8 +1,11 @@
 import collections
 import functools
 
-import matplotlib.pyplot as plt
-import pandas as pd
+try:
+    import matplotlib.pyplot as plt
+    import pandas as pd
+except ImportError:
+    pass
 
 from .solver import SolverPlugin
 

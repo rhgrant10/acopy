@@ -22,4 +22,4 @@ deploy:
   on:
     tags: true
     repo: rhgrant10/pants
-    python: 2.7
+    python: 3.6
