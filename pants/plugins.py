@@ -18,7 +18,7 @@ class EliteTracer(SolverPlugin):
         state.best.trace(self.solver.q * self.factor)
 
 
-class PeriodicReset(SolverPlugin):
+class PeriodicActionPlugin(SolverPlugin):
     def __init__(self, period=50):
         self.period = period
         self.index = None
@@ -30,8 +30,27 @@ class PeriodicReset(SolverPlugin):
     def on_iteration(self, state, **kwargs):
         self.index = (self.index + 1) % self.period
         if not self.index:
-            for edge in state.graph.edges:
-                state.graph.edges[edge]['pheromone'] = 1
+            self.action(state, **kwargs)
+
+    def action(self, state, **kwargs):
+        pass
+
+
+class PeriodicReset(PeriodicActionPlugin):
+    def action(self, state, **kwargs):
+        for edge in state.graph.edges:
+            state.graph.edges[edge]['pheromone'] = 1
+
+
+class PheromoneFlip(PeriodicActionPlugin):
+    def action(self, state, **kwargs):
+        data = []
+        for edge in state.graph.edges.values():
+            datum = edge['pheromone'], edge
+            data.append(datum)
+        levels, edges = zip(*data)
+        for edge, level in zip(edges, reversed(levels)):
+            edge['pheromone'] = level
 
 
 class StatRecorder(SolverPlugin):

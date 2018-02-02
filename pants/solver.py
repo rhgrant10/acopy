@@ -4,7 +4,7 @@ import functools
 
 @functools.total_ordering
 class Solution:
-    def __init__(self, graph, start, alpha, beta):
+    def __init__(self, graph, start, alpha=None, beta=None):
         self.graph = graph
         self.start = start
         self.alpha = alpha
@@ -127,9 +127,6 @@ class Solver:
         return [ant.tour(graph) for ant in ants]
 
     def global_update(self, state):
-        # for solution in state.solutions[:self.top]:
-        #     solution.trace(self.q, rho=self.rho)
-
         for edge in state.graph.edges:
             amount = 0
             for solution in state.solutions[:self.top]:
@@ -149,6 +146,12 @@ class Solver:
     def _call_plugins(self, hook, **kwargs):
         for plugin in self.plugins:
             plugin(hook, **kwargs)
+
+
+class IncreasingSolver(Solver):
+    def global_update(self, state):
+        for solution in state.solutions[:self.top]:
+            solution.trace(self.q, rho=self.rho)
 
 
 class SolverPlugin:

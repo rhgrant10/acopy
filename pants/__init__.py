@@ -31,5 +31,5 @@ Wikipedia <http://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms>`_.
 
 """
 from .ant import Ant, Colony, DarwinAnt, MixedColony
-from .solver import Solver, Solution, SolverPlugin
+from .solver import Solver, Solution, SolverPlugin, IncreasingSolver
 from . import plugins

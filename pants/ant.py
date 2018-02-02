@@ -11,8 +11,7 @@ class Ant:
         self.beta = beta
 
     def tour(self, graph):
-        start = self.get_starting_node(graph)
-        solution = Solution(graph, start, alpha=self.alpha, beta=self.beta)
+        solution = self.start_new_solution(graph)
         while True:
             moves = self.get_moves(graph, solution)
             if not moves:
@@ -24,6 +23,10 @@ class Ant:
             solution.add_node(node)
         solution.close()
         return solution
+
+    def start_new_solution(self, graph):
+        start = self.get_starting_node(graph)
+        return Solution(graph, start, alpha=self.alpha, beta=self.beta)
 
     def get_starting_node(self, graph):
         return random.choice(list(graph.nodes))

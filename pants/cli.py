@@ -112,7 +112,7 @@ def generate_random_graph(size=10, min_weight=1, max_weight=50):
     graph = networkx.complete_graph(string.printable[:size])
     for e in graph.edges:
         w = random.randint(min_weight, max_weight)
-        graph.edges[e]['weight'] = {'weight': w}
+        graph.edges[e]['weight'] = w
     return graph
 
 
@@ -131,6 +131,7 @@ def main():
 @main.command()
 @click.option('--file', type=click.Path(dir_okay=False, readable=True))
 @click.option('--reset', type=int, default=False)
+@click.option('--flip', type=int, default=False)
 @click.option('--darwin', default=0.0)
 @click.option('--plot/--no-plot', default=False)
 @click.option('--size', type=int, default=60)
@@ -140,7 +141,7 @@ def main():
 @click.option('--rho', default=0.03)
 @click.option('--beta', default=3.0)
 @click.option('--alpha', default=1.0)
-def demo(alpha, beta, rho, q, limit, elite, size, plot, darwin, reset, file):
+def demo(alpha, beta, rho, q, limit, elite, size, plot, darwin, flip, reset, file):
     args = ('alpha={alpha} beta={beta} rho={rho} limit={limit} '
             'gen-size={size} elite={elite} reset={reset}')
     print(args.format(**locals()))
@@ -159,6 +160,8 @@ def demo(alpha, beta, rho, q, limit, elite, size, plot, darwin, reset, file):
         solver.add_plugin(pants.plugins.PeriodicReset(period=reset))
     if darwin:
         solver.add_plugin(DarwinPlugin(darwin))
+    if flip:
+        solver.add_plugin(pants.plugins.PheromoneFlip(period=flip))
 
     solver.solve(graph, colony, gen_size=size, limit=limit)
 
