@@ -1,0 +1,15050 @@
+{
+  "0": {
+    "1": {
+      "weight": 21
+    },
+    "2": {
+      "weight": 2
+    },
+    "3": {
+      "weight": 37
+    },
+    "4": {
+      "weight": 28
+    },
+    "5": {
+      "weight": 13
+    },
+    "6": {
+      "weight": 30
+    },
+    "7": {
+      "weight": 17
+    },
+    "8": {
+      "weight": 38
+    },
+    "9": {
+      "weight": 34
+    },
+    "a": {
+      "weight": 9
+    },
+    "b": {
+      "weight": 28
+    },
+    "c": {
+      "weight": 10
+    },
+    "d": {
+      "weight": 30
+    },
+    "e": {
+      "weight": 6
+    },
+    "f": {
+      "weight": 1
+    },
+    "g": {
+      "weight": 37
+    },
+    "h": {
+      "weight": 34
+    },
+    "i": {
+      "weight": 50
+    },
+    "j": {
+      "weight": 2
+    },
+    "k": {
+      "weight": 5
+    },
+    "l": {
+      "weight": 47
+    },
+    "m": {
+      "weight": 39
+    },
+    "n": {
+      "weight": 37
+    },
+    "o": {
+      "weight": 17
+    },
+    "p": {
+      "weight": 28
+    },
+    "q": {
+      "weight": 37
+    },
+    "r": {
+      "weight": 36
+    },
+    "s": {
+      "weight": 33
+    },
+    "t": {
+      "weight": 35
+    },
+    "u": {
+      "weight": 35
+    },
+    "v": {
+      "weight": 4
+    },
+    "w": {
+      "weight": 21
+    },
+    "x": {
+      "weight": 15
+    },
+    "y": {
+      "weight": 32
+    },
+    "z": {
+      "weight": 24
+    },
+    "A": {
+      "weight": 47
+    },
+    "B": {
+      "weight": 15
+    },
+    "C": {
+      "weight": 3
+    },
+    "D": {
+      "weight": 30
+    },
+    "E": {
+      "weight": 15
+    },
+    "F": {
+      "weight": 19
+    },
+    "G": {
+      "weight": 42
+    },
+    "H": {
+      "weight": 28
+    },
+    "I": {
+      "weight": 46
+    },
+    "J": {
+      "weight": 39
+    },
+    "K": {
+      "weight": 3
+    },
+    "L": {
+      "weight": 7
+    },
+    "M": {
+      "weight": 50
+    },
+    "N": {
+      "weight": 13
+    },
+    "O": {
+      "weight": 43
+    },
+    "P": {
+      "weight": 22
+    },
+    "Q": {
+      "weight": 28
+    },
+    "R": {
+      "weight": 41
+    },
+    "S": {
+      "weight": 19
+    },
+    "T": {
+      "weight": 4
+    },
+    "U": {
+      "weight": 24
+    },
+    "V": {
+      "weight": 46
+    },
+    "W": {
+      "weight": 41
+    },
+    "X": {
+      "weight": 13
+    },
+    "Y": {
+      "weight": 39
+    },
+    "Z": {
+      "weight": 9
+    },
+    "!": {
+      "weight": 20
+    },
+    "\"": {
+      "weight": 6
+    },
+    "#": {
+      "weight": 28
+    },
+    "$": {
+      "weight": 25
+    },
+    "%": {
+      "weight": 26
+    },
+    "&": {
+      "weight": 13
+    },
+    "'": {
+      "weight": 9
+    },
+    "(": {
+      "weight": 27
+    },
+    ")": {
+      "weight": 13
+    },
+    "*": {
+      "weight": 40
+    },
+    "+": {
+      "weight": 22
+    },
+    ",": {
+      "weight": 30
+    },
+    "-": {
+      "weight": 33
+    },
+    ".": {
+      "weight": 24
+    },
+    "/": {
+      "weight": 31
+    },
+    ":": {
+      "weight": 21
+    },
+    ";": {
+      "weight": 29
+    },
+    "<": {
+      "weight": 19
+    },
+    "=": {
+      "weight": 37
+    },
+    ">": {
+      "weight": 20
+    },
+    "?": {
+      "weight": 43
+    },
+    "@": {
+      "weight": 26
+    },
+    "[": {
+      "weight": 11
+    },
+    "\\": {
+      "weight": 41
+    },
+    "]": {
+      "weight": 49
+    },
+    "^": {
+      "weight": 44
+    },
+    "_": {
+      "weight": 39
+    },
+    "`": {
+      "weight": 6
+    },
+    "{": {
+      "weight": 19
+    },
+    "|": {
+      "weight": 24
+    },
+    "}": {
+      "weight": 11
+    },
+    "~": {
+      "weight": 1
+    },
+    " ": {
+      "weight": 13
+    },
+    "\t": {
+      "weight": 20
+    },
+    "\n": {
+      "weight": 19
+    },
+    "\r": {
+      "weight": 40
+    },
+    "\u000b": {
+      "weight": 17
+    },
+    "\f": {
+      "weight": 3
+    }
+  },
+  "1": {
+    "2": {
+      "weight": 26
+    },
+    "3": {
+      "weight": 3
+    },
+    "4": {
+      "weight": 19
+    },
+    "5": {
+      "weight": 4
+    },
+    "6": {
+      "weight": 16
+    },
+    "7": {
+      "weight": 16
+    },
+    "8": {
+      "weight": 19
+    },
+    "9": {
+      "weight": 26
+    },
+    "a": {
+      "weight": 50
+    },
+    "b": {
+      "weight": 4
+    },
+    "c": {
+      "weight": 18
+    },
+    "d": {
+      "weight": 23
+    },
+    "e": {
+      "weight": 28
+    },
+    "f": {
+      "weight": 10
+    },
+    "g": {
+      "weight": 30
+    },
+    "h": {
+      "weight": 36
+    },
+    "i": {
+      "weight": 9
+    },
+    "j": {
+      "weight": 34
+    },
+    "k": {
+      "weight": 28
+    },
+    "l": {
+      "weight": 16
+    },
+    "m": {
+      "weight": 34
+    },
+    "n": {
+      "weight": 34
+    },
+    "o": {
+      "weight": 27
+    },
+    "p": {
+      "weight": 19
+    },
+    "q": {
+      "weight": 48
+    },
+    "r": {
+      "weight": 5
+    },
+    "s": {
+      "weight": 32
+    },
+    "t": {
+      "weight": 11
+    },
+    "u": {
+      "weight": 4
+    },
+    "v": {
+      "weight": 30
+    },
+    "w": {
+      "weight": 11
+    },
+    "x": {
+      "weight": 11
+    },
+    "y": {
+      "weight": 33
+    },
+    "z": {
+      "weight": 40
+    },
+    "A": {
+      "weight": 45
+    },
+    "B": {
+      "weight": 9
+    },
+    "C": {
+      "weight": 6
+    },
+    "D": {
+      "weight": 47
+    },
+    "E": {
+      "weight": 30
+    },
+    "F": {
+      "weight": 24
+    },
+    "G": {
+      "weight": 5
+    },
+    "H": {
+      "weight": 38
+    },
+    "I": {
+      "weight": 46
+    },
+    "J": {
+      "weight": 1
+    },
+    "K": {
+      "weight": 26
+    },
+    "L": {
+      "weight": 15
+    },
+    "M": {
+      "weight": 5
+    },
+    "N": {
+      "weight": 21
+    },
+    "O": {
+      "weight": 10
+    },
+    "P": {
+      "weight": 15
+    },
+    "Q": {
+      "weight": 2
+    },
+    "R": {
+      "weight": 5
+    },
+    "S": {
+      "weight": 35
+    },
+    "T": {
+      "weight": 29
+    },
+    "U": {
+      "weight": 41
+    },
+    "V": {
+      "weight": 50
+    },
+    "W": {
+      "weight": 35
+    },
+    "X": {
+      "weight": 42
+    },
+    "Y": {
+      "weight": 46
+    },
+    "Z": {
+      "weight": 20
+    },
+    "!": {
+      "weight": 41
+    },
+    "\"": {
+      "weight": 48
+    },
+    "#": {
+      "weight": 5
+    },
+    "$": {
+      "weight": 17
+    },
+    "%": {
+      "weight": 36
+    },
+    "&": {
+      "weight": 1
+    },
+    "'": {
+      "weight": 35
+    },
+    "(": {
+      "weight": 42
+    },
+    ")": {
+      "weight": 47
+    },
+    "*": {
+      "weight": 50
+    },
+    "+": {
+      "weight": 31
+    },
+    ",": {
+      "weight": 35
+    },
+    "-": {
+      "weight": 4
+    },
+    ".": {
+      "weight": 31
+    },
+    "/": {
+      "weight": 14
+    },
+    ":": {
+      "weight": 21
+    },
+    ";": {
+      "weight": 1
+    },
+    "<": {
+      "weight": 23
+    },
+    "=": {
+      "weight": 21
+    },
+    ">": {
+      "weight": 43
+    },
+    "?": {
+      "weight": 3
+    },
+    "@": {
+      "weight": 1
+    },
+    "[": {
+      "weight": 41
+    },
+    "\\": {
+      "weight": 20
+    },
+    "]": {
+      "weight": 32
+    },
+    "^": {
+      "weight": 24
+    },
+    "_": {
+      "weight": 27
+    },
+    "`": {
+      "weight": 28
+    },
+    "{": {
+      "weight": 30
+    },
+    "|": {
+      "weight": 8
+    },
+    "}": {
+      "weight": 47
+    },
+    "~": {
+      "weight": 46
+    },
+    " ": {
+      "weight": 5
+    },
+    "\t": {
+      "weight": 50
+    },
+    "\n": {
+      "weight": 50
+    },
+    "\r": {
+      "weight": 9
+    },
+    "\u000b": {
+      "weight": 33
+    },
+    "\f": {
+      "weight": 3
+    }
+  },
+  "2": {
+    "3": {
+      "weight": 30
+    },
+    "4": {
+      "weight": 29
+    },
+    "5": {
+      "weight": 42
+    },
+    "6": {
+      "weight": 40
+    },
+    "7": {
+      "weight": 34
+    },
+    "8": {
+      "weight": 21
+    },
+    "9": {
+      "weight": 33
+    },
+    "a": {
+      "weight": 37
+    },
+    "b": {
+      "weight": 35
+    },
+    "c": {
+      "weight": 3
+    },
+    "d": {
+      "weight": 11
+    },
+    "e": {
+      "weight": 13
+    },
+    "f": {
+      "weight": 27
+    },
+    "g": {
+      "weight": 21
+    },
+    "h": {
+      "weight": 36
+    },
+    "i": {
+      "weight": 45
+    },
+    "j": {
+      "weight": 20
+    },
+    "k": {
+      "weight": 50
+    },
+    "l": {
+      "weight": 7
+    },
+    "m": {
+      "weight": 49
+    },
+    "n": {
+      "weight": 18
+    },
+    "o": {
+      "weight": 29
+    },
+    "p": {
+      "weight": 24
+    },
+    "q": {
+      "weight": 41
+    },
+    "r": {
+      "weight": 1
+    },
+    "s": {
+      "weight": 43
+    },
+    "t": {
+      "weight": 4
+    },
+    "u": {
+      "weight": 9
+    },
+    "v": {
+      "weight": 44
+    },
+    "w": {
+      "weight": 10
+    },
+    "x": {
+      "weight": 3
+    },
+    "y": {
+      "weight": 20
+    },
+    "z": {
+      "weight": 49
+    },
+    "A": {
+      "weight": 44
+    },
+    "B": {
+      "weight": 4
+    },
+    "C": {
+      "weight": 10
+    },
+    "D": {
+      "weight": 26
+    },
+    "E": {
+      "weight": 41
+    },
+    "F": {
+      "weight": 12
+    },
+    "G": {
+      "weight": 23
+    },
+    "H": {
+      "weight": 12
+    },
+    "I": {
+      "weight": 35
+    },
+    "J": {
+      "weight": 23
+    },
+    "K": {
+      "weight": 32
+    },
+    "L": {
+      "weight": 6
+    },
+    "M": {
+      "weight": 2
+    },
+    "N": {
+      "weight": 33
+    },
+    "O": {
+      "weight": 18
+    },
+    "P": {
+      "weight": 8
+    },
+    "Q": {
+      "weight": 7
+    },
+    "R": {
+      "weight": 37
+    },
+    "S": {
+      "weight": 13
+    },
+    "T": {
+      "weight": 24
+    },
+    "U": {
+      "weight": 8
+    },
+    "V": {
+      "weight": 9
+    },
+    "W": {
+      "weight": 10
+    },
+    "X": {
+      "weight": 6
+    },
+    "Y": {
+      "weight": 37
+    },
+    "Z": {
+      "weight": 39
+    },
+    "!": {
+      "weight": 12
+    },
+    "\"": {
+      "weight": 15
+    },
+    "#": {
+      "weight": 8
+    },
+    "$": {
+      "weight": 4
+    },
+    "%": {
+      "weight": 18
+    },
+    "&": {
+      "weight": 13
+    },
+    "'": {
+      "weight": 3
+    },
+    "(": {
+      "weight": 17
+    },
+    ")": {
+      "weight": 8
+    },
+    "*": {
+      "weight": 26
+    },
+    "+": {
+      "weight": 1
+    },
+    ",": {
+      "weight": 18
+    },
+    "-": {
+      "weight": 9
+    },
+    ".": {
+      "weight": 5
+    },
+    "/": {
+      "weight": 29
+    },
+    ":": {
+      "weight": 41
+    },
+    ";": {
+      "weight": 14
+    },
+    "<": {
+      "weight": 3
+    },
+    "=": {
+      "weight": 23
+    },
+    ">": {
+      "weight": 8
+    },
+    "?": {
+      "weight": 50
+    },
+    "@": {
+      "weight": 14
+    },
+    "[": {
+      "weight": 44
+    },
+    "\\": {
+      "weight": 5
+    },
+    "]": {
+      "weight": 18
+    },
+    "^": {
+      "weight": 50
+    },
+    "_": {
+      "weight": 25
+    },
+    "`": {
+      "weight": 29
+    },
+    "{": {
+      "weight": 23
+    },
+    "|": {
+      "weight": 41
+    },
+    "}": {
+      "weight": 31
+    },
+    "~": {
+      "weight": 25
+    },
+    " ": {
+      "weight": 3
+    },
+    "\t": {
+      "weight": 32
+    },
+    "\n": {
+      "weight": 1
+    },
+    "\r": {
+      "weight": 23
+    },
+    "\u000b": {
+      "weight": 8
+    },
+    "\f": {
+      "weight": 45
+    }
+  },
+  "3": {
+    "4": {
+      "weight": 12
+    },
+    "5": {
+      "weight": 47
+    },
+    "6": {
+      "weight": 22
+    },
+    "7": {
+      "weight": 34
+    },
+    "8": {
+      "weight": 38
+    },
+    "9": {
+      "weight": 36
+    },
+    "a": {
+      "weight": 15
+    },
+    "b": {
+      "weight": 36
+    },
+    "c": {
+      "weight": 14
+    },
+    "d": {
+      "weight": 41
+    },
+    "e": {
+      "weight": 33
+    },
+    "f": {
+      "weight": 35
+    },
+    "g": {
+      "weight": 46
+    },
+    "h": {
+      "weight": 9
+    },
+    "i": {
+      "weight": 33
+    },
+    "j": {
+      "weight": 32
+    },
+    "k": {
+      "weight": 41
+    },
+    "l": {
+      "weight": 10
+    },
+    "m": {
+      "weight": 28
+    },
+    "n": {
+      "weight": 23
+    },
+    "o": {
+      "weight": 27
+    },
+    "p": {
+      "weight": 42
+    },
+    "q": {
+      "weight": 12
+    },
+    "r": {
+      "weight": 11
+    },
+    "s": {
+      "weight": 32
+    },
+    "t": {
+      "weight": 34
+    },
+    "u": {
+      "weight": 45
+    },
+    "v": {
+      "weight": 14
+    },
+    "w": {
+      "weight": 32
+    },
+    "x": {
+      "weight": 20
+    },
+    "y": {
+      "weight": 44
+    },
+    "z": {
+      "weight": 29
+    },
+    "A": {
+      "weight": 33
+    },
+    "B": {
+      "weight": 44
+    },
+    "C": {
+      "weight": 46
+    },
+    "D": {
+      "weight": 20
+    },
+    "E": {
+      "weight": 3
+    },
+    "F": {
+      "weight": 42
+    },
+    "G": {
+      "weight": 21
+    },
+    "H": {
+      "weight": 29
+    },
+    "I": {
+      "weight": 38
+    },
+    "J": {
+      "weight": 48
+    },
+    "K": {
+      "weight": 10
+    },
+    "L": {
+      "weight": 3
+    },
+    "M": {
+      "weight": 40
+    },
+    "N": {
+      "weight": 46
+    },
+    "O": {
+      "weight": 19
+    },
+    "P": {
+      "weight": 28
+    },
+    "Q": {
+      "weight": 15
+    },
+    "R": {
+      "weight": 35
+    },
+    "S": {
+      "weight": 39
+    },
+    "T": {
+      "weight": 7
+    },
+    "U": {
+      "weight": 8
+    },
+    "V": {
+      "weight": 30
+    },
+    "W": {
+      "weight": 48
+    },
+    "X": {
+      "weight": 27
+    },
+    "Y": {
+      "weight": 4
+    },
+    "Z": {
+      "weight": 42
+    },
+    "!": {
+      "weight": 44
+    },
+    "\"": {
+      "weight": 39
+    },
+    "#": {
+      "weight": 39
+    },
+    "$": {
+      "weight": 42
+    },
+    "%": {
+      "weight": 49
+    },
+    "&": {
+      "weight": 14
+    },
+    "'": {
+      "weight": 17
+    },
+    "(": {
+      "weight": 47
+    },
+    ")": {
+      "weight": 7
+    },
+    "*": {
+      "weight": 27
+    },
+    "+": {
+      "weight": 11
+    },
+    ",": {
+      "weight": 6
+    },
+    "-": {
+      "weight": 26
+    },
+    ".": {
+      "weight": 13
+    },
+    "/": {
+      "weight": 46
+    },
+    ":": {
+      "weight": 18
+    },
+    ";": {
+      "weight": 45
+    },
+    "<": {
+      "weight": 34
+    },
+    "=": {
+      "weight": 6
+    },
+    ">": {
+      "weight": 19
+    },
+    "?": {
+      "weight": 32
+    },
+    "@": {
+      "weight": 8
+    },
+    "[": {
+      "weight": 13
+    },
+    "\\": {
+      "weight": 18
+    },
+    "]": {
+      "weight": 29
+    },
+    "^": {
+      "weight": 3
+    },
+    "_": {
+      "weight": 21
+    },
+    "`": {
+      "weight": 48
+    },
+    "{": {
+      "weight": 19
+    },
+    "|": {
+      "weight": 22
+    },
+    "}": {
+      "weight": 17
+    },
+    "~": {
+      "weight": 11
+    },
+    " ": {
+      "weight": 3
+    },
+    "\t": {
+      "weight": 40
+    },
+    "\n": {
+      "weight": 44
+    },
+    "\r": {
+      "weight": 38
+    },
+    "\u000b": {
+      "weight": 15
+    },
+    "\f": {
+      "weight": 10
+    }
+  },
+  "4": {
+    "5": {
+      "weight": 44
+    },
+    "6": {
+      "weight": 43
+    },
+    "7": {
+      "weight": 46
+    },
+    "8": {
+      "weight": 44
+    },
+    "9": {
+      "weight": 32
+    },
+    "a": {
+      "weight": 17
+    },
+    "b": {
+      "weight": 20
+    },
+    "c": {
+      "weight": 13
+    },
+    "d": {
+      "weight": 40
+    },
+    "e": {
+      "weight": 3
+    },
+    "f": {
+      "weight": 49
+    },
+    "g": {
+      "weight": 8
+    },
+    "h": {
+      "weight": 34
+    },
+    "i": {
+      "weight": 6
+    },
+    "j": {
+      "weight": 10
+    },
+    "k": {
+      "weight": 49
+    },
+    "l": {
+      "weight": 50
+    },
+    "m": {
+      "weight": 21
+    },
+    "n": {
+      "weight": 8
+    },
+    "o": {
+      "weight": 1
+    },
+    "p": {
+      "weight": 16
+    },
+    "q": {
+      "weight": 30
+    },
+    "r": {
+      "weight": 46
+    },
+    "s": {
+      "weight": 35
+    },
+    "t": {
+      "weight": 11
+    },
+    "u": {
+      "weight": 18
+    },
+    "v": {
+      "weight": 24
+    },
+    "w": {
+      "weight": 31
+    },
+    "x": {
+      "weight": 46
+    },
+    "y": {
+      "weight": 44
+    },
+    "z": {
+      "weight": 48
+    },
+    "A": {
+      "weight": 28
+    },
+    "B": {
+      "weight": 10
+    },
+    "C": {
+      "weight": 13
+    },
+    "D": {
+      "weight": 4
+    },
+    "E": {
+      "weight": 30
+    },
+    "F": {
+      "weight": 3
+    },
+    "G": {
+      "weight": 19
+    },
+    "H": {
+      "weight": 44
+    },
+    "I": {
+      "weight": 8
+    },
+    "J": {
+      "weight": 18
+    },
+    "K": {
+      "weight": 20
+    },
+    "L": {
+      "weight": 32
+    },
+    "M": {
+      "weight": 26
+    },
+    "N": {
+      "weight": 26
+    },
+    "O": {
+      "weight": 23
+    },
+    "P": {
+      "weight": 3
+    },
+    "Q": {
+      "weight": 13
+    },
+    "R": {
+      "weight": 17
+    },
+    "S": {
+      "weight": 10
+    },
+    "T": {
+      "weight": 39
+    },
+    "U": {
+      "weight": 27
+    },
+    "V": {
+      "weight": 39
+    },
+    "W": {
+      "weight": 27
+    },
+    "X": {
+      "weight": 24
+    },
+    "Y": {
+      "weight": 26
+    },
+    "Z": {
+      "weight": 32
+    },
+    "!": {
+      "weight": 29
+    },
+    "\"": {
+      "weight": 1
+    },
+    "#": {
+      "weight": 28
+    },
+    "$": {
+      "weight": 34
+    },
+    "%": {
+      "weight": 3
+    },
+    "&": {
+      "weight": 40
+    },
+    "'": {
+      "weight": 12
+    },
+    "(": {
+      "weight": 47
+    },
+    ")": {
+      "weight": 36
+    },
+    "*": {
+      "weight": 26
+    },
+    "+": {
+      "weight": 28
+    },
+    ",": {
+      "weight": 40
+    },
+    "-": {
+      "weight": 30
+    },
+    ".": {
+      "weight": 47
+    },
+    "/": {
+      "weight": 16
+    },
+    ":": {
+      "weight": 11
+    },
+    ";": {
+      "weight": 45
+    },
+    "<": {
+      "weight": 31
+    },
+    "=": {
+      "weight": 9
+    },
+    ">": {
+      "weight": 43
+    },
+    "?": {
+      "weight": 9
+    },
+    "@": {
+      "weight": 45
+    },
+    "[": {
+      "weight": 6
+    },
+    "\\": {
+      "weight": 40
+    },
+    "]": {
+      "weight": 19
+    },
+    "^": {
+      "weight": 6
+    },
+    "_": {
+      "weight": 23
+    },
+    "`": {
+      "weight": 6
+    },
+    "{": {
+      "weight": 50
+    },
+    "|": {
+      "weight": 10
+    },
+    "}": {
+      "weight": 40
+    },
+    "~": {
+      "weight": 29
+    },
+    " ": {
+      "weight": 48
+    },
+    "\t": {
+      "weight": 30
+    },
+    "\n": {
+      "weight": 17
+    },
+    "\r": {
+      "weight": 29
+    },
+    "\u000b": {
+      "weight": 35
+    },
+    "\f": {
+      "weight": 7
+    }
+  },
+  "5": {
+    "6": {
+      "weight": 15
+    },
+    "7": {
+      "weight": 16
+    },
+    "8": {
+      "weight": 8
+    },
+    "9": {
+      "weight": 14
+    },
+    "a": {
+      "weight": 21
+    },
+    "b": {
+      "weight": 22
+    },
+    "c": {
+      "weight": 22
+    },
+    "d": {
+      "weight": 20
+    },
+    "e": {
+      "weight": 1
+    },
+    "f": {
+      "weight": 33
+    },
+    "g": {
+      "weight": 37
+    },
+    "h": {
+      "weight": 43
+    },
+    "i": {
+      "weight": 17
+    },
+    "j": {
+      "weight": 50
+    },
+    "k": {
+      "weight": 6
+    },
+    "l": {
+      "weight": 44
+    },
+    "m": {
+      "weight": 1
+    },
+    "n": {
+      "weight": 14
+    },
+    "o": {
+      "weight": 36
+    },
+    "p": {
+      "weight": 13
+    },
+    "q": {
+      "weight": 21
+    },
+    "r": {
+      "weight": 2
+    },
+    "s": {
+      "weight": 31
+    },
+    "t": {
+      "weight": 2
+    },
+    "u": {
+      "weight": 22
+    },
+    "v": {
+      "weight": 48
+    },
+    "w": {
+      "weight": 25
+    },
+    "x": {
+      "weight": 24
+    },
+    "y": {
+      "weight": 1
+    },
+    "z": {
+      "weight": 20
+    },
+    "A": {
+      "weight": 9
+    },
+    "B": {
+      "weight": 39
+    },
+    "C": {
+      "weight": 27
+    },
+    "D": {
+      "weight": 18
+    },
+    "E": {
+      "weight": 36
+    },
+    "F": {
+      "weight": 42
+    },
+    "G": {
+      "weight": 9
+    },
+    "H": {
+      "weight": 46
+    },
+    "I": {
+      "weight": 16
+    },
+    "J": {
+      "weight": 26
+    },
+    "K": {
+      "weight": 14
+    },
+    "L": {
+      "weight": 44
+    },
+    "M": {
+      "weight": 23
+    },
+    "N": {
+      "weight": 45
+    },
+    "O": {
+      "weight": 17
+    },
+    "P": {
+      "weight": 24
+    },
+    "Q": {
+      "weight": 6
+    },
+    "R": {
+      "weight": 37
+    },
+    "S": {
+      "weight": 11
+    },
+    "T": {
+      "weight": 34
+    },
+    "U": {
+      "weight": 23
+    },
+    "V": {
+      "weight": 23
+    },
+    "W": {
+      "weight": 9
+    },
+    "X": {
+      "weight": 46
+    },
+    "Y": {
+      "weight": 12
+    },
+    "Z": {
+      "weight": 7
+    },
+    "!": {
+      "weight": 13
+    },
+    "\"": {
+      "weight": 29
+    },
+    "#": {
+      "weight": 37
+    },
+    "$": {
+      "weight": 20
+    },
+    "%": {
+      "weight": 41
+    },
+    "&": {
+      "weight": 46
+    },
+    "'": {
+      "weight": 31
+    },
+    "(": {
+      "weight": 43
+    },
+    ")": {
+      "weight": 40
+    },
+    "*": {
+      "weight": 49
+    },
+    "+": {
+      "weight": 44
+    },
+    ",": {
+      "weight": 33
+    },
+    "-": {
+      "weight": 48
+    },
+    ".": {
+      "weight": 7
+    },
+    "/": {
+      "weight": 45
+    },
+    ":": {
+      "weight": 33
+    },
+    ";": {
+      "weight": 15
+    },
+    "<": {
+      "weight": 2
+    },
+    "=": {
+      "weight": 38
+    },
+    ">": {
+      "weight": 16
+    },
+    "?": {
+      "weight": 49
+    },
+    "@": {
+      "weight": 25
+    },
+    "[": {
+      "weight": 21
+    },
+    "\\": {
+      "weight": 36
+    },
+    "]": {
+      "weight": 8
+    },
+    "^": {
+      "weight": 29
+    },
+    "_": {
+      "weight": 1
+    },
+    "`": {
+      "weight": 25
+    },
+    "{": {
+      "weight": 41
+    },
+    "|": {
+      "weight": 20
+    },
+    "}": {
+      "weight": 40
+    },
+    "~": {
+      "weight": 44
+    },
+    " ": {
+      "weight": 1
+    },
+    "\t": {
+      "weight": 50
+    },
+    "\n": {
+      "weight": 42
+    },
+    "\r": {
+      "weight": 6
+    },
+    "\u000b": {
+      "weight": 29
+    },
+    "\f": {
+      "weight": 14
+    }
+  },
+  "6": {
+    "7": {
+      "weight": 13
+    },
+    "8": {
+      "weight": 17
+    },
+    "9": {
+      "weight": 16
+    },
+    "a": {
+      "weight": 20
+    },
+    "b": {
+      "weight": 2
+    },
+    "c": {
+      "weight": 10
+    },
+    "d": {
+      "weight": 32
+    },
+    "e": {
+      "weight": 24
+    },
+    "f": {
+      "weight": 1
+    },
+    "g": {
+      "weight": 1
+    },
+    "h": {
+      "weight": 11
+    },
+    "i": {
+      "weight": 36
+    },
+    "j": {
+      "weight": 28
+    },
+    "k": {
+      "weight": 29
+    },
+    "l": {
+      "weight": 31
+    },
+    "m": {
+      "weight": 30
+    },
+    "n": {
+      "weight": 44
+    },
+    "o": {
+      "weight": 4
+    },
+    "p": {
+      "weight": 8
+    },
+    "q": {
+      "weight": 13
+    },
+    "r": {
+      "weight": 22
+    },
+    "s": {
+      "weight": 46
+    },
+    "t": {
+      "weight": 34
+    },
+    "u": {
+      "weight": 37
+    },
+    "v": {
+      "weight": 9
+    },
+    "w": {
+      "weight": 20
+    },
+    "x": {
+      "weight": 31
+    },
+    "y": {
+      "weight": 15
+    },
+    "z": {
+      "weight": 24
+    },
+    "A": {
+      "weight": 36
+    },
+    "B": {
+      "weight": 13
+    },
+    "C": {
+      "weight": 45
+    },
+    "D": {
+      "weight": 27
+    },
+    "E": {
+      "weight": 12
+    },
+    "F": {
+      "weight": 25
+    },
+    "G": {
+      "weight": 15
+    },
+    "H": {
+      "weight": 35
+    },
+    "I": {
+      "weight": 14
+    },
+    "J": {
+      "weight": 21
+    },
+    "K": {
+      "weight": 3
+    },
+    "L": {
+      "weight": 23
+    },
+    "M": {
+      "weight": 37
+    },
+    "N": {
+      "weight": 18
+    },
+    "O": {
+      "weight": 3
+    },
+    "P": {
+      "weight": 20
+    },
+    "Q": {
+      "weight": 50
+    },
+    "R": {
+      "weight": 47
+    },
+    "S": {
+      "weight": 14
+    },
+    "T": {
+      "weight": 47
+    },
+    "U": {
+      "weight": 27
+    },
+    "V": {
+      "weight": 20
+    },
+    "W": {
+      "weight": 9
+    },
+    "X": {
+      "weight": 19
+    },
+    "Y": {
+      "weight": 7
+    },
+    "Z": {
+      "weight": 38
+    },
+    "!": {
+      "weight": 40
+    },
+    "\"": {
+      "weight": 25
+    },
+    "#": {
+      "weight": 13
+    },
+    "$": {
+      "weight": 36
+    },
+    "%": {
+      "weight": 44
+    },
+    "&": {
+      "weight": 8
+    },
+    "'": {
+      "weight": 50
+    },
+    "(": {
+      "weight": 32
+    },
+    ")": {
+      "weight": 40
+    },
+    "*": {
+      "weight": 20
+    },
+    "+": {
+      "weight": 21
+    },
+    ",": {
+      "weight": 29
+    },
+    "-": {
+      "weight": 35
+    },
+    ".": {
+      "weight": 45
+    },
+    "/": {
+      "weight": 22
+    },
+    ":": {
+      "weight": 4
+    },
+    ";": {
+      "weight": 34
+    },
+    "<": {
+      "weight": 41
+    },
+    "=": {
+      "weight": 12
+    },
+    ">": {
+      "weight": 17
+    },
+    "?": {
+      "weight": 24
+    },
+    "@": {
+      "weight": 47
+    },
+    "[": {
+      "weight": 49
+    },
+    "\\": {
+      "weight": 5
+    },
+    "]": {
+      "weight": 26
+    },
+    "^": {
+      "weight": 23
+    },
+    "_": {
+      "weight": 48
+    },
+    "`": {
+      "weight": 25
+    },
+    "{": {
+      "weight": 42
+    },
+    "|": {
+      "weight": 27
+    },
+    "}": {
+      "weight": 11
+    },
+    "~": {
+      "weight": 10
+    },
+    " ": {
+      "weight": 21
+    },
+    "\t": {
+      "weight": 50
+    },
+    "\n": {
+      "weight": 7
+    },
+    "\r": {
+      "weight": 19
+    },
+    "\u000b": {
+      "weight": 2
+    },
+    "\f": {
+      "weight": 27
+    }
+  },
+  "7": {
+    "8": {
+      "weight": 47
+    },
+    "9": {
+      "weight": 39
+    },
+    "a": {
+      "weight": 37
+    },
+    "b": {
+      "weight": 8
+    },
+    "c": {
+      "weight": 42
+    },
+    "d": {
+      "weight": 39
+    },
+    "e": {
+      "weight": 9
+    },
+    "f": {
+      "weight": 38
+    },
+    "g": {
+      "weight": 50
+    },
+    "h": {
+      "weight": 12
+    },
+    "i": {
+      "weight": 41
+    },
+    "j": {
+      "weight": 27
+    },
+    "k": {
+      "weight": 30
+    },
+    "l": {
+      "weight": 24
+    },
+    "m": {
+      "weight": 22
+    },
+    "n": {
+      "weight": 4
+    },
+    "o": {
+      "weight": 47
+    },
+    "p": {
+      "weight": 26
+    },
+    "q": {
+      "weight": 50
+    },
+    "r": {
+      "weight": 35
+    },
+    "s": {
+      "weight": 46
+    },
+    "t": {
+      "weight": 31
+    },
+    "u": {
+      "weight": 15
+    },
+    "v": {
+      "weight": 39
+    },
+    "w": {
+      "weight": 20
+    },
+    "x": {
+      "weight": 1
+    },
+    "y": {
+      "weight": 10
+    },
+    "z": {
+      "weight": 42
+    },
+    "A": {
+      "weight": 25
+    },
+    "B": {
+      "weight": 33
+    },
+    "C": {
+      "weight": 27
+    },
+    "D": {
+      "weight": 38
+    },
+    "E": {
+      "weight": 23
+    },
+    "F": {
+      "weight": 40
+    },
+    "G": {
+      "weight": 13
+    },
+    "H": {
+      "weight": 17
+    },
+    "I": {
+      "weight": 29
+    },
+    "J": {
+      "weight": 44
+    },
+    "K": {
+      "weight": 50
+    },
+    "L": {
+      "weight": 43
+    },
+    "M": {
+      "weight": 37
+    },
+    "N": {
+      "weight": 19
+    },
+    "O": {
+      "weight": 42
+    },
+    "P": {
+      "weight": 20
+    },
+    "Q": {
+      "weight": 34
+    },
+    "R": {
+      "weight": 35
+    },
+    "S": {
+      "weight": 16
+    },
+    "T": {
+      "weight": 20
+    },
+    "U": {
+      "weight": 18
+    },
+    "V": {
+      "weight": 35
+    },
+    "W": {
+      "weight": 37
+    },
+    "X": {
+      "weight": 3
+    },
+    "Y": {
+      "weight": 36
+    },
+    "Z": {
+      "weight": 32
+    },
+    "!": {
+      "weight": 34
+    },
+    "\"": {
+      "weight": 25
+    },
+    "#": {
+      "weight": 28
+    },
+    "$": {
+      "weight": 8
+    },
+    "%": {
+      "weight": 3
+    },
+    "&": {
+      "weight": 19
+    },
+    "'": {
+      "weight": 45
+    },
+    "(": {
+      "weight": 32
+    },
+    ")": {
+      "weight": 5
+    },
+    "*": {
+      "weight": 5
+    },
+    "+": {
+      "weight": 3
+    },
+    ",": {
+      "weight": 18
+    },
+    "-": {
+      "weight": 32
+    },
+    ".": {
+      "weight": 33
+    },
+    "/": {
+      "weight": 40
+    },
+    ":": {
+      "weight": 34
+    },
+    ";": {
+      "weight": 16
+    },
+    "<": {
+      "weight": 29
+    },
+    "=": {
+      "weight": 46
+    },
+    ">": {
+      "weight": 30
+    },
+    "?": {
+      "weight": 46
+    },
+    "@": {
+      "weight": 37
+    },
+    "[": {
+      "weight": 36
+    },
+    "\\": {
+      "weight": 20
+    },
+    "]": {
+      "weight": 22
+    },
+    "^": {
+      "weight": 35
+    },
+    "_": {
+      "weight": 25
+    },
+    "`": {
+      "weight": 19
+    },
+    "{": {
+      "weight": 48
+    },
+    "|": {
+      "weight": 18
+    },
+    "}": {
+      "weight": 5
+    },
+    "~": {
+      "weight": 5
+    },
+    " ": {
+      "weight": 49
+    },
+    "\t": {
+      "weight": 1
+    },
+    "\n": {
+      "weight": 38
+    },
+    "\r": {
+      "weight": 27
+    },
+    "\u000b": {
+      "weight": 29
+    },
+    "\f": {
+      "weight": 13
+    }
+  },
+  "8": {
+    "9": {
+      "weight": 47
+    },
+    "a": {
+      "weight": 39
+    },
+    "b": {
+      "weight": 25
+    },
+    "c": {
+      "weight": 42
+    },
+    "d": {
+      "weight": 29
+    },
+    "e": {
+      "weight": 41
+    },
+    "f": {
+      "weight": 28
+    },
+    "g": {
+      "weight": 16
+    },
+    "h": {
+      "weight": 14
+    },
+    "i": {
+      "weight": 32
+    },
+    "j": {
+      "weight": 11
+    },
+    "k": {
+      "weight": 26
+    },
+    "l": {
+      "weight": 46
+    },
+    "m": {
+      "weight": 16
+    },
+    "n": {
+      "weight": 22
+    },
+    "o": {
+      "weight": 43
+    },
+    "p": {
+      "weight": 14
+    },
+    "q": {
+      "weight": 42
+    },
+    "r": {
+      "weight": 44
+    },
+    "s": {
+      "weight": 5
+    },
+    "t": {
+      "weight": 35
+    },
+    "u": {
+      "weight": 3
+    },
+    "v": {
+      "weight": 43
+    },
+    "w": {
+      "weight": 19
+    },
+    "x": {
+      "weight": 36
+    },
+    "y": {
+      "weight": 43
+    },
+    "z": {
+      "weight": 33
+    },
+    "A": {
+      "weight": 37
+    },
+    "B": {
+      "weight": 15
+    },
+    "C": {
+      "weight": 14
+    },
+    "D": {
+      "weight": 35
+    },
+    "E": {
+      "weight": 32
+    },
+    "F": {
+      "weight": 50
+    },
+    "G": {
+      "weight": 25
+    },
+    "H": {
+      "weight": 48
+    },
+    "I": {
+      "weight": 18
+    },
+    "J": {
+      "weight": 49
+    },
+    "K": {
+      "weight": 9
+    },
+    "L": {
+      "weight": 33
+    },
+    "M": {
+      "weight": 1
+    },
+    "N": {
+      "weight": 31
+    },
+    "O": {
+      "weight": 32
+    },
+    "P": {
+      "weight": 42
+    },
+    "Q": {
+      "weight": 49
+    },
+    "R": {
+      "weight": 34
+    },
+    "S": {
+      "weight": 35
+    },
+    "T": {
+      "weight": 39
+    },
+    "U": {
+      "weight": 18
+    },
+    "V": {
+      "weight": 14
+    },
+    "W": {
+      "weight": 48
+    },
+    "X": {
+      "weight": 25
+    },
+    "Y": {
+      "weight": 16
+    },
+    "Z": {
+      "weight": 10
+    },
+    "!": {
+      "weight": 35
+    },
+    "\"": {
+      "weight": 18
+    },
+    "#": {
+      "weight": 31
+    },
+    "$": {
+      "weight": 9
+    },
+    "%": {
+      "weight": 19
+    },
+    "&": {
+      "weight": 4
+    },
+    "'": {
+      "weight": 21
+    },
+    "(": {
+      "weight": 37
+    },
+    ")": {
+      "weight": 20
+    },
+    "*": {
+      "weight": 40
+    },
+    "+": {
+      "weight": 32
+    },
+    ",": {
+      "weight": 7
+    },
+    "-": {
+      "weight": 14
+    },
+    ".": {
+      "weight": 10
+    },
+    "/": {
+      "weight": 24
+    },
+    ":": {
+      "weight": 44
+    },
+    ";": {
+      "weight": 13
+    },
+    "<": {
+      "weight": 20
+    },
+    "=": {
+      "weight": 40
+    },
+    ">": {
+      "weight": 48
+    },
+    "?": {
+      "weight": 15
+    },
+    "@": {
+      "weight": 30
+    },
+    "[": {
+      "weight": 27
+    },
+    "\\": {
+      "weight": 33
+    },
+    "]": {
+      "weight": 50
+    },
+    "^": {
+      "weight": 4
+    },
+    "_": {
+      "weight": 9
+    },
+    "`": {
+      "weight": 10
+    },
+    "{": {
+      "weight": 47
+    },
+    "|": {
+      "weight": 3
+    },
+    "}": {
+      "weight": 12
+    },
+    "~": {
+      "weight": 1
+    },
+    " ": {
+      "weight": 8
+    },
+    "\t": {
+      "weight": 14
+    },
+    "\n": {
+      "weight": 42
+    },
+    "\r": {
+      "weight": 37
+    },
+    "\u000b": {
+      "weight": 29
+    },
+    "\f": {
+      "weight": 45
+    }
+  },
+  "9": {
+    "a": {
+      "weight": 7
+    },
+    "b": {
+      "weight": 39
+    },
+    "c": {
+      "weight": 21
+    },
+    "d": {
+      "weight": 21
+    },
+    "e": {
+      "weight": 49
+    },
+    "f": {
+      "weight": 35
+    },
+    "g": {
+      "weight": 49
+    },
+    "h": {
+      "weight": 5
+    },
+    "i": {
+      "weight": 39
+    },
+    "j": {
+      "weight": 25
+    },
+    "k": {
+      "weight": 39
+    },
+    "l": {
+      "weight": 3
+    },
+    "m": {
+      "weight": 49
+    },
+    "n": {
+      "weight": 36
+    },
+    "o": {
+      "weight": 32
+    },
+    "p": {
+      "weight": 22
+    },
+    "q": {
+      "weight": 3
+    },
+    "r": {
+      "weight": 8
+    },
+    "s": {
+      "weight": 21
+    },
+    "t": {
+      "weight": 30
+    },
+    "u": {
+      "weight": 27
+    },
+    "v": {
+      "weight": 15
+    },
+    "w": {
+      "weight": 38
+    },
+    "x": {
+      "weight": 38
+    },
+    "y": {
+      "weight": 15
+    },
+    "z": {
+      "weight": 29
+    },
+    "A": {
+      "weight": 50
+    },
+    "B": {
+      "weight": 16
+    },
+    "C": {
+      "weight": 10
+    },
+    "D": {
+      "weight": 23
+    },
+    "E": {
+      "weight": 30
+    },
+    "F": {
+      "weight": 36
+    },
+    "G": {
+      "weight": 15
+    },
+    "H": {
+      "weight": 35
+    },
+    "I": {
+      "weight": 22
+    },
+    "J": {
+      "weight": 32
+    },
+    "K": {
+      "weight": 36
+    },
+    "L": {
+      "weight": 9
+    },
+    "M": {
+      "weight": 6
+    },
+    "N": {
+      "weight": 27
+    },
+    "O": {
+      "weight": 17
+    },
+    "P": {
+      "weight": 34
+    },
+    "Q": {
+      "weight": 37
+    },
+    "R": {
+      "weight": 50
+    },
+    "S": {
+      "weight": 28
+    },
+    "T": {
+      "weight": 15
+    },
+    "U": {
+      "weight": 10
+    },
+    "V": {
+      "weight": 46
+    },
+    "W": {
+      "weight": 40
+    },
+    "X": {
+      "weight": 22
+    },
+    "Y": {
+      "weight": 34
+    },
+    "Z": {
+      "weight": 35
+    },
+    "!": {
+      "weight": 34
+    },
+    "\"": {
+      "weight": 11
+    },
+    "#": {
+      "weight": 42
+    },
+    "$": {
+      "weight": 26
+    },
+    "%": {
+      "weight": 6
+    },
+    "&": {
+      "weight": 44
+    },
+    "'": {
+      "weight": 19
+    },
+    "(": {
+      "weight": 30
+    },
+    ")": {
+      "weight": 12
+    },
+    "*": {
+      "weight": 27
+    },
+    "+": {
+      "weight": 6
+    },
+    ",": {
+      "weight": 46
+    },
+    "-": {
+      "weight": 6
+    },
+    ".": {
+      "weight": 13
+    },
+    "/": {
+      "weight": 47
+    },
+    ":": {
+      "weight": 39
+    },
+    ";": {
+      "weight": 49
+    },
+    "<": {
+      "weight": 11
+    },
+    "=": {
+      "weight": 40
+    },
+    ">": {
+      "weight": 5
+    },
+    "?": {
+      "weight": 6
+    },
+    "@": {
+      "weight": 38
+    },
+    "[": {
+      "weight": 45
+    },
+    "\\": {
+      "weight": 9
+    },
+    "]": {
+      "weight": 32
+    },
+    "^": {
+      "weight": 47
+    },
+    "_": {
+      "weight": 1
+    },
+    "`": {
+      "weight": 18
+    },
+    "{": {
+      "weight": 49
+    },
+    "|": {
+      "weight": 24
+    },
+    "}": {
+      "weight": 35
+    },
+    "~": {
+      "weight": 43
+    },
+    " ": {
+      "weight": 2
+    },
+    "\t": {
+      "weight": 28
+    },
+    "\n": {
+      "weight": 34
+    },
+    "\r": {
+      "weight": 44
+    },
+    "\u000b": {
+      "weight": 9
+    },
+    "\f": {
+      "weight": 46
+    }
+  },
+  "a": {
+    "b": {
+      "weight": 4
+    },
+    "c": {
+      "weight": 41
+    },
+    "d": {
+      "weight": 2
+    },
+    "e": {
+      "weight": 48
+    },
+    "f": {
+      "weight": 11
+    },
+    "g": {
+      "weight": 16
+    },
+    "h": {
+      "weight": 25
+    },
+    "i": {
+      "weight": 29
+    },
+    "j": {
+      "weight": 25
+    },
+    "k": {
+      "weight": 32
+    },
+    "l": {
+      "weight": 32
+    },
+    "m": {
+      "weight": 17
+    },
+    "n": {
+      "weight": 41
+    },
+    "o": {
+      "weight": 17
+    },
+    "p": {
+      "weight": 2
+    },
+    "q": {
+      "weight": 27
+    },
+    "r": {
+      "weight": 32
+    },
+    "s": {
+      "weight": 46
+    },
+    "t": {
+      "weight": 25
+    },
+    "u": {
+      "weight": 27
+    },
+    "v": {
+      "weight": 42
+    },
+    "w": {
+      "weight": 20
+    },
+    "x": {
+      "weight": 16
+    },
+    "y": {
+      "weight": 24
+    },
+    "z": {
+      "weight": 18
+    },
+    "A": {
+      "weight": 47
+    },
+    "B": {
+      "weight": 10
+    },
+    "C": {
+      "weight": 29
+    },
+    "D": {
+      "weight": 50
+    },
+    "E": {
+      "weight": 4
+    },
+    "F": {
+      "weight": 43
+    },
+    "G": {
+      "weight": 46
+    },
+    "H": {
+      "weight": 6
+    },
+    "I": {
+      "weight": 46
+    },
+    "J": {
+      "weight": 31
+    },
+    "K": {
+      "weight": 50
+    },
+    "L": {
+      "weight": 36
+    },
+    "M": {
+      "weight": 6
+    },
+    "N": {
+      "weight": 33
+    },
+    "O": {
+      "weight": 40
+    },
+    "P": {
+      "weight": 3
+    },
+    "Q": {
+      "weight": 1
+    },
+    "R": {
+      "weight": 17
+    },
+    "S": {
+      "weight": 29
+    },
+    "T": {
+      "weight": 15
+    },
+    "U": {
+      "weight": 50
+    },
+    "V": {
+      "weight": 26
+    },
+    "W": {
+      "weight": 3
+    },
+    "X": {
+      "weight": 35
+    },
+    "Y": {
+      "weight": 34
+    },
+    "Z": {
+      "weight": 6
+    },
+    "!": {
+      "weight": 7
+    },
+    "\"": {
+      "weight": 32
+    },
+    "#": {
+      "weight": 8
+    },
+    "$": {
+      "weight": 41
+    },
+    "%": {
+      "weight": 50
+    },
+    "&": {
+      "weight": 29
+    },
+    "'": {
+      "weight": 1
+    },
+    "(": {
+      "weight": 5
+    },
+    ")": {
+      "weight": 35
+    },
+    "*": {
+      "weight": 18
+    },
+    "+": {
+      "weight": 5
+    },
+    ",": {
+      "weight": 12
+    },
+    "-": {
+      "weight": 21
+    },
+    ".": {
+      "weight": 39
+    },
+    "/": {
+      "weight": 34
+    },
+    ":": {
+      "weight": 23
+    },
+    ";": {
+      "weight": 9
+    },
+    "<": {
+      "weight": 1
+    },
+    "=": {
+      "weight": 16
+    },
+    ">": {
+      "weight": 11
+    },
+    "?": {
+      "weight": 11
+    },
+    "@": {
+      "weight": 37
+    },
+    "[": {
+      "weight": 22
+    },
+    "\\": {
+      "weight": 12
+    },
+    "]": {
+      "weight": 35
+    },
+    "^": {
+      "weight": 34
+    },
+    "_": {
+      "weight": 43
+    },
+    "`": {
+      "weight": 19
+    },
+    "{": {
+      "weight": 29
+    },
+    "|": {
+      "weight": 18
+    },
+    "}": {
+      "weight": 4
+    },
+    "~": {
+      "weight": 45
+    },
+    " ": {
+      "weight": 13
+    },
+    "\t": {
+      "weight": 5
+    },
+    "\n": {
+      "weight": 19
+    },
+    "\r": {
+      "weight": 25
+    },
+    "\u000b": {
+      "weight": 50
+    },
+    "\f": {
+      "weight": 14
+    }
+  },
+  "b": {
+    "c": {
+      "weight": 26
+    },
+    "d": {
+      "weight": 48
+    },
+    "e": {
+      "weight": 40
+    },
+    "f": {
+      "weight": 35
+    },
+    "g": {
+      "weight": 28
+    },
+    "h": {
+      "weight": 18
+    },
+    "i": {
+      "weight": 45
+    },
+    "j": {
+      "weight": 4
+    },
+    "k": {
+      "weight": 24
+    },
+    "l": {
+      "weight": 13
+    },
+    "m": {
+      "weight": 21
+    },
+    "n": {
+      "weight": 22
+    },
+    "o": {
+      "weight": 40
+    },
+    "p": {
+      "weight": 18
+    },
+    "q": {
+      "weight": 19
+    },
+    "r": {
+      "weight": 43
+    },
+    "s": {
+      "weight": 10
+    },
+    "t": {
+      "weight": 16
+    },
+    "u": {
+      "weight": 42
+    },
+    "v": {
+      "weight": 37
+    },
+    "w": {
+      "weight": 4
+    },
+    "x": {
+      "weight": 35
+    },
+    "y": {
+      "weight": 14
+    },
+    "z": {
+      "weight": 46
+    },
+    "A": {
+      "weight": 45
+    },
+    "B": {
+      "weight": 50
+    },
+    "C": {
+      "weight": 21
+    },
+    "D": {
+      "weight": 24
+    },
+    "E": {
+      "weight": 23
+    },
+    "F": {
+      "weight": 22
+    },
+    "G": {
+      "weight": 22
+    },
+    "H": {
+      "weight": 45
+    },
+    "I": {
+      "weight": 32
+    },
+    "J": {
+      "weight": 17
+    },
+    "K": {
+      "weight": 9
+    },
+    "L": {
+      "weight": 7
+    },
+    "M": {
+      "weight": 3
+    },
+    "N": {
+      "weight": 36
+    },
+    "O": {
+      "weight": 23
+    },
+    "P": {
+      "weight": 48
+    },
+    "Q": {
+      "weight": 28
+    },
+    "R": {
+      "weight": 34
+    },
+    "S": {
+      "weight": 40
+    },
+    "T": {
+      "weight": 15
+    },
+    "U": {
+      "weight": 36
+    },
+    "V": {
+      "weight": 41
+    },
+    "W": {
+      "weight": 41
+    },
+    "X": {
+      "weight": 5
+    },
+    "Y": {
+      "weight": 22
+    },
+    "Z": {
+      "weight": 23
+    },
+    "!": {
+      "weight": 16
+    },
+    "\"": {
+      "weight": 29
+    },
+    "#": {
+      "weight": 31
+    },
+    "$": {
+      "weight": 6
+    },
+    "%": {
+      "weight": 36
+    },
+    "&": {
+      "weight": 39
+    },
+    "'": {
+      "weight": 22
+    },
+    "(": {
+      "weight": 32
+    },
+    ")": {
+      "weight": 15
+    },
+    "*": {
+      "weight": 5
+    },
+    "+": {
+      "weight": 45
+    },
+    ",": {
+      "weight": 15
+    },
+    "-": {
+      "weight": 44
+    },
+    ".": {
+      "weight": 19
+    },
+    "/": {
+      "weight": 34
+    },
+    ":": {
+      "weight": 33
+    },
+    ";": {
+      "weight": 43
+    },
+    "<": {
+      "weight": 50
+    },
+    "=": {
+      "weight": 20
+    },
+    ">": {
+      "weight": 27
+    },
+    "?": {
+      "weight": 6
+    },
+    "@": {
+      "weight": 13
+    },
+    "[": {
+      "weight": 49
+    },
+    "\\": {
+      "weight": 32
+    },
+    "]": {
+      "weight": 10
+    },
+    "^": {
+      "weight": 15
+    },
+    "_": {
+      "weight": 49
+    },
+    "`": {
+      "weight": 1
+    },
+    "{": {
+      "weight": 31
+    },
+    "|": {
+      "weight": 31
+    },
+    "}": {
+      "weight": 12
+    },
+    "~": {
+      "weight": 41
+    },
+    " ": {
+      "weight": 29
+    },
+    "\t": {
+      "weight": 16
+    },
+    "\n": {
+      "weight": 12
+    },
+    "\r": {
+      "weight": 6
+    },
+    "\u000b": {
+      "weight": 18
+    },
+    "\f": {
+      "weight": 43
+    }
+  },
+  "c": {
+    "d": {
+      "weight": 29
+    },
+    "e": {
+      "weight": 43
+    },
+    "f": {
+      "weight": 36
+    },
+    "g": {
+      "weight": 24
+    },
+    "h": {
+      "weight": 19
+    },
+    "i": {
+      "weight": 14
+    },
+    "j": {
+      "weight": 12
+    },
+    "k": {
+      "weight": 3
+    },
+    "l": {
+      "weight": 27
+    },
+    "m": {
+      "weight": 27
+    },
+    "n": {
+      "weight": 28
+    },
+    "o": {
+      "weight": 25
+    },
+    "p": {
+      "weight": 19
+    },
+    "q": {
+      "weight": 21
+    },
+    "r": {
+      "weight": 17
+    },
+    "s": {
+      "weight": 5
+    },
+    "t": {
+      "weight": 28
+    },
+    "u": {
+      "weight": 12
+    },
+    "v": {
+      "weight": 33
+    },
+    "w": {
+      "weight": 18
+    },
+    "x": {
+      "weight": 38
+    },
+    "y": {
+      "weight": 44
+    },
+    "z": {
+      "weight": 32
+    },
+    "A": {
+      "weight": 8
+    },
+    "B": {
+      "weight": 36
+    },
+    "C": {
+      "weight": 8
+    },
+    "D": {
+      "weight": 48
+    },
+    "E": {
+      "weight": 9
+    },
+    "F": {
+      "weight": 39
+    },
+    "G": {
+      "weight": 32
+    },
+    "H": {
+      "weight": 28
+    },
+    "I": {
+      "weight": 26
+    },
+    "J": {
+      "weight": 50
+    },
+    "K": {
+      "weight": 37
+    },
+    "L": {
+      "weight": 22
+    },
+    "M": {
+      "weight": 39
+    },
+    "N": {
+      "weight": 2
+    },
+    "O": {
+      "weight": 5
+    },
+    "P": {
+      "weight": 49
+    },
+    "Q": {
+      "weight": 1
+    },
+    "R": {
+      "weight": 50
+    },
+    "S": {
+      "weight": 13
+    },
+    "T": {
+      "weight": 13
+    },
+    "U": {
+      "weight": 45
+    },
+    "V": {
+      "weight": 44
+    },
+    "W": {
+      "weight": 31
+    },
+    "X": {
+      "weight": 9
+    },
+    "Y": {
+      "weight": 7
+    },
+    "Z": {
+      "weight": 21
+    },
+    "!": {
+      "weight": 26
+    },
+    "\"": {
+      "weight": 13
+    },
+    "#": {
+      "weight": 41
+    },
+    "$": {
+      "weight": 34
+    },
+    "%": {
+      "weight": 17
+    },
+    "&": {
+      "weight": 42
+    },
+    "'": {
+      "weight": 47
+    },
+    "(": {
+      "weight": 16
+    },
+    ")": {
+      "weight": 10
+    },
+    "*": {
+      "weight": 18
+    },
+    "+": {
+      "weight": 38
+    },
+    ",": {
+      "weight": 14
+    },
+    "-": {
+      "weight": 24
+    },
+    ".": {
+      "weight": 46
+    },
+    "/": {
+      "weight": 36
+    },
+    ":": {
+      "weight": 36
+    },
+    ";": {
+      "weight": 46
+    },
+    "<": {
+      "weight": 48
+    },
+    "=": {
+      "weight": 18
+    },
+    ">": {
+      "weight": 23
+    },
+    "?": {
+      "weight": 32
+    },
+    "@": {
+      "weight": 34
+    },
+    "[": {
+      "weight": 18
+    },
+    "\\": {
+      "weight": 48
+    },
+    "]": {
+      "weight": 29
+    },
+    "^": {
+      "weight": 5
+    },
+    "_": {
+      "weight": 34
+    },
+    "`": {
+      "weight": 37
+    },
+    "{": {
+      "weight": 35
+    },
+    "|": {
+      "weight": 49
+    },
+    "}": {
+      "weight": 1
+    },
+    "~": {
+      "weight": 7
+    },
+    " ": {
+      "weight": 25
+    },
+    "\t": {
+      "weight": 4
+    },
+    "\n": {
+      "weight": 38
+    },
+    "\r": {
+      "weight": 25
+    },
+    "\u000b": {
+      "weight": 17
+    },
+    "\f": {
+      "weight": 4
+    }
+  },
+  "d": {
+    "e": {
+      "weight": 24
+    },
+    "f": {
+      "weight": 37
+    },
+    "g": {
+      "weight": 47
+    },
+    "h": {
+      "weight": 31
+    },
+    "i": {
+      "weight": 18
+    },
+    "j": {
+      "weight": 19
+    },
+    "k": {
+      "weight": 27
+    },
+    "l": {
+      "weight": 45
+    },
+    "m": {
+      "weight": 8
+    },
+    "n": {
+      "weight": 32
+    },
+    "o": {
+      "weight": 35
+    },
+    "p": {
+      "weight": 31
+    },
+    "q": {
+      "weight": 21
+    },
+    "r": {
+      "weight": 32
+    },
+    "s": {
+      "weight": 16
+    },
+    "t": {
+      "weight": 16
+    },
+    "u": {
+      "weight": 50
+    },
+    "v": {
+      "weight": 10
+    },
+    "w": {
+      "weight": 13
+    },
+    "x": {
+      "weight": 48
+    },
+    "y": {
+      "weight": 18
+    },
+    "z": {
+      "weight": 25
+    },
+    "A": {
+      "weight": 29
+    },
+    "B": {
+      "weight": 5
+    },
+    "C": {
+      "weight": 17
+    },
+    "D": {
+      "weight": 31
+    },
+    "E": {
+      "weight": 3
+    },
+    "F": {
+      "weight": 17
+    },
+    "G": {
+      "weight": 9
+    },
+    "H": {
+      "weight": 28
+    },
+    "I": {
+      "weight": 31
+    },
+    "J": {
+      "weight": 43
+    },
+    "K": {
+      "weight": 50
+    },
+    "L": {
+      "weight": 5
+    },
+    "M": {
+      "weight": 15
+    },
+    "N": {
+      "weight": 47
+    },
+    "O": {
+      "weight": 38
+    },
+    "P": {
+      "weight": 9
+    },
+    "Q": {
+      "weight": 5
+    },
+    "R": {
+      "weight": 32
+    },
+    "S": {
+      "weight": 15
+    },
+    "T": {
+      "weight": 34
+    },
+    "U": {
+      "weight": 35
+    },
+    "V": {
+      "weight": 9
+    },
+    "W": {
+      "weight": 9
+    },
+    "X": {
+      "weight": 12
+    },
+    "Y": {
+      "weight": 11
+    },
+    "Z": {
+      "weight": 12
+    },
+    "!": {
+      "weight": 33
+    },
+    "\"": {
+      "weight": 34
+    },
+    "#": {
+      "weight": 27
+    },
+    "$": {
+      "weight": 10
+    },
+    "%": {
+      "weight": 42
+    },
+    "&": {
+      "weight": 7
+    },
+    "'": {
+      "weight": 8
+    },
+    "(": {
+      "weight": 17
+    },
+    ")": {
+      "weight": 40
+    },
+    "*": {
+      "weight": 16
+    },
+    "+": {
+      "weight": 34
+    },
+    ",": {
+      "weight": 50
+    },
+    "-": {
+      "weight": 26
+    },
+    ".": {
+      "weight": 24
+    },
+    "/": {
+      "weight": 23
+    },
+    ":": {
+      "weight": 20
+    },
+    ";": {
+      "weight": 26
+    },
+    "<": {
+      "weight": 1
+    },
+    "=": {
+      "weight": 34
+    },
+    ">": {
+      "weight": 34
+    },
+    "?": {
+      "weight": 36
+    },
+    "@": {
+      "weight": 36
+    },
+    "[": {
+      "weight": 15
+    },
+    "\\": {
+      "weight": 3
+    },
+    "]": {
+      "weight": 40
+    },
+    "^": {
+      "weight": 41
+    },
+    "_": {
+      "weight": 18
+    },
+    "`": {
+      "weight": 27
+    },
+    "{": {
+      "weight": 21
+    },
+    "|": {
+      "weight": 6
+    },
+    "}": {
+      "weight": 7
+    },
+    "~": {
+      "weight": 5
+    },
+    " ": {
+      "weight": 23
+    },
+    "\t": {
+      "weight": 22
+    },
+    "\n": {
+      "weight": 3
+    },
+    "\r": {
+      "weight": 31
+    },
+    "\u000b": {
+      "weight": 8
+    },
+    "\f": {
+      "weight": 22
+    }
+  },
+  "e": {
+    "f": {
+      "weight": 26
+    },
+    "g": {
+      "weight": 26
+    },
+    "h": {
+      "weight": 13
+    },
+    "i": {
+      "weight": 43
+    },
+    "j": {
+      "weight": 19
+    },
+    "k": {
+      "weight": 30
+    },
+    "l": {
+      "weight": 26
+    },
+    "m": {
+      "weight": 13
+    },
+    "n": {
+      "weight": 38
+    },
+    "o": {
+      "weight": 15
+    },
+    "p": {
+      "weight": 11
+    },
+    "q": {
+      "weight": 38
+    },
+    "r": {
+      "weight": 7
+    },
+    "s": {
+      "weight": 36
+    },
+    "t": {
+      "weight": 25
+    },
+    "u": {
+      "weight": 21
+    },
+    "v": {
+      "weight": 10
+    },
+    "w": {
+      "weight": 42
+    },
+    "x": {
+      "weight": 27
+    },
+    "y": {
+      "weight": 18
+    },
+    "z": {
+      "weight": 36
+    },
+    "A": {
+      "weight": 4
+    },
+    "B": {
+      "weight": 13
+    },
+    "C": {
+      "weight": 45
+    },
+    "D": {
+      "weight": 26
+    },
+    "E": {
+      "weight": 9
+    },
+    "F": {
+      "weight": 34
+    },
+    "G": {
+      "weight": 32
+    },
+    "H": {
+      "weight": 38
+    },
+    "I": {
+      "weight": 13
+    },
+    "J": {
+      "weight": 47
+    },
+    "K": {
+      "weight": 38
+    },
+    "L": {
+      "weight": 25
+    },
+    "M": {
+      "weight": 3
+    },
+    "N": {
+      "weight": 50
+    },
+    "O": {
+      "weight": 18
+    },
+    "P": {
+      "weight": 20
+    },
+    "Q": {
+      "weight": 38
+    },
+    "R": {
+      "weight": 2
+    },
+    "S": {
+      "weight": 32
+    },
+    "T": {
+      "weight": 6
+    },
+    "U": {
+      "weight": 15
+    },
+    "V": {
+      "weight": 8
+    },
+    "W": {
+      "weight": 38
+    },
+    "X": {
+      "weight": 31
+    },
+    "Y": {
+      "weight": 45
+    },
+    "Z": {
+      "weight": 17
+    },
+    "!": {
+      "weight": 13
+    },
+    "\"": {
+      "weight": 20
+    },
+    "#": {
+      "weight": 34
+    },
+    "$": {
+      "weight": 24
+    },
+    "%": {
+      "weight": 20
+    },
+    "&": {
+      "weight": 27
+    },
+    "'": {
+      "weight": 29
+    },
+    "(": {
+      "weight": 15
+    },
+    ")": {
+      "weight": 32
+    },
+    "*": {
+      "weight": 41
+    },
+    "+": {
+      "weight": 10
+    },
+    ",": {
+      "weight": 13
+    },
+    "-": {
+      "weight": 40
+    },
+    ".": {
+      "weight": 14
+    },
+    "/": {
+      "weight": 21
+    },
+    ":": {
+      "weight": 43
+    },
+    ";": {
+      "weight": 43
+    },
+    "<": {
+      "weight": 31
+    },
+    "=": {
+      "weight": 41
+    },
+    ">": {
+      "weight": 50
+    },
+    "?": {
+      "weight": 31
+    },
+    "@": {
+      "weight": 17
+    },
+    "[": {
+      "weight": 39
+    },
+    "\\": {
+      "weight": 6
+    },
+    "]": {
+      "weight": 7
+    },
+    "^": {
+      "weight": 28
+    },
+    "_": {
+      "weight": 26
+    },
+    "`": {
+      "weight": 43
+    },
+    "{": {
+      "weight": 46
+    },
+    "|": {
+      "weight": 24
+    },
+    "}": {
+      "weight": 44
+    },
+    "~": {
+      "weight": 33
+    },
+    " ": {
+      "weight": 27
+    },
+    "\t": {
+      "weight": 26
+    },
+    "\n": {
+      "weight": 23
+    },
+    "\r": {
+      "weight": 39
+    },
+    "\u000b": {
+      "weight": 12
+    },
+    "\f": {
+      "weight": 14
+    }
+  },
+  "f": {
+    "g": {
+      "weight": 6
+    },
+    "h": {
+      "weight": 24
+    },
+    "i": {
+      "weight": 41
+    },
+    "j": {
+      "weight": 21
+    },
+    "k": {
+      "weight": 7
+    },
+    "l": {
+      "weight": 8
+    },
+    "m": {
+      "weight": 30
+    },
+    "n": {
+      "weight": 21
+    },
+    "o": {
+      "weight": 39
+    },
+    "p": {
+      "weight": 16
+    },
+    "q": {
+      "weight": 24
+    },
+    "r": {
+      "weight": 33
+    },
+    "s": {
+      "weight": 7
+    },
+    "t": {
+      "weight": 11
+    },
+    "u": {
+      "weight": 31
+    },
+    "v": {
+      "weight": 26
+    },
+    "w": {
+      "weight": 16
+    },
+    "x": {
+      "weight": 37
+    },
+    "y": {
+      "weight": 15
+    },
+    "z": {
+      "weight": 13
+    },
+    "A": {
+      "weight": 46
+    },
+    "B": {
+      "weight": 45
+    },
+    "C": {
+      "weight": 33
+    },
+    "D": {
+      "weight": 32
+    },
+    "E": {
+      "weight": 8
+    },
+    "F": {
+      "weight": 26
+    },
+    "G": {
+      "weight": 48
+    },
+    "H": {
+      "weight": 10
+    },
+    "I": {
+      "weight": 27
+    },
+    "J": {
+      "weight": 11
+    },
+    "K": {
+      "weight": 43
+    },
+    "L": {
+      "weight": 47
+    },
+    "M": {
+      "weight": 27
+    },
+    "N": {
+      "weight": 34
+    },
+    "O": {
+      "weight": 18
+    },
+    "P": {
+      "weight": 46
+    },
+    "Q": {
+      "weight": 30
+    },
+    "R": {
+      "weight": 23
+    },
+    "S": {
+      "weight": 15
+    },
+    "T": {
+      "weight": 48
+    },
+    "U": {
+      "weight": 15
+    },
+    "V": {
+      "weight": 47
+    },
+    "W": {
+      "weight": 7
+    },
+    "X": {
+      "weight": 19
+    },
+    "Y": {
+      "weight": 31
+    },
+    "Z": {
+      "weight": 40
+    },
+    "!": {
+      "weight": 31
+    },
+    "\"": {
+      "weight": 35
+    },
+    "#": {
+      "weight": 7
+    },
+    "$": {
+      "weight": 5
+    },
+    "%": {
+      "weight": 7
+    },
+    "&": {
+      "weight": 6
+    },
+    "'": {
+      "weight": 48
+    },
+    "(": {
+      "weight": 5
+    },
+    ")": {
+      "weight": 29
+    },
+    "*": {
+      "weight": 9
+    },
+    "+": {
+      "weight": 17
+    },
+    ",": {
+      "weight": 5
+    },
+    "-": {
+      "weight": 45
+    },
+    ".": {
+      "weight": 13
+    },
+    "/": {
+      "weight": 14
+    },
+    ":": {
+      "weight": 28
+    },
+    ";": {
+      "weight": 11
+    },
+    "<": {
+      "weight": 15
+    },
+    "=": {
+      "weight": 46
+    },
+    ">": {
+      "weight": 35
+    },
+    "?": {
+      "weight": 39
+    },
+    "@": {
+      "weight": 28
+    },
+    "[": {
+      "weight": 34
+    },
+    "\\": {
+      "weight": 26
+    },
+    "]": {
+      "weight": 45
+    },
+    "^": {
+      "weight": 36
+    },
+    "_": {
+      "weight": 15
+    },
+    "`": {
+      "weight": 9
+    },
+    "{": {
+      "weight": 36
+    },
+    "|": {
+      "weight": 5
+    },
+    "}": {
+      "weight": 37
+    },
+    "~": {
+      "weight": 39
+    },
+    " ": {
+      "weight": 38
+    },
+    "\t": {
+      "weight": 39
+    },
+    "\n": {
+      "weight": 14
+    },
+    "\r": {
+      "weight": 9
+    },
+    "\u000b": {
+      "weight": 15
+    },
+    "\f": {
+      "weight": 35
+    }
+  },
+  "g": {
+    "h": {
+      "weight": 29
+    },
+    "i": {
+      "weight": 8
+    },
+    "j": {
+      "weight": 31
+    },
+    "k": {
+      "weight": 42
+    },
+    "l": {
+      "weight": 47
+    },
+    "m": {
+      "weight": 45
+    },
+    "n": {
+      "weight": 24
+    },
+    "o": {
+      "weight": 43
+    },
+    "p": {
+      "weight": 33
+    },
+    "q": {
+      "weight": 7
+    },
+    "r": {
+      "weight": 38
+    },
+    "s": {
+      "weight": 7
+    },
+    "t": {
+      "weight": 6
+    },
+    "u": {
+      "weight": 8
+    },
+    "v": {
+      "weight": 2
+    },
+    "w": {
+      "weight": 9
+    },
+    "x": {
+      "weight": 1
+    },
+    "y": {
+      "weight": 13
+    },
+    "z": {
+      "weight": 29
+    },
+    "A": {
+      "weight": 1
+    },
+    "B": {
+      "weight": 13
+    },
+    "C": {
+      "weight": 33
+    },
+    "D": {
+      "weight": 42
+    },
+    "E": {
+      "weight": 28
+    },
+    "F": {
+      "weight": 4
+    },
+    "G": {
+      "weight": 11
+    },
+    "H": {
+      "weight": 37
+    },
+    "I": {
+      "weight": 46
+    },
+    "J": {
+      "weight": 34
+    },
+    "K": {
+      "weight": 23
+    },
+    "L": {
+      "weight": 41
+    },
+    "M": {
+      "weight": 12
+    },
+    "N": {
+      "weight": 23
+    },
+    "O": {
+      "weight": 39
+    },
+    "P": {
+      "weight": 34
+    },
+    "Q": {
+      "weight": 26
+    },
+    "R": {
+      "weight": 46
+    },
+    "S": {
+      "weight": 31
+    },
+    "T": {
+      "weight": 38
+    },
+    "U": {
+      "weight": 38
+    },
+    "V": {
+      "weight": 32
+    },
+    "W": {
+      "weight": 11
+    },
+    "X": {
+      "weight": 46
+    },
+    "Y": {
+      "weight": 18
+    },
+    "Z": {
+      "weight": 36
+    },
+    "!": {
+      "weight": 48
+    },
+    "\"": {
+      "weight": 47
+    },
+    "#": {
+      "weight": 20
+    },
+    "$": {
+      "weight": 25
+    },
+    "%": {
+      "weight": 49
+    },
+    "&": {
+      "weight": 16
+    },
+    "'": {
+      "weight": 8
+    },
+    "(": {
+      "weight": 49
+    },
+    ")": {
+      "weight": 14
+    },
+    "*": {
+      "weight": 41
+    },
+    "+": {
+      "weight": 36
+    },
+    ",": {
+      "weight": 12
+    },
+    "-": {
+      "weight": 13
+    },
+    ".": {
+      "weight": 43
+    },
+    "/": {
+      "weight": 41
+    },
+    ":": {
+      "weight": 23
+    },
+    ";": {
+      "weight": 40
+    },
+    "<": {
+      "weight": 15
+    },
+    "=": {
+      "weight": 37
+    },
+    ">": {
+      "weight": 36
+    },
+    "?": {
+      "weight": 18
+    },
+    "@": {
+      "weight": 28
+    },
+    "[": {
+      "weight": 24
+    },
+    "\\": {
+      "weight": 8
+    },
+    "]": {
+      "weight": 13
+    },
+    "^": {
+      "weight": 41
+    },
+    "_": {
+      "weight": 37
+    },
+    "`": {
+      "weight": 42
+    },
+    "{": {
+      "weight": 29
+    },
+    "|": {
+      "weight": 14
+    },
+    "}": {
+      "weight": 14
+    },
+    "~": {
+      "weight": 49
+    },
+    " ": {
+      "weight": 43
+    },
+    "\t": {
+      "weight": 47
+    },
+    "\n": {
+      "weight": 33
+    },
+    "\r": {
+      "weight": 48
+    },
+    "\u000b": {
+      "weight": 15
+    },
+    "\f": {
+      "weight": 1
+    }
+  },
+  "h": {
+    "i": {
+      "weight": 35
+    },
+    "j": {
+      "weight": 16
+    },
+    "k": {
+      "weight": 22
+    },
+    "l": {
+      "weight": 7
+    },
+    "m": {
+      "weight": 12
+    },
+    "n": {
+      "weight": 36
+    },
+    "o": {
+      "weight": 7
+    },
+    "p": {
+      "weight": 34
+    },
+    "q": {
+      "weight": 11
+    },
+    "r": {
+      "weight": 32
+    },
+    "s": {
+      "weight": 37
+    },
+    "t": {
+      "weight": 32
+    },
+    "u": {
+      "weight": 4
+    },
+    "v": {
+      "weight": 48
+    },
+    "w": {
+      "weight": 37
+    },
+    "x": {
+      "weight": 12
+    },
+    "y": {
+      "weight": 45
+    },
+    "z": {
+      "weight": 9
+    },
+    "A": {
+      "weight": 24
+    },
+    "B": {
+      "weight": 11
+    },
+    "C": {
+      "weight": 48
+    },
+    "D": {
+      "weight": 37
+    },
+    "E": {
+      "weight": 10
+    },
+    "F": {
+      "weight": 24
+    },
+    "G": {
+      "weight": 4
+    },
+    "H": {
+      "weight": 15
+    },
+    "I": {
+      "weight": 48
+    },
+    "J": {
+      "weight": 7
+    },
+    "K": {
+      "weight": 17
+    },
+    "L": {
+      "weight": 7
+    },
+    "M": {
+      "weight": 45
+    },
+    "N": {
+      "weight": 30
+    },
+    "O": {
+      "weight": 5
+    },
+    "P": {
+      "weight": 27
+    },
+    "Q": {
+      "weight": 7
+    },
+    "R": {
+      "weight": 21
+    },
+    "S": {
+      "weight": 44
+    },
+    "T": {
+      "weight": 41
+    },
+    "U": {
+      "weight": 43
+    },
+    "V": {
+      "weight": 3
+    },
+    "W": {
+      "weight": 45
+    },
+    "X": {
+      "weight": 35
+    },
+    "Y": {
+      "weight": 17
+    },
+    "Z": {
+      "weight": 34
+    },
+    "!": {
+      "weight": 17
+    },
+    "\"": {
+      "weight": 37
+    },
+    "#": {
+      "weight": 6
+    },
+    "$": {
+      "weight": 38
+    },
+    "%": {
+      "weight": 42
+    },
+    "&": {
+      "weight": 2
+    },
+    "'": {
+      "weight": 41
+    },
+    "(": {
+      "weight": 34
+    },
+    ")": {
+      "weight": 2
+    },
+    "*": {
+      "weight": 6
+    },
+    "+": {
+      "weight": 3
+    },
+    ",": {
+      "weight": 43
+    },
+    "-": {
+      "weight": 36
+    },
+    ".": {
+      "weight": 27
+    },
+    "/": {
+      "weight": 22
+    },
+    ":": {
+      "weight": 18
+    },
+    ";": {
+      "weight": 17
+    },
+    "<": {
+      "weight": 5
+    },
+    "=": {
+      "weight": 34
+    },
+    ">": {
+      "weight": 50
+    },
+    "?": {
+      "weight": 39
+    },
+    "@": {
+      "weight": 20
+    },
+    "[": {
+      "weight": 50
+    },
+    "\\": {
+      "weight": 33
+    },
+    "]": {
+      "weight": 17
+    },
+    "^": {
+      "weight": 48
+    },
+    "_": {
+      "weight": 5
+    },
+    "`": {
+      "weight": 49
+    },
+    "{": {
+      "weight": 9
+    },
+    "|": {
+      "weight": 33
+    },
+    "}": {
+      "weight": 48
+    },
+    "~": {
+      "weight": 14
+    },
+    " ": {
+      "weight": 26
+    },
+    "\t": {
+      "weight": 37
+    },
+    "\n": {
+      "weight": 31
+    },
+    "\r": {
+      "weight": 41
+    },
+    "\u000b": {
+      "weight": 2
+    },
+    "\f": {
+      "weight": 14
+    }
+  },
+  "i": {
+    "j": {
+      "weight": 23
+    },
+    "k": {
+      "weight": 17
+    },
+    "l": {
+      "weight": 27
+    },
+    "m": {
+      "weight": 4
+    },
+    "n": {
+      "weight": 10
+    },
+    "o": {
+      "weight": 32
+    },
+    "p": {
+      "weight": 23
+    },
+    "q": {
+      "weight": 3
+    },
+    "r": {
+      "weight": 23
+    },
+    "s": {
+      "weight": 38
+    },
+    "t": {
+      "weight": 49
+    },
+    "u": {
+      "weight": 43
+    },
+    "v": {
+      "weight": 3
+    },
+    "w": {
+      "weight": 29
+    },
+    "x": {
+      "weight": 45
+    },
+    "y": {
+      "weight": 5
+    },
+    "z": {
+      "weight": 30
+    },
+    "A": {
+      "weight": 37
+    },
+    "B": {
+      "weight": 35
+    },
+    "C": {
+      "weight": 1
+    },
+    "D": {
+      "weight": 20
+    },
+    "E": {
+      "weight": 34
+    },
+    "F": {
+      "weight": 8
+    },
+    "G": {
+      "weight": 36
+    },
+    "H": {
+      "weight": 44
+    },
+    "I": {
+      "weight": 24
+    },
+    "J": {
+      "weight": 45
+    },
+    "K": {
+      "weight": 13
+    },
+    "L": {
+      "weight": 4
+    },
+    "M": {
+      "weight": 28
+    },
+    "N": {
+      "weight": 43
+    },
+    "O": {
+      "weight": 5
+    },
+    "P": {
+      "weight": 30
+    },
+    "Q": {
+      "weight": 49
+    },
+    "R": {
+      "weight": 17
+    },
+    "S": {
+      "weight": 5
+    },
+    "T": {
+      "weight": 25
+    },
+    "U": {
+      "weight": 45
+    },
+    "V": {
+      "weight": 8
+    },
+    "W": {
+      "weight": 32
+    },
+    "X": {
+      "weight": 38
+    },
+    "Y": {
+      "weight": 40
+    },
+    "Z": {
+      "weight": 3
+    },
+    "!": {
+      "weight": 25
+    },
+    "\"": {
+      "weight": 19
+    },
+    "#": {
+      "weight": 49
+    },
+    "$": {
+      "weight": 1
+    },
+    "%": {
+      "weight": 11
+    },
+    "&": {
+      "weight": 20
+    },
+    "'": {
+      "weight": 25
+    },
+    "(": {
+      "weight": 7
+    },
+    ")": {
+      "weight": 12
+    },
+    "*": {
+      "weight": 18
+    },
+    "+": {
+      "weight": 34
+    },
+    ",": {
+      "weight": 41
+    },
+    "-": {
+      "weight": 21
+    },
+    ".": {
+      "weight": 43
+    },
+    "/": {
+      "weight": 44
+    },
+    ":": {
+      "weight": 10
+    },
+    ";": {
+      "weight": 16
+    },
+    "<": {
+      "weight": 3
+    },
+    "=": {
+      "weight": 16
+    },
+    ">": {
+      "weight": 50
+    },
+    "?": {
+      "weight": 41
+    },
+    "@": {
+      "weight": 43
+    },
+    "[": {
+      "weight": 42
+    },
+    "\\": {
+      "weight": 14
+    },
+    "]": {
+      "weight": 37
+    },
+    "^": {
+      "weight": 7
+    },
+    "_": {
+      "weight": 36
+    },
+    "`": {
+      "weight": 42
+    },
+    "{": {
+      "weight": 44
+    },
+    "|": {
+      "weight": 31
+    },
+    "}": {
+      "weight": 32
+    },
+    "~": {
+      "weight": 3
+    },
+    " ": {
+      "weight": 20
+    },
+    "\t": {
+      "weight": 17
+    },
+    "\n": {
+      "weight": 47
+    },
+    "\r": {
+      "weight": 6
+    },
+    "\u000b": {
+      "weight": 28
+    },
+    "\f": {
+      "weight": 18
+    }
+  },
+  "j": {
+    "k": {
+      "weight": 27
+    },
+    "l": {
+      "weight": 37
+    },
+    "m": {
+      "weight": 1
+    },
+    "n": {
+      "weight": 48
+    },
+    "o": {
+      "weight": 42
+    },
+    "p": {
+      "weight": 29
+    },
+    "q": {
+      "weight": 9
+    },
+    "r": {
+      "weight": 30
+    },
+    "s": {
+      "weight": 49
+    },
+    "t": {
+      "weight": 28
+    },
+    "u": {
+      "weight": 22
+    },
+    "v": {
+      "weight": 18
+    },
+    "w": {
+      "weight": 7
+    },
+    "x": {
+      "weight": 32
+    },
+    "y": {
+      "weight": 12
+    },
+    "z": {
+      "weight": 49
+    },
+    "A": {
+      "weight": 44
+    },
+    "B": {
+      "weight": 47
+    },
+    "C": {
+      "weight": 25
+    },
+    "D": {
+      "weight": 36
+    },
+    "E": {
+      "weight": 9
+    },
+    "F": {
+      "weight": 30
+    },
+    "G": {
+      "weight": 3
+    },
+    "H": {
+      "weight": 17
+    },
+    "I": {
+      "weight": 16
+    },
+    "J": {
+      "weight": 6
+    },
+    "K": {
+      "weight": 41
+    },
+    "L": {
+      "weight": 34
+    },
+    "M": {
+      "weight": 40
+    },
+    "N": {
+      "weight": 45
+    },
+    "O": {
+      "weight": 45
+    },
+    "P": {
+      "weight": 6
+    },
+    "Q": {
+      "weight": 13
+    },
+    "R": {
+      "weight": 6
+    },
+    "S": {
+      "weight": 27
+    },
+    "T": {
+      "weight": 42
+    },
+    "U": {
+      "weight": 21
+    },
+    "V": {
+      "weight": 13
+    },
+    "W": {
+      "weight": 39
+    },
+    "X": {
+      "weight": 27
+    },
+    "Y": {
+      "weight": 19
+    },
+    "Z": {
+      "weight": 42
+    },
+    "!": {
+      "weight": 32
+    },
+    "\"": {
+      "weight": 21
+    },
+    "#": {
+      "weight": 12
+    },
+    "$": {
+      "weight": 24
+    },
+    "%": {
+      "weight": 29
+    },
+    "&": {
+      "weight": 36
+    },
+    "'": {
+      "weight": 5
+    },
+    "(": {
+      "weight": 49
+    },
+    ")": {
+      "weight": 4
+    },
+    "*": {
+      "weight": 3
+    },
+    "+": {
+      "weight": 13
+    },
+    ",": {
+      "weight": 45
+    },
+    "-": {
+      "weight": 19
+    },
+    ".": {
+      "weight": 32
+    },
+    "/": {
+      "weight": 6
+    },
+    ":": {
+      "weight": 35
+    },
+    ";": {
+      "weight": 17
+    },
+    "<": {
+      "weight": 6
+    },
+    "=": {
+      "weight": 29
+    },
+    ">": {
+      "weight": 44
+    },
+    "?": {
+      "weight": 14
+    },
+    "@": {
+      "weight": 25
+    },
+    "[": {
+      "weight": 44
+    },
+    "\\": {
+      "weight": 41
+    },
+    "]": {
+      "weight": 19
+    },
+    "^": {
+      "weight": 5
+    },
+    "_": {
+      "weight": 35
+    },
+    "`": {
+      "weight": 6
+    },
+    "{": {
+      "weight": 24
+    },
+    "|": {
+      "weight": 12
+    },
+    "}": {
+      "weight": 48
+    },
+    "~": {
+      "weight": 31
+    },
+    " ": {
+      "weight": 40
+    },
+    "\t": {
+      "weight": 20
+    },
+    "\n": {
+      "weight": 32
+    },
+    "\r": {
+      "weight": 2
+    },
+    "\u000b": {
+      "weight": 10
+    },
+    "\f": {
+      "weight": 32
+    }
+  },
+  "k": {
+    "l": {
+      "weight": 22
+    },
+    "m": {
+      "weight": 31
+    },
+    "n": {
+      "weight": 40
+    },
+    "o": {
+      "weight": 26
+    },
+    "p": {
+      "weight": 28
+    },
+    "q": {
+      "weight": 36
+    },
+    "r": {
+      "weight": 39
+    },
+    "s": {
+      "weight": 34
+    },
+    "t": {
+      "weight": 46
+    },
+    "u": {
+      "weight": 28
+    },
+    "v": {
+      "weight": 14
+    },
+    "w": {
+      "weight": 44
+    },
+    "x": {
+      "weight": 26
+    },
+    "y": {
+      "weight": 49
+    },
+    "z": {
+      "weight": 8
+    },
+    "A": {
+      "weight": 25
+    },
+    "B": {
+      "weight": 10
+    },
+    "C": {
+      "weight": 48
+    },
+    "D": {
+      "weight": 14
+    },
+    "E": {
+      "weight": 41
+    },
+    "F": {
+      "weight": 18
+    },
+    "G": {
+      "weight": 34
+    },
+    "H": {
+      "weight": 45
+    },
+    "I": {
+      "weight": 15
+    },
+    "J": {
+      "weight": 12
+    },
+    "K": {
+      "weight": 18
+    },
+    "L": {
+      "weight": 50
+    },
+    "M": {
+      "weight": 37
+    },
+    "N": {
+      "weight": 40
+    },
+    "O": {
+      "weight": 41
+    },
+    "P": {
+      "weight": 18
+    },
+    "Q": {
+      "weight": 19
+    },
+    "R": {
+      "weight": 41
+    },
+    "S": {
+      "weight": 43
+    },
+    "T": {
+      "weight": 17
+    },
+    "U": {
+      "weight": 17
+    },
+    "V": {
+      "weight": 28
+    },
+    "W": {
+      "weight": 6
+    },
+    "X": {
+      "weight": 23
+    },
+    "Y": {
+      "weight": 32
+    },
+    "Z": {
+      "weight": 32
+    },
+    "!": {
+      "weight": 32
+    },
+    "\"": {
+      "weight": 38
+    },
+    "#": {
+      "weight": 12
+    },
+    "$": {
+      "weight": 3
+    },
+    "%": {
+      "weight": 12
+    },
+    "&": {
+      "weight": 48
+    },
+    "'": {
+      "weight": 39
+    },
+    "(": {
+      "weight": 39
+    },
+    ")": {
+      "weight": 26
+    },
+    "*": {
+      "weight": 46
+    },
+    "+": {
+      "weight": 10
+    },
+    ",": {
+      "weight": 20
+    },
+    "-": {
+      "weight": 15
+    },
+    ".": {
+      "weight": 20
+    },
+    "/": {
+      "weight": 42
+    },
+    ":": {
+      "weight": 9
+    },
+    ";": {
+      "weight": 33
+    },
+    "<": {
+      "weight": 32
+    },
+    "=": {
+      "weight": 28
+    },
+    ">": {
+      "weight": 11
+    },
+    "?": {
+      "weight": 20
+    },
+    "@": {
+      "weight": 48
+    },
+    "[": {
+      "weight": 44
+    },
+    "\\": {
+      "weight": 25
+    },
+    "]": {
+      "weight": 32
+    },
+    "^": {
+      "weight": 18
+    },
+    "_": {
+      "weight": 1
+    },
+    "`": {
+      "weight": 49
+    },
+    "{": {
+      "weight": 47
+    },
+    "|": {
+      "weight": 22
+    },
+    "}": {
+      "weight": 24
+    },
+    "~": {
+      "weight": 50
+    },
+    " ": {
+      "weight": 13
+    },
+    "\t": {
+      "weight": 43
+    },
+    "\n": {
+      "weight": 46
+    },
+    "\r": {
+      "weight": 4
+    },
+    "\u000b": {
+      "weight": 3
+    },
+    "\f": {
+      "weight": 33
+    }
+  },
+  "l": {
+    "m": {
+      "weight": 3
+    },
+    "n": {
+      "weight": 29
+    },
+    "o": {
+      "weight": 8
+    },
+    "p": {
+      "weight": 45
+    },
+    "q": {
+      "weight": 20
+    },
+    "r": {
+      "weight": 8
+    },
+    "s": {
+      "weight": 49
+    },
+    "t": {
+      "weight": 37
+    },
+    "u": {
+      "weight": 36
+    },
+    "v": {
+      "weight": 33
+    },
+    "w": {
+      "weight": 18
+    },
+    "x": {
+      "weight": 15
+    },
+    "y": {
+      "weight": 30
+    },
+    "z": {
+      "weight": 15
+    },
+    "A": {
+      "weight": 46
+    },
+    "B": {
+      "weight": 21
+    },
+    "C": {
+      "weight": 6
+    },
+    "D": {
+      "weight": 49
+    },
+    "E": {
+      "weight": 19
+    },
+    "F": {
+      "weight": 11
+    },
+    "G": {
+      "weight": 25
+    },
+    "H": {
+      "weight": 10
+    },
+    "I": {
+      "weight": 19
+    },
+    "J": {
+      "weight": 43
+    },
+    "K": {
+      "weight": 38
+    },
+    "L": {
+      "weight": 14
+    },
+    "M": {
+      "weight": 46
+    },
+    "N": {
+      "weight": 30
+    },
+    "O": {
+      "weight": 18
+    },
+    "P": {
+      "weight": 4
+    },
+    "Q": {
+      "weight": 36
+    },
+    "R": {
+      "weight": 39
+    },
+    "S": {
+      "weight": 50
+    },
+    "T": {
+      "weight": 23
+    },
+    "U": {
+      "weight": 2
+    },
+    "V": {
+      "weight": 40
+    },
+    "W": {
+      "weight": 19
+    },
+    "X": {
+      "weight": 37
+    },
+    "Y": {
+      "weight": 15
+    },
+    "Z": {
+      "weight": 10
+    },
+    "!": {
+      "weight": 48
+    },
+    "\"": {
+      "weight": 4
+    },
+    "#": {
+      "weight": 38
+    },
+    "$": {
+      "weight": 5
+    },
+    "%": {
+      "weight": 19
+    },
+    "&": {
+      "weight": 15
+    },
+    "'": {
+      "weight": 16
+    },
+    "(": {
+      "weight": 30
+    },
+    ")": {
+      "weight": 40
+    },
+    "*": {
+      "weight": 35
+    },
+    "+": {
+      "weight": 32
+    },
+    ",": {
+      "weight": 50
+    },
+    "-": {
+      "weight": 14
+    },
+    ".": {
+      "weight": 36
+    },
+    "/": {
+      "weight": 26
+    },
+    ":": {
+      "weight": 4
+    },
+    ";": {
+      "weight": 16
+    },
+    "<": {
+      "weight": 31
+    },
+    "=": {
+      "weight": 48
+    },
+    ">": {
+      "weight": 24
+    },
+    "?": {
+      "weight": 23
+    },
+    "@": {
+      "weight": 31
+    },
+    "[": {
+      "weight": 2
+    },
+    "\\": {
+      "weight": 37
+    },
+    "]": {
+      "weight": 14
+    },
+    "^": {
+      "weight": 49
+    },
+    "_": {
+      "weight": 8
+    },
+    "`": {
+      "weight": 45
+    },
+    "{": {
+      "weight": 7
+    },
+    "|": {
+      "weight": 21
+    },
+    "}": {
+      "weight": 21
+    },
+    "~": {
+      "weight": 35
+    },
+    " ": {
+      "weight": 46
+    },
+    "\t": {
+      "weight": 46
+    },
+    "\n": {
+      "weight": 1
+    },
+    "\r": {
+      "weight": 5
+    },
+    "\u000b": {
+      "weight": 32
+    },
+    "\f": {
+      "weight": 23
+    }
+  },
+  "m": {
+    "n": {
+      "weight": 31
+    },
+    "o": {
+      "weight": 8
+    },
+    "p": {
+      "weight": 46
+    },
+    "q": {
+      "weight": 37
+    },
+    "r": {
+      "weight": 30
+    },
+    "s": {
+      "weight": 13
+    },
+    "t": {
+      "weight": 15
+    },
+    "u": {
+      "weight": 21
+    },
+    "v": {
+      "weight": 21
+    },
+    "w": {
+      "weight": 15
+    },
+    "x": {
+      "weight": 22
+    },
+    "y": {
+      "weight": 7
+    },
+    "z": {
+      "weight": 8
+    },
+    "A": {
+      "weight": 32
+    },
+    "B": {
+      "weight": 40
+    },
+    "C": {
+      "weight": 1
+    },
+    "D": {
+      "weight": 21
+    },
+    "E": {
+      "weight": 15
+    },
+    "F": {
+      "weight": 19
+    },
+    "G": {
+      "weight": 36
+    },
+    "H": {
+      "weight": 10
+    },
+    "I": {
+      "weight": 5
+    },
+    "J": {
+      "weight": 16
+    },
+    "K": {
+      "weight": 45
+    },
+    "L": {
+      "weight": 42
+    },
+    "M": {
+      "weight": 22
+    },
+    "N": {
+      "weight": 30
+    },
+    "O": {
+      "weight": 14
+    },
+    "P": {
+      "weight": 41
+    },
+    "Q": {
+      "weight": 28
+    },
+    "R": {
+      "weight": 6
+    },
+    "S": {
+      "weight": 25
+    },
+    "T": {
+      "weight": 27
+    },
+    "U": {
+      "weight": 20
+    },
+    "V": {
+      "weight": 22
+    },
+    "W": {
+      "weight": 14
+    },
+    "X": {
+      "weight": 1
+    },
+    "Y": {
+      "weight": 7
+    },
+    "Z": {
+      "weight": 46
+    },
+    "!": {
+      "weight": 8
+    },
+    "\"": {
+      "weight": 1
+    },
+    "#": {
+      "weight": 7
+    },
+    "$": {
+      "weight": 1
+    },
+    "%": {
+      "weight": 46
+    },
+    "&": {
+      "weight": 49
+    },
+    "'": {
+      "weight": 50
+    },
+    "(": {
+      "weight": 29
+    },
+    ")": {
+      "weight": 28
+    },
+    "*": {
+      "weight": 25
+    },
+    "+": {
+      "weight": 34
+    },
+    ",": {
+      "weight": 19
+    },
+    "-": {
+      "weight": 12
+    },
+    ".": {
+      "weight": 8
+    },
+    "/": {
+      "weight": 10
+    },
+    ":": {
+      "weight": 11
+    },
+    ";": {
+      "weight": 22
+    },
+    "<": {
+      "weight": 8
+    },
+    "=": {
+      "weight": 27
+    },
+    ">": {
+      "weight": 43
+    },
+    "?": {
+      "weight": 45
+    },
+    "@": {
+      "weight": 25
+    },
+    "[": {
+      "weight": 26
+    },
+    "\\": {
+      "weight": 42
+    },
+    "]": {
+      "weight": 49
+    },
+    "^": {
+      "weight": 48
+    },
+    "_": {
+      "weight": 5
+    },
+    "`": {
+      "weight": 26
+    },
+    "{": {
+      "weight": 7
+    },
+    "|": {
+      "weight": 32
+    },
+    "}": {
+      "weight": 20
+    },
+    "~": {
+      "weight": 22
+    },
+    " ": {
+      "weight": 43
+    },
+    "\t": {
+      "weight": 9
+    },
+    "\n": {
+      "weight": 10
+    },
+    "\r": {
+      "weight": 23
+    },
+    "\u000b": {
+      "weight": 16
+    },
+    "\f": {
+      "weight": 26
+    }
+  },
+  "n": {
+    "o": {
+      "weight": 39
+    },
+    "p": {
+      "weight": 13
+    },
+    "q": {
+      "weight": 28
+    },
+    "r": {
+      "weight": 22
+    },
+    "s": {
+      "weight": 48
+    },
+    "t": {
+      "weight": 24
+    },
+    "u": {
+      "weight": 26
+    },
+    "v": {
+      "weight": 49
+    },
+    "w": {
+      "weight": 14
+    },
+    "x": {
+      "weight": 14
+    },
+    "y": {
+      "weight": 41
+    },
+    "z": {
+      "weight": 13
+    },
+    "A": {
+      "weight": 11
+    },
+    "B": {
+      "weight": 8
+    },
+    "C": {
+      "weight": 11
+    },
+    "D": {
+      "weight": 28
+    },
+    "E": {
+      "weight": 29
+    },
+    "F": {
+      "weight": 22
+    },
+    "G": {
+      "weight": 41
+    },
+    "H": {
+      "weight": 33
+    },
+    "I": {
+      "weight": 30
+    },
+    "J": {
+      "weight": 17
+    },
+    "K": {
+      "weight": 29
+    },
+    "L": {
+      "weight": 9
+    },
+    "M": {
+      "weight": 37
+    },
+    "N": {
+      "weight": 30
+    },
+    "O": {
+      "weight": 4
+    },
+    "P": {
+      "weight": 40
+    },
+    "Q": {
+      "weight": 15
+    },
+    "R": {
+      "weight": 26
+    },
+    "S": {
+      "weight": 46
+    },
+    "T": {
+      "weight": 33
+    },
+    "U": {
+      "weight": 43
+    },
+    "V": {
+      "weight": 40
+    },
+    "W": {
+      "weight": 27
+    },
+    "X": {
+      "weight": 10
+    },
+    "Y": {
+      "weight": 32
+    },
+    "Z": {
+      "weight": 1
+    },
+    "!": {
+      "weight": 50
+    },
+    "\"": {
+      "weight": 15
+    },
+    "#": {
+      "weight": 23
+    },
+    "$": {
+      "weight": 33
+    },
+    "%": {
+      "weight": 32
+    },
+    "&": {
+      "weight": 6
+    },
+    "'": {
+      "weight": 40
+    },
+    "(": {
+      "weight": 35
+    },
+    ")": {
+      "weight": 36
+    },
+    "*": {
+      "weight": 45
+    },
+    "+": {
+      "weight": 48
+    },
+    ",": {
+      "weight": 37
+    },
+    "-": {
+      "weight": 45
+    },
+    ".": {
+      "weight": 30
+    },
+    "/": {
+      "weight": 40
+    },
+    ":": {
+      "weight": 41
+    },
+    ";": {
+      "weight": 20
+    },
+    "<": {
+      "weight": 41
+    },
+    "=": {
+      "weight": 34
+    },
+    ">": {
+      "weight": 17
+    },
+    "?": {
+      "weight": 43
+    },
+    "@": {
+      "weight": 12
+    },
+    "[": {
+      "weight": 1
+    },
+    "\\": {
+      "weight": 25
+    },
+    "]": {
+      "weight": 14
+    },
+    "^": {
+      "weight": 12
+    },
+    "_": {
+      "weight": 35
+    },
+    "`": {
+      "weight": 33
+    },
+    "{": {
+      "weight": 48
+    },
+    "|": {
+      "weight": 43
+    },
+    "}": {
+      "weight": 41
+    },
+    "~": {
+      "weight": 24
+    },
+    " ": {
+      "weight": 33
+    },
+    "\t": {
+      "weight": 41
+    },
+    "\n": {
+      "weight": 38
+    },
+    "\r": {
+      "weight": 35
+    },
+    "\u000b": {
+      "weight": 22
+    },
+    "\f": {
+      "weight": 25
+    }
+  },
+  "o": {
+    "p": {
+      "weight": 32
+    },
+    "q": {
+      "weight": 47
+    },
+    "r": {
+      "weight": 47
+    },
+    "s": {
+      "weight": 8
+    },
+    "t": {
+      "weight": 44
+    },
+    "u": {
+      "weight": 29
+    },
+    "v": {
+      "weight": 31
+    },
+    "w": {
+      "weight": 31
+    },
+    "x": {
+      "weight": 10
+    },
+    "y": {
+      "weight": 29
+    },
+    "z": {
+      "weight": 15
+    },
+    "A": {
+      "weight": 29
+    },
+    "B": {
+      "weight": 8
+    },
+    "C": {
+      "weight": 40
+    },
+    "D": {
+      "weight": 10
+    },
+    "E": {
+      "weight": 26
+    },
+    "F": {
+      "weight": 7
+    },
+    "G": {
+      "weight": 36
+    },
+    "H": {
+      "weight": 50
+    },
+    "I": {
+      "weight": 35
+    },
+    "J": {
+      "weight": 26
+    },
+    "K": {
+      "weight": 10
+    },
+    "L": {
+      "weight": 29
+    },
+    "M": {
+      "weight": 11
+    },
+    "N": {
+      "weight": 37
+    },
+    "O": {
+      "weight": 45
+    },
+    "P": {
+      "weight": 48
+    },
+    "Q": {
+      "weight": 5
+    },
+    "R": {
+      "weight": 33
+    },
+    "S": {
+      "weight": 47
+    },
+    "T": {
+      "weight": 45
+    },
+    "U": {
+      "weight": 47
+    },
+    "V": {
+      "weight": 15
+    },
+    "W": {
+      "weight": 28
+    },
+    "X": {
+      "weight": 39
+    },
+    "Y": {
+      "weight": 15
+    },
+    "Z": {
+      "weight": 18
+    },
+    "!": {
+      "weight": 13
+    },
+    "\"": {
+      "weight": 36
+    },
+    "#": {
+      "weight": 16
+    },
+    "$": {
+      "weight": 37
+    },
+    "%": {
+      "weight": 29
+    },
+    "&": {
+      "weight": 31
+    },
+    "'": {
+      "weight": 18
+    },
+    "(": {
+      "weight": 27
+    },
+    ")": {
+      "weight": 9
+    },
+    "*": {
+      "weight": 42
+    },
+    "+": {
+      "weight": 49
+    },
+    ",": {
+      "weight": 33
+    },
+    "-": {
+      "weight": 30
+    },
+    ".": {
+      "weight": 13
+    },
+    "/": {
+      "weight": 24
+    },
+    ":": {
+      "weight": 15
+    },
+    ";": {
+      "weight": 17
+    },
+    "<": {
+      "weight": 48
+    },
+    "=": {
+      "weight": 27
+    },
+    ">": {
+      "weight": 40
+    },
+    "?": {
+      "weight": 35
+    },
+    "@": {
+      "weight": 39
+    },
+    "[": {
+      "weight": 11
+    },
+    "\\": {
+      "weight": 44
+    },
+    "]": {
+      "weight": 14
+    },
+    "^": {
+      "weight": 5
+    },
+    "_": {
+      "weight": 11
+    },
+    "`": {
+      "weight": 11
+    },
+    "{": {
+      "weight": 36
+    },
+    "|": {
+      "weight": 3
+    },
+    "}": {
+      "weight": 7
+    },
+    "~": {
+      "weight": 47
+    },
+    " ": {
+      "weight": 40
+    },
+    "\t": {
+      "weight": 38
+    },
+    "\n": {
+      "weight": 13
+    },
+    "\r": {
+      "weight": 37
+    },
+    "\u000b": {
+      "weight": 43
+    },
+    "\f": {
+      "weight": 1
+    }
+  },
+  "p": {
+    "q": {
+      "weight": 49
+    },
+    "r": {
+      "weight": 35
+    },
+    "s": {
+      "weight": 5
+    },
+    "t": {
+      "weight": 38
+    },
+    "u": {
+      "weight": 40
+    },
+    "v": {
+      "weight": 3
+    },
+    "w": {
+      "weight": 13
+    },
+    "x": {
+      "weight": 13
+    },
+    "y": {
+      "weight": 47
+    },
+    "z": {
+      "weight": 11
+    },
+    "A": {
+      "weight": 45
+    },
+    "B": {
+      "weight": 34
+    },
+    "C": {
+      "weight": 13
+    },
+    "D": {
+      "weight": 42
+    },
+    "E": {
+      "weight": 6
+    },
+    "F": {
+      "weight": 25
+    },
+    "G": {
+      "weight": 48
+    },
+    "H": {
+      "weight": 28
+    },
+    "I": {
+      "weight": 19
+    },
+    "J": {
+      "weight": 49
+    },
+    "K": {
+      "weight": 7
+    },
+    "L": {
+      "weight": 5
+    },
+    "M": {
+      "weight": 43
+    },
+    "N": {
+      "weight": 4
+    },
+    "O": {
+      "weight": 27
+    },
+    "P": {
+      "weight": 17
+    },
+    "Q": {
+      "weight": 8
+    },
+    "R": {
+      "weight": 8
+    },
+    "S": {
+      "weight": 11
+    },
+    "T": {
+      "weight": 21
+    },
+    "U": {
+      "weight": 1
+    },
+    "V": {
+      "weight": 11
+    },
+    "W": {
+      "weight": 25
+    },
+    "X": {
+      "weight": 48
+    },
+    "Y": {
+      "weight": 47
+    },
+    "Z": {
+      "weight": 42
+    },
+    "!": {
+      "weight": 12
+    },
+    "\"": {
+      "weight": 43
+    },
+    "#": {
+      "weight": 9
+    },
+    "$": {
+      "weight": 2
+    },
+    "%": {
+      "weight": 26
+    },
+    "&": {
+      "weight": 4
+    },
+    "'": {
+      "weight": 42
+    },
+    "(": {
+      "weight": 11
+    },
+    ")": {
+      "weight": 7
+    },
+    "*": {
+      "weight": 37
+    },
+    "+": {
+      "weight": 6
+    },
+    ",": {
+      "weight": 44
+    },
+    "-": {
+      "weight": 23
+    },
+    ".": {
+      "weight": 32
+    },
+    "/": {
+      "weight": 41
+    },
+    ":": {
+      "weight": 28
+    },
+    ";": {
+      "weight": 49
+    },
+    "<": {
+      "weight": 2
+    },
+    "=": {
+      "weight": 31
+    },
+    ">": {
+      "weight": 17
+    },
+    "?": {
+      "weight": 44
+    },
+    "@": {
+      "weight": 20
+    },
+    "[": {
+      "weight": 27
+    },
+    "\\": {
+      "weight": 9
+    },
+    "]": {
+      "weight": 48
+    },
+    "^": {
+      "weight": 31
+    },
+    "_": {
+      "weight": 10
+    },
+    "`": {
+      "weight": 1
+    },
+    "{": {
+      "weight": 31
+    },
+    "|": {
+      "weight": 13
+    },
+    "}": {
+      "weight": 38
+    },
+    "~": {
+      "weight": 2
+    },
+    " ": {
+      "weight": 43
+    },
+    "\t": {
+      "weight": 19
+    },
+    "\n": {
+      "weight": 19
+    },
+    "\r": {
+      "weight": 11
+    },
+    "\u000b": {
+      "weight": 26
+    },
+    "\f": {
+      "weight": 23
+    }
+  },
+  "q": {
+    "r": {
+      "weight": 49
+    },
+    "s": {
+      "weight": 28
+    },
+    "t": {
+      "weight": 44
+    },
+    "u": {
+      "weight": 37
+    },
+    "v": {
+      "weight": 46
+    },
+    "w": {
+      "weight": 45
+    },
+    "x": {
+      "weight": 17
+    },
+    "y": {
+      "weight": 49
+    },
+    "z": {
+      "weight": 29
+    },
+    "A": {
+      "weight": 42
+    },
+    "B": {
+      "weight": 14
+    },
+    "C": {
+      "weight": 35
+    },
+    "D": {
+      "weight": 2
+    },
+    "E": {
+      "weight": 35
+    },
+    "F": {
+      "weight": 28
+    },
+    "G": {
+      "weight": 5
+    },
+    "H": {
+      "weight": 35
+    },
+    "I": {
+      "weight": 1
+    },
+    "J": {
+      "weight": 37
+    },
+    "K": {
+      "weight": 25
+    },
+    "L": {
+      "weight": 11
+    },
+    "M": {
+      "weight": 9
+    },
+    "N": {
+      "weight": 6
+    },
+    "O": {
+      "weight": 19
+    },
+    "P": {
+      "weight": 16
+    },
+    "Q": {
+      "weight": 2
+    },
+    "R": {
+      "weight": 31
+    },
+    "S": {
+      "weight": 23
+    },
+    "T": {
+      "weight": 37
+    },
+    "U": {
+      "weight": 33
+    },
+    "V": {
+      "weight": 3
+    },
+    "W": {
+      "weight": 26
+    },
+    "X": {
+      "weight": 48
+    },
+    "Y": {
+      "weight": 5
+    },
+    "Z": {
+      "weight": 46
+    },
+    "!": {
+      "weight": 17
+    },
+    "\"": {
+      "weight": 19
+    },
+    "#": {
+      "weight": 40
+    },
+    "$": {
+      "weight": 4
+    },
+    "%": {
+      "weight": 44
+    },
+    "&": {
+      "weight": 28
+    },
+    "'": {
+      "weight": 22
+    },
+    "(": {
+      "weight": 42
+    },
+    ")": {
+      "weight": 8
+    },
+    "*": {
+      "weight": 9
+    },
+    "+": {
+      "weight": 20
+    },
+    ",": {
+      "weight": 1
+    },
+    "-": {
+      "weight": 10
+    },
+    ".": {
+      "weight": 27
+    },
+    "/": {
+      "weight": 46
+    },
+    ":": {
+      "weight": 26
+    },
+    ";": {
+      "weight": 49
+    },
+    "<": {
+      "weight": 33
+    },
+    "=": {
+      "weight": 41
+    },
+    ">": {
+      "weight": 2
+    },
+    "?": {
+      "weight": 45
+    },
+    "@": {
+      "weight": 41
+    },
+    "[": {
+      "weight": 28
+    },
+    "\\": {
+      "weight": 10
+    },
+    "]": {
+      "weight": 11
+    },
+    "^": {
+      "weight": 44
+    },
+    "_": {
+      "weight": 32
+    },
+    "`": {
+      "weight": 39
+    },
+    "{": {
+      "weight": 34
+    },
+    "|": {
+      "weight": 20
+    },
+    "}": {
+      "weight": 15
+    },
+    "~": {
+      "weight": 7
+    },
+    " ": {
+      "weight": 14
+    },
+    "\t": {
+      "weight": 3
+    },
+    "\n": {
+      "weight": 3
+    },
+    "\r": {
+      "weight": 37
+    },
+    "\u000b": {
+      "weight": 20
+    },
+    "\f": {
+      "weight": 26
+    }
+  },
+  "r": {
+    "s": {
+      "weight": 35
+    },
+    "t": {
+      "weight": 39
+    },
+    "u": {
+      "weight": 8
+    },
+    "v": {
+      "weight": 48
+    },
+    "w": {
+      "weight": 35
+    },
+    "x": {
+      "weight": 29
+    },
+    "y": {
+      "weight": 19
+    },
+    "z": {
+      "weight": 18
+    },
+    "A": {
+      "weight": 25
+    },
+    "B": {
+      "weight": 48
+    },
+    "C": {
+      "weight": 10
+    },
+    "D": {
+      "weight": 31
+    },
+    "E": {
+      "weight": 30
+    },
+    "F": {
+      "weight": 37
+    },
+    "G": {
+      "weight": 7
+    },
+    "H": {
+      "weight": 33
+    },
+    "I": {
+      "weight": 45
+    },
+    "J": {
+      "weight": 41
+    },
+    "K": {
+      "weight": 23
+    },
+    "L": {
+      "weight": 45
+    },
+    "M": {
+      "weight": 25
+    },
+    "N": {
+      "weight": 28
+    },
+    "O": {
+      "weight": 49
+    },
+    "P": {
+      "weight": 22
+    },
+    "Q": {
+      "weight": 36
+    },
+    "R": {
+      "weight": 27
+    },
+    "S": {
+      "weight": 16
+    },
+    "T": {
+      "weight": 33
+    },
+    "U": {
+      "weight": 9
+    },
+    "V": {
+      "weight": 12
+    },
+    "W": {
+      "weight": 8
+    },
+    "X": {
+      "weight": 8
+    },
+    "Y": {
+      "weight": 12
+    },
+    "Z": {
+      "weight": 35
+    },
+    "!": {
+      "weight": 14
+    },
+    "\"": {
+      "weight": 11
+    },
+    "#": {
+      "weight": 33
+    },
+    "$": {
+      "weight": 33
+    },
+    "%": {
+      "weight": 16
+    },
+    "&": {
+      "weight": 9
+    },
+    "'": {
+      "weight": 17
+    },
+    "(": {
+      "weight": 3
+    },
+    ")": {
+      "weight": 34
+    },
+    "*": {
+      "weight": 22
+    },
+    "+": {
+      "weight": 28
+    },
+    ",": {
+      "weight": 23
+    },
+    "-": {
+      "weight": 50
+    },
+    ".": {
+      "weight": 11
+    },
+    "/": {
+      "weight": 29
+    },
+    ":": {
+      "weight": 8
+    },
+    ";": {
+      "weight": 35
+    },
+    "<": {
+      "weight": 23
+    },
+    "=": {
+      "weight": 24
+    },
+    ">": {
+      "weight": 39
+    },
+    "?": {
+      "weight": 42
+    },
+    "@": {
+      "weight": 33
+    },
+    "[": {
+      "weight": 38
+    },
+    "\\": {
+      "weight": 45
+    },
+    "]": {
+      "weight": 46
+    },
+    "^": {
+      "weight": 18
+    },
+    "_": {
+      "weight": 30
+    },
+    "`": {
+      "weight": 43
+    },
+    "{": {
+      "weight": 47
+    },
+    "|": {
+      "weight": 7
+    },
+    "}": {
+      "weight": 34
+    },
+    "~": {
+      "weight": 13
+    },
+    " ": {
+      "weight": 5
+    },
+    "\t": {
+      "weight": 4
+    },
+    "\n": {
+      "weight": 38
+    },
+    "\r": {
+      "weight": 50
+    },
+    "\u000b": {
+      "weight": 44
+    },
+    "\f": {
+      "weight": 47
+    }
+  },
+  "s": {
+    "t": {
+      "weight": 28
+    },
+    "u": {
+      "weight": 29
+    },
+    "v": {
+      "weight": 22
+    },
+    "w": {
+      "weight": 50
+    },
+    "x": {
+      "weight": 12
+    },
+    "y": {
+      "weight": 46
+    },
+    "z": {
+      "weight": 41
+    },
+    "A": {
+      "weight": 26
+    },
+    "B": {
+      "weight": 11
+    },
+    "C": {
+      "weight": 6
+    },
+    "D": {
+      "weight": 34
+    },
+    "E": {
+      "weight": 5
+    },
+    "F": {
+      "weight": 3
+    },
+    "G": {
+      "weight": 1
+    },
+    "H": {
+      "weight": 47
+    },
+    "I": {
+      "weight": 37
+    },
+    "J": {
+      "weight": 32
+    },
+    "K": {
+      "weight": 3
+    },
+    "L": {
+      "weight": 26
+    },
+    "M": {
+      "weight": 14
+    },
+    "N": {
+      "weight": 36
+    },
+    "O": {
+      "weight": 23
+    },
+    "P": {
+      "weight": 12
+    },
+    "Q": {
+      "weight": 28
+    },
+    "R": {
+      "weight": 17
+    },
+    "S": {
+      "weight": 18
+    },
+    "T": {
+      "weight": 28
+    },
+    "U": {
+      "weight": 47
+    },
+    "V": {
+      "weight": 49
+    },
+    "W": {
+      "weight": 23
+    },
+    "X": {
+      "weight": 48
+    },
+    "Y": {
+      "weight": 2
+    },
+    "Z": {
+      "weight": 15
+    },
+    "!": {
+      "weight": 44
+    },
+    "\"": {
+      "weight": 37
+    },
+    "#": {
+      "weight": 49
+    },
+    "$": {
+      "weight": 49
+    },
+    "%": {
+      "weight": 14
+    },
+    "&": {
+      "weight": 36
+    },
+    "'": {
+      "weight": 25
+    },
+    "(": {
+      "weight": 27
+    },
+    ")": {
+      "weight": 21
+    },
+    "*": {
+      "weight": 27
+    },
+    "+": {
+      "weight": 23
+    },
+    ",": {
+      "weight": 26
+    },
+    "-": {
+      "weight": 6
+    },
+    ".": {
+      "weight": 28
+    },
+    "/": {
+      "weight": 1
+    },
+    ":": {
+      "weight": 46
+    },
+    ";": {
+      "weight": 37
+    },
+    "<": {
+      "weight": 23
+    },
+    "=": {
+      "weight": 30
+    },
+    ">": {
+      "weight": 23
+    },
+    "?": {
+      "weight": 31
+    },
+    "@": {
+      "weight": 35
+    },
+    "[": {
+      "weight": 9
+    },
+    "\\": {
+      "weight": 33
+    },
+    "]": {
+      "weight": 26
+    },
+    "^": {
+      "weight": 49
+    },
+    "_": {
+      "weight": 5
+    },
+    "`": {
+      "weight": 28
+    },
+    "{": {
+      "weight": 2
+    },
+    "|": {
+      "weight": 34
+    },
+    "}": {
+      "weight": 4
+    },
+    "~": {
+      "weight": 38
+    },
+    " ": {
+      "weight": 15
+    },
+    "\t": {
+      "weight": 2
+    },
+    "\n": {
+      "weight": 42
+    },
+    "\r": {
+      "weight": 44
+    },
+    "\u000b": {
+      "weight": 3
+    },
+    "\f": {
+      "weight": 24
+    }
+  },
+  "t": {
+    "u": {
+      "weight": 13
+    },
+    "v": {
+      "weight": 34
+    },
+    "w": {
+      "weight": 45
+    },
+    "x": {
+      "weight": 19
+    },
+    "y": {
+      "weight": 22
+    },
+    "z": {
+      "weight": 43
+    },
+    "A": {
+      "weight": 11
+    },
+    "B": {
+      "weight": 40
+    },
+    "C": {
+      "weight": 5
+    },
+    "D": {
+      "weight": 11
+    },
+    "E": {
+      "weight": 39
+    },
+    "F": {
+      "weight": 23
+    },
+    "G": {
+      "weight": 42
+    },
+    "H": {
+      "weight": 31
+    },
+    "I": {
+      "weight": 26
+    },
+    "J": {
+      "weight": 22
+    },
+    "K": {
+      "weight": 13
+    },
+    "L": {
+      "weight": 48
+    },
+    "M": {
+      "weight": 24
+    },
+    "N": {
+      "weight": 21
+    },
+    "O": {
+      "weight": 3
+    },
+    "P": {
+      "weight": 33
+    },
+    "Q": {
+      "weight": 27
+    },
+    "R": {
+      "weight": 6
+    },
+    "S": {
+      "weight": 20
+    },
+    "T": {
+      "weight": 9
+    },
+    "U": {
+      "weight": 46
+    },
+    "V": {
+      "weight": 3
+    },
+    "W": {
+      "weight": 28
+    },
+    "X": {
+      "weight": 49
+    },
+    "Y": {
+      "weight": 1
+    },
+    "Z": {
+      "weight": 31
+    },
+    "!": {
+      "weight": 19
+    },
+    "\"": {
+      "weight": 23
+    },
+    "#": {
+      "weight": 38
+    },
+    "$": {
+      "weight": 48
+    },
+    "%": {
+      "weight": 12
+    },
+    "&": {
+      "weight": 22
+    },
+    "'": {
+      "weight": 12
+    },
+    "(": {
+      "weight": 35
+    },
+    ")": {
+      "weight": 31
+    },
+    "*": {
+      "weight": 49
+    },
+    "+": {
+      "weight": 9
+    },
+    ",": {
+      "weight": 5
+    },
+    "-": {
+      "weight": 30
+    },
+    ".": {
+      "weight": 13
+    },
+    "/": {
+      "weight": 45
+    },
+    ":": {
+      "weight": 45
+    },
+    ";": {
+      "weight": 27
+    },
+    "<": {
+      "weight": 46
+    },
+    "=": {
+      "weight": 38
+    },
+    ">": {
+      "weight": 40
+    },
+    "?": {
+      "weight": 18
+    },
+    "@": {
+      "weight": 2
+    },
+    "[": {
+      "weight": 37
+    },
+    "\\": {
+      "weight": 15
+    },
+    "]": {
+      "weight": 36
+    },
+    "^": {
+      "weight": 2
+    },
+    "_": {
+      "weight": 8
+    },
+    "`": {
+      "weight": 39
+    },
+    "{": {
+      "weight": 41
+    },
+    "|": {
+      "weight": 8
+    },
+    "}": {
+      "weight": 44
+    },
+    "~": {
+      "weight": 8
+    },
+    " ": {
+      "weight": 32
+    },
+    "\t": {
+      "weight": 21
+    },
+    "\n": {
+      "weight": 37
+    },
+    "\r": {
+      "weight": 8
+    },
+    "\u000b": {
+      "weight": 18
+    },
+    "\f": {
+      "weight": 50
+    }
+  },
+  "u": {
+    "v": {
+      "weight": 12
+    },
+    "w": {
+      "weight": 50
+    },
+    "x": {
+      "weight": 2
+    },
+    "y": {
+      "weight": 12
+    },
+    "z": {
+      "weight": 26
+    },
+    "A": {
+      "weight": 9
+    },
+    "B": {
+      "weight": 32
+    },
+    "C": {
+      "weight": 9
+    },
+    "D": {
+      "weight": 28
+    },
+    "E": {
+      "weight": 28
+    },
+    "F": {
+      "weight": 44
+    },
+    "G": {
+      "weight": 17
+    },
+    "H": {
+      "weight": 10
+    },
+    "I": {
+      "weight": 33
+    },
+    "J": {
+      "weight": 8
+    },
+    "K": {
+      "weight": 12
+    },
+    "L": {
+      "weight": 19
+    },
+    "M": {
+      "weight": 27
+    },
+    "N": {
+      "weight": 34
+    },
+    "O": {
+      "weight": 23
+    },
+    "P": {
+      "weight": 44
+    },
+    "Q": {
+      "weight": 47
+    },
+    "R": {
+      "weight": 15
+    },
+    "S": {
+      "weight": 7
+    },
+    "T": {
+      "weight": 42
+    },
+    "U": {
+      "weight": 33
+    },
+    "V": {
+      "weight": 39
+    },
+    "W": {
+      "weight": 27
+    },
+    "X": {
+      "weight": 35
+    },
+    "Y": {
+      "weight": 36
+    },
+    "Z": {
+      "weight": 14
+    },
+    "!": {
+      "weight": 50
+    },
+    "\"": {
+      "weight": 4
+    },
+    "#": {
+      "weight": 2
+    },
+    "$": {
+      "weight": 29
+    },
+    "%": {
+      "weight": 25
+    },
+    "&": {
+      "weight": 42
+    },
+    "'": {
+      "weight": 1
+    },
+    "(": {
+      "weight": 47
+    },
+    ")": {
+      "weight": 1
+    },
+    "*": {
+      "weight": 44
+    },
+    "+": {
+      "weight": 9
+    },
+    ",": {
+      "weight": 46
+    },
+    "-": {
+      "weight": 12
+    },
+    ".": {
+      "weight": 24
+    },
+    "/": {
+      "weight": 41
+    },
+    ":": {
+      "weight": 11
+    },
+    ";": {
+      "weight": 10
+    },
+    "<": {
+      "weight": 47
+    },
+    "=": {
+      "weight": 45
+    },
+    ">": {
+      "weight": 2
+    },
+    "?": {
+      "weight": 35
+    },
+    "@": {
+      "weight": 3
+    },
+    "[": {
+      "weight": 30
+    },
+    "\\": {
+      "weight": 4
+    },
+    "]": {
+      "weight": 1
+    },
+    "^": {
+      "weight": 33
+    },
+    "_": {
+      "weight": 36
+    },
+    "`": {
+      "weight": 45
+    },
+    "{": {
+      "weight": 26
+    },
+    "|": {
+      "weight": 33
+    },
+    "}": {
+      "weight": 8
+    },
+    "~": {
+      "weight": 34
+    },
+    " ": {
+      "weight": 35
+    },
+    "\t": {
+      "weight": 19
+    },
+    "\n": {
+      "weight": 11
+    },
+    "\r": {
+      "weight": 45
+    },
+    "\u000b": {
+      "weight": 1
+    },
+    "\f": {
+      "weight": 21
+    }
+  },
+  "v": {
+    "w": {
+      "weight": 42
+    },
+    "x": {
+      "weight": 39
+    },
+    "y": {
+      "weight": 50
+    },
+    "z": {
+      "weight": 34
+    },
+    "A": {
+      "weight": 27
+    },
+    "B": {
+      "weight": 28
+    },
+    "C": {
+      "weight": 3
+    },
+    "D": {
+      "weight": 36
+    },
+    "E": {
+      "weight": 30
+    },
+    "F": {
+      "weight": 27
+    },
+    "G": {
+      "weight": 45
+    },
+    "H": {
+      "weight": 47
+    },
+    "I": {
+      "weight": 38
+    },
+    "J": {
+      "weight": 38
+    },
+    "K": {
+      "weight": 30
+    },
+    "L": {
+      "weight": 16
+    },
+    "M": {
+      "weight": 13
+    },
+    "N": {
+      "weight": 31
+    },
+    "O": {
+      "weight": 17
+    },
+    "P": {
+      "weight": 22
+    },
+    "Q": {
+      "weight": 19
+    },
+    "R": {
+      "weight": 41
+    },
+    "S": {
+      "weight": 13
+    },
+    "T": {
+      "weight": 45
+    },
+    "U": {
+      "weight": 22
+    },
+    "V": {
+      "weight": 7
+    },
+    "W": {
+      "weight": 17
+    },
+    "X": {
+      "weight": 39
+    },
+    "Y": {
+      "weight": 3
+    },
+    "Z": {
+      "weight": 39
+    },
+    "!": {
+      "weight": 48
+    },
+    "\"": {
+      "weight": 26
+    },
+    "#": {
+      "weight": 7
+    },
+    "$": {
+      "weight": 27
+    },
+    "%": {
+      "weight": 31
+    },
+    "&": {
+      "weight": 33
+    },
+    "'": {
+      "weight": 39
+    },
+    "(": {
+      "weight": 3
+    },
+    ")": {
+      "weight": 17
+    },
+    "*": {
+      "weight": 43
+    },
+    "+": {
+      "weight": 15
+    },
+    ",": {
+      "weight": 37
+    },
+    "-": {
+      "weight": 11
+    },
+    ".": {
+      "weight": 27
+    },
+    "/": {
+      "weight": 29
+    },
+    ":": {
+      "weight": 14
+    },
+    ";": {
+      "weight": 26
+    },
+    "<": {
+      "weight": 30
+    },
+    "=": {
+      "weight": 39
+    },
+    ">": {
+      "weight": 38
+    },
+    "?": {
+      "weight": 29
+    },
+    "@": {
+      "weight": 3
+    },
+    "[": {
+      "weight": 33
+    },
+    "\\": {
+      "weight": 31
+    },
+    "]": {
+      "weight": 39
+    },
+    "^": {
+      "weight": 16
+    },
+    "_": {
+      "weight": 1
+    },
+    "`": {
+      "weight": 13
+    },
+    "{": {
+      "weight": 47
+    },
+    "|": {
+      "weight": 34
+    },
+    "}": {
+      "weight": 24
+    },
+    "~": {
+      "weight": 16
+    },
+    " ": {
+      "weight": 24
+    },
+    "\t": {
+      "weight": 34
+    },
+    "\n": {
+      "weight": 10
+    },
+    "\r": {
+      "weight": 42
+    },
+    "\u000b": {
+      "weight": 11
+    },
+    "\f": {
+      "weight": 49
+    }
+  },
+  "w": {
+    "x": {
+      "weight": 35
+    },
+    "y": {
+      "weight": 10
+    },
+    "z": {
+      "weight": 14
+    },
+    "A": {
+      "weight": 13
+    },
+    "B": {
+      "weight": 47
+    },
+    "C": {
+      "weight": 24
+    },
+    "D": {
+      "weight": 43
+    },
+    "E": {
+      "weight": 17
+    },
+    "F": {
+      "weight": 7
+    },
+    "G": {
+      "weight": 17
+    },
+    "H": {
+      "weight": 20
+    },
+    "I": {
+      "weight": 19
+    },
+    "J": {
+      "weight": 1
+    },
+    "K": {
+      "weight": 32
+    },
+    "L": {
+      "weight": 27
+    },
+    "M": {
+      "weight": 37
+    },
+    "N": {
+      "weight": 3
+    },
+    "O": {
+      "weight": 20
+    },
+    "P": {
+      "weight": 10
+    },
+    "Q": {
+      "weight": 16
+    },
+    "R": {
+      "weight": 50
+    },
+    "S": {
+      "weight": 30
+    },
+    "T": {
+      "weight": 27
+    },
+    "U": {
+      "weight": 16
+    },
+    "V": {
+      "weight": 42
+    },
+    "W": {
+      "weight": 8
+    },
+    "X": {
+      "weight": 20
+    },
+    "Y": {
+      "weight": 33
+    },
+    "Z": {
+      "weight": 24
+    },
+    "!": {
+      "weight": 7
+    },
+    "\"": {
+      "weight": 11
+    },
+    "#": {
+      "weight": 1
+    },
+    "$": {
+      "weight": 8
+    },
+    "%": {
+      "weight": 28
+    },
+    "&": {
+      "weight": 37
+    },
+    "'": {
+      "weight": 27
+    },
+    "(": {
+      "weight": 28
+    },
+    ")": {
+      "weight": 32
+    },
+    "*": {
+      "weight": 40
+    },
+    "+": {
+      "weight": 7
+    },
+    ",": {
+      "weight": 36
+    },
+    "-": {
+      "weight": 37
+    },
+    ".": {
+      "weight": 3
+    },
+    "/": {
+      "weight": 2
+    },
+    ":": {
+      "weight": 38
+    },
+    ";": {
+      "weight": 47
+    },
+    "<": {
+      "weight": 21
+    },
+    "=": {
+      "weight": 50
+    },
+    ">": {
+      "weight": 1
+    },
+    "?": {
+      "weight": 15
+    },
+    "@": {
+      "weight": 33
+    },
+    "[": {
+      "weight": 24
+    },
+    "\\": {
+      "weight": 12
+    },
+    "]": {
+      "weight": 45
+    },
+    "^": {
+      "weight": 34
+    },
+    "_": {
+      "weight": 24
+    },
+    "`": {
+      "weight": 39
+    },
+    "{": {
+      "weight": 41
+    },
+    "|": {
+      "weight": 46
+    },
+    "}": {
+      "weight": 5
+    },
+    "~": {
+      "weight": 46
+    },
+    " ": {
+      "weight": 46
+    },
+    "\t": {
+      "weight": 30
+    },
+    "\n": {
+      "weight": 45
+    },
+    "\r": {
+      "weight": 10
+    },
+    "\u000b": {
+      "weight": 13
+    },
+    "\f": {
+      "weight": 44
+    }
+  },
+  "x": {
+    "y": {
+      "weight": 12
+    },
+    "z": {
+      "weight": 28
+    },
+    "A": {
+      "weight": 37
+    },
+    "B": {
+      "weight": 28
+    },
+    "C": {
+      "weight": 34
+    },
+    "D": {
+      "weight": 30
+    },
+    "E": {
+      "weight": 44
+    },
+    "F": {
+      "weight": 36
+    },
+    "G": {
+      "weight": 13
+    },
+    "H": {
+      "weight": 44
+    },
+    "I": {
+      "weight": 4
+    },
+    "J": {
+      "weight": 22
+    },
+    "K": {
+      "weight": 36
+    },
+    "L": {
+      "weight": 45
+    },
+    "M": {
+      "weight": 15
+    },
+    "N": {
+      "weight": 45
+    },
+    "O": {
+      "weight": 37
+    },
+    "P": {
+      "weight": 32
+    },
+    "Q": {
+      "weight": 39
+    },
+    "R": {
+      "weight": 18
+    },
+    "S": {
+      "weight": 36
+    },
+    "T": {
+      "weight": 24
+    },
+    "U": {
+      "weight": 19
+    },
+    "V": {
+      "weight": 44
+    },
+    "W": {
+      "weight": 44
+    },
+    "X": {
+      "weight": 43
+    },
+    "Y": {
+      "weight": 26
+    },
+    "Z": {
+      "weight": 16
+    },
+    "!": {
+      "weight": 26
+    },
+    "\"": {
+      "weight": 31
+    },
+    "#": {
+      "weight": 5
+    },
+    "$": {
+      "weight": 13
+    },
+    "%": {
+      "weight": 34
+    },
+    "&": {
+      "weight": 10
+    },
+    "'": {
+      "weight": 12
+    },
+    "(": {
+      "weight": 34
+    },
+    ")": {
+      "weight": 17
+    },
+    "*": {
+      "weight": 45
+    },
+    "+": {
+      "weight": 18
+    },
+    ",": {
+      "weight": 21
+    },
+    "-": {
+      "weight": 3
+    },
+    ".": {
+      "weight": 27
+    },
+    "/": {
+      "weight": 27
+    },
+    ":": {
+      "weight": 7
+    },
+    ";": {
+      "weight": 3
+    },
+    "<": {
+      "weight": 15
+    },
+    "=": {
+      "weight": 9
+    },
+    ">": {
+      "weight": 47
+    },
+    "?": {
+      "weight": 43
+    },
+    "@": {
+      "weight": 20
+    },
+    "[": {
+      "weight": 33
+    },
+    "\\": {
+      "weight": 25
+    },
+    "]": {
+      "weight": 23
+    },
+    "^": {
+      "weight": 34
+    },
+    "_": {
+      "weight": 24
+    },
+    "`": {
+      "weight": 2
+    },
+    "{": {
+      "weight": 2
+    },
+    "|": {
+      "weight": 36
+    },
+    "}": {
+      "weight": 48
+    },
+    "~": {
+      "weight": 35
+    },
+    " ": {
+      "weight": 15
+    },
+    "\t": {
+      "weight": 45
+    },
+    "\n": {
+      "weight": 18
+    },
+    "\r": {
+      "weight": 32
+    },
+    "\u000b": {
+      "weight": 40
+    },
+    "\f": {
+      "weight": 9
+    }
+  },
+  "y": {
+    "z": {
+      "weight": 30
+    },
+    "A": {
+      "weight": 17
+    },
+    "B": {
+      "weight": 29
+    },
+    "C": {
+      "weight": 26
+    },
+    "D": {
+      "weight": 21
+    },
+    "E": {
+      "weight": 18
+    },
+    "F": {
+      "weight": 20
+    },
+    "G": {
+      "weight": 30
+    },
+    "H": {
+      "weight": 16
+    },
+    "I": {
+      "weight": 22
+    },
+    "J": {
+      "weight": 47
+    },
+    "K": {
+      "weight": 19
+    },
+    "L": {
+      "weight": 16
+    },
+    "M": {
+      "weight": 2
+    },
+    "N": {
+      "weight": 49
+    },
+    "O": {
+      "weight": 39
+    },
+    "P": {
+      "weight": 49
+    },
+    "Q": {
+      "weight": 48
+    },
+    "R": {
+      "weight": 42
+    },
+    "S": {
+      "weight": 12
+    },
+    "T": {
+      "weight": 16
+    },
+    "U": {
+      "weight": 22
+    },
+    "V": {
+      "weight": 16
+    },
+    "W": {
+      "weight": 17
+    },
+    "X": {
+      "weight": 36
+    },
+    "Y": {
+      "weight": 32
+    },
+    "Z": {
+      "weight": 33
+    },
+    "!": {
+      "weight": 2
+    },
+    "\"": {
+      "weight": 36
+    },
+    "#": {
+      "weight": 4
+    },
+    "$": {
+      "weight": 44
+    },
+    "%": {
+      "weight": 50
+    },
+    "&": {
+      "weight": 50
+    },
+    "'": {
+      "weight": 45
+    },
+    "(": {
+      "weight": 44
+    },
+    ")": {
+      "weight": 28
+    },
+    "*": {
+      "weight": 1
+    },
+    "+": {
+      "weight": 41
+    },
+    ",": {
+      "weight": 31
+    },
+    "-": {
+      "weight": 14
+    },
+    ".": {
+      "weight": 8
+    },
+    "/": {
+      "weight": 23
+    },
+    ":": {
+      "weight": 30
+    },
+    ";": {
+      "weight": 43
+    },
+    "<": {
+      "weight": 19
+    },
+    "=": {
+      "weight": 26
+    },
+    ">": {
+      "weight": 50
+    },
+    "?": {
+      "weight": 21
+    },
+    "@": {
+      "weight": 3
+    },
+    "[": {
+      "weight": 5
+    },
+    "\\": {
+      "weight": 19
+    },
+    "]": {
+      "weight": 1
+    },
+    "^": {
+      "weight": 26
+    },
+    "_": {
+      "weight": 12
+    },
+    "`": {
+      "weight": 11
+    },
+    "{": {
+      "weight": 11
+    },
+    "|": {
+      "weight": 26
+    },
+    "}": {
+      "weight": 23
+    },
+    "~": {
+      "weight": 22
+    },
+    " ": {
+      "weight": 36
+    },
+    "\t": {
+      "weight": 44
+    },
+    "\n": {
+      "weight": 14
+    },
+    "\r": {
+      "weight": 2
+    },
+    "\u000b": {
+      "weight": 42
+    },
+    "\f": {
+      "weight": 27
+    }
+  },
+  "z": {
+    "A": {
+      "weight": 2
+    },
+    "B": {
+      "weight": 13
+    },
+    "C": {
+      "weight": 20
+    },
+    "D": {
+      "weight": 9
+    },
+    "E": {
+      "weight": 23
+    },
+    "F": {
+      "weight": 39
+    },
+    "G": {
+      "weight": 20
+    },
+    "H": {
+      "weight": 50
+    },
+    "I": {
+      "weight": 36
+    },
+    "J": {
+      "weight": 49
+    },
+    "K": {
+      "weight": 4
+    },
+    "L": {
+      "weight": 17
+    },
+    "M": {
+      "weight": 17
+    },
+    "N": {
+      "weight": 40
+    },
+    "O": {
+      "weight": 48
+    },
+    "P": {
+      "weight": 42
+    },
+    "Q": {
+      "weight": 41
+    },
+    "R": {
+      "weight": 48
+    },
+    "S": {
+      "weight": 22
+    },
+    "T": {
+      "weight": 16
+    },
+    "U": {
+      "weight": 14
+    },
+    "V": {
+      "weight": 5
+    },
+    "W": {
+      "weight": 42
+    },
+    "X": {
+      "weight": 40
+    },
+    "Y": {
+      "weight": 34
+    },
+    "Z": {
+      "weight": 7
+    },
+    "!": {
+      "weight": 33
+    },
+    "\"": {
+      "weight": 36
+    },
+    "#": {
+      "weight": 15
+    },
+    "$": {
+      "weight": 28
+    },
+    "%": {
+      "weight": 17
+    },
+    "&": {
+      "weight": 36
+    },
+    "'": {
+      "weight": 36
+    },
+    "(": {
+      "weight": 17
+    },
+    ")": {
+      "weight": 18
+    },
+    "*": {
+      "weight": 31
+    },
+    "+": {
+      "weight": 27
+    },
+    ",": {
+      "weight": 38
+    },
+    "-": {
+      "weight": 19
+    },
+    ".": {
+      "weight": 47
+    },
+    "/": {
+      "weight": 12
+    },
+    ":": {
+      "weight": 36
+    },
+    ";": {
+      "weight": 23
+    },
+    "<": {
+      "weight": 32
+    },
+    "=": {
+      "weight": 36
+    },
+    ">": {
+      "weight": 33
+    },
+    "?": {
+      "weight": 10
+    },
+    "@": {
+      "weight": 47
+    },
+    "[": {
+      "weight": 20
+    },
+    "\\": {
+      "weight": 43
+    },
+    "]": {
+      "weight": 3
+    },
+    "^": {
+      "weight": 35
+    },
+    "_": {
+      "weight": 48
+    },
+    "`": {
+      "weight": 3
+    },
+    "{": {
+      "weight": 18
+    },
+    "|": {
+      "weight": 14
+    },
+    "}": {
+      "weight": 14
+    },
+    "~": {
+      "weight": 33
+    },
+    " ": {
+      "weight": 27
+    },
+    "\t": {
+      "weight": 33
+    },
+    "\n": {
+      "weight": 11
+    },
+    "\r": {
+      "weight": 10
+    },
+    "\u000b": {
+      "weight": 17
+    },
+    "\f": {
+      "weight": 40
+    }
+  },
+  "A": {
+    "B": {
+      "weight": 11
+    },
+    "C": {
+      "weight": 34
+    },
+    "D": {
+      "weight": 30
+    },
+    "E": {
+      "weight": 16
+    },
+    "F": {
+      "weight": 43
+    },
+    "G": {
+      "weight": 41
+    },
+    "H": {
+      "weight": 4
+    },
+    "I": {
+      "weight": 22
+    },
+    "J": {
+      "weight": 24
+    },
+    "K": {
+      "weight": 38
+    },
+    "L": {
+      "weight": 1
+    },
+    "M": {
+      "weight": 1
+    },
+    "N": {
+      "weight": 6
+    },
+    "O": {
+      "weight": 26
+    },
+    "P": {
+      "weight": 43
+    },
+    "Q": {
+      "weight": 21
+    },
+    "R": {
+      "weight": 46
+    },
+    "S": {
+      "weight": 32
+    },
+    "T": {
+      "weight": 40
+    },
+    "U": {
+      "weight": 11
+    },
+    "V": {
+      "weight": 20
+    },
+    "W": {
+      "weight": 5
+    },
+    "X": {
+      "weight": 40
+    },
+    "Y": {
+      "weight": 28
+    },
+    "Z": {
+      "weight": 26
+    },
+    "!": {
+      "weight": 28
+    },
+    "\"": {
+      "weight": 32
+    },
+    "#": {
+      "weight": 13
+    },
+    "$": {
+      "weight": 50
+    },
+    "%": {
+      "weight": 20
+    },
+    "&": {
+      "weight": 34
+    },
+    "'": {
+      "weight": 32
+    },
+    "(": {
+      "weight": 5
+    },
+    ")": {
+      "weight": 19
+    },
+    "*": {
+      "weight": 49
+    },
+    "+": {
+      "weight": 4
+    },
+    ",": {
+      "weight": 12
+    },
+    "-": {
+      "weight": 20
+    },
+    ".": {
+      "weight": 50
+    },
+    "/": {
+      "weight": 3
+    },
+    ":": {
+      "weight": 4
+    },
+    ";": {
+      "weight": 7
+    },
+    "<": {
+      "weight": 42
+    },
+    "=": {
+      "weight": 6
+    },
+    ">": {
+      "weight": 13
+    },
+    "?": {
+      "weight": 16
+    },
+    "@": {
+      "weight": 17
+    },
+    "[": {
+      "weight": 26
+    },
+    "\\": {
+      "weight": 10
+    },
+    "]": {
+      "weight": 28
+    },
+    "^": {
+      "weight": 49
+    },
+    "_": {
+      "weight": 18
+    },
+    "`": {
+      "weight": 46
+    },
+    "{": {
+      "weight": 39
+    },
+    "|": {
+      "weight": 41
+    },
+    "}": {
+      "weight": 40
+    },
+    "~": {
+      "weight": 44
+    },
+    " ": {
+      "weight": 17
+    },
+    "\t": {
+      "weight": 20
+    },
+    "\n": {
+      "weight": 9
+    },
+    "\r": {
+      "weight": 26
+    },
+    "\u000b": {
+      "weight": 45
+    },
+    "\f": {
+      "weight": 31
+    }
+  },
+  "B": {
+    "C": {
+      "weight": 28
+    },
+    "D": {
+      "weight": 6
+    },
+    "E": {
+      "weight": 27
+    },
+    "F": {
+      "weight": 27
+    },
+    "G": {
+      "weight": 48
+    },
+    "H": {
+      "weight": 13
+    },
+    "I": {
+      "weight": 8
+    },
+    "J": {
+      "weight": 28
+    },
+    "K": {
+      "weight": 24
+    },
+    "L": {
+      "weight": 23
+    },
+    "M": {
+      "weight": 36
+    },
+    "N": {
+      "weight": 19
+    },
+    "O": {
+      "weight": 19
+    },
+    "P": {
+      "weight": 46
+    },
+    "Q": {
+      "weight": 1
+    },
+    "R": {
+      "weight": 17
+    },
+    "S": {
+      "weight": 37
+    },
+    "T": {
+      "weight": 8
+    },
+    "U": {
+      "weight": 26
+    },
+    "V": {
+      "weight": 40
+    },
+    "W": {
+      "weight": 36
+    },
+    "X": {
+      "weight": 19
+    },
+    "Y": {
+      "weight": 45
+    },
+    "Z": {
+      "weight": 44
+    },
+    "!": {
+      "weight": 6
+    },
+    "\"": {
+      "weight": 37
+    },
+    "#": {
+      "weight": 22
+    },
+    "$": {
+      "weight": 46
+    },
+    "%": {
+      "weight": 21
+    },
+    "&": {
+      "weight": 10
+    },
+    "'": {
+      "weight": 14
+    },
+    "(": {
+      "weight": 50
+    },
+    ")": {
+      "weight": 19
+    },
+    "*": {
+      "weight": 18
+    },
+    "+": {
+      "weight": 23
+    },
+    ",": {
+      "weight": 12
+    },
+    "-": {
+      "weight": 33
+    },
+    ".": {
+      "weight": 39
+    },
+    "/": {
+      "weight": 40
+    },
+    ":": {
+      "weight": 7
+    },
+    ";": {
+      "weight": 10
+    },
+    "<": {
+      "weight": 16
+    },
+    "=": {
+      "weight": 33
+    },
+    ">": {
+      "weight": 13
+    },
+    "?": {
+      "weight": 12
+    },
+    "@": {
+      "weight": 7
+    },
+    "[": {
+      "weight": 30
+    },
+    "\\": {
+      "weight": 20
+    },
+    "]": {
+      "weight": 21
+    },
+    "^": {
+      "weight": 44
+    },
+    "_": {
+      "weight": 10
+    },
+    "`": {
+      "weight": 9
+    },
+    "{": {
+      "weight": 21
+    },
+    "|": {
+      "weight": 3
+    },
+    "}": {
+      "weight": 47
+    },
+    "~": {
+      "weight": 49
+    },
+    " ": {
+      "weight": 37
+    },
+    "\t": {
+      "weight": 36
+    },
+    "\n": {
+      "weight": 33
+    },
+    "\r": {
+      "weight": 39
+    },
+    "\u000b": {
+      "weight": 4
+    },
+    "\f": {
+      "weight": 46
+    }
+  },
+  "C": {
+    "D": {
+      "weight": 30
+    },
+    "E": {
+      "weight": 4
+    },
+    "F": {
+      "weight": 25
+    },
+    "G": {
+      "weight": 46
+    },
+    "H": {
+      "weight": 35
+    },
+    "I": {
+      "weight": 34
+    },
+    "J": {
+      "weight": 22
+    },
+    "K": {
+      "weight": 13
+    },
+    "L": {
+      "weight": 7
+    },
+    "M": {
+      "weight": 23
+    },
+    "N": {
+      "weight": 17
+    },
+    "O": {
+      "weight": 48
+    },
+    "P": {
+      "weight": 14
+    },
+    "Q": {
+      "weight": 39
+    },
+    "R": {
+      "weight": 8
+    },
+    "S": {
+      "weight": 32
+    },
+    "T": {
+      "weight": 47
+    },
+    "U": {
+      "weight": 11
+    },
+    "V": {
+      "weight": 1
+    },
+    "W": {
+      "weight": 11
+    },
+    "X": {
+      "weight": 17
+    },
+    "Y": {
+      "weight": 43
+    },
+    "Z": {
+      "weight": 12
+    },
+    "!": {
+      "weight": 40
+    },
+    "\"": {
+      "weight": 14
+    },
+    "#": {
+      "weight": 43
+    },
+    "$": {
+      "weight": 1
+    },
+    "%": {
+      "weight": 50
+    },
+    "&": {
+      "weight": 1
+    },
+    "'": {
+      "weight": 29
+    },
+    "(": {
+      "weight": 50
+    },
+    ")": {
+      "weight": 27
+    },
+    "*": {
+      "weight": 13
+    },
+    "+": {
+      "weight": 27
+    },
+    ",": {
+      "weight": 24
+    },
+    "-": {
+      "weight": 46
+    },
+    ".": {
+      "weight": 46
+    },
+    "/": {
+      "weight": 12
+    },
+    ":": {
+      "weight": 33
+    },
+    ";": {
+      "weight": 1
+    },
+    "<": {
+      "weight": 49
+    },
+    "=": {
+      "weight": 42
+    },
+    ">": {
+      "weight": 22
+    },
+    "?": {
+      "weight": 50
+    },
+    "@": {
+      "weight": 38
+    },
+    "[": {
+      "weight": 36
+    },
+    "\\": {
+      "weight": 22
+    },
+    "]": {
+      "weight": 50
+    },
+    "^": {
+      "weight": 41
+    },
+    "_": {
+      "weight": 4
+    },
+    "`": {
+      "weight": 5
+    },
+    "{": {
+      "weight": 25
+    },
+    "|": {
+      "weight": 22
+    },
+    "}": {
+      "weight": 10
+    },
+    "~": {
+      "weight": 15
+    },
+    " ": {
+      "weight": 29
+    },
+    "\t": {
+      "weight": 24
+    },
+    "\n": {
+      "weight": 40
+    },
+    "\r": {
+      "weight": 4
+    },
+    "\u000b": {
+      "weight": 38
+    },
+    "\f": {
+      "weight": 15
+    }
+  },
+  "D": {
+    "E": {
+      "weight": 18
+    },
+    "F": {
+      "weight": 45
+    },
+    "G": {
+      "weight": 41
+    },
+    "H": {
+      "weight": 23
+    },
+    "I": {
+      "weight": 39
+    },
+    "J": {
+      "weight": 34
+    },
+    "K": {
+      "weight": 1
+    },
+    "L": {
+      "weight": 30
+    },
+    "M": {
+      "weight": 34
+    },
+    "N": {
+      "weight": 29
+    },
+    "O": {
+      "weight": 31
+    },
+    "P": {
+      "weight": 32
+    },
+    "Q": {
+      "weight": 44
+    },
+    "R": {
+      "weight": 30
+    },
+    "S": {
+      "weight": 1
+    },
+    "T": {
+      "weight": 47
+    },
+    "U": {
+      "weight": 17
+    },
+    "V": {
+      "weight": 21
+    },
+    "W": {
+      "weight": 14
+    },
+    "X": {
+      "weight": 29
+    },
+    "Y": {
+      "weight": 24
+    },
+    "Z": {
+      "weight": 21
+    },
+    "!": {
+      "weight": 42
+    },
+    "\"": {
+      "weight": 30
+    },
+    "#": {
+      "weight": 28
+    },
+    "$": {
+      "weight": 5
+    },
+    "%": {
+      "weight": 27
+    },
+    "&": {
+      "weight": 16
+    },
+    "'": {
+      "weight": 33
+    },
+    "(": {
+      "weight": 29
+    },
+    ")": {
+      "weight": 12
+    },
+    "*": {
+      "weight": 8
+    },
+    "+": {
+      "weight": 23
+    },
+    ",": {
+      "weight": 29
+    },
+    "-": {
+      "weight": 10
+    },
+    ".": {
+      "weight": 2
+    },
+    "/": {
+      "weight": 44
+    },
+    ":": {
+      "weight": 34
+    },
+    ";": {
+      "weight": 21
+    },
+    "<": {
+      "weight": 33
+    },
+    "=": {
+      "weight": 44
+    },
+    ">": {
+      "weight": 13
+    },
+    "?": {
+      "weight": 5
+    },
+    "@": {
+      "weight": 47
+    },
+    "[": {
+      "weight": 49
+    },
+    "\\": {
+      "weight": 17
+    },
+    "]": {
+      "weight": 48
+    },
+    "^": {
+      "weight": 49
+    },
+    "_": {
+      "weight": 35
+    },
+    "`": {
+      "weight": 13
+    },
+    "{": {
+      "weight": 8
+    },
+    "|": {
+      "weight": 3
+    },
+    "}": {
+      "weight": 47
+    },
+    "~": {
+      "weight": 21
+    },
+    " ": {
+      "weight": 5
+    },
+    "\t": {
+      "weight": 14
+    },
+    "\n": {
+      "weight": 4
+    },
+    "\r": {
+      "weight": 10
+    },
+    "\u000b": {
+      "weight": 36
+    },
+    "\f": {
+      "weight": 25
+    }
+  },
+  "E": {
+    "F": {
+      "weight": 48
+    },
+    "G": {
+      "weight": 37
+    },
+    "H": {
+      "weight": 3
+    },
+    "I": {
+      "weight": 3
+    },
+    "J": {
+      "weight": 11
+    },
+    "K": {
+      "weight": 28
+    },
+    "L": {
+      "weight": 4
+    },
+    "M": {
+      "weight": 3
+    },
+    "N": {
+      "weight": 36
+    },
+    "O": {
+      "weight": 34
+    },
+    "P": {
+      "weight": 36
+    },
+    "Q": {
+      "weight": 23
+    },
+    "R": {
+      "weight": 39
+    },
+    "S": {
+      "weight": 5
+    },
+    "T": {
+      "weight": 30
+    },
+    "U": {
+      "weight": 19
+    },
+    "V": {
+      "weight": 43
+    },
+    "W": {
+      "weight": 42
+    },
+    "X": {
+      "weight": 18
+    },
+    "Y": {
+      "weight": 40
+    },
+    "Z": {
+      "weight": 11
+    },
+    "!": {
+      "weight": 22
+    },
+    "\"": {
+      "weight": 32
+    },
+    "#": {
+      "weight": 23
+    },
+    "$": {
+      "weight": 20
+    },
+    "%": {
+      "weight": 5
+    },
+    "&": {
+      "weight": 5
+    },
+    "'": {
+      "weight": 35
+    },
+    "(": {
+      "weight": 10
+    },
+    ")": {
+      "weight": 15
+    },
+    "*": {
+      "weight": 26
+    },
+    "+": {
+      "weight": 33
+    },
+    ",": {
+      "weight": 17
+    },
+    "-": {
+      "weight": 3
+    },
+    ".": {
+      "weight": 24
+    },
+    "/": {
+      "weight": 1
+    },
+    ":": {
+      "weight": 15
+    },
+    ";": {
+      "weight": 39
+    },
+    "<": {
+      "weight": 5
+    },
+    "=": {
+      "weight": 9
+    },
+    ">": {
+      "weight": 22
+    },
+    "?": {
+      "weight": 36
+    },
+    "@": {
+      "weight": 32
+    },
+    "[": {
+      "weight": 9
+    },
+    "\\": {
+      "weight": 22
+    },
+    "]": {
+      "weight": 30
+    },
+    "^": {
+      "weight": 1
+    },
+    "_": {
+      "weight": 23
+    },
+    "`": {
+      "weight": 26
+    },
+    "{": {
+      "weight": 39
+    },
+    "|": {
+      "weight": 14
+    },
+    "}": {
+      "weight": 11
+    },
+    "~": {
+      "weight": 17
+    },
+    " ": {
+      "weight": 29
+    },
+    "\t": {
+      "weight": 24
+    },
+    "\n": {
+      "weight": 45
+    },
+    "\r": {
+      "weight": 14
+    },
+    "\u000b": {
+      "weight": 49
+    },
+    "\f": {
+      "weight": 50
+    }
+  },
+  "F": {
+    "G": {
+      "weight": 13
+    },
+    "H": {
+      "weight": 24
+    },
+    "I": {
+      "weight": 41
+    },
+    "J": {
+      "weight": 14
+    },
+    "K": {
+      "weight": 16
+    },
+    "L": {
+      "weight": 30
+    },
+    "M": {
+      "weight": 42
+    },
+    "N": {
+      "weight": 8
+    },
+    "O": {
+      "weight": 4
+    },
+    "P": {
+      "weight": 31
+    },
+    "Q": {
+      "weight": 21
+    },
+    "R": {
+      "weight": 27
+    },
+    "S": {
+      "weight": 34
+    },
+    "T": {
+      "weight": 17
+    },
+    "U": {
+      "weight": 19
+    },
+    "V": {
+      "weight": 26
+    },
+    "W": {
+      "weight": 32
+    },
+    "X": {
+      "weight": 40
+    },
+    "Y": {
+      "weight": 34
+    },
+    "Z": {
+      "weight": 34
+    },
+    "!": {
+      "weight": 31
+    },
+    "\"": {
+      "weight": 27
+    },
+    "#": {
+      "weight": 45
+    },
+    "$": {
+      "weight": 15
+    },
+    "%": {
+      "weight": 24
+    },
+    "&": {
+      "weight": 42
+    },
+    "'": {
+      "weight": 3
+    },
+    "(": {
+      "weight": 11
+    },
+    ")": {
+      "weight": 48
+    },
+    "*": {
+      "weight": 4
+    },
+    "+": {
+      "weight": 20
+    },
+    ",": {
+      "weight": 13
+    },
+    "-": {
+      "weight": 8
+    },
+    ".": {
+      "weight": 50
+    },
+    "/": {
+      "weight": 2
+    },
+    ":": {
+      "weight": 9
+    },
+    ";": {
+      "weight": 23
+    },
+    "<": {
+      "weight": 22
+    },
+    "=": {
+      "weight": 2
+    },
+    ">": {
+      "weight": 47
+    },
+    "?": {
+      "weight": 34
+    },
+    "@": {
+      "weight": 47
+    },
+    "[": {
+      "weight": 6
+    },
+    "\\": {
+      "weight": 9
+    },
+    "]": {
+      "weight": 26
+    },
+    "^": {
+      "weight": 47
+    },
+    "_": {
+      "weight": 17
+    },
+    "`": {
+      "weight": 38
+    },
+    "{": {
+      "weight": 7
+    },
+    "|": {
+      "weight": 10
+    },
+    "}": {
+      "weight": 30
+    },
+    "~": {
+      "weight": 7
+    },
+    " ": {
+      "weight": 23
+    },
+    "\t": {
+      "weight": 25
+    },
+    "\n": {
+      "weight": 41
+    },
+    "\r": {
+      "weight": 26
+    },
+    "\u000b": {
+      "weight": 2
+    },
+    "\f": {
+      "weight": 5
+    }
+  },
+  "G": {
+    "H": {
+      "weight": 34
+    },
+    "I": {
+      "weight": 17
+    },
+    "J": {
+      "weight": 8
+    },
+    "K": {
+      "weight": 24
+    },
+    "L": {
+      "weight": 13
+    },
+    "M": {
+      "weight": 24
+    },
+    "N": {
+      "weight": 20
+    },
+    "O": {
+      "weight": 39
+    },
+    "P": {
+      "weight": 26
+    },
+    "Q": {
+      "weight": 27
+    },
+    "R": {
+      "weight": 44
+    },
+    "S": {
+      "weight": 37
+    },
+    "T": {
+      "weight": 7
+    },
+    "U": {
+      "weight": 42
+    },
+    "V": {
+      "weight": 15
+    },
+    "W": {
+      "weight": 34
+    },
+    "X": {
+      "weight": 5
+    },
+    "Y": {
+      "weight": 39
+    },
+    "Z": {
+      "weight": 43
+    },
+    "!": {
+      "weight": 11
+    },
+    "\"": {
+      "weight": 28
+    },
+    "#": {
+      "weight": 8
+    },
+    "$": {
+      "weight": 31
+    },
+    "%": {
+      "weight": 44
+    },
+    "&": {
+      "weight": 41
+    },
+    "'": {
+      "weight": 22
+    },
+    "(": {
+      "weight": 25
+    },
+    ")": {
+      "weight": 4
+    },
+    "*": {
+      "weight": 10
+    },
+    "+": {
+      "weight": 22
+    },
+    ",": {
+      "weight": 24
+    },
+    "-": {
+      "weight": 42
+    },
+    ".": {
+      "weight": 28
+    },
+    "/": {
+      "weight": 21
+    },
+    ":": {
+      "weight": 49
+    },
+    ";": {
+      "weight": 48
+    },
+    "<": {
+      "weight": 6
+    },
+    "=": {
+      "weight": 48
+    },
+    ">": {
+      "weight": 24
+    },
+    "?": {
+      "weight": 2
+    },
+    "@": {
+      "weight": 5
+    },
+    "[": {
+      "weight": 37
+    },
+    "\\": {
+      "weight": 18
+    },
+    "]": {
+      "weight": 8
+    },
+    "^": {
+      "weight": 16
+    },
+    "_": {
+      "weight": 31
+    },
+    "`": {
+      "weight": 35
+    },
+    "{": {
+      "weight": 25
+    },
+    "|": {
+      "weight": 11
+    },
+    "}": {
+      "weight": 43
+    },
+    "~": {
+      "weight": 38
+    },
+    " ": {
+      "weight": 49
+    },
+    "\t": {
+      "weight": 49
+    },
+    "\n": {
+      "weight": 19
+    },
+    "\r": {
+      "weight": 30
+    },
+    "\u000b": {
+      "weight": 24
+    },
+    "\f": {
+      "weight": 22
+    }
+  },
+  "H": {
+    "I": {
+      "weight": 2
+    },
+    "J": {
+      "weight": 17
+    },
+    "K": {
+      "weight": 14
+    },
+    "L": {
+      "weight": 11
+    },
+    "M": {
+      "weight": 33
+    },
+    "N": {
+      "weight": 48
+    },
+    "O": {
+      "weight": 50
+    },
+    "P": {
+      "weight": 30
+    },
+    "Q": {
+      "weight": 22
+    },
+    "R": {
+      "weight": 20
+    },
+    "S": {
+      "weight": 27
+    },
+    "T": {
+      "weight": 38
+    },
+    "U": {
+      "weight": 15
+    },
+    "V": {
+      "weight": 22
+    },
+    "W": {
+      "weight": 39
+    },
+    "X": {
+      "weight": 37
+    },
+    "Y": {
+      "weight": 7
+    },
+    "Z": {
+      "weight": 4
+    },
+    "!": {
+      "weight": 37
+    },
+    "\"": {
+      "weight": 48
+    },
+    "#": {
+      "weight": 15
+    },
+    "$": {
+      "weight": 8
+    },
+    "%": {
+      "weight": 21
+    },
+    "&": {
+      "weight": 45
+    },
+    "'": {
+      "weight": 9
+    },
+    "(": {
+      "weight": 34
+    },
+    ")": {
+      "weight": 6
+    },
+    "*": {
+      "weight": 3
+    },
+    "+": {
+      "weight": 11
+    },
+    ",": {
+      "weight": 17
+    },
+    "-": {
+      "weight": 5
+    },
+    ".": {
+      "weight": 23
+    },
+    "/": {
+      "weight": 34
+    },
+    ":": {
+      "weight": 14
+    },
+    ";": {
+      "weight": 40
+    },
+    "<": {
+      "weight": 43
+    },
+    "=": {
+      "weight": 32
+    },
+    ">": {
+      "weight": 40
+    },
+    "?": {
+      "weight": 17
+    },
+    "@": {
+      "weight": 40
+    },
+    "[": {
+      "weight": 39
+    },
+    "\\": {
+      "weight": 42
+    },
+    "]": {
+      "weight": 32
+    },
+    "^": {
+      "weight": 50
+    },
+    "_": {
+      "weight": 25
+    },
+    "`": {
+      "weight": 29
+    },
+    "{": {
+      "weight": 40
+    },
+    "|": {
+      "weight": 7
+    },
+    "}": {
+      "weight": 3
+    },
+    "~": {
+      "weight": 4
+    },
+    " ": {
+      "weight": 29
+    },
+    "\t": {
+      "weight": 14
+    },
+    "\n": {
+      "weight": 28
+    },
+    "\r": {
+      "weight": 48
+    },
+    "\u000b": {
+      "weight": 2
+    },
+    "\f": {
+      "weight": 7
+    }
+  },
+  "I": {
+    "J": {
+      "weight": 30
+    },
+    "K": {
+      "weight": 15
+    },
+    "L": {
+      "weight": 26
+    },
+    "M": {
+      "weight": 44
+    },
+    "N": {
+      "weight": 11
+    },
+    "O": {
+      "weight": 39
+    },
+    "P": {
+      "weight": 3
+    },
+    "Q": {
+      "weight": 45
+    },
+    "R": {
+      "weight": 27
+    },
+    "S": {
+      "weight": 39
+    },
+    "T": {
+      "weight": 26
+    },
+    "U": {
+      "weight": 27
+    },
+    "V": {
+      "weight": 25
+    },
+    "W": {
+      "weight": 44
+    },
+    "X": {
+      "weight": 37
+    },
+    "Y": {
+      "weight": 7
+    },
+    "Z": {
+      "weight": 47
+    },
+    "!": {
+      "weight": 5
+    },
+    "\"": {
+      "weight": 4
+    },
+    "#": {
+      "weight": 46
+    },
+    "$": {
+      "weight": 4
+    },
+    "%": {
+      "weight": 7
+    },
+    "&": {
+      "weight": 2
+    },
+    "'": {
+      "weight": 43
+    },
+    "(": {
+      "weight": 24
+    },
+    ")": {
+      "weight": 29
+    },
+    "*": {
+      "weight": 45
+    },
+    "+": {
+      "weight": 9
+    },
+    ",": {
+      "weight": 43
+    },
+    "-": {
+      "weight": 28
+    },
+    ".": {
+      "weight": 29
+    },
+    "/": {
+      "weight": 19
+    },
+    ":": {
+      "weight": 48
+    },
+    ";": {
+      "weight": 22
+    },
+    "<": {
+      "weight": 19
+    },
+    "=": {
+      "weight": 27
+    },
+    ">": {
+      "weight": 12
+    },
+    "?": {
+      "weight": 39
+    },
+    "@": {
+      "weight": 3
+    },
+    "[": {
+      "weight": 34
+    },
+    "\\": {
+      "weight": 49
+    },
+    "]": {
+      "weight": 25
+    },
+    "^": {
+      "weight": 11
+    },
+    "_": {
+      "weight": 11
+    },
+    "`": {
+      "weight": 19
+    },
+    "{": {
+      "weight": 13
+    },
+    "|": {
+      "weight": 37
+    },
+    "}": {
+      "weight": 34
+    },
+    "~": {
+      "weight": 33
+    },
+    " ": {
+      "weight": 11
+    },
+    "\t": {
+      "weight": 22
+    },
+    "\n": {
+      "weight": 37
+    },
+    "\r": {
+      "weight": 15
+    },
+    "\u000b": {
+      "weight": 12
+    },
+    "\f": {
+      "weight": 41
+    }
+  },
+  "J": {
+    "K": {
+      "weight": 48
+    },
+    "L": {
+      "weight": 50
+    },
+    "M": {
+      "weight": 34
+    },
+    "N": {
+      "weight": 7
+    },
+    "O": {
+      "weight": 48
+    },
+    "P": {
+      "weight": 13
+    },
+    "Q": {
+      "weight": 41
+    },
+    "R": {
+      "weight": 17
+    },
+    "S": {
+      "weight": 17
+    },
+    "T": {
+      "weight": 33
+    },
+    "U": {
+      "weight": 7
+    },
+    "V": {
+      "weight": 14
+    },
+    "W": {
+      "weight": 4
+    },
+    "X": {
+      "weight": 42
+    },
+    "Y": {
+      "weight": 28
+    },
+    "Z": {
+      "weight": 37
+    },
+    "!": {
+      "weight": 2
+    },
+    "\"": {
+      "weight": 27
+    },
+    "#": {
+      "weight": 33
+    },
+    "$": {
+      "weight": 2
+    },
+    "%": {
+      "weight": 13
+    },
+    "&": {
+      "weight": 16
+    },
+    "'": {
+      "weight": 8
+    },
+    "(": {
+      "weight": 22
+    },
+    ")": {
+      "weight": 22
+    },
+    "*": {
+      "weight": 32
+    },
+    "+": {
+      "weight": 42
+    },
+    ",": {
+      "weight": 26
+    },
+    "-": {
+      "weight": 1
+    },
+    ".": {
+      "weight": 23
+    },
+    "/": {
+      "weight": 15
+    },
+    ":": {
+      "weight": 48
+    },
+    ";": {
+      "weight": 2
+    },
+    "<": {
+      "weight": 13
+    },
+    "=": {
+      "weight": 22
+    },
+    ">": {
+      "weight": 11
+    },
+    "?": {
+      "weight": 5
+    },
+    "@": {
+      "weight": 27
+    },
+    "[": {
+      "weight": 10
+    },
+    "\\": {
+      "weight": 1
+    },
+    "]": {
+      "weight": 49
+    },
+    "^": {
+      "weight": 32
+    },
+    "_": {
+      "weight": 42
+    },
+    "`": {
+      "weight": 31
+    },
+    "{": {
+      "weight": 21
+    },
+    "|": {
+      "weight": 16
+    },
+    "}": {
+      "weight": 42
+    },
+    "~": {
+      "weight": 16
+    },
+    " ": {
+      "weight": 37
+    },
+    "\t": {
+      "weight": 48
+    },
+    "\n": {
+      "weight": 24
+    },
+    "\r": {
+      "weight": 9
+    },
+    "\u000b": {
+      "weight": 23
+    },
+    "\f": {
+      "weight": 39
+    }
+  },
+  "K": {
+    "L": {
+      "weight": 25
+    },
+    "M": {
+      "weight": 17
+    },
+    "N": {
+      "weight": 6
+    },
+    "O": {
+      "weight": 47
+    },
+    "P": {
+      "weight": 10
+    },
+    "Q": {
+      "weight": 9
+    },
+    "R": {
+      "weight": 42
+    },
+    "S": {
+      "weight": 45
+    },
+    "T": {
+      "weight": 42
+    },
+    "U": {
+      "weight": 14
+    },
+    "V": {
+      "weight": 28
+    },
+    "W": {
+      "weight": 20
+    },
+    "X": {
+      "weight": 46
+    },
+    "Y": {
+      "weight": 38
+    },
+    "Z": {
+      "weight": 33
+    },
+    "!": {
+      "weight": 35
+    },
+    "\"": {
+      "weight": 20
+    },
+    "#": {
+      "weight": 38
+    },
+    "$": {
+      "weight": 10
+    },
+    "%": {
+      "weight": 11
+    },
+    "&": {
+      "weight": 43
+    },
+    "'": {
+      "weight": 40
+    },
+    "(": {
+      "weight": 41
+    },
+    ")": {
+      "weight": 6
+    },
+    "*": {
+      "weight": 31
+    },
+    "+": {
+      "weight": 24
+    },
+    ",": {
+      "weight": 36
+    },
+    "-": {
+      "weight": 32
+    },
+    ".": {
+      "weight": 22
+    },
+    "/": {
+      "weight": 11
+    },
+    ":": {
+      "weight": 10
+    },
+    ";": {
+      "weight": 18
+    },
+    "<": {
+      "weight": 21
+    },
+    "=": {
+      "weight": 11
+    },
+    ">": {
+      "weight": 43
+    },
+    "?": {
+      "weight": 35
+    },
+    "@": {
+      "weight": 46
+    },
+    "[": {
+      "weight": 1
+    },
+    "\\": {
+      "weight": 22
+    },
+    "]": {
+      "weight": 43
+    },
+    "^": {
+      "weight": 40
+    },
+    "_": {
+      "weight": 33
+    },
+    "`": {
+      "weight": 16
+    },
+    "{": {
+      "weight": 26
+    },
+    "|": {
+      "weight": 34
+    },
+    "}": {
+      "weight": 35
+    },
+    "~": {
+      "weight": 25
+    },
+    " ": {
+      "weight": 28
+    },
+    "\t": {
+      "weight": 19
+    },
+    "\n": {
+      "weight": 18
+    },
+    "\r": {
+      "weight": 24
+    },
+    "\u000b": {
+      "weight": 24
+    },
+    "\f": {
+      "weight": 40
+    }
+  },
+  "L": {
+    "M": {
+      "weight": 16
+    },
+    "N": {
+      "weight": 49
+    },
+    "O": {
+      "weight": 42
+    },
+    "P": {
+      "weight": 23
+    },
+    "Q": {
+      "weight": 20
+    },
+    "R": {
+      "weight": 19
+    },
+    "S": {
+      "weight": 21
+    },
+    "T": {
+      "weight": 49
+    },
+    "U": {
+      "weight": 9
+    },
+    "V": {
+      "weight": 14
+    },
+    "W": {
+      "weight": 36
+    },
+    "X": {
+      "weight": 28
+    },
+    "Y": {
+      "weight": 28
+    },
+    "Z": {
+      "weight": 23
+    },
+    "!": {
+      "weight": 41
+    },
+    "\"": {
+      "weight": 20
+    },
+    "#": {
+      "weight": 47
+    },
+    "$": {
+      "weight": 38
+    },
+    "%": {
+      "weight": 4
+    },
+    "&": {
+      "weight": 26
+    },
+    "'": {
+      "weight": 10
+    },
+    "(": {
+      "weight": 19
+    },
+    ")": {
+      "weight": 45
+    },
+    "*": {
+      "weight": 41
+    },
+    "+": {
+      "weight": 22
+    },
+    ",": {
+      "weight": 22
+    },
+    "-": {
+      "weight": 33
+    },
+    ".": {
+      "weight": 13
+    },
+    "/": {
+      "weight": 44
+    },
+    ":": {
+      "weight": 46
+    },
+    ";": {
+      "weight": 27
+    },
+    "<": {
+      "weight": 10
+    },
+    "=": {
+      "weight": 32
+    },
+    ">": {
+      "weight": 16
+    },
+    "?": {
+      "weight": 15
+    },
+    "@": {
+      "weight": 9
+    },
+    "[": {
+      "weight": 4
+    },
+    "\\": {
+      "weight": 40
+    },
+    "]": {
+      "weight": 10
+    },
+    "^": {
+      "weight": 9
+    },
+    "_": {
+      "weight": 1
+    },
+    "`": {
+      "weight": 30
+    },
+    "{": {
+      "weight": 1
+    },
+    "|": {
+      "weight": 37
+    },
+    "}": {
+      "weight": 43
+    },
+    "~": {
+      "weight": 11
+    },
+    " ": {
+      "weight": 23
+    },
+    "\t": {
+      "weight": 10
+    },
+    "\n": {
+      "weight": 19
+    },
+    "\r": {
+      "weight": 40
+    },
+    "\u000b": {
+      "weight": 14
+    },
+    "\f": {
+      "weight": 10
+    }
+  },
+  "M": {
+    "N": {
+      "weight": 35
+    },
+    "O": {
+      "weight": 50
+    },
+    "P": {
+      "weight": 18
+    },
+    "Q": {
+      "weight": 11
+    },
+    "R": {
+      "weight": 39
+    },
+    "S": {
+      "weight": 4
+    },
+    "T": {
+      "weight": 36
+    },
+    "U": {
+      "weight": 44
+    },
+    "V": {
+      "weight": 12
+    },
+    "W": {
+      "weight": 5
+    },
+    "X": {
+      "weight": 15
+    },
+    "Y": {
+      "weight": 47
+    },
+    "Z": {
+      "weight": 44
+    },
+    "!": {
+      "weight": 8
+    },
+    "\"": {
+      "weight": 24
+    },
+    "#": {
+      "weight": 41
+    },
+    "$": {
+      "weight": 42
+    },
+    "%": {
+      "weight": 29
+    },
+    "&": {
+      "weight": 1
+    },
+    "'": {
+      "weight": 34
+    },
+    "(": {
+      "weight": 41
+    },
+    ")": {
+      "weight": 14
+    },
+    "*": {
+      "weight": 11
+    },
+    "+": {
+      "weight": 30
+    },
+    ",": {
+      "weight": 31
+    },
+    "-": {
+      "weight": 35
+    },
+    ".": {
+      "weight": 35
+    },
+    "/": {
+      "weight": 37
+    },
+    ":": {
+      "weight": 49
+    },
+    ";": {
+      "weight": 48
+    },
+    "<": {
+      "weight": 25
+    },
+    "=": {
+      "weight": 46
+    },
+    ">": {
+      "weight": 24
+    },
+    "?": {
+      "weight": 3
+    },
+    "@": {
+      "weight": 17
+    },
+    "[": {
+      "weight": 15
+    },
+    "\\": {
+      "weight": 8
+    },
+    "]": {
+      "weight": 6
+    },
+    "^": {
+      "weight": 1
+    },
+    "_": {
+      "weight": 43
+    },
+    "`": {
+      "weight": 20
+    },
+    "{": {
+      "weight": 44
+    },
+    "|": {
+      "weight": 43
+    },
+    "}": {
+      "weight": 22
+    },
+    "~": {
+      "weight": 50
+    },
+    " ": {
+      "weight": 24
+    },
+    "\t": {
+      "weight": 31
+    },
+    "\n": {
+      "weight": 28
+    },
+    "\r": {
+      "weight": 18
+    },
+    "\u000b": {
+      "weight": 10
+    },
+    "\f": {
+      "weight": 2
+    }
+  },
+  "N": {
+    "O": {
+      "weight": 36
+    },
+    "P": {
+      "weight": 47
+    },
+    "Q": {
+      "weight": 37
+    },
+    "R": {
+      "weight": 39
+    },
+    "S": {
+      "weight": 46
+    },
+    "T": {
+      "weight": 34
+    },
+    "U": {
+      "weight": 30
+    },
+    "V": {
+      "weight": 5
+    },
+    "W": {
+      "weight": 34
+    },
+    "X": {
+      "weight": 3
+    },
+    "Y": {
+      "weight": 42
+    },
+    "Z": {
+      "weight": 42
+    },
+    "!": {
+      "weight": 18
+    },
+    "\"": {
+      "weight": 21
+    },
+    "#": {
+      "weight": 8
+    },
+    "$": {
+      "weight": 5
+    },
+    "%": {
+      "weight": 35
+    },
+    "&": {
+      "weight": 42
+    },
+    "'": {
+      "weight": 33
+    },
+    "(": {
+      "weight": 46
+    },
+    ")": {
+      "weight": 11
+    },
+    "*": {
+      "weight": 10
+    },
+    "+": {
+      "weight": 25
+    },
+    ",": {
+      "weight": 19
+    },
+    "-": {
+      "weight": 33
+    },
+    ".": {
+      "weight": 8
+    },
+    "/": {
+      "weight": 30
+    },
+    ":": {
+      "weight": 28
+    },
+    ";": {
+      "weight": 29
+    },
+    "<": {
+      "weight": 43
+    },
+    "=": {
+      "weight": 23
+    },
+    ">": {
+      "weight": 41
+    },
+    "?": {
+      "weight": 17
+    },
+    "@": {
+      "weight": 42
+    },
+    "[": {
+      "weight": 14
+    },
+    "\\": {
+      "weight": 33
+    },
+    "]": {
+      "weight": 22
+    },
+    "^": {
+      "weight": 17
+    },
+    "_": {
+      "weight": 36
+    },
+    "`": {
+      "weight": 28
+    },
+    "{": {
+      "weight": 7
+    },
+    "|": {
+      "weight": 27
+    },
+    "}": {
+      "weight": 11
+    },
+    "~": {
+      "weight": 32
+    },
+    " ": {
+      "weight": 8
+    },
+    "\t": {
+      "weight": 31
+    },
+    "\n": {
+      "weight": 2
+    },
+    "\r": {
+      "weight": 27
+    },
+    "\u000b": {
+      "weight": 16
+    },
+    "\f": {
+      "weight": 30
+    }
+  },
+  "O": {
+    "P": {
+      "weight": 38
+    },
+    "Q": {
+      "weight": 35
+    },
+    "R": {
+      "weight": 30
+    },
+    "S": {
+      "weight": 40
+    },
+    "T": {
+      "weight": 48
+    },
+    "U": {
+      "weight": 23
+    },
+    "V": {
+      "weight": 9
+    },
+    "W": {
+      "weight": 3
+    },
+    "X": {
+      "weight": 6
+    },
+    "Y": {
+      "weight": 2
+    },
+    "Z": {
+      "weight": 15
+    },
+    "!": {
+      "weight": 33
+    },
+    "\"": {
+      "weight": 14
+    },
+    "#": {
+      "weight": 28
+    },
+    "$": {
+      "weight": 35
+    },
+    "%": {
+      "weight": 19
+    },
+    "&": {
+      "weight": 6
+    },
+    "'": {
+      "weight": 17
+    },
+    "(": {
+      "weight": 7
+    },
+    ")": {
+      "weight": 13
+    },
+    "*": {
+      "weight": 46
+    },
+    "+": {
+      "weight": 28
+    },
+    ",": {
+      "weight": 39
+    },
+    "-": {
+      "weight": 50
+    },
+    ".": {
+      "weight": 11
+    },
+    "/": {
+      "weight": 46
+    },
+    ":": {
+      "weight": 7
+    },
+    ";": {
+      "weight": 22
+    },
+    "<": {
+      "weight": 33
+    },
+    "=": {
+      "weight": 36
+    },
+    ">": {
+      "weight": 3
+    },
+    "?": {
+      "weight": 48
+    },
+    "@": {
+      "weight": 17
+    },
+    "[": {
+      "weight": 39
+    },
+    "\\": {
+      "weight": 44
+    },
+    "]": {
+      "weight": 25
+    },
+    "^": {
+      "weight": 12
+    },
+    "_": {
+      "weight": 45
+    },
+    "`": {
+      "weight": 3
+    },
+    "{": {
+      "weight": 41
+    },
+    "|": {
+      "weight": 23
+    },
+    "}": {
+      "weight": 45
+    },
+    "~": {
+      "weight": 40
+    },
+    " ": {
+      "weight": 11
+    },
+    "\t": {
+      "weight": 19
+    },
+    "\n": {
+      "weight": 28
+    },
+    "\r": {
+      "weight": 44
+    },
+    "\u000b": {
+      "weight": 20
+    },
+    "\f": {
+      "weight": 13
+    }
+  },
+  "P": {
+    "Q": {
+      "weight": 7
+    },
+    "R": {
+      "weight": 11
+    },
+    "S": {
+      "weight": 39
+    },
+    "T": {
+      "weight": 42
+    },
+    "U": {
+      "weight": 28
+    },
+    "V": {
+      "weight": 36
+    },
+    "W": {
+      "weight": 23
+    },
+    "X": {
+      "weight": 12
+    },
+    "Y": {
+      "weight": 23
+    },
+    "Z": {
+      "weight": 18
+    },
+    "!": {
+      "weight": 17
+    },
+    "\"": {
+      "weight": 8
+    },
+    "#": {
+      "weight": 2
+    },
+    "$": {
+      "weight": 7
+    },
+    "%": {
+      "weight": 50
+    },
+    "&": {
+      "weight": 50
+    },
+    "'": {
+      "weight": 39
+    },
+    "(": {
+      "weight": 29
+    },
+    ")": {
+      "weight": 32
+    },
+    "*": {
+      "weight": 13
+    },
+    "+": {
+      "weight": 30
+    },
+    ",": {
+      "weight": 8
+    },
+    "-": {
+      "weight": 27
+    },
+    ".": {
+      "weight": 25
+    },
+    "/": {
+      "weight": 21
+    },
+    ":": {
+      "weight": 46
+    },
+    ";": {
+      "weight": 7
+    },
+    "<": {
+      "weight": 5
+    },
+    "=": {
+      "weight": 35
+    },
+    ">": {
+      "weight": 21
+    },
+    "?": {
+      "weight": 21
+    },
+    "@": {
+      "weight": 12
+    },
+    "[": {
+      "weight": 37
+    },
+    "\\": {
+      "weight": 19
+    },
+    "]": {
+      "weight": 7
+    },
+    "^": {
+      "weight": 50
+    },
+    "_": {
+      "weight": 38
+    },
+    "`": {
+      "weight": 3
+    },
+    "{": {
+      "weight": 48
+    },
+    "|": {
+      "weight": 16
+    },
+    "}": {
+      "weight": 9
+    },
+    "~": {
+      "weight": 30
+    },
+    " ": {
+      "weight": 17
+    },
+    "\t": {
+      "weight": 30
+    },
+    "\n": {
+      "weight": 18
+    },
+    "\r": {
+      "weight": 14
+    },
+    "\u000b": {
+      "weight": 34
+    },
+    "\f": {
+      "weight": 28
+    }
+  },
+  "Q": {
+    "R": {
+      "weight": 14
+    },
+    "S": {
+      "weight": 33
+    },
+    "T": {
+      "weight": 13
+    },
+    "U": {
+      "weight": 50
+    },
+    "V": {
+      "weight": 5
+    },
+    "W": {
+      "weight": 15
+    },
+    "X": {
+      "weight": 28
+    },
+    "Y": {
+      "weight": 32
+    },
+    "Z": {
+      "weight": 45
+    },
+    "!": {
+      "weight": 39
+    },
+    "\"": {
+      "weight": 2
+    },
+    "#": {
+      "weight": 18
+    },
+    "$": {
+      "weight": 35
+    },
+    "%": {
+      "weight": 7
+    },
+    "&": {
+      "weight": 31
+    },
+    "'": {
+      "weight": 4
+    },
+    "(": {
+      "weight": 25
+    },
+    ")": {
+      "weight": 43
+    },
+    "*": {
+      "weight": 20
+    },
+    "+": {
+      "weight": 22
+    },
+    ",": {
+      "weight": 19
+    },
+    "-": {
+      "weight": 4
+    },
+    ".": {
+      "weight": 17
+    },
+    "/": {
+      "weight": 34
+    },
+    ":": {
+      "weight": 8
+    },
+    ";": {
+      "weight": 43
+    },
+    "<": {
+      "weight": 30
+    },
+    "=": {
+      "weight": 28
+    },
+    ">": {
+      "weight": 1
+    },
+    "?": {
+      "weight": 3
+    },
+    "@": {
+      "weight": 24
+    },
+    "[": {
+      "weight": 44
+    },
+    "\\": {
+      "weight": 47
+    },
+    "]": {
+      "weight": 9
+    },
+    "^": {
+      "weight": 35
+    },
+    "_": {
+      "weight": 3
+    },
+    "`": {
+      "weight": 29
+    },
+    "{": {
+      "weight": 29
+    },
+    "|": {
+      "weight": 7
+    },
+    "}": {
+      "weight": 3
+    },
+    "~": {
+      "weight": 15
+    },
+    " ": {
+      "weight": 14
+    },
+    "\t": {
+      "weight": 36
+    },
+    "\n": {
+      "weight": 13
+    },
+    "\r": {
+      "weight": 5
+    },
+    "\u000b": {
+      "weight": 12
+    },
+    "\f": {
+      "weight": 11
+    }
+  },
+  "R": {
+    "S": {
+      "weight": 36
+    },
+    "T": {
+      "weight": 29
+    },
+    "U": {
+      "weight": 40
+    },
+    "V": {
+      "weight": 16
+    },
+    "W": {
+      "weight": 20
+    },
+    "X": {
+      "weight": 25
+    },
+    "Y": {
+      "weight": 8
+    },
+    "Z": {
+      "weight": 8
+    },
+    "!": {
+      "weight": 41
+    },
+    "\"": {
+      "weight": 48
+    },
+    "#": {
+      "weight": 7
+    },
+    "$": {
+      "weight": 46
+    },
+    "%": {
+      "weight": 45
+    },
+    "&": {
+      "weight": 36
+    },
+    "'": {
+      "weight": 15
+    },
+    "(": {
+      "weight": 11
+    },
+    ")": {
+      "weight": 37
+    },
+    "*": {
+      "weight": 44
+    },
+    "+": {
+      "weight": 42
+    },
+    ",": {
+      "weight": 5
+    },
+    "-": {
+      "weight": 24
+    },
+    ".": {
+      "weight": 37
+    },
+    "/": {
+      "weight": 15
+    },
+    ":": {
+      "weight": 10
+    },
+    ";": {
+      "weight": 15
+    },
+    "<": {
+      "weight": 45
+    },
+    "=": {
+      "weight": 49
+    },
+    ">": {
+      "weight": 16
+    },
+    "?": {
+      "weight": 46
+    },
+    "@": {
+      "weight": 29
+    },
+    "[": {
+      "weight": 45
+    },
+    "\\": {
+      "weight": 37
+    },
+    "]": {
+      "weight": 43
+    },
+    "^": {
+      "weight": 20
+    },
+    "_": {
+      "weight": 4
+    },
+    "`": {
+      "weight": 15
+    },
+    "{": {
+      "weight": 1
+    },
+    "|": {
+      "weight": 40
+    },
+    "}": {
+      "weight": 16
+    },
+    "~": {
+      "weight": 23
+    },
+    " ": {
+      "weight": 18
+    },
+    "\t": {
+      "weight": 48
+    },
+    "\n": {
+      "weight": 16
+    },
+    "\r": {
+      "weight": 33
+    },
+    "\u000b": {
+      "weight": 16
+    },
+    "\f": {
+      "weight": 39
+    }
+  },
+  "S": {
+    "T": {
+      "weight": 49
+    },
+    "U": {
+      "weight": 46
+    },
+    "V": {
+      "weight": 41
+    },
+    "W": {
+      "weight": 44
+    },
+    "X": {
+      "weight": 18
+    },
+    "Y": {
+      "weight": 49
+    },
+    "Z": {
+      "weight": 6
+    },
+    "!": {
+      "weight": 45
+    },
+    "\"": {
+      "weight": 45
+    },
+    "#": {
+      "weight": 5
+    },
+    "$": {
+      "weight": 25
+    },
+    "%": {
+      "weight": 45
+    },
+    "&": {
+      "weight": 43
+    },
+    "'": {
+      "weight": 22
+    },
+    "(": {
+      "weight": 47
+    },
+    ")": {
+      "weight": 39
+    },
+    "*": {
+      "weight": 9
+    },
+    "+": {
+      "weight": 12
+    },
+    ",": {
+      "weight": 46
+    },
+    "-": {
+      "weight": 39
+    },
+    ".": {
+      "weight": 43
+    },
+    "/": {
+      "weight": 24
+    },
+    ":": {
+      "weight": 27
+    },
+    ";": {
+      "weight": 10
+    },
+    "<": {
+      "weight": 10
+    },
+    "=": {
+      "weight": 35
+    },
+    ">": {
+      "weight": 29
+    },
+    "?": {
+      "weight": 36
+    },
+    "@": {
+      "weight": 23
+    },
+    "[": {
+      "weight": 34
+    },
+    "\\": {
+      "weight": 42
+    },
+    "]": {
+      "weight": 49
+    },
+    "^": {
+      "weight": 21
+    },
+    "_": {
+      "weight": 7
+    },
+    "`": {
+      "weight": 50
+    },
+    "{": {
+      "weight": 18
+    },
+    "|": {
+      "weight": 33
+    },
+    "}": {
+      "weight": 47
+    },
+    "~": {
+      "weight": 28
+    },
+    " ": {
+      "weight": 21
+    },
+    "\t": {
+      "weight": 47
+    },
+    "\n": {
+      "weight": 49
+    },
+    "\r": {
+      "weight": 29
+    },
+    "\u000b": {
+      "weight": 38
+    },
+    "\f": {
+      "weight": 3
+    }
+  },
+  "T": {
+    "U": {
+      "weight": 15
+    },
+    "V": {
+      "weight": 4
+    },
+    "W": {
+      "weight": 18
+    },
+    "X": {
+      "weight": 45
+    },
+    "Y": {
+      "weight": 42
+    },
+    "Z": {
+      "weight": 17
+    },
+    "!": {
+      "weight": 1
+    },
+    "\"": {
+      "weight": 20
+    },
+    "#": {
+      "weight": 33
+    },
+    "$": {
+      "weight": 48
+    },
+    "%": {
+      "weight": 10
+    },
+    "&": {
+      "weight": 14
+    },
+    "'": {
+      "weight": 32
+    },
+    "(": {
+      "weight": 26
+    },
+    ")": {
+      "weight": 20
+    },
+    "*": {
+      "weight": 11
+    },
+    "+": {
+      "weight": 31
+    },
+    ",": {
+      "weight": 42
+    },
+    "-": {
+      "weight": 40
+    },
+    ".": {
+      "weight": 41
+    },
+    "/": {
+      "weight": 49
+    },
+    ":": {
+      "weight": 1
+    },
+    ";": {
+      "weight": 40
+    },
+    "<": {
+      "weight": 36
+    },
+    "=": {
+      "weight": 42
+    },
+    ">": {
+      "weight": 42
+    },
+    "?": {
+      "weight": 46
+    },
+    "@": {
+      "weight": 10
+    },
+    "[": {
+      "weight": 24
+    },
+    "\\": {
+      "weight": 35
+    },
+    "]": {
+      "weight": 45
+    },
+    "^": {
+      "weight": 46
+    },
+    "_": {
+      "weight": 5
+    },
+    "`": {
+      "weight": 49
+    },
+    "{": {
+      "weight": 16
+    },
+    "|": {
+      "weight": 42
+    },
+    "}": {
+      "weight": 10
+    },
+    "~": {
+      "weight": 20
+    },
+    " ": {
+      "weight": 11
+    },
+    "\t": {
+      "weight": 1
+    },
+    "\n": {
+      "weight": 3
+    },
+    "\r": {
+      "weight": 43
+    },
+    "\u000b": {
+      "weight": 26
+    },
+    "\f": {
+      "weight": 14
+    }
+  },
+  "U": {
+    "V": {
+      "weight": 35
+    },
+    "W": {
+      "weight": 16
+    },
+    "X": {
+      "weight": 25
+    },
+    "Y": {
+      "weight": 28
+    },
+    "Z": {
+      "weight": 31
+    },
+    "!": {
+      "weight": 19
+    },
+    "\"": {
+      "weight": 9
+    },
+    "#": {
+      "weight": 28
+    },
+    "$": {
+      "weight": 5
+    },
+    "%": {
+      "weight": 43
+    },
+    "&": {
+      "weight": 47
+    },
+    "'": {
+      "weight": 45
+    },
+    "(": {
+      "weight": 36
+    },
+    ")": {
+      "weight": 45
+    },
+    "*": {
+      "weight": 13
+    },
+    "+": {
+      "weight": 12
+    },
+    ",": {
+      "weight": 14
+    },
+    "-": {
+      "weight": 41
+    },
+    ".": {
+      "weight": 33
+    },
+    "/": {
+      "weight": 43
+    },
+    ":": {
+      "weight": 10
+    },
+    ";": {
+      "weight": 43
+    },
+    "<": {
+      "weight": 2
+    },
+    "=": {
+      "weight": 4
+    },
+    ">": {
+      "weight": 33
+    },
+    "?": {
+      "weight": 39
+    },
+    "@": {
+      "weight": 40
+    },
+    "[": {
+      "weight": 20
+    },
+    "\\": {
+      "weight": 2
+    },
+    "]": {
+      "weight": 22
+    },
+    "^": {
+      "weight": 21
+    },
+    "_": {
+      "weight": 11
+    },
+    "`": {
+      "weight": 1
+    },
+    "{": {
+      "weight": 5
+    },
+    "|": {
+      "weight": 49
+    },
+    "}": {
+      "weight": 25
+    },
+    "~": {
+      "weight": 47
+    },
+    " ": {
+      "weight": 38
+    },
+    "\t": {
+      "weight": 8
+    },
+    "\n": {
+      "weight": 18
+    },
+    "\r": {
+      "weight": 14
+    },
+    "\u000b": {
+      "weight": 28
+    },
+    "\f": {
+      "weight": 31
+    }
+  },
+  "V": {
+    "W": {
+      "weight": 27
+    },
+    "X": {
+      "weight": 21
+    },
+    "Y": {
+      "weight": 34
+    },
+    "Z": {
+      "weight": 50
+    },
+    "!": {
+      "weight": 14
+    },
+    "\"": {
+      "weight": 48
+    },
+    "#": {
+      "weight": 38
+    },
+    "$": {
+      "weight": 30
+    },
+    "%": {
+      "weight": 22
+    },
+    "&": {
+      "weight": 21
+    },
+    "'": {
+      "weight": 48
+    },
+    "(": {
+      "weight": 39
+    },
+    ")": {
+      "weight": 49
+    },
+    "*": {
+      "weight": 40
+    },
+    "+": {
+      "weight": 20
+    },
+    ",": {
+      "weight": 14
+    },
+    "-": {
+      "weight": 31
+    },
+    ".": {
+      "weight": 17
+    },
+    "/": {
+      "weight": 41
+    },
+    ":": {
+      "weight": 22
+    },
+    ";": {
+      "weight": 35
+    },
+    "<": {
+      "weight": 48
+    },
+    "=": {
+      "weight": 10
+    },
+    ">": {
+      "weight": 22
+    },
+    "?": {
+      "weight": 22
+    },
+    "@": {
+      "weight": 39
+    },
+    "[": {
+      "weight": 44
+    },
+    "\\": {
+      "weight": 24
+    },
+    "]": {
+      "weight": 1
+    },
+    "^": {
+      "weight": 16
+    },
+    "_": {
+      "weight": 50
+    },
+    "`": {
+      "weight": 46
+    },
+    "{": {
+      "weight": 43
+    },
+    "|": {
+      "weight": 9
+    },
+    "}": {
+      "weight": 49
+    },
+    "~": {
+      "weight": 50
+    },
+    " ": {
+      "weight": 48
+    },
+    "\t": {
+      "weight": 16
+    },
+    "\n": {
+      "weight": 39
+    },
+    "\r": {
+      "weight": 44
+    },
+    "\u000b": {
+      "weight": 43
+    },
+    "\f": {
+      "weight": 26
+    }
+  },
+  "W": {
+    "X": {
+      "weight": 4
+    },
+    "Y": {
+      "weight": 34
+    },
+    "Z": {
+      "weight": 20
+    },
+    "!": {
+      "weight": 37
+    },
+    "\"": {
+      "weight": 44
+    },
+    "#": {
+      "weight": 6
+    },
+    "$": {
+      "weight": 33
+    },
+    "%": {
+      "weight": 10
+    },
+    "&": {
+      "weight": 47
+    },
+    "'": {
+      "weight": 10
+    },
+    "(": {
+      "weight": 21
+    },
+    ")": {
+      "weight": 3
+    },
+    "*": {
+      "weight": 23
+    },
+    "+": {
+      "weight": 39
+    },
+    ",": {
+      "weight": 5
+    },
+    "-": {
+      "weight": 38
+    },
+    ".": {
+      "weight": 40
+    },
+    "/": {
+      "weight": 19
+    },
+    ":": {
+      "weight": 1
+    },
+    ";": {
+      "weight": 50
+    },
+    "<": {
+      "weight": 8
+    },
+    "=": {
+      "weight": 11
+    },
+    ">": {
+      "weight": 20
+    },
+    "?": {
+      "weight": 21
+    },
+    "@": {
+      "weight": 33
+    },
+    "[": {
+      "weight": 28
+    },
+    "\\": {
+      "weight": 48
+    },
+    "]": {
+      "weight": 4
+    },
+    "^": {
+      "weight": 30
+    },
+    "_": {
+      "weight": 37
+    },
+    "`": {
+      "weight": 24
+    },
+    "{": {
+      "weight": 18
+    },
+    "|": {
+      "weight": 26
+    },
+    "}": {
+      "weight": 35
+    },
+    "~": {
+      "weight": 12
+    },
+    " ": {
+      "weight": 38
+    },
+    "\t": {
+      "weight": 17
+    },
+    "\n": {
+      "weight": 22
+    },
+    "\r": {
+      "weight": 31
+    },
+    "\u000b": {
+      "weight": 25
+    },
+    "\f": {
+      "weight": 12
+    }
+  },
+  "X": {
+    "Y": {
+      "weight": 40
+    },
+    "Z": {
+      "weight": 8
+    },
+    "!": {
+      "weight": 38
+    },
+    "\"": {
+      "weight": 33
+    },
+    "#": {
+      "weight": 8
+    },
+    "$": {
+      "weight": 39
+    },
+    "%": {
+      "weight": 11
+    },
+    "&": {
+      "weight": 21
+    },
+    "'": {
+      "weight": 2
+    },
+    "(": {
+      "weight": 10
+    },
+    ")": {
+      "weight": 31
+    },
+    "*": {
+      "weight": 26
+    },
+    "+": {
+      "weight": 11
+    },
+    ",": {
+      "weight": 29
+    },
+    "-": {
+      "weight": 9
+    },
+    ".": {
+      "weight": 16
+    },
+    "/": {
+      "weight": 31
+    },
+    ":": {
+      "weight": 16
+    },
+    ";": {
+      "weight": 47
+    },
+    "<": {
+      "weight": 19
+    },
+    "=": {
+      "weight": 15
+    },
+    ">": {
+      "weight": 33
+    },
+    "?": {
+      "weight": 22
+    },
+    "@": {
+      "weight": 31
+    },
+    "[": {
+      "weight": 4
+    },
+    "\\": {
+      "weight": 9
+    },
+    "]": {
+      "weight": 27
+    },
+    "^": {
+      "weight": 28
+    },
+    "_": {
+      "weight": 32
+    },
+    "`": {
+      "weight": 13
+    },
+    "{": {
+      "weight": 8
+    },
+    "|": {
+      "weight": 49
+    },
+    "}": {
+      "weight": 7
+    },
+    "~": {
+      "weight": 27
+    },
+    " ": {
+      "weight": 46
+    },
+    "\t": {
+      "weight": 47
+    },
+    "\n": {
+      "weight": 14
+    },
+    "\r": {
+      "weight": 36
+    },
+    "\u000b": {
+      "weight": 32
+    },
+    "\f": {
+      "weight": 34
+    }
+  },
+  "Y": {
+    "Z": {
+      "weight": 38
+    },
+    "!": {
+      "weight": 23
+    },
+    "\"": {
+      "weight": 16
+    },
+    "#": {
+      "weight": 19
+    },
+    "$": {
+      "weight": 43
+    },
+    "%": {
+      "weight": 8
+    },
+    "&": {
+      "weight": 39
+    },
+    "'": {
+      "weight": 47
+    },
+    "(": {
+      "weight": 28
+    },
+    ")": {
+      "weight": 39
+    },
+    "*": {
+      "weight": 37
+    },
+    "+": {
+      "weight": 24
+    },
+    ",": {
+      "weight": 5
+    },
+    "-": {
+      "weight": 24
+    },
+    ".": {
+      "weight": 7
+    },
+    "/": {
+      "weight": 13
+    },
+    ":": {
+      "weight": 20
+    },
+    ";": {
+      "weight": 1
+    },
+    "<": {
+      "weight": 46
+    },
+    "=": {
+      "weight": 49
+    },
+    ">": {
+      "weight": 19
+    },
+    "?": {
+      "weight": 18
+    },
+    "@": {
+      "weight": 14
+    },
+    "[": {
+      "weight": 4
+    },
+    "\\": {
+      "weight": 12
+    },
+    "]": {
+      "weight": 49
+    },
+    "^": {
+      "weight": 37
+    },
+    "_": {
+      "weight": 48
+    },
+    "`": {
+      "weight": 47
+    },
+    "{": {
+      "weight": 42
+    },
+    "|": {
+      "weight": 34
+    },
+    "}": {
+      "weight": 24
+    },
+    "~": {
+      "weight": 3
+    },
+    " ": {
+      "weight": 16
+    },
+    "\t": {
+      "weight": 36
+    },
+    "\n": {
+      "weight": 5
+    },
+    "\r": {
+      "weight": 44
+    },
+    "\u000b": {
+      "weight": 48
+    },
+    "\f": {
+      "weight": 28
+    }
+  },
+  "Z": {
+    "!": {
+      "weight": 19
+    },
+    "\"": {
+      "weight": 21
+    },
+    "#": {
+      "weight": 29
+    },
+    "$": {
+      "weight": 20
+    },
+    "%": {
+      "weight": 17
+    },
+    "&": {
+      "weight": 2
+    },
+    "'": {
+      "weight": 26
+    },
+    "(": {
+      "weight": 37
+    },
+    ")": {
+      "weight": 49
+    },
+    "*": {
+      "weight": 7
+    },
+    "+": {
+      "weight": 18
+    },
+    ",": {
+      "weight": 27
+    },
+    "-": {
+      "weight": 9
+    },
+    ".": {
+      "weight": 27
+    },
+    "/": {
+      "weight": 44
+    },
+    ":": {
+      "weight": 47
+    },
+    ";": {
+      "weight": 7
+    },
+    "<": {
+      "weight": 1
+    },
+    "=": {
+      "weight": 23
+    },
+    ">": {
+      "weight": 37
+    },
+    "?": {
+      "weight": 22
+    },
+    "@": {
+      "weight": 25
+    },
+    "[": {
+      "weight": 30
+    },
+    "\\": {
+      "weight": 41
+    },
+    "]": {
+      "weight": 44
+    },
+    "^": {
+      "weight": 45
+    },
+    "_": {
+      "weight": 35
+    },
+    "`": {
+      "weight": 34
+    },
+    "{": {
+      "weight": 46
+    },
+    "|": {
+      "weight": 13
+    },
+    "}": {
+      "weight": 38
+    },
+    "~": {
+      "weight": 14
+    },
+    " ": {
+      "weight": 26
+    },
+    "\t": {
+      "weight": 27
+    },
+    "\n": {
+      "weight": 33
+    },
+    "\r": {
+      "weight": 37
+    },
+    "\u000b": {
+      "weight": 31
+    },
+    "\f": {
+      "weight": 5
+    }
+  },
+  "!": {
+    "\"": {
+      "weight": 47
+    },
+    "#": {
+      "weight": 8
+    },
+    "$": {
+      "weight": 48
+    },
+    "%": {
+      "weight": 6
+    },
+    "&": {
+      "weight": 5
+    },
+    "'": {
+      "weight": 21
+    },
+    "(": {
+      "weight": 48
+    },
+    ")": {
+      "weight": 27
+    },
+    "*": {
+      "weight": 33
+    },
+    "+": {
+      "weight": 10
+    },
+    ",": {
+      "weight": 22
+    },
+    "-": {
+      "weight": 25
+    },
+    ".": {
+      "weight": 21
+    },
+    "/": {
+      "weight": 43
+    },
+    ":": {
+      "weight": 46
+    },
+    ";": {
+      "weight": 50
+    },
+    "<": {
+      "weight": 19
+    },
+    "=": {
+      "weight": 40
+    },
+    ">": {
+      "weight": 37
+    },
+    "?": {
+      "weight": 35
+    },
+    "@": {
+      "weight": 17
+    },
+    "[": {
+      "weight": 45
+    },
+    "\\": {
+      "weight": 6
+    },
+    "]": {
+      "weight": 49
+    },
+    "^": {
+      "weight": 16
+    },
+    "_": {
+      "weight": 48
+    },
+    "`": {
+      "weight": 49
+    },
+    "{": {
+      "weight": 18
+    },
+    "|": {
+      "weight": 2
+    },
+    "}": {
+      "weight": 25
+    },
+    "~": {
+      "weight": 40
+    },
+    " ": {
+      "weight": 7
+    },
+    "\t": {
+      "weight": 17
+    },
+    "\n": {
+      "weight": 27
+    },
+    "\r": {
+      "weight": 7
+    },
+    "\u000b": {
+      "weight": 47
+    },
+    "\f": {
+      "weight": 19
+    }
+  },
+  "\"": {
+    "#": {
+      "weight": 24
+    },
+    "$": {
+      "weight": 26
+    },
+    "%": {
+      "weight": 36
+    },
+    "&": {
+      "weight": 38
+    },
+    "'": {
+      "weight": 12
+    },
+    "(": {
+      "weight": 15
+    },
+    ")": {
+      "weight": 2
+    },
+    "*": {
+      "weight": 21
+    },
+    "+": {
+      "weight": 21
+    },
+    ",": {
+      "weight": 25
+    },
+    "-": {
+      "weight": 35
+    },
+    ".": {
+      "weight": 23
+    },
+    "/": {
+      "weight": 10
+    },
+    ":": {
+      "weight": 4
+    },
+    ";": {
+      "weight": 11
+    },
+    "<": {
+      "weight": 35
+    },
+    "=": {
+      "weight": 1
+    },
+    ">": {
+      "weight": 40
+    },
+    "?": {
+      "weight": 27
+    },
+    "@": {
+      "weight": 35
+    },
+    "[": {
+      "weight": 31
+    },
+    "\\": {
+      "weight": 21
+    },
+    "]": {
+      "weight": 15
+    },
+    "^": {
+      "weight": 13
+    },
+    "_": {
+      "weight": 18
+    },
+    "`": {
+      "weight": 17
+    },
+    "{": {
+      "weight": 50
+    },
+    "|": {
+      "weight": 9
+    },
+    "}": {
+      "weight": 50
+    },
+    "~": {
+      "weight": 35
+    },
+    " ": {
+      "weight": 5
+    },
+    "\t": {
+      "weight": 24
+    },
+    "\n": {
+      "weight": 31
+    },
+    "\r": {
+      "weight": 12
+    },
+    "\u000b": {
+      "weight": 36
+    },
+    "\f": {
+      "weight": 49
+    }
+  },
+  "#": {
+    "$": {
+      "weight": 32
+    },
+    "%": {
+      "weight": 34
+    },
+    "&": {
+      "weight": 24
+    },
+    "'": {
+      "weight": 40
+    },
+    "(": {
+      "weight": 29
+    },
+    ")": {
+      "weight": 47
+    },
+    "*": {
+      "weight": 14
+    },
+    "+": {
+      "weight": 12
+    },
+    ",": {
+      "weight": 28
+    },
+    "-": {
+      "weight": 44
+    },
+    ".": {
+      "weight": 37
+    },
+    "/": {
+      "weight": 31
+    },
+    ":": {
+      "weight": 28
+    },
+    ";": {
+      "weight": 45
+    },
+    "<": {
+      "weight": 34
+    },
+    "=": {
+      "weight": 5
+    },
+    ">": {
+      "weight": 48
+    },
+    "?": {
+      "weight": 22
+    },
+    "@": {
+      "weight": 38
+    },
+    "[": {
+      "weight": 47
+    },
+    "\\": {
+      "weight": 25
+    },
+    "]": {
+      "weight": 31
+    },
+    "^": {
+      "weight": 16
+    },
+    "_": {
+      "weight": 21
+    },
+    "`": {
+      "weight": 13
+    },
+    "{": {
+      "weight": 45
+    },
+    "|": {
+      "weight": 31
+    },
+    "}": {
+      "weight": 42
+    },
+    "~": {
+      "weight": 43
+    },
+    " ": {
+      "weight": 11
+    },
+    "\t": {
+      "weight": 49
+    },
+    "\n": {
+      "weight": 48
+    },
+    "\r": {
+      "weight": 5
+    },
+    "\u000b": {
+      "weight": 30
+    },
+    "\f": {
+      "weight": 20
+    }
+  },
+  "$": {
+    "%": {
+      "weight": 23
+    },
+    "&": {
+      "weight": 39
+    },
+    "'": {
+      "weight": 11
+    },
+    "(": {
+      "weight": 49
+    },
+    ")": {
+      "weight": 4
+    },
+    "*": {
+      "weight": 20
+    },
+    "+": {
+      "weight": 16
+    },
+    ",": {
+      "weight": 28
+    },
+    "-": {
+      "weight": 32
+    },
+    ".": {
+      "weight": 31
+    },
+    "/": {
+      "weight": 31
+    },
+    ":": {
+      "weight": 50
+    },
+    ";": {
+      "weight": 47
+    },
+    "<": {
+      "weight": 5
+    },
+    "=": {
+      "weight": 47
+    },
+    ">": {
+      "weight": 34
+    },
+    "?": {
+      "weight": 7
+    },
+    "@": {
+      "weight": 41
+    },
+    "[": {
+      "weight": 5
+    },
+    "\\": {
+      "weight": 45
+    },
+    "]": {
+      "weight": 39
+    },
+    "^": {
+      "weight": 2
+    },
+    "_": {
+      "weight": 21
+    },
+    "`": {
+      "weight": 42
+    },
+    "{": {
+      "weight": 19
+    },
+    "|": {
+      "weight": 19
+    },
+    "}": {
+      "weight": 9
+    },
+    "~": {
+      "weight": 39
+    },
+    " ": {
+      "weight": 34
+    },
+    "\t": {
+      "weight": 25
+    },
+    "\n": {
+      "weight": 40
+    },
+    "\r": {
+      "weight": 23
+    },
+    "\u000b": {
+      "weight": 33
+    },
+    "\f": {
+      "weight": 25
+    }
+  },
+  "%": {
+    "&": {
+      "weight": 16
+    },
+    "'": {
+      "weight": 18
+    },
+    "(": {
+      "weight": 16
+    },
+    ")": {
+      "weight": 45
+    },
+    "*": {
+      "weight": 38
+    },
+    "+": {
+      "weight": 5
+    },
+    ",": {
+      "weight": 7
+    },
+    "-": {
+      "weight": 13
+    },
+    ".": {
+      "weight": 46
+    },
+    "/": {
+      "weight": 3
+    },
+    ":": {
+      "weight": 17
+    },
+    ";": {
+      "weight": 33
+    },
+    "<": {
+      "weight": 47
+    },
+    "=": {
+      "weight": 36
+    },
+    ">": {
+      "weight": 41
+    },
+    "?": {
+      "weight": 26
+    },
+    "@": {
+      "weight": 37
+    },
+    "[": {
+      "weight": 25
+    },
+    "\\": {
+      "weight": 32
+    },
+    "]": {
+      "weight": 48
+    },
+    "^": {
+      "weight": 14
+    },
+    "_": {
+      "weight": 41
+    },
+    "`": {
+      "weight": 33
+    },
+    "{": {
+      "weight": 41
+    },
+    "|": {
+      "weight": 10
+    },
+    "}": {
+      "weight": 21
+    },
+    "~": {
+      "weight": 11
+    },
+    " ": {
+      "weight": 1
+    },
+    "\t": {
+      "weight": 46
+    },
+    "\n": {
+      "weight": 28
+    },
+    "\r": {
+      "weight": 38
+    },
+    "\u000b": {
+      "weight": 15
+    },
+    "\f": {
+      "weight": 27
+    }
+  },
+  "&": {
+    "'": {
+      "weight": 14
+    },
+    "(": {
+      "weight": 32
+    },
+    ")": {
+      "weight": 6
+    },
+    "*": {
+      "weight": 50
+    },
+    "+": {
+      "weight": 24
+    },
+    ",": {
+      "weight": 39
+    },
+    "-": {
+      "weight": 41
+    },
+    ".": {
+      "weight": 13
+    },
+    "/": {
+      "weight": 50
+    },
+    ":": {
+      "weight": 19
+    },
+    ";": {
+      "weight": 39
+    },
+    "<": {
+      "weight": 20
+    },
+    "=": {
+      "weight": 33
+    },
+    ">": {
+      "weight": 38
+    },
+    "?": {
+      "weight": 49
+    },
+    "@": {
+      "weight": 26
+    },
+    "[": {
+      "weight": 27
+    },
+    "\\": {
+      "weight": 32
+    },
+    "]": {
+      "weight": 49
+    },
+    "^": {
+      "weight": 46
+    },
+    "_": {
+      "weight": 26
+    },
+    "`": {
+      "weight": 25
+    },
+    "{": {
+      "weight": 11
+    },
+    "|": {
+      "weight": 33
+    },
+    "}": {
+      "weight": 10
+    },
+    "~": {
+      "weight": 39
+    },
+    " ": {
+      "weight": 18
+    },
+    "\t": {
+      "weight": 20
+    },
+    "\n": {
+      "weight": 49
+    },
+    "\r": {
+      "weight": 11
+    },
+    "\u000b": {
+      "weight": 33
+    },
+    "\f": {
+      "weight": 30
+    }
+  },
+  "'": {
+    "(": {
+      "weight": 38
+    },
+    ")": {
+      "weight": 40
+    },
+    "*": {
+      "weight": 19
+    },
+    "+": {
+      "weight": 25
+    },
+    ",": {
+      "weight": 30
+    },
+    "-": {
+      "weight": 49
+    },
+    ".": {
+      "weight": 50
+    },
+    "/": {
+      "weight": 20
+    },
+    ":": {
+      "weight": 37
+    },
+    ";": {
+      "weight": 22
+    },
+    "<": {
+      "weight": 42
+    },
+    "=": {
+      "weight": 23
+    },
+    ">": {
+      "weight": 13
+    },
+    "?": {
+      "weight": 4
+    },
+    "@": {
+      "weight": 16
+    },
+    "[": {
+      "weight": 31
+    },
+    "\\": {
+      "weight": 10
+    },
+    "]": {
+      "weight": 6
+    },
+    "^": {
+      "weight": 21
+    },
+    "_": {
+      "weight": 5
+    },
+    "`": {
+      "weight": 46
+    },
+    "{": {
+      "weight": 16
+    },
+    "|": {
+      "weight": 29
+    },
+    "}": {
+      "weight": 11
+    },
+    "~": {
+      "weight": 19
+    },
+    " ": {
+      "weight": 33
+    },
+    "\t": {
+      "weight": 14
+    },
+    "\n": {
+      "weight": 43
+    },
+    "\r": {
+      "weight": 17
+    },
+    "\u000b": {
+      "weight": 30
+    },
+    "\f": {
+      "weight": 48
+    }
+  },
+  "(": {
+    ")": {
+      "weight": 37
+    },
+    "*": {
+      "weight": 21
+    },
+    "+": {
+      "weight": 5
+    },
+    ",": {
+      "weight": 29
+    },
+    "-": {
+      "weight": 44
+    },
+    ".": {
+      "weight": 15
+    },
+    "/": {
+      "weight": 4
+    },
+    ":": {
+      "weight": 18
+    },
+    ";": {
+      "weight": 33
+    },
+    "<": {
+      "weight": 47
+    },
+    "=": {
+      "weight": 20
+    },
+    ">": {
+      "weight": 6
+    },
+    "?": {
+      "weight": 20
+    },
+    "@": {
+      "weight": 10
+    },
+    "[": {
+      "weight": 24
+    },
+    "\\": {
+      "weight": 10
+    },
+    "]": {
+      "weight": 47
+    },
+    "^": {
+      "weight": 25
+    },
+    "_": {
+      "weight": 44
+    },
+    "`": {
+      "weight": 18
+    },
+    "{": {
+      "weight": 38
+    },
+    "|": {
+      "weight": 24
+    },
+    "}": {
+      "weight": 41
+    },
+    "~": {
+      "weight": 2
+    },
+    " ": {
+      "weight": 22
+    },
+    "\t": {
+      "weight": 16
+    },
+    "\n": {
+      "weight": 22
+    },
+    "\r": {
+      "weight": 10
+    },
+    "\u000b": {
+      "weight": 49
+    },
+    "\f": {
+      "weight": 48
+    }
+  },
+  ")": {
+    "*": {
+      "weight": 8
+    },
+    "+": {
+      "weight": 15
+    },
+    ",": {
+      "weight": 1
+    },
+    "-": {
+      "weight": 24
+    },
+    ".": {
+      "weight": 7
+    },
+    "/": {
+      "weight": 38
+    },
+    ":": {
+      "weight": 4
+    },
+    ";": {
+      "weight": 30
+    },
+    "<": {
+      "weight": 14
+    },
+    "=": {
+      "weight": 20
+    },
+    ">": {
+      "weight": 7
+    },
+    "?": {
+      "weight": 8
+    },
+    "@": {
+      "weight": 35
+    },
+    "[": {
+      "weight": 7
+    },
+    "\\": {
+      "weight": 45
+    },
+    "]": {
+      "weight": 32
+    },
+    "^": {
+      "weight": 23
+    },
+    "_": {
+      "weight": 29
+    },
+    "`": {
+      "weight": 19
+    },
+    "{": {
+      "weight": 48
+    },
+    "|": {
+      "weight": 47
+    },
+    "}": {
+      "weight": 37
+    },
+    "~": {
+      "weight": 1
+    },
+    " ": {
+      "weight": 20
+    },
+    "\t": {
+      "weight": 18
+    },
+    "\n": {
+      "weight": 23
+    },
+    "\r": {
+      "weight": 38
+    },
+    "\u000b": {
+      "weight": 44
+    },
+    "\f": {
+      "weight": 34
+    }
+  },
+  "*": {
+    "+": {
+      "weight": 37
+    },
+    ",": {
+      "weight": 47
+    },
+    "-": {
+      "weight": 18
+    },
+    ".": {
+      "weight": 4
+    },
+    "/": {
+      "weight": 23
+    },
+    ":": {
+      "weight": 30
+    },
+    ";": {
+      "weight": 14
+    },
+    "<": {
+      "weight": 11
+    },
+    "=": {
+      "weight": 38
+    },
+    ">": {
+      "weight": 5
+    },
+    "?": {
+      "weight": 12
+    },
+    "@": {
+      "weight": 43
+    },
+    "[": {
+      "weight": 13
+    },
+    "\\": {
+      "weight": 41
+    },
+    "]": {
+      "weight": 27
+    },
+    "^": {
+      "weight": 5
+    },
+    "_": {
+      "weight": 36
+    },
+    "`": {
+      "weight": 43
+    },
+    "{": {
+      "weight": 36
+    },
+    "|": {
+      "weight": 3
+    },
+    "}": {
+      "weight": 44
+    },
+    "~": {
+      "weight": 30
+    },
+    " ": {
+      "weight": 12
+    },
+    "\t": {
+      "weight": 27
+    },
+    "\n": {
+      "weight": 10
+    },
+    "\r": {
+      "weight": 12
+    },
+    "\u000b": {
+      "weight": 30
+    },
+    "\f": {
+      "weight": 6
+    }
+  },
+  "+": {
+    ",": {
+      "weight": 28
+    },
+    "-": {
+      "weight": 21
+    },
+    ".": {
+      "weight": 25
+    },
+    "/": {
+      "weight": 31
+    },
+    ":": {
+      "weight": 15
+    },
+    ";": {
+      "weight": 47
+    },
+    "<": {
+      "weight": 50
+    },
+    "=": {
+      "weight": 42
+    },
+    ">": {
+      "weight": 25
+    },
+    "?": {
+      "weight": 8
+    },
+    "@": {
+      "weight": 34
+    },
+    "[": {
+      "weight": 22
+    },
+    "\\": {
+      "weight": 38
+    },
+    "]": {
+      "weight": 30
+    },
+    "^": {
+      "weight": 10
+    },
+    "_": {
+      "weight": 35
+    },
+    "`": {
+      "weight": 30
+    },
+    "{": {
+      "weight": 30
+    },
+    "|": {
+      "weight": 49
+    },
+    "}": {
+      "weight": 30
+    },
+    "~": {
+      "weight": 13
+    },
+    " ": {
+      "weight": 18
+    },
+    "\t": {
+      "weight": 27
+    },
+    "\n": {
+      "weight": 47
+    },
+    "\r": {
+      "weight": 25
+    },
+    "\u000b": {
+      "weight": 39
+    },
+    "\f": {
+      "weight": 42
+    }
+  },
+  ",": {
+    "-": {
+      "weight": 30
+    },
+    ".": {
+      "weight": 37
+    },
+    "/": {
+      "weight": 29
+    },
+    ":": {
+      "weight": 49
+    },
+    ";": {
+      "weight": 4
+    },
+    "<": {
+      "weight": 38
+    },
+    "=": {
+      "weight": 49
+    },
+    ">": {
+      "weight": 39
+    },
+    "?": {
+      "weight": 40
+    },
+    "@": {
+      "weight": 29
+    },
+    "[": {
+      "weight": 4
+    },
+    "\\": {
+      "weight": 21
+    },
+    "]": {
+      "weight": 14
+    },
+    "^": {
+      "weight": 49
+    },
+    "_": {
+      "weight": 27
+    },
+    "`": {
+      "weight": 4
+    },
+    "{": {
+      "weight": 1
+    },
+    "|": {
+      "weight": 27
+    },
+    "}": {
+      "weight": 32
+    },
+    "~": {
+      "weight": 31
+    },
+    " ": {
+      "weight": 41
+    },
+    "\t": {
+      "weight": 16
+    },
+    "\n": {
+      "weight": 41
+    },
+    "\r": {
+      "weight": 38
+    },
+    "\u000b": {
+      "weight": 41
+    },
+    "\f": {
+      "weight": 17
+    }
+  },
+  "-": {
+    ".": {
+      "weight": 6
+    },
+    "/": {
+      "weight": 7
+    },
+    ":": {
+      "weight": 19
+    },
+    ";": {
+      "weight": 50
+    },
+    "<": {
+      "weight": 34
+    },
+    "=": {
+      "weight": 48
+    },
+    ">": {
+      "weight": 37
+    },
+    "?": {
+      "weight": 50
+    },
+    "@": {
+      "weight": 41
+    },
+    "[": {
+      "weight": 27
+    },
+    "\\": {
+      "weight": 9
+    },
+    "]": {
+      "weight": 50
+    },
+    "^": {
+      "weight": 3
+    },
+    "_": {
+      "weight": 44
+    },
+    "`": {
+      "weight": 5
+    },
+    "{": {
+      "weight": 38
+    },
+    "|": {
+      "weight": 20
+    },
+    "}": {
+      "weight": 2
+    },
+    "~": {
+      "weight": 8
+    },
+    " ": {
+      "weight": 38
+    },
+    "\t": {
+      "weight": 7
+    },
+    "\n": {
+      "weight": 13
+    },
+    "\r": {
+      "weight": 48
+    },
+    "\u000b": {
+      "weight": 47
+    },
+    "\f": {
+      "weight": 9
+    }
+  },
+  ".": {
+    "/": {
+      "weight": 36
+    },
+    ":": {
+      "weight": 10
+    },
+    ";": {
+      "weight": 46
+    },
+    "<": {
+      "weight": 2
+    },
+    "=": {
+      "weight": 38
+    },
+    ">": {
+      "weight": 5
+    },
+    "?": {
+      "weight": 29
+    },
+    "@": {
+      "weight": 49
+    },
+    "[": {
+      "weight": 25
+    },
+    "\\": {
+      "weight": 32
+    },
+    "]": {
+      "weight": 24
+    },
+    "^": {
+      "weight": 15
+    },
+    "_": {
+      "weight": 8
+    },
+    "`": {
+      "weight": 47
+    },
+    "{": {
+      "weight": 25
+    },
+    "|": {
+      "weight": 41
+    },
+    "}": {
+      "weight": 24
+    },
+    "~": {
+      "weight": 35
+    },
+    " ": {
+      "weight": 12
+    },
+    "\t": {
+      "weight": 37
+    },
+    "\n": {
+      "weight": 11
+    },
+    "\r": {
+      "weight": 20
+    },
+    "\u000b": {
+      "weight": 47
+    },
+    "\f": {
+      "weight": 49
+    }
+  },
+  "/": {
+    ":": {
+      "weight": 27
+    },
+    ";": {
+      "weight": 10
+    },
+    "<": {
+      "weight": 43
+    },
+    "=": {
+      "weight": 22
+    },
+    ">": {
+      "weight": 8
+    },
+    "?": {
+      "weight": 6
+    },
+    "@": {
+      "weight": 26
+    },
+    "[": {
+      "weight": 41
+    },
+    "\\": {
+      "weight": 22
+    },
+    "]": {
+      "weight": 16
+    },
+    "^": {
+      "weight": 38
+    },
+    "_": {
+      "weight": 28
+    },
+    "`": {
+      "weight": 8
+    },
+    "{": {
+      "weight": 5
+    },
+    "|": {
+      "weight": 33
+    },
+    "}": {
+      "weight": 46
+    },
+    "~": {
+      "weight": 28
+    },
+    " ": {
+      "weight": 19
+    },
+    "\t": {
+      "weight": 47
+    },
+    "\n": {
+      "weight": 7
+    },
+    "\r": {
+      "weight": 34
+    },
+    "\u000b": {
+      "weight": 34
+    },
+    "\f": {
+      "weight": 22
+    }
+  },
+  ":": {
+    ";": {
+      "weight": 47
+    },
+    "<": {
+      "weight": 42
+    },
+    "=": {
+      "weight": 4
+    },
+    ">": {
+      "weight": 38
+    },
+    "?": {
+      "weight": 25
+    },
+    "@": {
+      "weight": 31
+    },
+    "[": {
+      "weight": 17
+    },
+    "\\": {
+      "weight": 38
+    },
+    "]": {
+      "weight": 3
+    },
+    "^": {
+      "weight": 1
+    },
+    "_": {
+      "weight": 8
+    },
+    "`": {
+      "weight": 25
+    },
+    "{": {
+      "weight": 28
+    },
+    "|": {
+      "weight": 36
+    },
+    "}": {
+      "weight": 11
+    },
+    "~": {
+      "weight": 42
+    },
+    " ": {
+      "weight": 7
+    },
+    "\t": {
+      "weight": 25
+    },
+    "\n": {
+      "weight": 20
+    },
+    "\r": {
+      "weight": 25
+    },
+    "\u000b": {
+      "weight": 20
+    },
+    "\f": {
+      "weight": 38
+    }
+  },
+  ";": {
+    "<": {
+      "weight": 12
+    },
+    "=": {
+      "weight": 22
+    },
+    ">": {
+      "weight": 39
+    },
+    "?": {
+      "weight": 24
+    },
+    "@": {
+      "weight": 42
+    },
+    "[": {
+      "weight": 20
+    },
+    "\\": {
+      "weight": 49
+    },
+    "]": {
+      "weight": 35
+    },
+    "^": {
+      "weight": 40
+    },
+    "_": {
+      "weight": 13
+    },
+    "`": {
+      "weight": 18
+    },
+    "{": {
+      "weight": 21
+    },
+    "|": {
+      "weight": 27
+    },
+    "}": {
+      "weight": 7
+    },
+    "~": {
+      "weight": 6
+    },
+    " ": {
+      "weight": 37
+    },
+    "\t": {
+      "weight": 31
+    },
+    "\n": {
+      "weight": 44
+    },
+    "\r": {
+      "weight": 7
+    },
+    "\u000b": {
+      "weight": 17
+    },
+    "\f": {
+      "weight": 50
+    }
+  },
+  "<": {
+    "=": {
+      "weight": 38
+    },
+    ">": {
+      "weight": 42
+    },
+    "?": {
+      "weight": 31
+    },
+    "@": {
+      "weight": 2
+    },
+    "[": {
+      "weight": 26
+    },
+    "\\": {
+      "weight": 18
+    },
+    "]": {
+      "weight": 41
+    },
+    "^": {
+      "weight": 45
+    },
+    "_": {
+      "weight": 14
+    },
+    "`": {
+      "weight": 16
+    },
+    "{": {
+      "weight": 13
+    },
+    "|": {
+      "weight": 50
+    },
+    "}": {
+      "weight": 3
+    },
+    "~": {
+      "weight": 41
+    },
+    " ": {
+      "weight": 34
+    },
+    "\t": {
+      "weight": 23
+    },
+    "\n": {
+      "weight": 11
+    },
+    "\r": {
+      "weight": 46
+    },
+    "\u000b": {
+      "weight": 14
+    },
+    "\f": {
+      "weight": 37
+    }
+  },
+  "=": {
+    ">": {
+      "weight": 20
+    },
+    "?": {
+      "weight": 29
+    },
+    "@": {
+      "weight": 22
+    },
+    "[": {
+      "weight": 20
+    },
+    "\\": {
+      "weight": 15
+    },
+    "]": {
+      "weight": 41
+    },
+    "^": {
+      "weight": 25
+    },
+    "_": {
+      "weight": 42
+    },
+    "`": {
+      "weight": 41
+    },
+    "{": {
+      "weight": 8
+    },
+    "|": {
+      "weight": 9
+    },
+    "}": {
+      "weight": 21
+    },
+    "~": {
+      "weight": 39
+    },
+    " ": {
+      "weight": 31
+    },
+    "\t": {
+      "weight": 3
+    },
+    "\n": {
+      "weight": 48
+    },
+    "\r": {
+      "weight": 48
+    },
+    "\u000b": {
+      "weight": 24
+    },
+    "\f": {
+      "weight": 4
+    }
+  },
+  ">": {
+    "?": {
+      "weight": 16
+    },
+    "@": {
+      "weight": 37
+    },
+    "[": {
+      "weight": 11
+    },
+    "\\": {
+      "weight": 34
+    },
+    "]": {
+      "weight": 9
+    },
+    "^": {
+      "weight": 9
+    },
+    "_": {
+      "weight": 28
+    },
+    "`": {
+      "weight": 33
+    },
+    "{": {
+      "weight": 12
+    },
+    "|": {
+      "weight": 15
+    },
+    "}": {
+      "weight": 40
+    },
+    "~": {
+      "weight": 36
+    },
+    " ": {
+      "weight": 9
+    },
+    "\t": {
+      "weight": 5
+    },
+    "\n": {
+      "weight": 43
+    },
+    "\r": {
+      "weight": 30
+    },
+    "\u000b": {
+      "weight": 21
+    },
+    "\f": {
+      "weight": 4
+    }
+  },
+  "?": {
+    "@": {
+      "weight": 29
+    },
+    "[": {
+      "weight": 39
+    },
+    "\\": {
+      "weight": 4
+    },
+    "]": {
+      "weight": 44
+    },
+    "^": {
+      "weight": 22
+    },
+    "_": {
+      "weight": 27
+    },
+    "`": {
+      "weight": 34
+    },
+    "{": {
+      "weight": 40
+    },
+    "|": {
+      "weight": 15
+    },
+    "}": {
+      "weight": 1
+    },
+    "~": {
+      "weight": 14
+    },
+    " ": {
+      "weight": 46
+    },
+    "\t": {
+      "weight": 9
+    },
+    "\n": {
+      "weight": 3
+    },
+    "\r": {
+      "weight": 18
+    },
+    "\u000b": {
+      "weight": 47
+    },
+    "\f": {
+      "weight": 34
+    }
+  },
+  "@": {
+    "[": {
+      "weight": 12
+    },
+    "\\": {
+      "weight": 49
+    },
+    "]": {
+      "weight": 31
+    },
+    "^": {
+      "weight": 9
+    },
+    "_": {
+      "weight": 4
+    },
+    "`": {
+      "weight": 20
+    },
+    "{": {
+      "weight": 12
+    },
+    "|": {
+      "weight": 49
+    },
+    "}": {
+      "weight": 39
+    },
+    "~": {
+      "weight": 49
+    },
+    " ": {
+      "weight": 4
+    },
+    "\t": {
+      "weight": 45
+    },
+    "\n": {
+      "weight": 45
+    },
+    "\r": {
+      "weight": 26
+    },
+    "\u000b": {
+      "weight": 28
+    },
+    "\f": {
+      "weight": 26
+    }
+  },
+  "[": {
+    "\\": {
+      "weight": 10
+    },
+    "]": {
+      "weight": 4
+    },
+    "^": {
+      "weight": 6
+    },
+    "_": {
+      "weight": 5
+    },
+    "`": {
+      "weight": 16
+    },
+    "{": {
+      "weight": 26
+    },
+    "|": {
+      "weight": 32
+    },
+    "}": {
+      "weight": 23
+    },
+    "~": {
+      "weight": 38
+    },
+    " ": {
+      "weight": 42
+    },
+    "\t": {
+      "weight": 23
+    },
+    "\n": {
+      "weight": 12
+    },
+    "\r": {
+      "weight": 25
+    },
+    "\u000b": {
+      "weight": 37
+    },
+    "\f": {
+      "weight": 45
+    }
+  },
+  "\\": {
+    "]": {
+      "weight": 20
+    },
+    "^": {
+      "weight": 30
+    },
+    "_": {
+      "weight": 50
+    },
+    "`": {
+      "weight": 40
+    },
+    "{": {
+      "weight": 28
+    },
+    "|": {
+      "weight": 9
+    },
+    "}": {
+      "weight": 28
+    },
+    "~": {
+      "weight": 8
+    },
+    " ": {
+      "weight": 46
+    },
+    "\t": {
+      "weight": 1
+    },
+    "\n": {
+      "weight": 17
+    },
+    "\r": {
+      "weight": 7
+    },
+    "\u000b": {
+      "weight": 25
+    },
+    "\f": {
+      "weight": 6
+    }
+  },
+  "]": {
+    "^": {
+      "weight": 30
+    },
+    "_": {
+      "weight": 46
+    },
+    "`": {
+      "weight": 37
+    },
+    "{": {
+      "weight": 6
+    },
+    "|": {
+      "weight": 32
+    },
+    "}": {
+      "weight": 24
+    },
+    "~": {
+      "weight": 36
+    },
+    " ": {
+      "weight": 34
+    },
+    "\t": {
+      "weight": 6
+    },
+    "\n": {
+      "weight": 43
+    },
+    "\r": {
+      "weight": 27
+    },
+    "\u000b": {
+      "weight": 15
+    },
+    "\f": {
+      "weight": 24
+    }
+  },
+  "^": {
+    "_": {
+      "weight": 35
+    },
+    "`": {
+      "weight": 5
+    },
+    "{": {
+      "weight": 8
+    },
+    "|": {
+      "weight": 16
+    },
+    "}": {
+      "weight": 19
+    },
+    "~": {
+      "weight": 22
+    },
+    " ": {
+      "weight": 14
+    },
+    "\t": {
+      "weight": 33
+    },
+    "\n": {
+      "weight": 39
+    },
+    "\r": {
+      "weight": 47
+    },
+    "\u000b": {
+      "weight": 47
+    },
+    "\f": {
+      "weight": 34
+    }
+  },
+  "_": {
+    "`": {
+      "weight": 7
+    },
+    "{": {
+      "weight": 3
+    },
+    "|": {
+      "weight": 16
+    },
+    "}": {
+      "weight": 5
+    },
+    "~": {
+      "weight": 42
+    },
+    " ": {
+      "weight": 40
+    },
+    "\t": {
+      "weight": 5
+    },
+    "\n": {
+      "weight": 31
+    },
+    "\r": {
+      "weight": 37
+    },
+    "\u000b": {
+      "weight": 20
+    },
+    "\f": {
+      "weight": 25
+    }
+  },
+  "`": {
+    "{": {
+      "weight": 31
+    },
+    "|": {
+      "weight": 10
+    },
+    "}": {
+      "weight": 40
+    },
+    "~": {
+      "weight": 46
+    },
+    " ": {
+      "weight": 47
+    },
+    "\t": {
+      "weight": 20
+    },
+    "\n": {
+      "weight": 42
+    },
+    "\r": {
+      "weight": 24
+    },
+    "\u000b": {
+      "weight": 6
+    },
+    "\f": {
+      "weight": 32
+    }
+  },
+  "{": {
+    "|": {
+      "weight": 29
+    },
+    "}": {
+      "weight": 21
+    },
+    "~": {
+      "weight": 23
+    },
+    " ": {
+      "weight": 15
+    },
+    "\t": {
+      "weight": 5
+    },
+    "\n": {
+      "weight": 18
+    },
+    "\r": {
+      "weight": 32
+    },
+    "\u000b": {
+      "weight": 31
+    },
+    "\f": {
+      "weight": 33
+    }
+  },
+  "|": {
+    "}": {
+      "weight": 20
+    },
+    "~": {
+      "weight": 50
+    },
+    " ": {
+      "weight": 48
+    },
+    "\t": {
+      "weight": 22
+    },
+    "\n": {
+      "weight": 4
+    },
+    "\r": {
+      "weight": 23
+    },
+    "\u000b": {
+      "weight": 44
+    },
+    "\f": {
+      "weight": 22
+    }
+  },
+  "}": {
+    "~": {
+      "weight": 30
+    },
+    " ": {
+      "weight": 38
+    },
+    "\t": {
+      "weight": 4
+    },
+    "\n": {
+      "weight": 17
+    },
+    "\r": {
+      "weight": 32
+    },
+    "\u000b": {
+      "weight": 14
+    },
+    "\f": {
+      "weight": 28
+    }
+  },
+  "~": {
+    " ": {
+      "weight": 32
+    },
+    "\t": {
+      "weight": 48
+    },
+    "\n": {
+      "weight": 38
+    },
+    "\r": {
+      "weight": 6
+    },
+    "\u000b": {
+      "weight": 5
+    },
+    "\f": {
+      "weight": 27
+    }
+  },
+  " ": {
+    "\t": {
+      "weight": 2
+    },
+    "\n": {
+      "weight": 20
+    },
+    "\r": {
+      "weight": 33
+    },
+    "\u000b": {
+      "weight": 13
+    },
+    "\f": {
+      "weight": 18
+    }
+  },
+  "\t": {
+    "\n": {
+      "weight": 41
+    },
+    "\r": {
+      "weight": 8
+    },
+    "\u000b": {
+      "weight": 49
+    },
+    "\f": {
+      "weight": 24
+    }
+  },
+  "\n": {
+    "\r": {
+      "weight": 41
+    },
+    "\u000b": {
+      "weight": 14
+    },
+    "\f": {
+      "weight": 30
+    }
+  },
+  "\r": {
+    "\u000b": {
+      "weight": 26
+    },
+    "\f": {
+      "weight": 3
+    }
+  },
+  "\u000b": {
+    "\f": {
+      "weight": 30
+    }
+  }
+}

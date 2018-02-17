@@ -14,7 +14,6 @@ class Solution:
         self.path = []
         self.nodes = [start]
         self.visited = set(self.nodes)
-        self._size = max(len(str(n)) for n in self.graph.nodes)
 
     def __iter__(self):
         return iter(self.path)
@@ -29,9 +28,7 @@ class Solution:
         return node in self.visited or node == self.current
 
     def __repr__(self):
-        def space(n):
-            return '{: >{size}s}'.format(n, size=self._size)
-        easy_id = ''.join(space(n) for n in self.get_id())
+        easy_id = ''.join(str(n) for n in self.get_id())
         return '{} ({}, a={}, b={})'.format(easy_id, self.weight, self.alpha,
                                             self.beta)
 
@@ -74,7 +71,22 @@ class State:
         self.limit = limit
         self.gen_size = gen_size
         self.solutions = None
+        self.record = None
+        self.previous_record = None
+        self.is_new_record = False
         self.best = None
+
+    @property
+    def best(self):
+        return self._best
+
+    @best.setter
+    def best(self, best):
+        self.is_new_record = self.record is None or best < self.record
+        if self.is_new_record:
+            self.old_record = self.record
+            self.record = best
+        self._best = best
 
 
 class Solver:
@@ -104,21 +116,32 @@ class Solver:
         # call start hook for all plugins
         self._call_plugins('start', state=state)
 
-        for __ in range(limit):
+        def loops(limit):
+            def forever():
+                while True:
+                    i = 0
+                    yield i
+                    i += 1
+            return forever() if limit is None else range(limit)
+
+        for __ in loops(limit):
             # find solutions and update the graph pheromone accordingly
-            state.solutions = self.find_solutions(state.graph, state.ants)
-            state.solutions.sort()
+            solutions = self.find_solutions(state.graph, state.ants)
+            data = list(zip(solutions, range(len(state.ants)), state.ants))
+            data.sort()
+            solutions, __, ants = zip(*data)
+            state.solutions = solutions
+            state.ants = ants
             self.global_update(state)
 
             # yield increasingly better solutions
-            is_new_best = state.best is None or state.solutions[0] < state.best
-            if is_new_best:
-                state.best = state.solutions[0]
-                yield state.best
+            state.best = state.solutions[0]
+            if state.is_new_record:
+                yield state.record
 
             # call iteration hook for all plugins
-            self._call_plugins('iteration', state=state,
-                               is_new_best=is_new_best)
+            if self._call_plugins('iteration', state=state):
+                break
 
         # call finish hook for all plugins
         self._call_plugins('finish', state=state)
@@ -144,8 +167,13 @@ class Solver:
         self.plugins.extend(plugins)
 
     def _call_plugins(self, hook, **kwargs):
+        should_stop = False
         for plugin in self.plugins:
-            plugin(hook, **kwargs)
+            try:
+                plugin(hook, **kwargs)
+            except StopIteration:
+                should_stop = True
+        return should_stop
 
 
 class IncreasingSolver(Solver):
@@ -164,7 +192,7 @@ class SolverPlugin:
     def on_start(self, state):
         pass
 
-    def on_iteration(self, state, is_new_best):
+    def on_iteration(self, state):
         pass
 
     def on_finish(self, state):

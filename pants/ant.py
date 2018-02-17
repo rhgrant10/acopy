@@ -1,14 +1,16 @@
 import itertools
 import bisect
-import random
+
+import numpy as np
 
 from .solver import Solution
 
 
 class Ant:
-    def __init__(self, alpha=1, beta=3):
+    def __init__(self, alpha=1, beta=3, seed=None):
         self.alpha = alpha
         self.beta = beta
+        self.rng = np.random.RandomState(seed=seed)
 
     def tour(self, graph):
         solution = self.start_new_solution(graph)
@@ -29,7 +31,7 @@ class Ant:
         return Solution(graph, start, alpha=self.alpha, beta=self.beta)
 
     def get_starting_node(self, graph):
-        return random.choice(list(graph.nodes))
+        return self.rng.choice(list(graph.nodes))
 
     def get_moves(self, graph, solution):
         moves = []
@@ -53,8 +55,8 @@ class Ant:
     def choose_scored_move(self, moves, scores):
         total = sum(scores)
         cumdist = list(itertools.accumulate(scores)) + [total]
-        index = bisect.bisect(cumdist, random.random() * total)
-        return moves[index]
+        index = bisect.bisect(cumdist, self.rng.rand() * total)
+        return moves[min(index, len(moves) - 1)]
 
     def score_move(self, data):
         pre = 1 / data.get('weight', 1)
@@ -63,12 +65,13 @@ class Ant:
 
 
 class Colony:
-    def __init__(self, alpha=1, beta=3):
+    def __init__(self, alpha=1, beta=3, seed=None):
         self.alpha = alpha
         self.beta = beta
+        self.seed = seed
 
     def get_ants(self, count):
-        return [Ant(alpha=self.alpha, beta=self.beta) for __ in range(count)]
+        return [Ant(**vars(self)) for __ in range(count)]
 
 
 class MixedColony(Colony):
@@ -84,7 +87,7 @@ class MixedColony(Colony):
 
 class DarwinAnt(Ant):
     def __init__(self, alpha=1, beta=3, sigma=1):
-        alpha = random.gauss(alpha, sigma)
-        beta = random.gauss(beta, sigma)
+        alpha = self.rng.normal(alpha, sigma)
+        beta = self.rng.normal(beta, sigma)
         super().__init__(alpha=alpha, beta=beta)
         self.sigma = sigma
