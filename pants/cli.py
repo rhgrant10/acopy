@@ -14,7 +14,6 @@ import datetime
 
 import click
 import networkx
-from matplotlib import pyplot as plt
 
 from . import ant
 from . import solvers
@@ -155,7 +154,7 @@ def demo(alpha, beta, rho, q, limit, gen_size, file, plot, darwin, elite, flip,
     solver.add_plugin(plugins.TimerPlugin())
 
     if plot:
-        solver.add_plugin(plugins.StatRecorder())
+        solver.add_plugin(plugins.StatsRecorder())
     if darwin:
         solver.add_plugin(plugins.DarwinPlugin(sigma=darwin))
     if elite:
@@ -174,6 +173,10 @@ def demo(alpha, beta, rho, q, limit, gen_size, file, plot, darwin, elite, flip,
     solver.solve(graph, colony, gen_size=gen_size, limit=limit)
 
     print(solver.plugins['timer'].get_report())
+    if plot:
+        data = solver.plugins['stats-recorder'].stats
+        plotter = utils.Plotter(data)
+        plotter.plot()
 
 
 @main.command()

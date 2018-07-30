@@ -51,7 +51,9 @@ setup(
     tests_require=test_requirements,
     setup_requires=setup_requirements,
     extras_require={
-        'plot': ['matplotlib==2.1.1'],
-        'statsd': ['statsd==3.2.2'],
+        'plot': [
+            'matplotlib==2.1.1',
+            'pandas==0.23.3',
+        ],
     }
 )
