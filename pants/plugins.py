@@ -1,9 +1,35 @@
-import time
-import random
 import collections
 import functools
+import math
+import random
+import time
 
 from .solvers import SolverPlugin
+
+
+class PrintoutPlugin(SolverPlugin):
+    def initialize(self, solver):
+        super().initialize(solver)
+        self.iteration = 0
+        self.best_count = 0
+        self.width = None
+
+    def on_start(self, state):
+        self.width = math.ceil(math.log10(state.limit)) + 1
+
+    def on_iteration(self, state):
+        report = f'{self.iteration:{self.width}d}'
+        self.iteration += 1
+        if state.is_new_record:
+            report += f' {self.best_count:{self.width}d} {state.best}'
+            end = '\n'
+            self.best_count += 1
+        else:
+            end = '\r'
+        print(report, end=end)
+
+    def on_finish(self, state):
+        print('Done' + ' ' * self.width)
 
 
 class EliteTracer(SolverPlugin):
@@ -94,8 +120,8 @@ class DarwinPlugin(SolverPlugin):
         self.beta = sum(ant.beta for ant in state.ants) / size
 
     def on_iteration(self, state):
-        alpha = (self.alpha + state.best.alpha) / 2
-        beta = (self.beta + state.best.beta) / 2
+        alpha = (self.alpha + state.best.ant.alpha) / 2
+        beta = (self.beta + state.best.ant.beta) / 2
         for ant in state.ants:
             ant.alpha = random.gauss(alpha, self.sigma)
             ant.beta = random.gauss(beta, self.sigma)

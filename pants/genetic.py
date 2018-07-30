@@ -78,8 +78,7 @@ class BadPerformance(solvers.Solution):
 
 
 class Simulator:
-    def __init__(self, graph, population=1000, limit=15, seed=None,
-                 choice_seed=None):
+    def __init__(self, graph, population=1000, limit=15, seed=None):
         self.rng = np.random.RandomState(seed=seed)
         self.graph = graph
         self.limit = limit

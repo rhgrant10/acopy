@@ -6,11 +6,10 @@ import collections
 
 @functools.total_ordering
 class Solution:
-    def __init__(self, graph, start, alpha=None, beta=None):
+    def __init__(self, graph, start, ant=None):
         self.graph = graph
         self.start = start
-        self.alpha = alpha
-        self.beta = beta
+        self.ant = ant
         self.current = start
         self.weight = 0
         self.path = []
@@ -31,8 +30,7 @@ class Solution:
 
     def __repr__(self):
         easy_id = ''.join(str(n) for n in self.get_id())
-        return '{} ({}, a={}, b={})'.format(easy_id, self.weight, self.alpha,
-                                            self.beta)
+        return '{} ({}, {})'.format(easy_id, self.weight, self.ant)
 
     def __hash__(self):
         return hash(self.get_id())
@@ -128,12 +126,15 @@ class Solver:
         self._call_plugins('start', state=state)
 
         def loops(limit):
+            if limit is not None:
+                return range(limit)
+
             def forever():
+                i = 0
                 while True:
-                    i = 0
                     yield i
                     i += 1
-            return forever() if limit is None else range(limit)
+            return forever()
 
         for __ in loops(limit):
             # find solutions and update the graph pheromone accordingly

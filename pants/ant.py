@@ -12,6 +12,9 @@ class Ant:
         self.beta = beta
         self.rng = np.random.RandomState(seed=seed)
 
+    def __repr__(self):
+        return f'Ant(alpha={self.alpha}, beta={self.beta})'
+
     def tour(self, graph):
         solution = self.start_new_solution(graph)
         while True:
@@ -28,7 +31,7 @@ class Ant:
 
     def start_new_solution(self, graph):
         start = self.get_starting_node(graph)
-        return Solution(graph, start, alpha=self.alpha, beta=self.beta)
+        return Solution(graph, start, ant=self)
 
     def get_starting_node(self, graph):
         return self.rng.choice(list(graph.nodes))
