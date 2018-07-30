@@ -1,5 +1,7 @@
 import sys
 import functools
+import textwrap
+import collections
 
 
 @functools.total_ordering
@@ -94,9 +96,18 @@ class Solver:
         self.rho = rho
         self.q = q
         self.top = top
-        self.plugins = []
+        self.plugins = collections.OrderedDict()
         if plugins:
             self.add_plugins(*plugins)
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}(rho={self.rho}, q={self.q}, '
+                f'top={self.top})')
+
+    def __str__(self):
+        plugin_reprs = '\n'.join([repr(p) for p in self.get_plugins()])
+        plugins = textwrap.indent(plugin_reprs, prefix='  ')
+        return f'{repr(self)}\n{plugins}'
 
     def solve(self, *args, **kwargs):
         best = None
@@ -164,11 +175,14 @@ class Solver:
     def add_plugins(self, *plugins):
         for plugin in plugins:
             plugin.initialize(self)
-        self.plugins.extend(plugins)
+            self.plugins[plugin.name] = plugin
+
+    def get_plugins(self):
+        return self.plugins.values()
 
     def _call_plugins(self, hook, **kwargs):
         should_stop = False
-        for plugin in self.plugins:
+        for plugin in self.get_plugins():
             try:
                 plugin(hook, **kwargs)
             except StopIteration:
@@ -176,13 +190,16 @@ class Solver:
         return should_stop
 
 
-class IncreasingSolver(Solver):
-    def global_update(self, state):
-        for solution in state.solutions[:self.top]:
-            solution.trace(self.q, rho=self.rho)
-
-
 class SolverPlugin:
+    name = 'plugin'
+
+    def __init__(self, **kwargs):
+        self._params = kwargs
+
+    def __repr__(self):
+        params = ', '.join(f'{k}={v}'for k, v in self._params.items())
+        return f'{self.name}[{params}]'
+
     def __call__(self, hook, **kwargs):
         return getattr(self, f'on_{hook}')(**kwargs)
 

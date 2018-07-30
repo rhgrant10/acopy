@@ -6,47 +6,17 @@ import functools
 try:
     import matplotlib.pyplot as plt
     import pandas as pd
-    import statsd
 except ImportError:
     pass
 
-from .solver import SolverPlugin
-from .ant import Ant
-
-
-class GeneticAnt(Ant):
-    def __init__(self, *args, **kwargs):
-        self.dna = kwargs.pop("dna", self.get_random_dna())
-        self.mutation_rate = kwargs.pop("mutation_rate", 0.1)
-        super().__init__(*args, **kwargs)
-
-    @classmethod
-    def from_ant(cls, ant, **kwargs):
-        return cls(ant.alpha, ant.beta, **kwargs)
-
-    def get_random_dna(self):
-        return (f"{random.choice('Aa')}"
-                f"{random.choice('Aa')}"
-                f"{random.choice('Bb')}"
-                f"{random.choice('Bb')}")
-
-    def get_gamete_dna(self):
-        a = random.choice(self.dna[:2])
-        b = random.choice(self.dna[2:])
-        return self.mutate(a), self.mutate(b)
-
-    def mutate(self, allele):
-        if random.random() < self.mutation_rate:
-            if allele.islower():
-                return allele.upper()
-
-            return allele.lower()
-
-        return allele
+from .solvers import SolverPlugin
 
 
 class EliteTracer(SolverPlugin):
+    name = 'elite'
+
     def __init__(self, factor=1):
+        super().__init__(factor=factor)
         self.factor = factor
 
     def on_iteration(self, state):
@@ -55,6 +25,7 @@ class EliteTracer(SolverPlugin):
 
 class PeriodicActionPlugin(SolverPlugin):
     def __init__(self, period=50):
+        super().__init__(period=period)
         self.period = period
         self.index = None
 
@@ -72,12 +43,16 @@ class PeriodicActionPlugin(SolverPlugin):
 
 
 class PeriodicReset(PeriodicActionPlugin):
+    name = 'reset'
+
     def action(self, state):
         for edge in state.graph.edges:
             state.graph.edges[edge]['pheromone'] = 1
 
 
 class PheromoneFlip(PeriodicActionPlugin):
+    name = 'p-flip'
+
     def action(self, state):
         data = []
         for edge in state.graph.edges.values():
@@ -89,23 +64,34 @@ class PheromoneFlip(PeriodicActionPlugin):
 
 
 class TimerPlugin(SolverPlugin):
+    name = 'timer'
+
     def initialize(self, solver):
         super().initialize(solver)
         self.start_time = None
-        self.finsih_time = None
+        self.finish = None
         self.duration = None
 
     def on_start(self, state):
         self.start_time = time.time()
 
     def on_finish(self, state):
-        self.finsih_time = time.time()
-        self.duration = self.finsih_time - self.start_time
-        print(f'Total time: {self.duration} seconds')
+        self.finish = time.time()
+        self.duration = self.finish - self.start_time
+        self.time_per_iter = self.duration / state.limit
+
+    def get_report(self):
+        return '\n'.join([
+            f'Total time: {self.duration} seconds',
+            f'Avg iteration time: {self.time_per_iter} seconds',
+        ])
 
 
 class DarwinPlugin(SolverPlugin):
+    name = 'darwin'
+
     def __init__(self, sigma=.1):
+        super().__init__(sigma=sigma)
         self.sigma = sigma
 
     def on_start(self, state):
@@ -131,7 +117,10 @@ class EarlyTerminationPlugin(SolverPlugin):
 
 
 class ThresholdPlugin(EarlyTerminationPlugin):
+    name = 'threshold'
+
     def __init__(self, threshold):
+        super().__init__(threshold=threshold)
         self.threshold = threshold
 
     def should_terminate(self, state):
@@ -139,7 +128,10 @@ class ThresholdPlugin(EarlyTerminationPlugin):
 
 
 class TimeLimitPlugin(EarlyTerminationPlugin):
+    name = 'time-limit'
+
     def __init__(self, seconds):
+        super().__init__(seconds=seconds)
         self.limit = seconds
 
     def on_start(self, state):
@@ -150,104 +142,11 @@ class TimeLimitPlugin(EarlyTerminationPlugin):
         return duration >= self.limit
 
 
-class EvolutionPlugin(SolverPlugin):
-
-    def on_iteration(self, state):
-        survivors = self.trials(state.ants)
-        state.ants = self.procreate(survivors)
-
-    def trials(self, ants):
-        ants = list(ants)
-        n = len(ants)
-        h = n // 2
-        back_half = ants[h:]
-        random.shuffle(back_half)
-        ants[h:] = back_half
-        for i in range(h):
-            if random.random() < i / n:
-                j = n - i
-                ants[i], ants[j] = ants[j], ants[i]
-        return ants[:h]
-
-    def procreate(self, ants):
-        next_generation = []
-        random.shuffle(ants)
-        for ant in ants:
-            next_generation.append(self.get_it_on(ant))
-            next_generation.append(self.get_it_on(ant))
-        return next_generation
-
-    def get_it_on(self, ant):
-        sigma = random.gauss(.5, .1)
-        alpha = random.gauss(ant.alpha, sigma)
-        beta = random.gauss(ant.beta, sigma)
-        return Ant(alpha=alpha, beta=beta)
-
-
-class SelfishGenePlugin(SolverPlugin):
-    def on_start(self, state):
-        state.ants = [GeneticAnt.from_ant(ant) for ant in state.ants]
-
-    def on_iteration(self, state):
-        survivors = self.trials(state.ants)
-        state.ants = self.procreate(survivors)
-
-    def trials(self, ants):
-        ants = list(ants)
-        n = len(ants)
-        h = n // 2
-        back_half = ants[h:]
-        random.shuffle(back_half)
-        ants[h:] = back_half
-        for i in range(h):
-            if random.random() < i / n:
-                j = n - i
-                ants[i], ants[j] = ants[j], ants[i]
-        return ants[:h]
-
-    def pairwise(self, ants):
-        return zip(ants[0::2], ants[1::2])
-
-    def procreate(self, ants):
-        next_generation = []
-        random.shuffle(ants)
-        for parents in self.pairwise(ants):
-            next_generation.append(self.get_it_on(parents))
-            next_generation.append(self.get_it_on(parents))
-            next_generation.append(self.get_it_on(parents))
-            next_generation.append(self.get_it_on(parents))
-        return next_generation
-
-    def get_it_on(self, parents):
-        a1, b1 = parents[0].get_gamete_dna()
-        a2, b2 = parents[1].get_gamete_dna()
-        a3 = a1 + a2
-        b3 = b1 + b2
-        pA = a3.count('A') * .5
-        pB = b3.count('B') * .5
-        alphas = list(p.alpha for p in parents)
-        betas = list(p.beta for p in parents)
-        if 0 < pA < 1:
-            a = random.choice(alphas)
-        elif pA == 1:
-            a = max(alphas)
-        else:
-            a = min(alphas)
-
-        if 0 < pB < 1:
-            b = random.choice(betas)
-        elif pA == 1:
-            b = max(betas)
-        else:
-            b = min(betas)
-
-        a = random.gauss(a, 0.01)
-        b = random.gauss(b, 0.01)
-        return GeneticAnt(a, b, dna=a3 + b3)
-
-
 class StatRecorder(SolverPlugin):
+    name = 'stats-recorder'
+
     def __init__(self):
+        super().__init__()
         self.stats = collections.defaultdict(list)
         self.data = {'solutions': set()}
 
@@ -363,29 +262,3 @@ class StatRecorder(SolverPlugin):
                 distances = list(sorted(distances))
             iterations.append(distances)
         return iterations
-
-
-def avg(values):
-    return sum(values) / len(values)
-
-
-class StatsdPlugin(SolverPlugin):
-    def __init__(self, *args, prefix='pants', **kwargs):
-        prefix += '.{}'.format(int(time.time()))
-        self.client = statsd.StatsClient(*args, prefix=prefix, **kwargs)
-
-    def on_iteration(self, state):
-        unique_edges = set(tuple(sorted(edge)) for edge in state.graph.edges)
-        with self.client.pipeline() as pipe:
-            for u, v in unique_edges:
-                key = 'pheromone.{}-{}'.format(u, v)
-                pipe.gauge(key, state.graph.edges[u, v]['pheromone'])
-
-            distances = [s.weight for s in state.solutions]
-            pipe.gauge('solutions.best', min(distances))
-            pipe.gauge('solutions.avg', avg(distances))
-            pipe.gauge('solutions.worst', max(distances))
-            pipe.gauge('solutions.record', state.record.weight)
-
-            for solution in state.solutions:
-                pipe.set('solutions.unique', solution)

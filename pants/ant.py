@@ -3,7 +3,7 @@ import bisect
 
 import numpy as np
 
-from .solver import Solution
+from .solvers import Solution
 
 
 class Ant:
@@ -70,24 +70,9 @@ class Colony:
         self.beta = beta
         self.seed = seed
 
+    def __repr__(self):
+        return (f'{self.__class__.__name__}(alpha={self.alpha}, '
+                f'beta={self.beta})')
+
     def get_ants(self, count):
         return [Ant(**vars(self)) for __ in range(count)]
-
-
-class MixedColony(Colony):
-    def get_ants(self, count):
-        ants = []
-        a, b = self.alpha, self.beta
-        for __ in range(count):
-            ant = Ant(alpha=a, beta=b)
-            ants.append(ant)
-            a, b = b, a
-        return ants
-
-
-class DarwinAnt(Ant):
-    def __init__(self, alpha=1, beta=3, sigma=1):
-        alpha = self.rng.normal(alpha, sigma)
-        beta = self.rng.normal(beta, sigma)
-        super().__init__(alpha=alpha, beta=beta)
-        self.sigma = sigma
