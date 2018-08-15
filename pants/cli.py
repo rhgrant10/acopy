@@ -23,6 +23,9 @@ def main(global_seed):
 @main.command()
 @click.option('--file', type=click.Path(dir_okay=False, readable=True),
               help='name of a file containing the graph to use')
+@click.option('--file-format', type=click.Choice(utils.data.get_formats()),
+              default='json',
+              help='format of the file containing the graph to use')
 @click.option('--alpha', default=1.0,
               help='how much important the ants give to the distance when '
                    'evaluating which edge to travel')
@@ -57,12 +60,12 @@ def main(global_seed):
 @click.option('--darwin', default=0.0,
               help='sigma factor for variation of the alpha/beta settings for '
                    'ants in each generation')
-def demo(alpha, beta, rho, q, limit, gen_size, file, plot, darwin, elite, flip,
-         threshold, reset):
+def demo(alpha, beta, rho, q, limit, gen_size, plot, darwin, elite, flip,
+         threshold, reset, file, file_format):
     if file is None:
-        graph = utils.get_test_world_33()
+        graph = utils.data.get_test_world_33()
     else:
-        graph = utils.read_graph_from_file(file)
+        graph = utils.data.read_graph_data(file, file_format)
 
     colony = ant.Colony(alpha=alpha, beta=beta)
     solver = solvers.Solver(rho=rho, q=q)
@@ -92,7 +95,7 @@ def demo(alpha, beta, rho, q, limit, gen_size, file, plot, darwin, elite, flip,
     print(solver.plugins['timer'].get_report())
     if plot:
         data = solver.plugins['stats-recorder'].stats
-        plotter = utils.Plotter(data)
+        plotter = utils.plot.Plotter(data)
         plotter.plot()
 
 
