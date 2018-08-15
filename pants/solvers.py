@@ -118,7 +118,7 @@ class Solver:
             best = solution
         return best
 
-    def optimize(self, graph, colony, gen_size=None, limit=100):
+    def optimize(self, graph, colony, gen_size=None, limit=None):
         # initialize the colony of ants and the graph
         gen_size = gen_size or len(graph.nodes)
         ants = colony.get_ants(gen_size)
