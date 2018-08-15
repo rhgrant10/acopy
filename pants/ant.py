@@ -1,16 +1,14 @@
 import itertools
 import bisect
-
-import numpy as np
+import random
 
 from .solvers import Solution
 
 
 class Ant:
-    def __init__(self, alpha=1, beta=3, seed=None):
+    def __init__(self, alpha=1, beta=3):
         self.alpha = alpha
         self.beta = beta
-        self.rng = np.random.RandomState(seed=seed)
 
     def __repr__(self):
         return f'Ant(alpha={self.alpha}, beta={self.beta})'
@@ -34,7 +32,7 @@ class Ant:
         return Solution(graph, start, ant=self)
 
     def get_starting_node(self, graph):
-        return self.rng.choice(list(graph.nodes))
+        return random.choice(list(graph.nodes))
 
     def get_moves(self, graph, solution):
         moves = []
@@ -58,7 +56,7 @@ class Ant:
     def choose_scored_move(self, moves, scores):
         total = sum(scores)
         cumdist = list(itertools.accumulate(scores)) + [total]
-        index = bisect.bisect(cumdist, self.rng.rand() * total)
+        index = bisect.bisect(cumdist, random.random() * total)
         return moves[min(index, len(moves) - 1)]
 
     def score_move(self, data):
@@ -68,10 +66,9 @@ class Ant:
 
 
 class Colony:
-    def __init__(self, alpha=1, beta=3, seed=None):
+    def __init__(self, alpha=1, beta=3):
         self.alpha = alpha
         self.beta = beta
-        self.seed = seed
 
     def __repr__(self):
         return (f'{self.__class__.__name__}(alpha={self.alpha}, '

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 """Console script for pants."""
-import json
 import time
 import random
 
@@ -10,7 +9,6 @@ import click
 from . import ant
 from . import solvers
 from . import plugins
-from . import genetics
 from . import utils
 
 
@@ -96,37 +94,6 @@ def demo(alpha, beta, rho, q, limit, gen_size, file, plot, darwin, elite, flip,
         data = solver.plugins['stats-recorder'].stats
         plotter = utils.Plotter(data)
         plotter.plot()
-
-
-@main.command()
-@click.option('--evo-seed', type=int, default=None)
-@click.option('--file', type=click.Path(dir_okay=False, readable=True))
-@click.option('--limit', default=10)
-@click.option('--population', default=10)
-def genetic(population, limit, file, evo_seed):
-    if file:
-        graph = utils.read_graph_from_file(file)
-    else:
-        graph = utils.get_test_world_33()
-    simulator = genetics.Simulator(graph=graph, population=population,
-                                   limit=limit, seed=evo_seed)
-    simulator.run_forever()
-
-
-@main.command()
-@click.option('--max-weight', default=50.0)
-@click.option('--min-weight', default=1.0)
-@click.option('--size', default=10)
-@click.option('--file', type=click.Path(dir_okay=False, writable=True))
-def create(file, size, min_weight, max_weight):
-    graph = utils.generate_random_graph(size=size, min_weight=min_weight,
-                                        max_weight=max_weight)
-    data = utils.graph_as_dict(graph)
-    if file:
-        with open(file, 'w') as f:
-            json.dump(data, f)
-    else:
-        print(json.dumps(data, indent=2))
 
 
 if __name__ == "__main__":
