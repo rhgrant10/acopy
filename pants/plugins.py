@@ -1,5 +1,4 @@
 import collections
-import functools
 import math
 import random
 import time

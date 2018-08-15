@@ -1,18 +1,16 @@
 # -*- coding: utf-8 -*-
 
 """Console script for pants."""
-import re
 import json
 import time
 import random
 
 import click
-import networkx
 
 from . import ant
 from . import solvers
 from . import plugins
-from . import genetic
+from . import genetics
 from . import utils
 
 
@@ -63,7 +61,10 @@ def main(global_seed):
                    'ants in each generation')
 def demo(alpha, beta, rho, q, limit, gen_size, file, plot, darwin, elite, flip,
          threshold, reset):
-    graph = read_graph_from_file(file) if file else utils.get_test_world_33()
+    if file is None:
+        graph = utils.get_test_world_33()
+    else:
+        graph = utils.read_graph_from_file(file)
 
     colony = ant.Colony(alpha=alpha, beta=beta)
     solver = solvers.Solver(rho=rho, q=q)
@@ -107,8 +108,8 @@ def genetic(population, limit, file, evo_seed):
         graph = utils.read_graph_from_file(file)
     else:
         graph = utils.get_test_world_33()
-    simulator = genetic.Simulator(graph=graph, population=population,
-                                  limit=limit, seed=evo_seed)
+    simulator = genetics.Simulator(graph=graph, population=population,
+                                   limit=limit, seed=evo_seed)
     simulator.run_forever()
 
 
@@ -126,19 +127,6 @@ def create(file, size, min_weight, max_weight):
             json.dump(data, f)
     else:
         print(json.dumps(data, indent=2))
-
-
-@main.command('plot')
-@click.option('--logfile', type=click.Path(dir_okay=False, readable=True))
-def matplotlib_output(logfile):
-    parser = genetic.Parser(logfile, lambda: plt.pause(0.1))
-    data = []
-    plt.ion()
-    for generation in parser:
-        scores = [t['score'] for t in generation['trials']]
-        data.append(list(sorted(scores)))
-        plt.gca().clear()
-        plt.plot(data)
 
 
 if __name__ == "__main__":

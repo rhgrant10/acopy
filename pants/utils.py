@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
+import json
 import random
 import string
 import functools
@@ -11,6 +12,10 @@ try:
 except ImportError:
     pass
 import networkx
+
+
+def noop(*args, **kwargs):
+    pass
 
 
 def get_test_world_33():

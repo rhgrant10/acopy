@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
+import collections
 import logging
+import math
+import re
 
 import numpy as np
 
+from . import ant
 from . import solvers
 from . import plugins
+from . import utils
 
 
 logger = logging.getLogger(__name__)
@@ -54,8 +59,8 @@ class Creature:
         colony = ant.Colony(alpha=self.genes['alpha'], beta=self.genes['beta'],
                             seed=choice_seed)
         # create the solver
-        solver = solver.Solver(rho=self.genes['rho'], q=self.genes['q'],
-                               top=int(self.genes['top']))
+        solver = solvers.Solver(rho=self.genes['rho'], q=self.genes['q'],
+                                top=int(self.genes['top']))
         solver.add_plugin(plugins.TimeLimitPlugin(limit))
 
         # optimize the fuck outta that graph
@@ -99,18 +104,16 @@ class Simulator:
         for i, creature in enumerate(self.creatures, 1):
             try:
                 optimizer = creature.optimize(self.graph, limit=self.limit)
-                for performance in optimizer:
-                    print(f'[gen:{self.gen}][solver:{i}]'
-                          f'[species:{creature.species}][trial] '
-                          f'{performance.weight}', end='\r', flush=True)
+                trials = list(optimizer)
+                performance = trials[-1]
             except Exception:
                 logger.exception(f'[gen:{self.gen}][test:{i}][ERROR]')
                 performance = BadPerformance()
             finally:
                 performances.append(performance)
                 logger.info(f'[gen:{self.gen}][solver:{i}]'
-                              f'[species:{creature.species}][trial] '
-                              f'{performance.weight}')
+                            f'[species:{creature.species}][trial] '
+                            f'{performance.weight}')
 
         # print performance statistics
         performances, creatures = self.sort(performances, self.creatures)
@@ -173,10 +176,7 @@ class Parser:
         self.line = None
         self.generation = 0
         self.settings = {}
-        if pause is None:
-            def pause():
-                time.sleep(1)
-        self.pause = pause
+        self.pause = pause or utils.noop
         self.fp = open(self.filepath)
 
     def __iter__(self):
@@ -184,7 +184,7 @@ class Parser:
         return self
 
     def __next__(self):
-        print(f"Parsing generation #{self.generation}")
+        logger.info(f"Parsing generation #{self.generation}")
         generation = self.parse_generation()
         self.generation += 1
         return generation
@@ -243,5 +243,3 @@ class Parser:
         while 'stat' in self.line:
             self.wait_for_next_line()
         return None
-
-
