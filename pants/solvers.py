@@ -4,6 +4,8 @@ import functools
 import textwrap
 import collections
 
+from . import utils
+
 
 @functools.total_ordering
 class Solution:
@@ -128,23 +130,15 @@ class Solver:
         # call start hook for all plugins
         self._call_plugins('start', state=state)
 
-        def loops(limit):
-            if limit is not None:
-                return range(limit)
-
-            def forever():
-                i = 0
-                while True:
-                    yield i
-                    i += 1
-            return forever()
-
-        for __ in loops(limit):
-            # find solutions and update the graph pheromone accordingly
+        # find solutions and update the graph pheromone accordingly
+        for __ in utils.looper(limit):
             solutions = self.find_solutions(state.graph, state.ants)
+
+            # ants aren't comparable, so we insert a list of unique numbers
             data = list(zip(solutions, range(len(state.ants)), state.ants))
             data.sort()
             solutions, __, ants = zip(*data)
+
             state.solutions = solutions
             state.ants = ants
             self.global_update(state)
