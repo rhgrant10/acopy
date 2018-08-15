@@ -30,7 +30,6 @@ setup(
     author_email='rhgrant10@gmail.com',
     url='https://github.com/rhgrant10/pants',
     packages=find_packages(include=['pants']),
-    data_files={'sample-graphs': ['sample-graphs/*']},
     entry_points={
         'console_scripts': ['pants=pants.cli:main'],
     },
