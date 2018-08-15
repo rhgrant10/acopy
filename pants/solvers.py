@@ -134,7 +134,9 @@ class Solver:
         for __ in utils.looper(limit):
             solutions = self.find_solutions(state.graph, state.ants)
 
-            # ants aren't comparable, so we insert a list of unique numbers
+            # we want to ensure the ants are sorted with the solutions, but
+            # since ants aren't directly comparable, so we interject a list of
+            # unique numbers that satifies any two solutions that are equal
             data = list(zip(solutions, range(len(state.ants)), state.ants))
             data.sort()
             solutions, __, ants = zip(*data)
