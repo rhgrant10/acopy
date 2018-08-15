@@ -37,6 +37,8 @@ def main(global_seed):
                    'iterations')
 @click.option('--q', default=1.0,
               help='amount of pheromone each ant has')
+@click.option('--top', default=2,
+              help='limit on the number of ants that deposit pheromone')
 @click.option('--gen-size', type=int, default=60,
               help='number of ants in each generation')
 @click.option('--limit', default=2000,
@@ -60,7 +62,7 @@ def main(global_seed):
 @click.option('--darwin', default=0.0,
               help='sigma factor for variation of the alpha/beta settings for '
                    'ants in each generation')
-def demo(alpha, beta, rho, q, limit, gen_size, plot, darwin, elite, flip,
+def demo(alpha, beta, rho, q, limit, top, gen_size, plot, darwin, elite, flip,
          threshold, reset, file, file_format):
     if file is None:
         graph = utils.data.get_test_world_33()
@@ -68,7 +70,7 @@ def demo(alpha, beta, rho, q, limit, gen_size, plot, darwin, elite, flip,
         graph = utils.data.read_graph_data(file, file_format)
 
     colony = ant.Colony(alpha=alpha, beta=beta)
-    solver = solvers.Solver(rho=rho, q=q)
+    solver = solvers.Solver(rho=rho, q=q, top=top)
 
     solver.add_plugin(plugins.PrintoutPlugin())
     solver.add_plugin(plugins.TimerPlugin())

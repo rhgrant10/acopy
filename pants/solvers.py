@@ -93,7 +93,7 @@ class State:
 
 
 class Solver:
-    def __init__(self, rho=.03, q=1, top=2, plugins=None):
+    def __init__(self, rho=.03, q=1, top=None, plugins=None):
         self.rho = rho
         self.q = q
         self.top = top
@@ -121,7 +121,7 @@ class Solver:
         gen_size = gen_size or len(graph.nodes)
         ants = colony.get_ants(gen_size)
         for u, v in graph.edges:
-            graph.edges[u, v].setdefault('pheromone', 1)
+            graph.edges[u, v].setdefault('pheromone', 0)
 
         state = State(graph=graph, ants=ants, limit=limit, gen_size=gen_size)
 
@@ -167,7 +167,9 @@ class Solver:
     def global_update(self, state):
         for edge in state.graph.edges:
             amount = 0
-            for solution in state.solutions[:self.top]:
+            if self.top:
+                solutions = state.solutions[:self.top]
+            for solution in solutions:
                 if edge in solution.path:
                     amount += self.q / solution.weight
             p = state.graph.edges[edge]['pheromone']
