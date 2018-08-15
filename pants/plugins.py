@@ -7,6 +7,8 @@ from .solvers import SolverPlugin
 
 
 class PrintoutPlugin(SolverPlugin):
+    name = 'printout'
+
     def initialize(self, solver):
         super().initialize(solver)
         self.iteration = 0
@@ -14,13 +16,17 @@ class PrintoutPlugin(SolverPlugin):
         self.width = None
 
     def on_start(self, state):
+        self.iteration = 0
+        self.best_count = 0
         self.width = math.ceil(math.log10(state.limit)) + 1
+        self.width = max(self.width, len('Iteration'))
+        print(f'{"Iteration":{self.width}}\tSolution')
 
     def on_iteration(self, state):
         report = f'{self.iteration:{self.width}d}'
         self.iteration += 1
         if state.is_new_record:
-            report += f' {self.best_count:{self.width}d} {state.best}'
+            report += f'\t{state.best}'
             end = '\n'
             self.best_count += 1
         else:

@@ -29,7 +29,9 @@ class Solution:
         return node in self.visited or node == self.current
 
     def __repr__(self):
-        easy_id = ''.join(str(n) for n in self.get_id())
+        id_ = [str(n) for n in self.get_id()]
+        size = max([len(n) for n in id_])
+        easy_id = ' '.join(n.rjust(size) for n in id_)
         return '{} ({}, {})'.format(easy_id, self.weight, self.ant)
 
     def __hash__(self):
