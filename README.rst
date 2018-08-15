@@ -28,7 +28,10 @@ Traveling salesman, ant style
 Features
 --------
 
-* TODO
+* Works with any weighted networkx.Graph
+* Add plugins to the solver to customize its behavior
+* Contains a tool that can plot data collected during iterations
+* CLI capable of running the solver on graph files of various formats (including TSPLIB)
 
 Credits
 ---------
@@ -37,4 +40,3 @@ This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypack
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
-
