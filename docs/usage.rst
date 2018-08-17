@@ -22,4 +22,24 @@ Solving is easy. Let's do 100 iterations with a default number of ants:
 
 .. code-block:: python
 
-    >>> best = solver.solve(G, colony, limit=100)
+    >>> tour = solver.solve(G, colony, limit=100)
+
+How good was the best tour found? Let's look:
+
+.. code-block:: python
+
+    >>> tour.weight
+    1719
+
+You can list the solution tour in terms of the nodes or edges:
+
+    >>> tour.nodes
+    [19,
+     25,
+     7,
+    ...
+    >>> tour.path
+    [(19, 25),
+    (25, 7),
+    (7, 23),
+    ...
