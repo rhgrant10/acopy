@@ -10,7 +10,7 @@ To use ACOpy in a project, you simply use it to create a :class:`~Solver` and a 
     >>> solver = acopy.Solver(rho=.03, q=1)
     >>> colony = acopy.Colony(alpha=1, beta=3)
 
-We can use the solver and the colony to solve any weighted networkx graph. Let's use ``tsplib95`` to read a TSPLIB file into a networkx graph:
+We can use the solver and the colony to solve any weighted networkx graph. Let's use :func:`tsplib95.utils.load_problem` to read a TSPLIB file into a :class:`networkx.Graph`:
 
 .. code-block:: python
 
