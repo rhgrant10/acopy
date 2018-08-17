@@ -1,4 +1,4 @@
-* ACO-Pants version:
+* ACOpy version:
 * Python version:
 * Operating System:
 

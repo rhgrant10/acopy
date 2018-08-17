@@ -1,10 +1,10 @@
 """A Python3 implementation of the Ant Colony Optimization Meta-Heuristic.
 
-**Pants** provides you with the ability to quickly determine how to
+**ACOpy** provides you with the ability to quickly determine how to
 visit a collection of interconnected nodes such that the work done is
 minimized. Nodes can be any arbitrary collection of data while the edges
 represent the amount of "work" required to travel between two nodes.
-Thus, **Pants** is a tool for solving traveling salesman problems.
+Thus, **ACOpy** is a tool for solving traveling salesman problems.
 
 The world is built from a list of nodes and a function responsible for
 returning the length of the edge between any two given nodes. The length

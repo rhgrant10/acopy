@@ -1,8 +1,8 @@
 import pytest
 import networkx
 
-from pants import Ant
-from pants import Solution
+from acopy import Ant
+from acopy import Solution
 
 
 def test_ant_get_moves():

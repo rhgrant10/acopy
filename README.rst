@@ -1,24 +1,24 @@
-=========
-ACO-Pants
-=========
+=====
+ACOpy
+=====
 
 
-.. image:: https://img.shields.io/pypi/v/pants.svg
-        :target: https://pypi.python.org/pypi/pants
+.. image:: https://img.shields.io/pypi/v/acopy.svg
+        :target: https://pypi.python.org/pypi/acopy
 
-.. image:: https://img.shields.io/travis/rhgrant10/pants.svg
-        :target: https://travis-ci.org/rhgrant10/pants
+.. image:: https://img.shields.io/travis/rhgrant10/acopy.svg
+        :target: https://travis-ci.org/rhgrant10/acopy
 
-.. image:: https://readthedocs.org/projects/pants/badge/?version=latest
-        :target: https://pants.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/acopy/badge/?version=latest
+        :target: https://acopy.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
 
-Traveling salesman, ant style
+Ant Colony Optimization for Tthe Traveling Salesman Problem.
 
 
 * Free software: Apache Software License 2.0
-* Documentation: https://pants.readthedocs.io.
+* Documentation: https://acopy.readthedocs.io.
 
 
 Features
@@ -30,7 +30,7 @@ Features
 * CLI capable of running the solver on graph files of various formats (including TSPLIB)
 
 Credits
----------
+-------
 
 This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 

@@ -8,13 +8,13 @@ Installation
 Stable release
 --------------
 
-To install ACO-Pants, run this command in your terminal:
+To install ACOpy, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install pants
+    $ pip install acopy
 
-This is the preferred method to install ACO-Pants, as it will always install the most recent stable release. 
+This is the preferred method to install ACOpy, as it will always install the most recent stable release.
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
 you through the process.
@@ -26,19 +26,19 @@ you through the process.
 From sources
 ------------
 
-The sources for ACO-Pants can be downloaded from the `Github repo`_.
+The sources for ACOpy can be downloaded from the `Github repo`_.
 
 You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/rhgrant10/pants
+    $ git clone git://github.com/rhgrant10/acopy
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl  -OL https://github.com/rhgrant10/pants/tarball/master
+    $ curl  -OL https://github.com/rhgrant10/acopy/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -47,5 +47,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/rhgrant10/pants
-.. _tarball: https://github.com/rhgrant10/pants/tarball/master
+.. _Github repo: https://github.com/rhgrant10/acopy
+.. _tarball: https://github.com/rhgrant10/acopy/tarball/master

@@ -1,3 +1,0 @@
-click==6.7
-networkx==2.1
-tsplib95==0.3.0

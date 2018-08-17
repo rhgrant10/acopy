@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Console script for pants."""
+"""Console script for acopy."""
 import time
 import random
 

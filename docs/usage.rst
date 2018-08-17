@@ -2,13 +2,13 @@
 Usage
 =====
 
-To use ACO-Pants in a project:
+To use ACOpy in a project:
 
 .. code-block:: python
 
-    >>> import pants
+    >>> import acopy
 
-Pants works with any networkx graph. Let's use tsplib95 to create one from a TSPLIB file:
+acopy works with any networkx graph. Let's use tsplib95 to create one from a TSPLIB file:
 
 .. code-block:: python
 
@@ -21,17 +21,16 @@ With graph in hand, the first step is to create a :class:`~Solver`. There are tw
 
 .. code-block:: python
 
-    >>> solver = pants.Solver(rho=.03, q=1)
+    >>> solver = acopy.Solver(rho=.03, q=1)
 
 We also need a colony. Colonies are the source of ants. The :class:`~Colony` class let's you set the other two ACO paramters: ``alpha`` and ``beta``.
 
 .. code-block:: python
 
-    >>> solver = pants.Colony(alpha=1, beta=3)
+    >>> solver = acopy.Colony(alpha=1, beta=3)
 
 Now we can start solving! Let's do 100 iterations with a default number of ants.
 
 .. code-block:: python
 
     >>> best = solver.solve(G, colony, limit=100)
-
