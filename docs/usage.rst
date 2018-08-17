@@ -2,18 +2,12 @@
 Usage
 =====
 
-To use ACOpy in a project:
+ACOpy works with any networkx graph. Let's use tsplib95 to create one from a TSPLIB file:
 
 .. code-block:: python
 
     >>> import acopy
-
-acopy works with any networkx graph. Let's use tsplib95 to create one from a TSPLIB file:
-
-.. code-block:: python
-
     >>> import tsplib95
-    >>>
     >>> problem = tsplib95.load_problem('bayg29.tsp')
     >>> G = problem.get_graph()
 
