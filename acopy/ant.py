@@ -70,7 +70,7 @@ class Colony:
     """Colony of ants.
 
     Effectively this is a source of :class:`~acopy.ant.Ant` for a
-    :class:`~acopy.solver.Solver`.
+    :class:`~acopy.solvers.Solver`.
 
     :param float alpha: relative factor for edge weight
     :param float beta: relative factor for edge pheromone
