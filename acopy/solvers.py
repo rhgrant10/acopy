@@ -165,6 +165,8 @@ class Solver:
             amount = 0
             if self.top:
                 solutions = state.solutions[:self.top]
+            else:
+                solutions = state.solutions
             for solution in solutions:
                 if edge in solution.path:
                     amount += self.q / solution.weight
