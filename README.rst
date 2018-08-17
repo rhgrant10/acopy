@@ -13,10 +13,6 @@ ACO-Pants
         :target: https://pants.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-.. image:: https://pyup.io/repos/github/rhgrant10/pants/shield.svg
-     :target: https://pyup.io/repos/github/rhgrant10/pants/
-     :alt: Updates
-
 
 Traveling salesman, ant style
 
