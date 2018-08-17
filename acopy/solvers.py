@@ -95,6 +95,18 @@ class State:
 
 
 class Solver:
+    """ACO solver.
+
+    Solvers control the parameters related to phomone deposit and evaporation.
+    If top is not specified, it defaults to the number of ants used to solve a
+    graph.
+
+    :param float rho: percentage of pheromone that evaporates each iteration
+    :param float q: amount of pheromone each ant can deposit
+    :param int top: number of ants that deposit pheromone
+    :param list plugins: zero or more solver plugins
+    """
+
     def __init__(self, rho=.03, q=1, top=None, plugins=None):
         self.rho = rho
         self.q = q
@@ -113,12 +125,32 @@ class Solver:
         return f'{repr(self)}\n{plugins}'
 
     def solve(self, *args, **kwargs):
+        """Find and return the best solution.
+
+        Accepts exactly the same paramters as the :func:`~optimize` method.
+
+        :return: best solution found
+        :rtype: :class:`~Solution`
+        """
         best = None
         for solution in self.optimize(*args, **kwargs):
             best = solution
         return best
 
     def optimize(self, graph, colony, gen_size=None, limit=None):
+        """Find and return increasingly better solutions.
+
+        :param graph: graph to solve
+        :type graph: :class:`networkx.Graph`
+        :param colony: colony from which to source each :class:`~acopy.ant.Ant`
+        :type colony: :class:`~acopy.ant.Colony`
+        :param int gen_size: number of :class:`~acopy.ant.Ant` s to use
+                             (default is one per graph node)
+        :param int limit: maximum number of iterations to perform (default is
+                          unlimited so it will run forever)
+        :return: better solutions as they are found
+        :rtype: iter
+        """
         # initialize the colony of ants and the graph
         gen_size = gen_size or len(graph.nodes)
         ants = colony.get_ants(gen_size)

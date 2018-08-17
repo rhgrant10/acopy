@@ -67,6 +67,15 @@ class Ant:
 
 
 class Colony:
+    """Colony of ants.
+
+    Effectively this is a source of :class:`acopy.ant.Ants` for a
+    :class:`acopy.solver.Solver`.
+
+    :param float alpha: relative factor for edge weight
+    :param float beta: relative factor for edge pheromone
+    """
+
     def __init__(self, alpha=1, beta=3):
         self.alpha = alpha
         self.beta = beta
@@ -76,4 +85,9 @@ class Colony:
                 f'beta={self.beta})')
 
     def get_ants(self, count):
+        """Return the requested number of :class:`acopy.ant.Ants`.
+
+        :param int count: number of ants to return
+        :rtype: list
+        """
         return [Ant(**vars(self)) for __ in range(count)]
