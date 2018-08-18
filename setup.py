@@ -39,6 +39,12 @@ setup(
         ],
     },
     install_requires=requirements,
+    extras_require={
+        'plot': [
+            'matplotlib==2.1.1',
+            'pandas==0.23.3',
+        ],
+    },
     license="Apache Software License 2.0",
     long_description=readme + '\n\n' + history,
     include_package_data=True,
