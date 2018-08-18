@@ -13,10 +13,10 @@ from . import utils
 
 
 @click.group()
-@click.option('--seed', type=int, default=None)
+@click.option('--seed', type=str, default=None)
 @click.pass_context
 def main(ctx, seed):
-    ctx.obj = {'seed': seed or hash(time.time())}
+    ctx.obj = {'seed': seed or str(hash(time.time()))}
     random.seed(seed)
 
 
