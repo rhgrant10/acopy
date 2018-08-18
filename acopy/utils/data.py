@@ -39,7 +39,7 @@ def read_graph_data(path, format_):
     return read_format(path)
 
 
-def get_test_world_33():
+def get_demo_graph():
     TEST_COORDS_33 = [
         (34.021150, -84.267249), (34.021342, -84.363437),
         (34.022585, -84.362150), (34.022718, -84.361903),

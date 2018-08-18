@@ -12,65 +12,73 @@ from . import plugins
 from . import utils
 
 
-@click.group()
-@click.option('--seed', type=str, default=None)
-@click.pass_context
-def main(ctx, seed):
-    ctx.obj = {'seed': seed or str(hash(time.time()))}
+def solver_options(f):
+    click.option('--seed',
+                 type=str,
+                 default=None,
+                 help='set the random seed')(f)
+    click.option('--plot',
+                 default=False,
+                 is_flag=True,
+                 help='enable pretty graphs that show interation data (you '
+                      'must have matplotlib and pandas installed)')(f)
+    click.option('--darwin',
+                 default=0.0,
+                 help='sigma factor for variation of the alpha/beta settings '
+                      'for ants between iterations')(f)
+    click.option('--flip',
+                 type=int,
+                 default=None,
+                 help='seconds between periodic inversions of the pheromone '
+                      'levels on all edges, meaning the edges with the least '
+                      'pheromone will have the most and vice versa')(f)
+    click.option('--threshold',
+                 type=float,
+                 default=None,
+                 help='solution value below which the solver will stop')(f)
+    click.option('--reset',
+                 type=int,
+                 default=False,
+                 help='seconds between periodic resets of the pheromone '
+                      'levels on all edges')(f)
+    click.option('--elite',
+                 default=0.0,
+                 help='how many times the best solution is re-traced')(f)
+    click.option('--limit',
+                 default=2000,
+                 show_default=True,
+                 help='maximum number of iterations to perform')(f)
+    click.option('--ants',
+                 type=int,
+                 default=None,
+                 help='number of ants to use (defaults to number of nodes)')(f)
+    click.option('--top',
+                 default=None,
+                 help='number of ants that deposit pheromone (defaults to '
+                      'all)')(f)
+    click.option('--q',
+                 default=1.0,
+                 help='amount of pheromone each ant has')(f)
+    click.option('--rho',
+                 default=0.03,
+                 help='rate of pheromone evaporation')(f)
+    click.option('--beta',
+                 default=3.0,
+                 help='how much pheromone matters')(f)
+    click.option('--alpha',
+                 default=1.0,
+                 help='how much distance matters')(f)
+    return f
+
+
+def run_solver(graph, alpha, beta, rho, q, limit, top, ants, seed,
+               plugin_settings):
+    if plugin_settings.get('plot') and not utils.is_plot_enabled():
+        raise click.UsageError('you must install matplotlib and pandas to '
+                               'use the --plot option')
+    seed = seed or str(hash(time.time()))
+    click.echo(f'SEED={seed}')
     random.seed(seed)
-
-
-@main.command()
-@click.option('--file', type=click.Path(dir_okay=False, readable=True),
-              help='name of a file containing the graph to use')
-@click.option('--file-format', type=click.Choice(utils.data.get_formats()),
-              default='json',
-              help='format of the file containing the graph to use')
-@click.option('--alpha', default=1.0,
-              help='how much important the ants give to the distance when '
-                   'evaluating which edge to travel')
-@click.option('--beta', default=3.0,
-              help='how much imporance the ants give to the pheromone when '
-                   'evaluating which edge to travel')
-@click.option('--rho', default=0.03,
-              help='ratio of pheromone that remains after evaporation between '
-                   'iterations')
-@click.option('--q', default=1.0,
-              help='amount of pheromone each ant has')
-@click.option('--top', default=2,
-              help='limit on the number of ants that deposit pheromone')
-@click.option('--gen-size', type=int, default=None,
-              help='number of ants in each generation')
-@click.option('--limit', default=2000,
-              help='maximum number of iterations to perform')
-@click.option('--elite', default=0.0,
-              help='factor controlling how many ants will trace the global '
-                   'best solution after each iteration')
-@click.option('--plot/--no-plot', default=False,
-              help='enable or disable the use of matplotlib to show pretty '
-                   'graphs once all iterations are complete (you must have '
-                   'matplotlib and pandas installed)')
-@click.option('--reset', type=int, default=False,
-              help='seconds between periodic resets of the pheromone levels '
-                   'on all edges')
-@click.option('--threshold', type=float, default=None,
-              help='solution value below which the solver will stop')
-@click.option('--flip', type=int, default=False,
-              help='seconds between periodic flips of the pheromone levels on '
-                   'all edges, meaning the edges with the least pheromone '
-                   'will have the most and vice versa')
-@click.option('--darwin', default=0.0,
-              help='sigma factor for variation of the alpha/beta settings for '
-                   'ants in each generation')
-@click.pass_context
-def solve(ctx, alpha, beta, rho, q, limit, top, gen_size, plot, darwin, elite,
-          flip, threshold, reset, file, file_format):
-    click.echo(f'SEED={ctx.obj["seed"]}')
-
-    if file is None:
-        graph = utils.data.get_test_world_33()
-    else:
-        graph = utils.data.read_graph_data(file, file_format)
 
     colony = ant.Colony(alpha=alpha, beta=beta)
     solver = solvers.Solver(rho=rho, q=q, top=top)
@@ -82,33 +90,75 @@ def solve(ctx, alpha, beta, rho, q, limit, top, gen_size, plot, darwin, elite,
     click.echo('Registering Timer plugin...')
     solver.add_plugin(plugins.TimerPlugin())
 
-    if plot:
+    if plugin_settings.get('plot'):
         click.echo('Registering StatsRecorder plugin...')
-        solver.add_plugin(plugins.StatsRecorder())
-    if darwin:
+        solver.add_plu_settingsin(plugins.StatsRecorder())
+    if plugin_settings.get('darwin'):
         click.echo('Registering Darwin plugin...')
-        solver.add_plugin(plugins.DarwinPlugin(sigma=darwin))
-    if elite:
+        value = plugin_settings['darwin']
+        solver.add_plugin(plugins.DarwinPlugin(sigma=value))
+    if plugin_settings.get('elite'):
         click.echo('Registering EliteTracer plugin...')
-        solver.add_plugin(plugins.EliteTracer(factor=elite))
-    if reset:
+        value = plugin_settings['elite']
+        solver.add_plugin(plugins.EliteTracer(factor=value))
+    if plugin_settings.get('reset'):
         click.echo('Registering PeriodicReset plugin...')
-        solver.add_plugin(plugins.PeriodicReset(period=reset))
-    if flip:
+        value = plugin_settings['reset']
+        solver.add_plugin(plugins.PeriodicReset(period=value))
+    if plugin_settings.get('flip'):
         click.echo('Registering PheromoneFlip plugin...')
-        solver.add_plugin(plugins.PheromoneFlip(period=flip))
-    if threshold:
+        value = plugin_settings['flip']
+        solver.add_plugin(plugins.PheromoneFlip(period=value))
+    if plugin_settings.get('threshold'):
         click.echo('Registering ThresholdPlugin plugin...')
-        solver.add_plugin(plugins.ThresholdPlugin(threshold))
+        value = plugin_settings['threshold']
+        solver.add_plugin(plugins.ThresholdPlugin(value))
 
+    solver.solve(graph, colony, gen_size=ants, limit=limit)
 
-    solver.solve(graph, colony, gen_size=gen_size, limit=limit)
-
-    print(solver.plugins['timer'].get_report())
-    if plot:
+    click.echo(solver.plugins['timer'].get_report())
+    if plugin_settings.get('plot'):
         data = solver.plugins['stats-recorder'].stats
         plotter = utils.plot.Plotter(data)
         plotter.plot()
+
+
+@click.group()
+def main():
+    if not utils.is_plot_enabled():
+        click.echo(click.style('warning: plotting feature disabled',
+                               fg='yellow'))
+
+
+@main.command(short_help='run the demo')
+@solver_options
+def demo(alpha, beta, rho, q, limit, top, ants, seed, **plugin_settings):
+    """Run the solver against the 33-city demo graph."""
+    graph = utils.get_demo_graph()
+    run_solver(graph, alpha, beta, rho, q, limit, top, ants, seed,
+               plugin_settings)
+
+
+@main.command(short_help='use the solver on a graph')
+@solver_options
+@click.argument('filepath',
+                type=click.Path(dir_okay=False, readable=True))
+@click.option('--format',
+              default='json',
+              type=click.Choice(utils.data.get_formats()),
+              show_default=True,
+              metavar='FORMAT',
+              help='format of the file containing the graph to use; choices '
+                   f'are {", ".join(utils.data.get_formats())}')
+def solve(alpha, beta, rho, q, limit, top, ants, filepath, format, seed,
+          **plugin_settings):
+    """Use the solver on a graph in a file in one of several formats."""
+    try:
+        graph = utils.data.read_graph_data(filepath, format)
+    except Exception:
+        raise click.UsageError(f'failed to parse {filepath} as {format}')
+    run_solver(graph, alpha, beta, rho, q, limit, top, ants, seed,
+               plugin_settings)
 
 
 if __name__ == "__main__":
