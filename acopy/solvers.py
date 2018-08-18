@@ -152,7 +152,7 @@ class State:
     def best(self, best):
         self.is_new_record = self.record is None or best < self.record
         if self.is_new_record:
-            self.old_record = self.record
+            self.previous_record = self.record
             self.record = best
         self._best = best
 
