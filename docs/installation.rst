@@ -14,6 +14,12 @@ To install ACOpy, run this command in your terminal:
 
     $ pip install acopy
 
+There are some optional extras available that enable the ability to plot iteration data.
+
+.. code-block:: console
+
+    $ pip install acopy[plot]
+
 This is the preferred method to install ACOpy, as it will always install the most recent stable release.
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
