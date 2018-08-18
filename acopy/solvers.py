@@ -113,13 +113,16 @@ class State:
     :param list ants: the ants being used
     :param int limit: maximum number of iterations
     :param int gen_size: number of ants to use
+    :param colony: source colony for the ants
+    :type colony: :class:`~acopy.ant.Colony`
     """
 
-    def __init__(self, graph, ants, limit, gen_size):
+    def __init__(self, graph, ants, limit, gen_size, colony):
         self.graph = graph
         self.ants = ants
         self.limit = limit
         self.gen_size = gen_size
+        self.colony = colony
         self.solutions = None
         self.record = None
         self.previous_record = None
@@ -165,11 +168,6 @@ class Solver:
         return (f'{self.__class__.__name__}(rho={self.rho}, q={self.q}, '
                 f'top={self.top})')
 
-    def __str__(self):
-        plugin_reprs = '\n'.join([repr(p) for p in self.get_plugins()])
-        plugins = textwrap.indent(plugin_reprs, prefix='  ')
-        return f'{repr(self)}\n{plugins}'
-
     def solve(self, *args, **kwargs):
         """Find and return the best solution.
 
@@ -203,7 +201,8 @@ class Solver:
         for u, v in graph.edges:
             graph.edges[u, v].setdefault('pheromone', 0)
 
-        state = State(graph=graph, ants=ants, limit=limit, gen_size=gen_size)
+        state = State(graph=graph, ants=ants, limit=limit, gen_size=gen_size,
+                      colony=colony)
 
         # call start hook for all plugins
         self._call_plugins('start', state=state)

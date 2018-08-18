@@ -39,7 +39,7 @@ def main(ctx, seed):
               help='amount of pheromone each ant has')
 @click.option('--top', default=2,
               help='limit on the number of ants that deposit pheromone')
-@click.option('--gen-size', type=int, default=60,
+@click.option('--gen-size', type=int, default=None,
               help='number of ants in each generation')
 @click.option('--limit', default=2000,
               help='maximum number of iterations to perform')
@@ -75,25 +75,32 @@ def solve(ctx, alpha, beta, rho, q, limit, top, gen_size, plot, darwin, elite,
     colony = ant.Colony(alpha=alpha, beta=beta)
     solver = solvers.Solver(rho=rho, q=q, top=top)
 
+    click.echo(solver)
+    click.echo('Registering Printout plugin...')
     solver.add_plugin(plugins.PrintoutPlugin())
+
+    click.echo('Registering Timer plugin...')
     solver.add_plugin(plugins.TimerPlugin())
 
     if plot:
+        click.echo('Registering StatsRecorder plugin...')
         solver.add_plugin(plugins.StatsRecorder())
     if darwin:
+        click.echo('Registering Darwin plugin...')
         solver.add_plugin(plugins.DarwinPlugin(sigma=darwin))
     if elite:
+        click.echo('Registering EliteTracer plugin...')
         solver.add_plugin(plugins.EliteTracer(factor=elite))
     if reset:
+        click.echo('Registering PeriodicReset plugin...')
         solver.add_plugin(plugins.PeriodicReset(period=reset))
     if flip:
+        click.echo('Registering PheromoneFlip plugin...')
         solver.add_plugin(plugins.PheromoneFlip(period=flip))
     if threshold:
+        click.echo('Registering ThresholdPlugin plugin...')
         solver.add_plugin(plugins.ThresholdPlugin(threshold))
 
-    print(solver)
-    print(f'Using {gen_size} ants from {colony}')
-    print(f'Performing {limit} iterations:')
 
     solver.solve(graph, colony, gen_size=gen_size, limit=limit)
 

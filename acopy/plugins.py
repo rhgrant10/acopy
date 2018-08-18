@@ -21,6 +21,8 @@ class PrintoutPlugin(SolverPlugin):
         self.best_count = 0
         self.width = math.ceil(math.log10(state.limit)) + 1
         self.width = max(self.width, len('Iteration'))
+        print(f'Using {state.gen_size} ants from {state.colony}')
+        print(f'Performing {state.limit} iterations:')
         print(f'{"Iteration":{self.width}}\tCost\tSolution')
 
     def on_iteration(self, state):

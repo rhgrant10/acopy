@@ -75,20 +75,20 @@ The CLI tool included provides a quick way to solve graphs saved as files in a v
 
 .. code-block:: console
 
-    $ acopy solve --file ~/Downloads/ALL_tsp/burma14.tsp --file-format tsplib95 --limit 100
-    SEED=1846088270907688895
+    $ acopy solve --file ~/Downloads/ALL_tsp/burma14.tsp --file-format tsplib95 --limit 50
+    SEED=172438059386129273
     Solver(rho=0.03, q=1.0, top=2)
-      printout[]
-      timer[]
-    Using 60 ants from Colony(alpha=1.0, beta=3.0)
-    Performing 100 iterations:
+    Registering Printout plugin...
+    Registering Timer plugin...
+    Using 14 ants from Colony(alpha=1.0, beta=3.0)
+    Performing 50 iterations:
     Iteration   Cost    Solution
-            0   40      1 13 14 12 11  9 10  8  7  6  5  4  3  2
-            1   39      1 11  9 10  8  7  6  5  4  3  2 12 14 13
-            2   38      1 11  9 10  8  7  6  5  4  3 14 12  2 13
-           32   34      1 11  9 10  5  6 14  3  4 12  7 13  8  2
-           35   32      1 11  9 10 14  3  4 12  5  6  7 13  8  2
-           38   31      1 11  9 10  2  8 14  3  4 12  5  6  7 13
+            0   42      1 14 13 12 11  9 10  8  7  6  5  4  3  2
+            2   38      1 13 11  9 10  2  8  7  6  5  4  3 12 14
+            3   34      1 11  9 10  2  8  7  6  5  4  3 14 12 13
+            4   33      1 11  9 10  2  8 13  7  6  5  4 12  3 14
+           28   32      1 11  9 10 14  3  4 12  6  5  7 13  8  2
+           29   31      1 11  9 10  2  8 13  7  5  6 12  4  3 14
     Done
-    Total time: 2.206470251083374 seconds
-    Avg iteration time: 0.022064702510833742 seconds
+    Total time: 0.2856738567352295 seconds
+    Avg iteration time: 0.00571347713470459 seconds
