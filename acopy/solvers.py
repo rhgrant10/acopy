@@ -146,7 +146,6 @@ class State:
 
     @property
     def best(self):
-        """The best solution this iteration."""
         return self._best
 
     @best.setter
