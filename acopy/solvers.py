@@ -23,7 +23,7 @@ class Solution:
         self.start = start
         self.ant = ant
         self.current = start
-        self.weight = 0
+        self.cost = 0
         self.path = []
         self.nodes = [start]
         self.visited = set(self.nodes)
@@ -32,17 +32,17 @@ class Solution:
         return iter(self.path)
 
     def __eq__(self, other):
-        return self.weight == other.weight
+        return self.cost == other.cost
 
     def __lt__(self, other):
-        return self.weight < other.weight
+        return self.cost < other.cost
 
     def __contains__(self, node):
         return node in self.visited or node == self.current
 
     def __repr__(self):
         easy_id = self.get_easy_id(sep=',', monospace=False)
-        return '{}\t{}'.format(self.weight, easy_id)
+        return '{}\t{}'.format(self.cost, easy_id)
 
     def __hash__(self):
         return hash(self.get_id())
@@ -83,7 +83,7 @@ class Solution:
         edge = self.current, node
         data = self.graph.edges[edge]
         self.path.append(edge)
-        self.weight += data['weight']
+        self.cost += data['weight']
         self.current = node
 
     def trace(self, q, rho=0):
@@ -94,7 +94,7 @@ class Solution:
         :param float q: the amount of pheromone
         :param float rho: the percentage of pheromone to evaporate
         """
-        amount = q / self.weight
+        amount = q / self.cost
         for edge in self.path:
             self.graph.edges[edge]['pheromone'] += amount
             self.graph.edges[edge]['pheromone'] *= 1 - rho
@@ -259,7 +259,7 @@ class Solver:
                 solutions = state.solutions
             for solution in solutions:
                 if edge in solution.path:
-                    amount += self.q / solution.weight
+                    amount += self.q / solution.cost
             p = state.graph.edges[edge]['pheromone']
             state.graph.edges[edge]['pheromone'] = (1 - self.rho) * p + amount
 

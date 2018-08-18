@@ -30,7 +30,7 @@ class PrintoutPlugin(SolverPlugin):
         self.iteration += 1
         if state.is_new_record:
             best = state.record
-            report += f'\t{best.weight}\t{best.get_easy_id()}'
+            report += f'\t{best.cost}\t{best.get_easy_id()}'
             end = '\n'
             self.best_count += 1
         else:
@@ -153,7 +153,7 @@ class ThresholdPlugin(EarlyTerminationPlugin):
         self.threshold = threshold
 
     def should_terminate(self, state):
-        return state.record.weight <= self.threshold
+        return state.record.cost <= self.threshold
 
 
 class TimeLimitPlugin(EarlyTerminationPlugin):
@@ -208,7 +208,7 @@ class StatsRecorder(SolverPlugin):
 
     def on_iteration(self, state):
         levels = [edge['pheromone'] for edge in state.graph.edges.values()]
-        distances = [solution.weight for solution in state.solutions]
+        distances = [solution.cost for solution in state.solutions]
 
         solutions = set(state.solutions)
         solutions_seen = self.data['solutions']
@@ -233,7 +233,7 @@ class StatsRecorder(SolverPlugin):
                 'best': min(distances),
                 'worst': max(distances),
                 'avg': sum(distances) / num_ants,
-                'global_best': state.best.weight,
+                'global_best': state.best.cost,
             },
             'unique_solutions': {
                 'total': len(self.data['solutions']),

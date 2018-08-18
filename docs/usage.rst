@@ -31,7 +31,7 @@ How good was the best tour found? Let's look:
 
 .. code-block:: python
 
-    >>> tour.weight
+    >>> tour.cost
     1719
 
 You can list the solution tour in terms of the nodes or edges:
