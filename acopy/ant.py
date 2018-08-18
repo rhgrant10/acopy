@@ -7,6 +7,15 @@ from .solvers import Solution
 
 
 class Ant:
+    """An ant.
+
+    Ants explore a graph, using alpha and beta to guide their decision making
+    process when choosing which edge to travel next.
+
+    :param float alpha: how much pheromone matters
+    :param float beta: how much distance matters
+    """
+
     def __init__(self, alpha=1, beta=3):
         self.alpha = alpha
         self.beta = beta
@@ -15,6 +24,13 @@ class Ant:
         return f'Ant(alpha={self.alpha}, beta={self.beta})'
 
     def tour(self, graph):
+        """Find a solution to the given graph.
+
+        :param graph: the graph to solve
+        :type graph: :class:`networkx.Graph`
+        :return: one solution
+        :rtype: :class:`~acopy.solvers.Solution`
+        """
         solution = self.start_new_solution(graph)
         while True:
             moves = self.get_moves(graph, solution)
@@ -29,13 +45,37 @@ class Ant:
         return solution
 
     def start_new_solution(self, graph):
+        """Return a newly initialized solution for the given graph.
+
+        :param graph: the graph to solve
+        :type graph: :class:`networkx.Graph`
+        :return: empty solution
+        :rtype: :class:`~acopy.solvers.Solution`
+        """
         start = self.get_starting_node(graph)
         return Solution(graph, start, ant=self)
 
     def get_starting_node(self, graph):
+        """Return a starting node for an ant.
+
+        The default implementation simply chooses one at random.
+
+        :param graph: the graph to solve
+        :type graph: :class:`networkx.Graph`
+        :return: node
+        """
         return random.choice(list(graph.nodes))
 
     def get_moves(self, graph, solution):
+        """Return the nodes valid for the next move.
+
+        :param graph: the graph to solve
+        :type graph: :class:`networkx.Graph`
+        :param solution: current (incomplete) solution
+        :type solution: :class:`~acopy.solvers.Solution`
+        :return: valid moves
+        :rtype: list
+        """
         moves = []
         for node in graph[solution.current]:
             if node not in solution:
