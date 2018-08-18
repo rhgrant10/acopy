@@ -8,7 +8,6 @@ from .solvers import SolverPlugin
 
 
 class Printout(SolverPlugin):
-    name = 'printout'
 
     def initialize(self, solver):
         super().initialize(solver)

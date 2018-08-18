@@ -81,22 +81,10 @@ Printout
 
 Print information about the solver as it works.
 
-:on_start:
-    prints information about the solver, colony, and settings
-
-:on_iteration:
-    prints iteration number, cost, and nodes for each new best solution
-
-:on_finish:
-    prints "Done"
-
 EliteTracer
 ~~~~~~~~~~~
 
 Let the best ant from each iteration deposit more pheromone.
-
-:on_iteration:
-    deposits additional pheromone along the best solution found
 
 You can control how much pheromone is deposited by specifying the ``factor``. For example, to deposit an additional two times the amount of pheromone set the factor to 2:
 
@@ -106,13 +94,26 @@ You can control how much pheromone is deposited by specifying the ``factor``. Fo
 
 You can also think of this as how many additional times the best ant from each iteration deposits her pheromone.
 
+PeriodicActionPlugin
+~~~~~~~~~~~~~~~~~~~~
+
+Perform some action periodically.
+
+Set the number of iterations that constitute a period using the ``period`` paramter:
+
+.. code-block:: python
+
+    >>> periodic = acopy.plugins.PeriodicActionPlugin(period=100)
+
+By itself, the periodic action plugin does nothing but instead is designed to be subclassed. There are two built-in subclasses.
+
 PeriodicReset
-~~~~~~~~~~~~~
+#############
 
 Periodically reset the pheromone levels.
 
 PheromoneFlip
-~~~~~~~~~~~~~
+#############
 
 Periodically invert the pheromone levels so that the best edges become the worst, and vice versa.
 
@@ -126,25 +127,71 @@ Darwin
 
 Apply variation to the alpha and beta values on each iteration.
 
+You can control the sigma value for the guassian distribution used to choose the next values:
+
+.. code-block:: python
+
+    >>> darwin = acopy.plugins.Darwin(sigma=.25)
+
+
 Threshold
 ~~~~~~~~~
 
-Set a minimum threshold cost for the solver. If a solution is found that dips below the threshold then the solver terminates early.
+Set a minimum threshold cost for the solver. If a solution is found that meets or dips below the threshold then the solver terminates early.
+
+.. code-block:: python
+
+    >>> threshold = acopy.plugins.Threshold(threshold=1719)
 
 TimeLimit
 ~~~~~~~~~
 
 Set a time limit for the solver.
 
+The maximum number of seconds is of course configurable. The plugin will stop the solver from iterating again if the number of seconds exceeds the value set:
+
+.. code-block:: python
+
+    >>> time_limit = acopy.plugins.TimeLimit(seconds=30)
+
+Note this means that it is possible to exceed the time limit since it will not stop the solver mid-iteration.
+
 StatsRecorder
 ~~~~~~~~~~~~~
 
 Record data about the solutions and pheromone levels on each iteration.
 
+Specifically the plugin records the amount of pheromone on every edge as well as the min, max, and average pheromone levels. It records the best, worst, average, and global best solution found for each iteration. Lastly, it tracks the number of unique soltions found for the each iteration, for all iterations, and how many unique solutions were new.
+
 Writing New Plugins
 -------------------
 
-Here's how.
+Writing a new plugin is realtively easy. Simply subclass :class:`acopy.solvers.SolverPlugin` and provide one of the following hooks:
+
+:on_start: called before the first iteration
+:on_iteration: called upon completion of each iteration
+:on_finish: called after the last iteration
+
+Each hook takes as its only argument an instance of :class:`acopy.solvers.State` that contains information about the state of the solver.
+
+For example, let's write a plugin that increases the number of ants each iteration.
+
+.. code-block:: python
+
+    class IncreasingAnts(acopy.solvers.SolverPlugin):
+
+        def __init__(self, delta=1):
+            super().__init__(delta=delta)
+            self.delta = delta
+
+        def on_iteration(self, state):
+            ant = state.colony.get_ants(self.delta)
+            state.ants.append(ant)
+
+Note that you must pass the parameters you want to appear in the :func:`repr` to :func:`super` as keyword arguments:
+
+    >>> IncreasingAnts(2)
+    <IncreasingAnts(delta=2)>
 
 
 CLI Tool
@@ -156,10 +203,11 @@ The CLI tool included provides a quick way to solve graphs saved as files in a v
 
     $ acopy solve --file ~/Downloads/ALL_tsp/burma14.tsp --file-format tsplib95 --limit 50
     SEED=172438059386129273
-    Solver(rho=0.03, q=1.0, top=2)
-    Registering Printout plugin...
-    Registering Timer plugin...
-    Using 14 ants from Colony(alpha=1.0, beta=3.0)
+    Solver(rho=0.03, q=1.0, top=None)
+    Registering plugin: <Printout()>
+    Registering plugin: <Timer()>
+    Registering plugin: <Darwin(sigma=3.0)>
+    Using 33 ants from Colony(alpha=1.0, beta=3.0)
     Performing 50 iterations:
     Iteration   Cost    Solution
             0   42      1 14 13 12 11  9 10  8  7  6  5  4  3  2

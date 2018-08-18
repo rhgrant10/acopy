@@ -84,36 +84,38 @@ def run_solver(graph, alpha, beta, rho, q, limit, top, ants, seed,
     solver = solvers.Solver(rho=rho, q=q, top=top)
 
     click.echo(solver)
-    click.echo('Registering Printout plugin...')
-    solver.add_plugin(plugins.Printout())
 
-    click.echo('Registering Timer plugin...')
+    printout = plugins.Printout()
+    click.echo(f'Registering plugin: {printout}')
+    solver.add_plugin(printout)
+
     timer = plugins.Timer()
+    click.echo(f'Registering plugin: {timer}')
     solver.add_plugin(timer)
 
     if plugin_settings.get('plot'):
         click.echo('Registering StatsRecorder plugin...')
         solver.add_plu_settingsin(plugins.StatsRecorder())
     if plugin_settings.get('darwin'):
-        click.echo('Registering Darwin plugin...')
-        value = plugin_settings['darwin']
-        solver.add_plugin(plugins.Darwin(sigma=value))
+        plugin = plugins.Darwin(sigma=plugin_settings['darwin'])
+        click.echo(f'Registering plugin: {plugin}')
+        solver.add_plugin(plugin)
     if plugin_settings.get('elite'):
-        click.echo('Registering EliteTracer plugin...')
-        value = plugin_settings['elite']
-        solver.add_plugin(plugins.EliteTracer(factor=value))
+        plugin = plugins.EliteTracer(factor=plugin_settings['elite'])
+        click.echo(f'Registering plugin: {plugin}')
+        solver.add_plugin(plugin)
     if plugin_settings.get('reset'):
-        click.echo('Registering PeriodicReset plugin...')
-        value = plugin_settings['reset']
-        solver.add_plugin(plugins.PeriodicReset(period=value))
+        plugin = plugins.PeriodicReset(period=plugin_settings['reset'])
+        click.echo(f'Registering plugin: {plugin}')
+        solver.add_plugin(plugin)
     if plugin_settings.get('flip'):
-        click.echo('Registering PheromoneFlip plugin...')
-        value = plugin_settings['flip']
-        solver.add_plugin(plugins.PheromoneFlip(period=value))
+        plugin = plugins.PheromoneFlip(period=plugin_settings['flip'])
+        click.echo(f'Registering plugin: {plugin}')
+        solver.add_plugin(plugin)
     if plugin_settings.get('threshold'):
-        click.echo('Registering ThresholdPlugin plugin...')
-        value = plugin_settings['threshold']
-        solver.add_plugin(plugins.Threshold(value))
+        plugin = plugins.Threshold(plugin_settings['threshold'])
+        click.echo(f'Registering plugin: {plugin}')
+        solver.add_plugin(plugin)
 
     solver.solve(graph, colony, gen_size=ants, limit=limit)
 
@@ -135,7 +137,7 @@ def main():
 @solver_options
 def demo(alpha, beta, rho, q, limit, top, ants, seed, **plugin_settings):
     """Run the solver against the 33-city demo graph."""
-    graph = utils.get_demo_graph()
+    graph = utils.data.get_demo_graph()
     run_solver(graph, alpha, beta, rho, q, limit, top, ants, seed,
                plugin_settings)
 

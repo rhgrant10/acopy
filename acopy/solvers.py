@@ -316,7 +316,7 @@ class SolverPlugin:
 
     def __repr__(self):
         params = ', '.join(f'{k}={v}'for k, v in self._params.items())
-        return f'{self.name}[{params}]'
+        return f'<{self.__class__.__qualname__}({params})>'
 
     def __call__(self, hook, **kwargs):
         return getattr(self, f'on_{hook}')(**kwargs)
