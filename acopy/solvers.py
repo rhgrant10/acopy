@@ -105,8 +105,23 @@ class Solution:
 class State:
     """Solver state.
 
-    Solver state contains the state of a solution in progress. It also contains
-    solver settings.
+    This class tracks the state of a solution in progress and is passed to each
+    plugin hook. Specically it conatins:
+
+    ===================== ======================================
+    Attribute             Description
+    ===================== ======================================
+    ``graph``             graph being solved
+    ``colony``            colony that generated the ants
+    ``ants``              ants being used to solve the graph
+    ``limit``             maximum number of iterations
+    ``gen_size``          number of ants being used
+    ``solutions``         solutions found this iteration
+    ``best``              best solution found this iteration
+    ``is_new_record``     whether the best is a new record
+    ``record``            best solution found so far
+    ``previous_record``   previously best solution
+    ===================== ======================================
 
     :param graph: a graph
     :type graph: :class:`networkx.Graph`
@@ -131,7 +146,7 @@ class State:
 
     @property
     def best(self):
-        """The best solution found so far."""
+        """The best solution this iteration."""
         return self._best
 
     @best.setter
