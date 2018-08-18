@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import sys
 import itertools
 
 
@@ -29,3 +30,7 @@ def is_plot_enabled():
 
 
 is_plot_enabled.cache = None
+
+
+def positive(value):
+    return max(value, sys.float_info.min)

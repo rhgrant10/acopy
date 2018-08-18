@@ -36,6 +36,8 @@ How good was the best tour found? Let's look:
 
 You can list the solution tour in terms of the nodes or edges:
 
+.. code-block:: python
+
     >>> tour.nodes
     [19,
      25,
@@ -51,16 +53,93 @@ You can list the solution tour in terms of the nodes or edges:
 Solver Plugins
 ==============
 
-Here's how you use them.
+Adding plugins to a solver can either change how the solver works or add additional functionality. Adding a plugin is easy. Let's add a plugin that times the solver:
+
+.. code-block:: python
+
+    >>> timer = acopy.plugins.TimerPlugin()
+    >>> solver.add_plugin(timer)
+
+Now after we solve we can get the duration and average time per iteration:
+
+.. code-block:: python
+
+    >>> best = solver.solve(G, colony, limit=100)
+    >>> timer.duration
+    4.946878910064697
+    >>> timer.time_per_iter
+    0.049468789100646976
+
 
 Available Plugins
 -----------------
 
-One
-~~~
+There are several plugins built into acopy. Below is a description of what they do.
 
-Two
-~~~
+Printout
+~~~~~~~~
+
+Print information about the solver as it works.
+
+:on_start:
+    prints information about the solver, colony, and settings
+
+:on_iteration:
+    prints iteration number, cost, and nodes for each new best solution
+
+:on_finish:
+    prints "Done"
+
+EliteTracer
+~~~~~~~~~~~
+
+Let the best ant from each iteration deposit more pheromone.
+
+:on_iteration:
+    deposits additional pheromone along the best solution found
+
+You can control how much pheromone is deposited by specifying the ``factor``. For example, to deposit an additional two times the amount of pheromone set the factor to 2:
+
+.. code-block:: python
+
+    >>> elite = acopy.plugins.EliteTracer(factor=2)
+
+You can also think of this as how many additional times the best ant from each iteration deposits her pheromone.
+
+PeriodicReset
+~~~~~~~~~~~~~
+
+Periodically reset the pheromone levels.
+
+PheromoneFlip
+~~~~~~~~~~~~~
+
+Periodically invert the pheromone levels so that the best edges become the worst, and vice versa.
+
+Timer
+~~~~~
+
+Time the total duration of the solver as well as the average time per iteration.
+
+Darwin
+~~~~~~
+
+Apply variation to the alpha and beta values on each iteration.
+
+Threshold
+~~~~~~~~~
+
+Set a minimum threshold cost for the solver. If a solution is found that dips below the threshold then the solver terminates early.
+
+TimeLimit
+~~~~~~~~~
+
+Set a time limit for the solver.
+
+StatsRecorder
+~~~~~~~~~~~~~
+
+Record data about the solutions and pheromone levels on each iteration.
 
 Writing New Plugins
 -------------------

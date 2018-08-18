@@ -4,6 +4,7 @@ import itertools
 import bisect
 import random
 
+from . import utils
 from .solvers import Solution
 
 
@@ -20,6 +21,24 @@ class Ant:
     def __init__(self, alpha=1, beta=3):
         self.alpha = alpha
         self.beta = beta
+
+    @property
+    def alpha(self):
+        """How much pheromone matters. Always kept greater than zero."""
+        return self._alpha
+
+    @alpha.setter
+    def alpha(self, value):
+        self._alpha = utils.positive(value)
+
+    @property
+    def beta(self):
+        """How much distance matters. Always kept greater than zero."""
+        return self._beta
+
+    @beta.setter
+    def beta(self, value):
+        self._beta = utils.positive(value)
 
     def __repr__(self):
         return f'Ant(alpha={self.alpha}, beta={self.beta})'

@@ -85,10 +85,11 @@ def run_solver(graph, alpha, beta, rho, q, limit, top, ants, seed,
 
     click.echo(solver)
     click.echo('Registering Printout plugin...')
-    solver.add_plugin(plugins.PrintoutPlugin())
+    solver.add_plugin(plugins.Printout())
 
     click.echo('Registering Timer plugin...')
-    solver.add_plugin(plugins.TimerPlugin())
+    timer = plugins.Timer()
+    solver.add_plugin(timer)
 
     if plugin_settings.get('plot'):
         click.echo('Registering StatsRecorder plugin...')
@@ -96,7 +97,7 @@ def run_solver(graph, alpha, beta, rho, q, limit, top, ants, seed,
     if plugin_settings.get('darwin'):
         click.echo('Registering Darwin plugin...')
         value = plugin_settings['darwin']
-        solver.add_plugin(plugins.DarwinPlugin(sigma=value))
+        solver.add_plugin(plugins.Darwin(sigma=value))
     if plugin_settings.get('elite'):
         click.echo('Registering EliteTracer plugin...')
         value = plugin_settings['elite']
@@ -112,11 +113,11 @@ def run_solver(graph, alpha, beta, rho, q, limit, top, ants, seed,
     if plugin_settings.get('threshold'):
         click.echo('Registering ThresholdPlugin plugin...')
         value = plugin_settings['threshold']
-        solver.add_plugin(plugins.ThresholdPlugin(value))
+        solver.add_plugin(plugins.Threshold(value))
 
     solver.solve(graph, colony, gen_size=ants, limit=limit)
 
-    click.echo(solver.plugins['timer'].get_report())
+    click.echo(timer.get_report())
     if plugin_settings.get('plot'):
         data = solver.plugins['stats-recorder'].stats
         plotter = utils.plot.Plotter(data)

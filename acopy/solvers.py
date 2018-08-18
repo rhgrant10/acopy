@@ -277,7 +277,7 @@ class Solver:
         """Add one or more solver plugins."""
         for plugin in plugins:
             plugin.initialize(self)
-            self.plugins[plugin.name] = plugin
+            self.plugins[plugin.__class__.__qualname__] = plugin
 
     def get_plugins(self):
         """Return the added plugins.

@@ -7,7 +7,7 @@ import time
 from .solvers import SolverPlugin
 
 
-class PrintoutPlugin(SolverPlugin):
+class Printout(SolverPlugin):
     name = 'printout'
 
     def initialize(self, solver):
@@ -42,7 +42,6 @@ class PrintoutPlugin(SolverPlugin):
 
 
 class EliteTracer(SolverPlugin):
-    name = 'elite'
 
     def __init__(self, factor=1):
         super().__init__(factor=factor)
@@ -72,15 +71,13 @@ class PeriodicActionPlugin(SolverPlugin):
 
 
 class PeriodicReset(PeriodicActionPlugin):
-    name = 'reset'
 
     def action(self, state):
         for edge in state.graph.edges:
-            state.graph.edges[edge]['pheromone'] = 1
+            state.graph.edges[edge]['pheromone'] = 0
 
 
 class PheromoneFlip(PeriodicActionPlugin):
-    name = 'p-flip'
 
     def action(self, state):
         data = []
@@ -92,8 +89,7 @@ class PheromoneFlip(PeriodicActionPlugin):
             edge['pheromone'] = level
 
 
-class TimerPlugin(SolverPlugin):
-    name = 'timer'
+class Timer(SolverPlugin):
 
     def initialize(self, solver):
         super().initialize(solver)
@@ -116,8 +112,7 @@ class TimerPlugin(SolverPlugin):
         ])
 
 
-class DarwinPlugin(SolverPlugin):
-    name = 'darwin'
+class Darwin(SolverPlugin):
 
     def __init__(self, sigma=.1):
         super().__init__(sigma=sigma)
@@ -145,8 +140,7 @@ class EarlyTerminationPlugin(SolverPlugin):
         raise NotImplementedError()
 
 
-class ThresholdPlugin(EarlyTerminationPlugin):
-    name = 'threshold'
+class Threshold(EarlyTerminationPlugin):
 
     def __init__(self, threshold):
         super().__init__(threshold=threshold)
@@ -156,8 +150,7 @@ class ThresholdPlugin(EarlyTerminationPlugin):
         return state.record.cost <= self.threshold
 
 
-class TimeLimitPlugin(EarlyTerminationPlugin):
-    name = 'time-limit'
+class TimeLimit(EarlyTerminationPlugin):
 
     def __init__(self, seconds):
         super().__init__(seconds=seconds)
@@ -172,7 +165,6 @@ class TimeLimitPlugin(EarlyTerminationPlugin):
 
 
 class StatsRecorder(SolverPlugin):
-    name = 'stats-recorder'
 
     def __init__(self):
         super().__init__()
