@@ -9,10 +9,20 @@ except ImportError:
 
 
 class Plotter:
+    """Utility for plotting iteration data using matplotlib.
+
+    This is meant to be used in combination with the :class:`~StatsRecorder`
+    plugin which collects stats about solutions and pheromone levels on each
+    iteration.
+
+    :param dict stats: map of stats by name
+    """
+
     def __init__(self, stats):
         self.stats = stats
 
     def plot(self):
+        """Create and show the plot."""
         plt.figure()
         plt.title('Solutions (stats)')
         self.plot_solutions()

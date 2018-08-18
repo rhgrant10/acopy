@@ -10,6 +10,13 @@ def looper(limit):
 
 
 def is_plot_enabled():
+    """Return true if plotting is enabled.
+
+    Plotting requires matplotlib and pandas to be installed.
+
+    :return: indication of whether plotting is enabled
+    :rtype: bool
+    """
     if is_plot_enabled.cache is None:
         try:
             import matplotlib  # noqa: 401
