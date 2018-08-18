@@ -21,13 +21,14 @@ class PrintoutPlugin(SolverPlugin):
         self.best_count = 0
         self.width = math.ceil(math.log10(state.limit)) + 1
         self.width = max(self.width, len('Iteration'))
-        print(f'{"Iteration":{self.width}}\tSolution')
+        print(f'{"Iteration":{self.width}}\tCost\tSolution')
 
     def on_iteration(self, state):
         report = f'{self.iteration:{self.width}d}'
         self.iteration += 1
         if state.is_new_record:
-            report += f'\t{state.best}'
+            best = state.record
+            report += f'\t{best.weight}\t{best.get_easy_id()}'
             end = '\n'
             self.best_count += 1
         else:

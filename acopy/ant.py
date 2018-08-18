@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import sys
 import itertools
 import bisect
 import random
@@ -31,25 +32,21 @@ class Ant:
         :return: one solution
         :rtype: :class:`~acopy.solvers.Solution`
         """
-        solution = self.start_new_solution(graph)
-        while True:
-            moves = self.get_moves(graph, solution)
-            if not moves:
-                break
-            elif len(moves) > 1:
-                node = self.choose_move(graph, solution.current, moves)
-            else:
-                node = moves[0]
+        solution = self.initialize_solution(graph)
+        unvisited = self.get_unvisited_nodes(graph, solution)
+        while unvisited:
+            node = self.choose_destination(graph, solution.current, unvisited)
             solution.add_node(node)
+            unvisited.remove(node)
         solution.close()
         return solution
 
-    def start_new_solution(self, graph):
+    def initialize_solution(self, graph):
         """Return a newly initialized solution for the given graph.
 
         :param graph: the graph to solve
         :type graph: :class:`networkx.Graph`
-        :return: empty solution
+        :return: intialized solution
         :rtype: :class:`~acopy.solvers.Solution`
         """
         start = self.get_starting_node(graph)
@@ -58,51 +55,85 @@ class Ant:
     def get_starting_node(self, graph):
         """Return a starting node for an ant.
 
-        The default implementation simply chooses one at random.
-
-        :param graph: the graph to solve
+        :param graph: the graph being solved
         :type graph: :class:`networkx.Graph`
         :return: node
         """
         return random.choice(list(graph.nodes))
 
-    def get_moves(self, graph, solution):
-        """Return the nodes valid for the next move.
+    def get_unvisited_nodes(self, graph, solution):
+        """Return the unvisited nodes.
 
-        :param graph: the graph to solve
+        :param graph: the graph being solved
         :type graph: :class:`networkx.Graph`
-        :param solution: current (incomplete) solution
+        :param solution: in progress solution
         :type solution: :class:`~acopy.solvers.Solution`
-        :return: valid moves
+        :return: unvisited nodes
         :rtype: list
         """
-        moves = []
+        nodes = []
         for node in graph[solution.current]:
             if node not in solution:
-                moves.append(node)
-        return moves
+                nodes.append(node)
+        return nodes
 
-    def choose_move(self, graph, current, moves):
-        scores = self.score_moves(graph, current, moves)
-        return self.choose_scored_move(moves, scores)
+    def choose_destination(self, graph, current, unvisited):
+        """Return the next node.
 
-    def score_moves(self, graph, current, moves):
+        :param graph: the graph being solved
+        :type graph: :class:`networkx.Graph`
+        :param current: starting node
+        :param list unvisited: available nodes
+        :return: chosen edge
+        """
+        if len(unvisited) == 1:
+            return unvisited[0]
+        scores = self.get_scores(graph, current, unvisited)
+        return self.choose_node(unvisited, scores)
+
+    def get_scores(self, graph, current, destinations):
+        """Return scores for the given destinations.
+
+        :param graph: the graph being solved
+        :type graph: :class:`networkx.Graph`
+        :param current: the node from which to score the destinations
+        :param list destinations: available, unvisited nodes
+        :return: scores
+        :rtype: list
+        """
         scores = []
-        for node in moves:
-            data = graph.edges[current, node]
-            score = self.score_move(data)
+        for node in destinations:
+            edge = graph.edges[current, node]
+            score = self.score_edge(edge)
             scores.append(score)
         return scores
 
-    def choose_scored_move(self, moves, scores):
+    def choose_node(self, choices, scores):
+        """Return one of the choices.
+
+        Note that ``scores[i]`` corresponds to ``choices[i]``.
+
+        :param list choices: the unvisited nodes
+        :param list scores: the scores for the given choices
+        :return: one of the choices
+        """
         total = sum(scores)
         cumdist = list(itertools.accumulate(scores)) + [total]
         index = bisect.bisect(cumdist, random.random() * total)
-        return moves[min(index, len(moves) - 1)]
+        return choices[min(index, len(choices) - 1)]
 
-    def score_move(self, data):
-        pre = 1 / data.get('weight', 1)
-        post = data['pheromone']
+    def score_edge(self, edge):
+        """Return the score for the given edge.
+
+        :param dict edge: the edge data
+        :return: score
+        :rtype: float
+        """
+        weight = edge.get('weight', 1)
+        if weight == 0:
+            return sys.float_info.max
+        pre = 1 / weight
+        post = edge['pheromone']
         return post ** self.alpha * pre ** self.beta
 
 
@@ -125,7 +156,7 @@ class Colony:
                 f'beta={self.beta})')
 
     def get_ants(self, count):
-        """Return the requested number of :class:`~acopy.ant.Ant`.
+        """Return the requested number of :class:`~acopy.ant.Ant` s.
 
         :param int count: number of ants to return
         :rtype: list

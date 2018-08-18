@@ -9,6 +9,15 @@ from . import utils
 
 @functools.total_ordering
 class Solution:
+    """Tour for a graph.
+
+    :param graph: a graph
+    :type graph: :class:`networkx.Graph`
+    :param start: starting node
+    :param ant: ant responsible
+    :type ant: :class:`~acopy.ant.Ant`
+    """
+
     def __init__(self, graph, start, ant=None):
         self.graph = graph
         self.start = start
@@ -32,25 +41,42 @@ class Solution:
         return node in self.visited or node == self.current
 
     def __repr__(self):
-        id_ = [str(n) for n in self.get_id()]
-        size = max([len(n) for n in id_])
-        easy_id = ' '.join(n.rjust(size) for n in id_)
-        return '{} ({}, {})'.format(easy_id, self.weight, self.ant)
+        easy_id = self.get_easy_id(sep=',', monospace=False)
+        return '{}\t{}'.format(self.weight, easy_id)
 
     def __hash__(self):
         return hash(self.get_id())
 
+    def get_easy_id(self, sep=' ', monospace=True):
+        nodes = [str(n) for n in self.get_id()]
+        if monospace:
+            size = max([len(n) for n in nodes])
+            nodes = [n.rjust(size) for n in nodes]
+        return sep.join(nodes)
+
     def get_id(self):
+        """Return the ID of the solution.
+
+        The default implementation is just each of the nodes in visited order.
+
+        :return: solution ID
+        :rtype: tuple
+        """
         first = min(self.nodes)
         index = self.nodes.index(first)
         return tuple(self.nodes[index:] + self.nodes[:index])
 
     def add_node(self, node):
+        """Reocrd a node as visited.
+
+        :param node: the node visited
+        """
         self.nodes.append(node)
         self.visited.add(node)
         self._add_node(node)
 
     def close(self):
+        """Close the tour so that the first and last nodes are the same."""
         self._add_node(self.start)
 
     def _add_node(self, node):
@@ -61,6 +87,13 @@ class Solution:
         self.current = node
 
     def trace(self, q, rho=0):
+        """Deposit pheromone on the edges.
+
+        Note that by default no pheromone evaporates.
+
+        :param float q: the amount of pheromone
+        :param float rho: the percentage of pheromone to evaporate
+        """
         amount = q / self.weight
         for edge in self.path:
             self.graph.edges[edge]['pheromone'] += amount
@@ -70,6 +103,18 @@ class Solution:
 
 
 class State:
+    """Solver state.
+
+    Solver state contains the state of a solution in progress. It also contains
+    solver settings.
+
+    :param graph: a graph
+    :type graph: :class:`networkx.Graph`
+    :param list ants: the ants being used
+    :param int limit: maximum number of iterations
+    :param int gen_size: number of ants to use
+    """
+
     def __init__(self, graph, ants, limit, gen_size):
         self.graph = graph
         self.ants = ants
@@ -83,6 +128,7 @@ class State:
 
     @property
     def best(self):
+        """The best solution found so far."""
         return self._best
 
     @best.setter
@@ -190,9 +236,22 @@ class Solver:
         self._call_plugins('finish', state=state)
 
     def find_solutions(self, graph, ants):
+        """Return the solutions found for the given ants.
+
+        :param graph: a graph
+        :type graph: :class:`networkx.Graph`
+        :param list ants: the ants to use
+        :return: one solution per ant
+        :rtype: list
+        """
         return [ant.tour(graph) for ant in ants]
 
     def global_update(self, state):
+        """Perform a global pheromone update.
+
+        :param state: solver state
+        :type state: :class:`~State`
+        """
         for edge in state.graph.edges:
             amount = 0
             if self.top:
@@ -206,14 +265,27 @@ class Solver:
             state.graph.edges[edge]['pheromone'] = (1 - self.rho) * p + amount
 
     def add_plugin(self, plugin):
+        """Add a single solver plugin.
+
+        If plugins have the same name, only the last one added is kept.
+
+        :param plugin: the plugin to add
+        :type plugin: :class:`acopy.plugins.SolverPlugin`
+        """
         self.add_plugins(plugin)
 
     def add_plugins(self, *plugins):
+        """Add one or more solver plugins."""
         for plugin in plugins:
             plugin.initialize(self)
             self.plugins[plugin.name] = plugin
 
     def get_plugins(self):
+        """Return the added plugins.
+
+        :return: plugins previously added
+        :rtype: list
+        """
         return self.plugins.values()
 
     def _call_plugins(self, hook, **kwargs):
@@ -227,6 +299,17 @@ class Solver:
 
 
 class SolverPlugin:
+    """Solver plugin.
+
+    Solver plugins can be added to any solver to customize its behavior.
+    Plugins are initilized once when added, once before the first solver
+    iteration, once after each solver iteration has completed, and once after
+    all iterations have completed.
+
+    Implenting each hook is optional.
+    """
+
+    #: unique name
     name = 'plugin'
 
     def __init__(self, **kwargs):
@@ -240,13 +323,37 @@ class SolverPlugin:
         return getattr(self, f'on_{hook}')(**kwargs)
 
     def initialize(self, solver):
+        """Perform actions when being added to a solver.
+
+        Though technically not required, this method should be probably be
+        idempotent since the same plugin could be added to the same solver
+        multiple times (perhaps even by mistake).
+
+        :param solver: the solver to which the plugin is being added
+        :type solver: :class:`acopy.solvers.Solver`
+        """
         self.solver = solver
 
     def on_start(self, state):
+        """Perform actions before the first iteration.
+
+        :param state: solver state
+        :type state: :class:`acopy.solvers.State`
+        """
         pass
 
     def on_iteration(self, state):
+        """Perform actions after each iteration.
+
+        :param state: solver state
+        :type state: :class:`acopy.solvers.State`
+        """
         pass
 
     def on_finish(self, state):
+        """Perform actions once all iterations have completed.
+
+        :param state: solver state
+        :type state: :class:`acopy.solvers.State`
+        """
         pass

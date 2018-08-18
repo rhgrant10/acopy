@@ -13,11 +13,11 @@ from . import utils
 
 
 @click.group()
-@click.option('--global-seed', type=int, default=None)
-def main(global_seed):
-    global_seed = global_seed or hash(time.time())
-    print(f'SEED={global_seed}')
-    random.seed(global_seed)
+@click.option('--seed', type=int, default=None)
+@click.pass_context
+def main(ctx, seed):
+    ctx.obj = {'seed': seed or hash(time.time())}
+    random.seed(seed)
 
 
 @main.command()
@@ -62,8 +62,11 @@ def main(global_seed):
 @click.option('--darwin', default=0.0,
               help='sigma factor for variation of the alpha/beta settings for '
                    'ants in each generation')
-def demo(alpha, beta, rho, q, limit, top, gen_size, plot, darwin, elite, flip,
-         threshold, reset, file, file_format):
+@click.pass_context
+def solve(ctx, alpha, beta, rho, q, limit, top, gen_size, plot, darwin, elite,
+          flip, threshold, reset, file, file_format):
+    click.echo(f'SEED={ctx.obj["seed"]}')
+
     if file is None:
         graph = utils.data.get_test_world_33()
     else:
