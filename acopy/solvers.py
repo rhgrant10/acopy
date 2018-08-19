@@ -141,7 +141,7 @@ class State:
         self.record = None
         self.previous_record = None
         self.is_new_record = False
-        self.best = None
+        self._best = None
 
     @property
     def best(self):
