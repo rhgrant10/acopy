@@ -57,6 +57,21 @@ acopy.utils.general module
 acopy.utils.plot module
 -----------------------
 
+The plot utility works with the StatsRecorder plugin to generate interesting plots of solver iterations.
+
+.. image:: images/pheromone-levels.*
+    :width: 48%
+
+.. image:: images/pheromone-stats.*
+    :width: 48%
+
+.. image:: images/uniqueness.*
+    :width: 48%
+
+.. image:: images/solutions.*
+    :width: 48%
+
+
 .. automodule:: acopy.utils.plot
     :members:
     :undoc-members:

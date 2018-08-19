@@ -38,6 +38,8 @@ Features
 * Solver can be customized via plugins
 * Has a utility for plotting information about the solving process
 * CLI tool that supports reading graphs in a variety of formats (including TSPLIB)
+* Support for plotting iteration data using matplotlib
+
 
 Credits
 -------
