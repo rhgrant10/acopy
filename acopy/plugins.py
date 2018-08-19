@@ -9,35 +9,26 @@ from .solvers import SolverPlugin
 
 class Printout(SolverPlugin):
 
+    _ROW = '{:<10} {:<20} {}'
+
     def initialize(self, solver):
         super().initialize(solver)
         self.iteration = 0
-        self.best_count = 0
-        self.width = None
 
     def on_start(self, state):
         self.iteration = 0
-        self.best_count = 0
-        self.width = math.ceil(math.log10(state.limit)) + 1
-        self.width = max(self.width, len('Iteration'))
         print(f'Using {state.gen_size} ants from {state.colony}')
         print(f'Performing {state.limit} iterations:')
-        print(f'{"Iteration":{self.width}}\tCost\tSolution')
+        print(self._ROW.format('Iteration', 'Cost', 'Solution'))
 
     def on_iteration(self, state):
-        report = f'{self.iteration:{self.width}d}'
         self.iteration += 1
-        if state.is_new_record:
-            best = state.record
-            report += f'\t{best.cost}\t{best.get_easy_id()}'
-            end = '\n'
-            self.best_count += 1
-        else:
-            end = '\r'
-        print(report, end=end)
+        line = self._ROW.format(self.iteration, state.best.cost,
+                                state.best.get_easy_id())
+        print(line, end='\n' if state.is_new_record else '\r')
 
     def on_finish(self, state):
-        print('Done' + ' ' * self.width)
+        print('Done' + ' ' * (32 + 2 * len(state.graph)))
 
 
 class EliteTracer(SolverPlugin):

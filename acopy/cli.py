@@ -53,6 +53,7 @@ def solver_options(f):
                  default=None,
                  help='number of ants to use (defaults to number of nodes)')(f)
     click.option('--top',
+                 type=int,
                  default=None,
                  help='number of ants that deposit pheromone (defaults to '
                       'all)')(f)
@@ -93,9 +94,6 @@ def run_solver(graph, alpha, beta, rho, q, limit, top, ants, seed,
     click.echo(f'Registering plugin: {timer}')
     solver.add_plugin(timer)
 
-    if plugin_settings.get('plot'):
-        click.echo('Registering StatsRecorder plugin...')
-        solver.add_plu_settingsin(plugins.StatsRecorder())
     if plugin_settings.get('darwin'):
         plugin = plugins.Darwin(sigma=plugin_settings['darwin'])
         click.echo(f'Registering plugin: {plugin}')
@@ -116,13 +114,18 @@ def run_solver(graph, alpha, beta, rho, q, limit, top, ants, seed,
         plugin = plugins.Threshold(plugin_settings['threshold'])
         click.echo(f'Registering plugin: {plugin}')
         solver.add_plugin(plugin)
+    if plugin_settings.get('plot'):
+        recorder = plugins.StatsRecorder()
+        click.echo(f'Registering plugin: {recorder}')
+        solver.add_plugin(recorder)
+    else:
+        recorder = None
 
     solver.solve(graph, colony, gen_size=ants, limit=limit)
 
     click.echo(timer.get_report())
-    if plugin_settings.get('plot'):
-        data = solver.plugins['stats-recorder'].stats
-        plotter = utils.plot.Plotter(data)
+    if recorder:
+        plotter = utils.plot.Plotter(recorder.stats)
         plotter.plot()
 
 
