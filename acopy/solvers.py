@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
 import functools
-import textwrap
 import collections
 
 from . import utils
