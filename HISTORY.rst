@@ -2,7 +2,7 @@
 History
 =======
 
-0.7.0 (2018-08-18)
+0.6.0 (2018-08-18)
 ------------------
 
 * First release on PyPI as ``acopy``
@@ -15,7 +15,7 @@ History
 * Supports only python 3.6+
 
 
-0.6.0 (2014-09-09)
+0.5.2 (2014-09-09)
 ------------------
 
 * Last release on the PyPI as ``ACO-Pants``
