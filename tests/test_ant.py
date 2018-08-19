@@ -42,12 +42,3 @@ def test_ant_score_edge_when_no_pheromone():
     ant = Ant(alpha=1, beta=1)
     with pytest.raises(KeyError):
         ant.score_edge({'weight': 1})
-
-
-# class ScoreMovesUnequalWeightsCase(unittest.TestCase):
-#     def test(self):
-
-
-# cases
-# 1. unequal pheromone
-# 2. unequal weight
