@@ -10,4 +10,4 @@ from . import utils  # noqa: F401
 
 __author__ = """Robert Grant"""
 __email__ = 'rhgrant10@gmail.com'
-__version__ = '0.6.0'
+__version__ = '0.6.1'
