@@ -5,6 +5,7 @@ from .solvers import Solver  # noqa: F401
 from .solvers import Solution  # noqa: F401
 from .solvers import SolverPlugin  # noqa: F401
 from . import plugins  # noqa: F401
+from . import utils  # noqa: F401
 
 
 __author__ = """Robert Grant"""

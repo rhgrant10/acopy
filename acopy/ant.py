@@ -4,7 +4,7 @@ import itertools
 import bisect
 import random
 
-from . import utils
+from .utils import positive
 from .solvers import Solution
 
 
@@ -29,7 +29,7 @@ class Ant:
 
     @alpha.setter
     def alpha(self, value):
-        self._alpha = utils.positive(value)
+        self._alpha = positive(value)
 
     @property
     def beta(self):
@@ -38,7 +38,7 @@ class Ant:
 
     @beta.setter
     def beta(self, value):
-        self._beta = utils.positive(value)
+        self._beta = positive(value)
 
     def __repr__(self):
         return f'Ant(alpha={self.alpha}, beta={self.beta})'
