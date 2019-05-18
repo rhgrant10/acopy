@@ -5,6 +5,8 @@ History
 0.6.3 (2019-05-17)
 ------------------
 
+* Freshen up the dev dependencies
+* Add the Python 3.7 classifier
 * Actually fix import issue
 
 0.6.2 (2019-02-02)
