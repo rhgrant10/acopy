@@ -2,6 +2,11 @@
 History
 =======
 
+0.6.4 (2019-05-17)
+------------------
+
+* Fix the missing `acopy.utils` package problem
+
 0.6.3 (2019-05-17)
 ------------------
 
