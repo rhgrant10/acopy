@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import collections
-import math
 import random
 import time
 
@@ -61,12 +60,18 @@ class PeriodicActionPlugin(SolverPlugin):
 
 class PeriodicReset(PeriodicActionPlugin):
 
+    def __init__(self, period=50):
+        super().__init__(period=period)
+
     def action(self, state):
         for edge in state.graph.edges:
             state.graph.edges[edge]['pheromone'] = 0
 
 
 class PheromoneFlip(PeriodicActionPlugin):
+
+    def __init__(self, period=50):
+        super().__init__(period=period)
 
     def action(self, state):
         data = []
