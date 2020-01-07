@@ -219,7 +219,7 @@ class StatsRecorder(SolverPlugin):
                 'best': min(distances),
                 'worst': max(distances),
                 'avg': sum(distances) / num_ants,
-                'global_best': state.best.cost,
+                'global_best': state.record.cost,
             },
             'unique_solutions': {
                 'total': len(self.data['solutions']),
