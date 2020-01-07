@@ -162,8 +162,8 @@ class Colony:
     Effectively this is a source of :class:`~acopy.ant.Ant` for a
     :class:`~acopy.solvers.Solver`.
 
-    :param float alpha: relative factor for edge weight
-    :param float beta: relative factor for edge pheromone
+    :param float alpha: relative factor for edge pheromone
+    :param float beta: relative factor for edge weight
     """
 
     def __init__(self, alpha=1, beta=3):
