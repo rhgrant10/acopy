@@ -131,12 +131,15 @@ class State:
     :type colony: :class:`~acopy.ant.Colony`
     """
 
-    def __init__(self, graph, ants, limit, gen_size, colony):
+    def __init__(self, graph, ants, limit, gen_size, colony, rho, q, top):
         self.graph = graph
         self.ants = ants
         self.limit = limit
         self.gen_size = gen_size
         self.colony = colony
+        self.rho = rho
+        self.q = q
+        self.top = top
         self.solutions = None
         self.record = None
         self.previous_record = None
@@ -215,7 +218,7 @@ class Solver:
             graph.edges[u, v].setdefault('pheromone', 0)
 
         state = State(graph=graph, ants=ants, limit=limit, gen_size=gen_size,
-                      colony=colony)
+                      colony=colony, rho=self.rho, q=self.q, top=self.top)
 
         # call start hook for all plugins
         self._call_plugins('start', state=state)
@@ -328,7 +331,7 @@ class SolverPlugin:
         self._params = kwargs
 
     def __repr__(self):
-        params = ', '.join(f'{k}={v}'for k, v in self._params.items())
+        params = ', '.join(f'{k}={v}' for k, v in self._params.items())
         return f'<{self.__class__.__qualname__}({params})>'
 
     def __call__(self, hook, **kwargs):
