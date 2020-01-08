@@ -2,6 +2,7 @@
 import collections
 import random
 import time
+import matplotlib.pyplot as plt
 
 from .solvers import SolverPlugin
 
@@ -37,6 +38,45 @@ class EliteTracer(SolverPlugin):
 
     def on_iteration(self, state):
         state.best.trace(self.solver.q * self.factor)
+
+
+class MaxMinPheromoneRestrict(SolverPlugin):
+
+    def __init__(self, p_best):
+        super().__init__()
+        self.p_best = p_best
+        self.tau_maxs = []
+        self.tau_mins = []
+
+    def on_iteration(self, state):
+        record_cost = state.record.cost
+        rho = state.rho
+        n = state.graph.number_of_nodes()
+
+        tau_max = (1 / rho) * (1 / record_cost)
+        tau_min = (tau_max * (1 - self.p_best ** (1 / n))) / ((n / 2 - 1) * (self.p_best ** (1 / n)))
+
+        for edge in state.graph.edges():
+            p = state.graph.edges[edge]['pheromone']
+            p = min(tau_max, max(tau_min, p))
+            state.graph.edges[edge]['pheromone'] = p
+
+        self.tau_maxs.append(tau_max)
+        self.tau_mins.append(tau_min)
+
+    def draw(self, state):
+        fig = plt.figure(dpi=200)
+        x = list(range(len(self.tau_maxs)))
+        ax = fig.add_subplot(1, 1, 1)
+        ax.plot(x, self.tau_mins, label='min')
+        ax.plot(x, self.tau_maxs, label='max')
+        ax.set_title('MaxMin Pheromone')
+        ax.legend()
+        fig.show()
+
+    def on_finish(self, state):
+        super().on_finish(state)
+        self.draw(state)
 
 
 class PeriodicActionPlugin(SolverPlugin):
