@@ -8,14 +8,14 @@ from acopy.utils.plot import Plotter
 problem = tsplib95.load_problem('bays29.tsp')
 G = problem.get_graph()
 
-solver = acopy.Solver(top=1)
-colony = acopy.Colony()
+solver = acopy.Solver()
+colony = acopy.Colony(evil=0.02)
 
 printer = Printout()
 recoder = StatsRecorder()
-restricter = MaxMinPheromoneRestrict(p_best=0.05)
 
-solver.add_plugins(printer, recoder, restricter)
+
+solver.add_plugins(printer, recoder)
 
 ans = solver.solve(G, colony, limit=50, gen_size=20)
 

@@ -18,7 +18,7 @@ class Ant:
     :param float beta: how much distance matters
     """
 
-    def __init__(self, alpha=1, beta=3):
+    def __init__(self, alpha=1, beta=3, **kwargs):
         self.alpha = alpha
         self.beta = beta
 
@@ -155,29 +155,3 @@ class Ant:
         post = edge['pheromone']
         return post ** self.alpha * pre ** self.beta
 
-
-class Colony:
-    """Colony of ants.
-
-    Effectively this is a source of :class:`~acopy.ant.Ant` for a
-    :class:`~acopy.solvers.Solver`.
-
-    :param float alpha: relative factor for edge pheromone
-    :param float beta: relative factor for edge weight
-    """
-
-    def __init__(self, alpha=1, beta=3):
-        self.alpha = alpha
-        self.beta = beta
-
-    def __repr__(self):
-        return (f'{self.__class__.__name__}(alpha={self.alpha}, '
-                f'beta={self.beta})')
-
-    def get_ants(self, count):
-        """Return the requested number of :class:`~acopy.ant.Ant` s.
-
-        :param int count: number of ants to return
-        :rtype: list
-        """
-        return [Ant(**vars(self)) for __ in range(count)]
