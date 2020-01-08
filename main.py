@@ -2,7 +2,7 @@ import acopy
 import tsplib95
 import numpy as np
 
-from acopy.plugins import Printout, StatsRecorder, MaxMinPheromoneRestrict
+from acopy.plugins import Printout, StatsRecorder, MaxMinPheromoneRestrict, DrawGraph
 from acopy.utils.plot import Plotter
 
 problem = tsplib95.load_problem('bays29.tsp')
@@ -13,9 +13,9 @@ colony = acopy.Colony(evil=0.02)
 
 printer = Printout()
 recoder = StatsRecorder()
+drawer = DrawGraph()
 
-
-solver.add_plugins(printer, recoder)
+solver.add_plugins(printer, recoder, drawer)
 
 ans = solver.solve(G, colony, limit=50, gen_size=20)
 

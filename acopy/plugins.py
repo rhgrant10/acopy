@@ -2,6 +2,7 @@
 import collections
 import random
 import time
+import networkx
 import matplotlib.pyplot as plt
 
 from .solvers import SolverPlugin
@@ -196,6 +197,17 @@ class TimeLimit(EarlyTerminationPlugin):
     def should_terminate(self, state):
         duration = time.time() - self.start_time
         return duration >= self.limit
+
+
+class DrawGraph(SolverPlugin):
+    def __init__(self):
+        super().__init__()
+
+    def on_iteration(self, state):
+        pass
+
+    def on_finish(self, state):
+        networkx.draw(state.graph)
 
 
 class StatsRecorder(SolverPlugin):
