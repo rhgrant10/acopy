@@ -31,6 +31,19 @@ class Printout(SolverPlugin):
         print('Done' + ' ' * (32 + 2 * len(state.graph)))
 
 
+class InitialSolution(SolverPlugin):
+
+    def __init__(self, q=1):
+        super().__init__()
+        self.q = q
+
+    def on_start(self, state):
+        for edge in state.graph.edges:
+            if state.graph.edges[edge]['weight'] == 0:
+                continue
+            state.graph.edges[edge]['pheromone'] = self.q / state.graph.edges[edge]['weight']
+
+
 class EliteTracer(SolverPlugin):
 
     def __init__(self, factor=1):
