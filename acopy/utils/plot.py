@@ -4,6 +4,7 @@ import functools
 try:
     import matplotlib.pyplot as plt
     import pandas as pd
+    import os
 except ImportError:
     pass
 
@@ -40,6 +41,32 @@ class Plotter:
         self.plot_unique_solutions()
 
         plt.show()
+
+    def save(self, path='.', leading=''):
+        """Create and save the plot."""
+
+        if not os.path.isdir(path):
+            os.mkdir(path)
+
+        plt.figure()
+        plt.title('Solutions (stats)')
+        self.plot_solutions()
+        plt.savefig(os.path.join(path, leading + '_solutions.png'))
+
+        plt.figure()
+        plt.title('Edge Pheromone (levels)')
+        self.plot_pheromone_levels(legend=False)
+        plt.savefig(os.path.join(path, leading + '_pheromone_levels.png'))
+
+        plt.figure()
+        plt.title('Edge Pheromone (stats)')
+        self.plot_edge_pheromone()
+        plt.savefig(os.path.join(path, leading + '_pheromone_stats.png'))
+
+        plt.figure()
+        plt.title('Solutions (uniqueness)')
+        self.plot_unique_solutions()
+        plt.savefig(os.path.join(path, leading + '_uniqueness.png'))
 
     def _plot(self, stat, ax=None, **kwargs):
         data = self._extract_and_process(stat)

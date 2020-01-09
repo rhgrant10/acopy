@@ -20,4 +20,4 @@ solver.add_plugins(printer, recoder, initializer)
 ans = solver.solve(G, colony, limit=50, gen_size=20)
 
 plotter = Plotter(stats=recoder.stats)
-plotter.plot()
+plotter.save(path='images')
