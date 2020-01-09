@@ -22,15 +22,16 @@ class Plotter:
     def __init__(self, stats):
         self.stats = stats
 
-    def plot(self):
+    def plot(self, is_level=True):
         """Create and show the plot."""
         plt.figure()
         plt.title('Solutions (stats)')
         self.plot_solutions()
 
-        plt.figure()
-        plt.title('Edge Pheromone (levels)')
-        self.plot_pheromone_levels(legend=False)
+        if is_level:
+            plt.figure()
+            plt.title('Edge Pheromone (levels)')
+            self.plot_pheromone_levels(legend=False)
 
         plt.figure()
         plt.title('Edge Pheromone (stats)')
@@ -42,31 +43,32 @@ class Plotter:
 
         plt.show()
 
-    def save(self, path='.', leading=''):
+    def save(self, save_path='.', leading='', is_level=True):
         """Create and save the plot."""
 
-        if not os.path.isdir(path):
-            os.mkdir(path)
+        if not os.path.isdir(save_path):
+            os.mkdir(save_path)
 
         plt.figure()
         plt.title('Solutions (stats)')
         self.plot_solutions()
-        plt.savefig(os.path.join(path, leading + '_solutions.png'))
+        plt.savefig(os.path.join(save_path, leading + '_solutions.png'))
 
-        plt.figure()
-        plt.title('Edge Pheromone (levels)')
-        self.plot_pheromone_levels(legend=False)
-        plt.savefig(os.path.join(path, leading + '_pheromone_levels.png'))
+        if is_level:
+            plt.figure()
+            plt.title('Edge Pheromone (levels)')
+            self.plot_pheromone_levels(legend=False)
+            plt.savefig(os.path.join(save_path, leading + '_pheromone_levels.png'))
 
         plt.figure()
         plt.title('Edge Pheromone (stats)')
         self.plot_edge_pheromone()
-        plt.savefig(os.path.join(path, leading + '_pheromone_stats.png'))
+        plt.savefig(os.path.join(save_path, leading + '_pheromone_stats.png'))
 
         plt.figure()
         plt.title('Solutions (uniqueness)')
         self.plot_unique_solutions()
-        plt.savefig(os.path.join(path, leading + '_uniqueness.png'))
+        plt.savefig(os.path.join(save_path, leading + '_uniqueness.png'))
 
     def _plot(self, stat, ax=None, **kwargs):
         data = self._extract_and_process(stat)

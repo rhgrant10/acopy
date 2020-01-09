@@ -2,6 +2,7 @@
 import collections
 import random
 import time
+import os
 import networkx
 import matplotlib.pyplot as plt
 
@@ -56,11 +57,15 @@ class EliteTracer(SolverPlugin):
 
 class MaxMinPheromoneRestrict(SolverPlugin):
 
-    def __init__(self, p_best):
+    def __init__(self, p_best=0.05, save_path='.', leading=''):
         super().__init__()
         self.p_best = p_best
+        self.save_path = save_path
+        self.leading = leading
         self.tau_maxs = []
         self.tau_mins = []
+        if not os.path.isdir(save_path):
+            os.mkdir(save_path)
 
     def on_iteration(self, state):
         record_cost = state.record.cost
@@ -87,6 +92,7 @@ class MaxMinPheromoneRestrict(SolverPlugin):
         ax.set_title('MaxMin Pheromone')
         ax.legend()
         fig.show()
+        fig.savefig(os.path.join(self.save_path, self.leading + '_maxmin_pheromone.png'))
 
     def on_finish(self, state):
         super().on_finish(state)
