@@ -104,3 +104,4 @@ ENV/
 .vscode/
 .idea/
 .DS_Store
+*.png

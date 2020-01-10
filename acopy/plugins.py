@@ -3,7 +3,7 @@ import collections
 import random
 import time
 import os
-import networkx
+import networkx as nx
 import matplotlib.pyplot as plt
 
 from .solvers import SolverPlugin
@@ -219,14 +219,42 @@ class TimeLimit(EarlyTerminationPlugin):
 
 
 class DrawGraph(SolverPlugin):
-    def __init__(self):
+    def __init__(self, problem, save_path='.', leading='', is_iteration=False, is_finish=True, is_save=False):
         super().__init__()
+        self.pos = problem.display_data or problem.node_coords
+        self.save_path = save_path
+        self.leading = leading
+        self.is_iteration = is_iteration
+        self.is_finish = is_finish
+        self.is_save = is_save
+        if not os.path.isdir(save_path):
+            os.mkdir(save_path)
 
     def on_iteration(self, state):
-        pass
+        if self.is_iteration:
+            self.draw(state)
 
     def on_finish(self, state):
-        networkx.draw(state.graph)
+        if self.is_finish:
+            self.draw(state)
+        if self.is_save:
+            self.save(state)
+
+    def draw(self, state):
+        plt.figure()
+        _, ax = plt.subplots()
+        nx.draw_networkx_nodes(state.graph, pos=self.pos, ax=ax)
+        nx.draw_networkx_edges(state.graph, pos=self.pos, edgelist=state.record.path, arrows=False)
+        ax.tick_params(left=True, bottom=True, labelleft=True, labelbottom=True)
+        plt.show()
+
+    def save(self, state):
+        plt.figure(dpi=200)
+        _, ax = plt.subplots()
+        nx.draw_networkx_nodes(state.graph, pos=self.pos, ax=ax)
+        nx.draw_networkx_edges(state.graph, pos=self.pos, edgelist=state.record.path, arrows=False)
+        ax.tick_params(left=True, bottom=True, labelleft=True, labelbottom=True)
+        plt.savefig(os.path.join(self.save_path, self.leading + '_graph_record.png'))
 
 
 class StatsRecorder(SolverPlugin):
