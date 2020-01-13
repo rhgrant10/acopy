@@ -6,6 +6,7 @@ import os
 from acopy.plugins import StatsRecorder, MaxMinPheromoneRestrict, InitialSolution
 from acopy.utils.plot import Plotter
 
+
 tsps = ['bays29.tsp', 'eil76.tsp']
 
 # images
@@ -37,3 +38,6 @@ for tsp in tsps:
 
     plotter = Plotter(recorder.stats)
     plotter.save(save_path='images', leading='mmas' + tsp)
+
+
+
