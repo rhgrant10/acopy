@@ -60,6 +60,25 @@ class Ant:
         solution.close()
         return solution
 
+    def k_tour(self, graph, k_visit, start):
+        """Find a k-length-solution to the given graph.
+
+        :param graph: the graph to solve
+        :type graph: :class:`networkx.Graph`
+        :param int k_visit: how many cities to visit
+        :param int start: start node
+        :return: one solution
+        :rtype: :class:`~acopy.solvers.Solution`
+        """
+        solution = Solution(graph, start, ant=self)
+        unvisited = self.get_unvisited_nodes(graph, solution)
+        while unvisited and len(solution.nodes) < k_visit:
+            node = self.choose_destination(graph, solution.current, unvisited)
+            solution.add_node(node)
+            unvisited.remove(node)
+        solution.close()
+        return solution
+
     def initialize_solution(self, graph):
         """Return a newly initialized solution for the given graph.
 
@@ -154,4 +173,3 @@ class Ant:
         pre = 1 / weight
         post = edge['pheromone']
         return post ** self.alpha * pre ** self.beta
-

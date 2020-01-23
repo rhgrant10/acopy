@@ -250,6 +250,65 @@ class Solver:
         # call finish hook for all plugins
         self._call_plugins('finish', state=state)
 
+    def exploit(self, *args, **kwargs):
+        best = None
+        for solution in self.exploitation(*args, **kwargs):
+            best = solution
+        return best
+
+    def exploitation(self, graph, colony, gen_size=None, limit=None, k_visit=None, start=1):
+        """ only Find and return increasingly better solutions.
+
+        :param graph: graph to solve already optimized
+        :type graph: :class:`networkx.Graph`
+        :param colony: colony from which to source each :class:`~acopy.ant.Ant`
+        :type colony: :class:`~acopy.ant.Colony`
+        :param int gen_size: number of :class:`~acopy.ant.Ant` s to use
+                             (default is one per graph node)
+        :param int limit: maximum number of iterations to perform (default is
+                          unlimited so it will run forever)
+        :param int k_visit: number of cities to visit
+        :return: better solutions as they are found
+        :rtype: iter
+        """
+        gen_size = gen_size or len(graph.nodes)
+        k_visit = k_visit or len(graph.nodes)
+        ants = colony.get_ants(gen_size)
+        for u, v in graph.edges:
+            graph.edges[u, v].setdefault('pheromone', 0)
+
+        state = State(graph=graph, ants=ants, limit=limit, gen_size=gen_size,
+                      colony=colony, rho=self.rho, q=self.q, top=self.top)
+
+        # call start hook for all plugins
+        self._call_plugins('start', state=state)
+
+        # find solutions
+        for __ in utils.looper(limit):
+            solutions = self.find_solution_k_visit(state.graph, state.ants, k_visit, start)
+
+            # we want to ensure the ants are sorted with the solutions, but
+            # since ants aren't directly comparable, so we interject a list of
+            # unique numbers that satifies any two solutions that are equal
+            data = list(zip(solutions, range(len(state.ants)), state.ants))
+            data.sort()
+            solutions, __, ants = zip(*data)
+
+            state.solutions = solutions
+            state.ants = ants
+
+            # yield increasingly better solutions
+            state.best = state.solutions[0]
+            if state.is_new_record:
+                yield state.record
+
+            # call iteration hook for all plugins
+            if self._call_plugins('iteration', state=state):
+                break
+
+        # call finish hook for all plugins
+        self._call_plugins('finish', state=state)
+
     def find_solutions(self, graph, ants):
         """Return the solutions found for the given ants.
 
@@ -260,6 +319,9 @@ class Solver:
         :rtype: list
         """
         return [ant.tour(graph) for ant in ants]
+
+    def find_solution_k_visit(self, graph, ants, k_visit, start=1):
+        return [ant.k_tour(graph, k_visit, start) for ant in ants]
 
     def global_update(self, state):
         """Perform a global pheromone update.
