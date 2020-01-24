@@ -41,7 +41,7 @@ class InitialSolution(SolverPlugin):
     def on_start(self, state):
         for edge in state.graph.edges:
             if state.graph.edges[edge]['weight'] == 0:
-                continue
+                state.graph.edges[edge]['weight'] = 1e100
             state.graph.edges[edge]['pheromone'] = self.q / state.graph.edges[edge]['weight']
 
 
