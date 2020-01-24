@@ -339,17 +339,16 @@ class Solver:
         :param state: solver state
         :type state: :class:`~State`
         """
+        next_pheromones = collections.defaultdict(float)
+        solutions = state.solutions
+        if self.top:
+            solutions = solutions[:self.top]
+        for solution in solutions:
+            for edge in solution:
+                next_pheromones[edge] += self.q / solution.cost
         for edge in state.graph.edges:
-            amount = 0
-            if self.top:
-                solutions = state.solutions[:self.top]
-            else:
-                solutions = state.solutions
-            for solution in solutions:
-                if edge in solution.path:
-                    amount += self.q / solution.cost
             p = state.graph.edges[edge]['pheromone']
-            state.graph.edges[edge]['pheromone'] = (1 - self.rho) * p + amount
+            state.graph.edges[edge]['pheromone'] = (1 - self.rho) * p + next_pheromones[edge]
 
     def add_plugin(self, plugin):
         """Add a single solver plugin.
