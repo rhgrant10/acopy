@@ -3,6 +3,8 @@ import collections
 import random
 import time
 import os
+
+import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 
@@ -32,7 +34,7 @@ class Printout(SolverPlugin):
         print('Done' + ' ' * (32 + 2 * len(state.graph)))
 
 
-class InitialSolution(SolverPlugin):
+class InitialEdgePheromone(SolverPlugin):
 
     def __init__(self, q=1):
         super().__init__()
@@ -43,6 +45,31 @@ class InitialSolution(SolverPlugin):
             if state.graph.edges[edge]['weight'] == 0:
                 state.graph.edges[edge]['weight'] = 1e100
             state.graph.edges[edge]['pheromone'] = self.q / state.graph.edges[edge]['weight']
+
+
+class InitialNeighborPheromone(SolverPlugin):
+
+    def __init__(self, graph, start=1):
+        super().__init__()
+        self.start = start
+        self.nodes = [self.start]
+        self.cost = 0
+        self.tau_0 = 0
+
+        n = len(graph)
+        current = self.start
+
+        unvisited = [x for x in graph.nodes() if x != self.start]
+        while unvisited:
+            costs = [graph.edges[current, x]['weight'] for x in unvisited]
+            index = np.argmin(costs)
+            self.cost += np.min(costs)
+            current = unvisited[index]
+            del unvisited[index]
+        self.cost += graph.edges[current, self.start]['weight']
+        self.tau_0 = 1 / (n * self.cost)
+        for u, v in graph.edges:
+            graph.edges[u, v].setdefault('pheromone', self.tau_0)
 
 
 class EliteTracer(SolverPlugin):
