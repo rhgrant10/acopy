@@ -78,6 +78,12 @@ class Solution:
         """Close the tour so that the first and last nodes are the same."""
         self._add_node(self.start)
 
+    def reconstruct(self):
+        n = len(self.nodes)
+        self.path = []
+        for i in range(n):
+            self.path.append((self.nodes[i], self.nodes[(i + 1) % n]))
+
     def _add_node(self, node):
         edge = self.current, node
         data = self.graph.edges[edge]
@@ -236,6 +242,8 @@ class Solver:
 
             state.solutions = solutions
             state.ants = ants
+
+            self._call_plugins('before', state=state)
             self.global_update(state)
 
             # yield increasingly better solutions
@@ -296,6 +304,8 @@ class Solver:
 
             state.solutions = solutions
             state.ants = ants
+
+            self._call_plugins('before', state=state)
 
             # yield increasingly better solutions
             state.best = state.solutions[0]
@@ -418,6 +428,13 @@ class SolverPlugin:
         :type state: :class:`acopy.solvers.State`
         """
         pass
+
+    def on_before(self, state):
+        """Perform actions before the global update
+
+        :param state: solver state
+        :type state: :class:`acopy.solvers.State`
+        """
 
     def on_iteration(self, state):
         """Perform actions after each iteration.

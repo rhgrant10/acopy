@@ -99,6 +99,35 @@ class MaxMinPheromoneRestrict(SolverPlugin):
         self.draw(state)
 
 
+class Opt2Swap(SolverPlugin):
+    def __init__(self, opt2=10):
+        super().__init__()
+        self.opt2 = opt2
+        self.swaps = 0
+
+    def on_before(self, state):
+        solutions = state.solutions
+        graph = state.graph
+        n = len(graph.nodes)
+
+        for s in solutions:
+            while True:
+                x, y = random.randint(0, n - 1), random.randint(0, n - 1)
+                if x > y:
+                    x, y = y, x
+                if x != y:
+                    break
+            dist_a = graph.edges[s.nodes[x], s.nodes[x + 1]]['weight']
+            dist_b = graph.edges[s.nodes[y], s.nodes[(y + 1) % n]]['weight']
+            dist_c = graph.edges[s.nodes[x], s.nodes[y]]['weight']
+            dist_d = graph.edges[s.nodes[x + 1], s.nodes[(y + 1) % n]]['weight']
+            if dist_a + dist_b > dist_c + dist_d:
+                s.nodes[x + 1: y + 1] = reversed(s.nodes[x + 1: y + 1])
+                s.cost += dist_c + dist_d - dist_a - dist_b
+                s.reconstruct()
+                self.swaps += 1
+
+
 class PeriodicActionPlugin(SolverPlugin):
     def __init__(self, period=50):
         super().__init__(period=period)
