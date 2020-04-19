@@ -8,7 +8,6 @@ from .solvers import SolverPlugin
 
 
 class Printout(SolverPlugin):
-
     _ROW = '{:<10} {:<20} {}'
 
     def initialize(self, solver):
@@ -215,7 +214,7 @@ class StatsRecorder(SolverPlugin):
                 'best': min(distances),
                 'worst': max(distances),
                 'avg': sum(distances) / num_ants,
-                'global_best': state.best.cost,
+                'global_best': state.record.cost,
             },
             'unique_solutions': {
                 'total': len(self.data['solutions']),

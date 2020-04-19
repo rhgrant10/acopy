@@ -66,7 +66,7 @@ class Solution:
         return tuple(self.nodes[index:] + self.nodes[:index])
 
     def add_node(self, node):
-        """Reocrd a node as visited.
+        """Record a node as visited.
 
         :param node: the node visited
         """
@@ -105,7 +105,7 @@ class State:
     """Solver state.
 
     This class tracks the state of a solution in progress and is passed to each
-    plugin hook. Specically it conatins:
+    plugin hook. Specially it contains:
 
     ===================== ======================================
     Attribute             Description
@@ -159,7 +159,7 @@ class State:
 class Solver:
     """ACO solver.
 
-    Solvers control the parameters related to phomone deposit and evaporation.
+    Solvers control the parameters related to pheromone deposit and evaporation.
     If top is not specified, it defaults to the number of ants used to solve a
     graph.
 
@@ -184,7 +184,7 @@ class Solver:
     def solve(self, *args, **kwargs):
         """Find and return the best solution.
 
-        Accepts exactly the same paramters as the :func:`~optimize` method.
+        Accepts exactly the same parameters as the :func:`~optimize` method.
 
         :return: best solution found
         :rtype: :class:`~Solution`
@@ -314,11 +314,11 @@ class SolverPlugin:
     """Solver plugin.
 
     Solver plugins can be added to any solver to customize its behavior.
-    Plugins are initilized once when added, once before the first solver
+    Plugins are initialized once when added, once before the first solver
     iteration, once after each solver iteration has completed, and once after
     all iterations have completed.
 
-    Implenting each hook is optional.
+    Implementing each hook is optional.
     """
 
     #: unique name
