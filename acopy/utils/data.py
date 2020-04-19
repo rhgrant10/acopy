@@ -25,7 +25,7 @@ def read_json(path):
 
 
 def read_tsplib95(path):
-    problem = tsplib95.load_problem(path)
+    problem = tsplib95.load(path)
     return problem.get_graph()
 
 
