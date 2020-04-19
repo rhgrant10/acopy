@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import collections
-import math
 import random
 import time
 
@@ -13,6 +12,7 @@ class Printout(SolverPlugin):
     def initialize(self, solver):
         super().initialize(solver)
         self.iteration = 0
+        self._last_line = ''
 
     def on_start(self, state):
         self.iteration = 0
@@ -25,9 +25,11 @@ class Printout(SolverPlugin):
         line = self._ROW.format(self.iteration, state.best.cost,
                                 state.best.get_easy_id())
         print(line, end='\n' if state.is_new_record else '\r')
+        self._last_line = line
 
     def on_finish(self, state):
-        print('Done' + ' ' * (32 + 2 * len(state.graph)))
+        eraser = '-' * len(self._last_line)
+        print(f'\r{eraser}')
 
 
 class EliteTracer(SolverPlugin):

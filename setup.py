@@ -12,9 +12,9 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    'click==6.7',
-    'networkx==2.1',
-    'tsplib95==0.7.0',
+    'click~=7.1',
+    'networkx~=2.4',
+    'tsplib95~=0.7.0',
 ]
 
 setup_requirements = ['pytest-runner', ]
@@ -25,7 +25,7 @@ setup(
     author="Robert Grant",
     author_email='rhgrant10@gmail.com',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Natural Language :: English',
@@ -42,8 +42,8 @@ setup(
     install_requires=requirements,
     extras_require={
         'plot': [
-            'matplotlib==2.1.1',
-            'pandas==0.23.3',
+            'matplotlib~=3.2',
+            'pandas~=1.0',
         ],
     },
     license="Apache Software License 2.0",
