@@ -2,10 +2,20 @@
 History
 =======
 
+
+0.7.0 (2020-04-18)
+------------------
+
+* Bump all dependencies to latest
+* Fix minor display issue in the CLI
+* Add py37 to the tox config
+
+
 0.6.4 (2019-05-17)
 ------------------
 
 * Fix the missing `acopy.utils` package problem
+
 
 0.6.3 (2019-05-17)
 ------------------
@@ -14,15 +24,18 @@ History
 * Add the Python 3.7 classifier
 * Actually fix import issue
 
+
 0.6.2 (2019-02-02)
 ------------------
 
 * Fix import issue
 
+
 0.6.1 (2018-10-07)
 ------------------
 
 * Bump dependency on tsplib95 to 0.3.2
+
 
 0.6.0 (2018-08-18)
 ------------------
